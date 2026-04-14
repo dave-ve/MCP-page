@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluestone PIM — Your Products, Discoverable by Every AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0C2340',
+                            deep: '#091A2E',
+                            sky: '#3D74F4',
+                            electric: '#0F05CC',
+                            orange: '#EC672B',
+                            citrine: '#FBE74D',
+                            berry: '#EB485E',
+                            mint: '#0ED08F',
+                            ghost: '#F4F6FA',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Outfit', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        body { font-family: 'DM Sans', sans-serif; }
+        h1,h2,h3,h4,h5,h6,.font-display { font-family: 'Outfit', sans-serif; }
+
+        /* Grain overlay */
+        .grain::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(15, 5, 204, 0.15); }
+            50% { box-shadow: 0 0 24px 8px rgba(15, 5, 204, 0.08); }
+        }
+        .animate-fade-up { animation: fadeUp 0.8s var(--ease-out-expo) both; }
+        .animate-fade-in { animation: fadeIn 0.6s ease both; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        /* Scroll reveal */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Marquee */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-track { animation: marquee 30s linear infinite; }
+
+        /* Carousel */
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            gap: 1.25rem;
+            padding-bottom: 1rem;
+        }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-card {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+        }
+        @media (min-width: 768px) { .carousel-card { flex: 0 0 calc(50% - 0.75rem); } }
+        @media (min-width: 1024px) { .carousel-card { flex: 0 0 calc(33.333% - 0.85rem); } }
+
+        /* Comparison table */
+        .sticky-col { position: sticky; left: 0; z-index: 10; }
+        th.sticky-col { z-index: 20; }
+
+        /* Metric counter animation */
+        .metric-value { font-variant-numeric: tabular-nums; }
+
+        /* Hover lift */
+        .hover-lift { transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo); }
+        .hover-lift:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.12); }
+
+        /* Accent bar */
+        .accent-bar { position: relative; }
+        .accent-bar::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            border-radius: 2px;
+            background: linear-gradient(180deg, #0F05CC, #3D74F4);
+        }
+
+        /* GEO pulse */
+        .geo-badge { animation: pulse-glow 3s ease-in-out infinite; }
+    </style>
+</head>
+<body class="bg-white text-brand-navy antialiased">
+
+    <!-- ===================== NAV ===================== -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-neutral-100/80">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="flex justify-between h-[72px] items-center">
+                <div class="flex-shrink-0 flex items-center gap-2.5 cursor-pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                    <div class="w-8 h-8 bg-brand-electric rounded-md flex items-center justify-center shadow-sm">
+                        <div class="w-3.5 h-3.5 bg-white rotate-45"></div>
+                    </div>
+                    <span class="font-display font-black text-xl tracking-tight text-brand-navy">BLUESTONE <span class="font-light text-brand-electric">PIM</span></span>
+                </div>
+                <div class="hidden md:flex items-center gap-8 text-[11px] font-bold tracking-widest uppercase text-brand-navy/60">
+                    <a href="#why" class="hover:text-brand-electric transition-colors">Why MCP</a>
+                    <a href="#proof" class="hover:text-brand-electric transition-colors">Results</a>
+                    <a href="#geo" class="hover:text-brand-electric transition-colors">GEO</a>
+                    <a href="#toolbox" class="hover:text-brand-electric transition-colors">Toolbox</a>
+                </div>
+                <a href="#cta-footer" class="bg-brand-electric text-white px-5 py-2.5 rounded-lg font-display font-bold text-xs tracking-wide shadow-lg shadow-brand-electric/20 hover:shadow-brand-electric/40 hover:bg-blue-800 transition-all">
+                    Request a Demo
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================== HERO ===================== -->
+    <header class="relative overflow-hidden bg-brand-deep grain">
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-electric/20 via-brand-deep to-brand-navy/90"></div>
+        <!-- Subtle grid -->
+        <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 pt-20 pb-28 md:pt-28 md:pb-36">
+            <div class="max-w-4xl">
+                <div class="animate-fade-up">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/10 rounded-full px-4 py-1.5 mb-8">
+                        <span class="w-2 h-2 rounded-full bg-brand-mint animate-pulse"></span>
+                        <span class="text-[11px] font-bold text-white/80 tracking-wide">Now in Beta — Native MCP for Product Data</span>
+                    </div>
+                </div>
+
+                <h1 class="animate-fade-up delay-1 font-display text-4xl sm:text-5xl md:text-[4.25rem] font-black text-white tracking-tight leading-[1.05] mb-6">
+                    Make every product<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-citrine via-brand-orange to-brand-berry">discoverable by AI.</span>
+                </h1>
+
+                <p class="animate-fade-up delay-2 text-lg md:text-xl text-white/70 font-medium leading-relaxed max-w-2xl mb-10">
+                    AI agents are the new shoppers. If your product data can't be found, queried, and acted on by Claude, ChatGPT, or Perplexity — you're invisible. Bluestone PIM gives AI direct access to your catalogue, so your products show up when it matters.
+                </p>
+
+                <div class="animate-fade-up delay-3 flex flex-wrap gap-4">
+                    <a href="#cta-footer" class="inline-flex items-center gap-2 bg-white text-brand-navy px-7 py-3.5 rounded-xl font-display font-bold text-sm shadow-xl hover:shadow-2xl transition-all hover:-translate-y-0.5">
+                        See it in action
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <a href="#why" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/15 text-white px-7 py-3.5 rounded-xl font-display font-bold text-sm hover:bg-white/15 transition-all">
+                        How it works
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero metrics -->
+            <div class="animate-fade-up delay-5 grid grid-cols-3 gap-6 mt-16 max-w-2xl">
+                <div class="border-l-2 border-brand-mint/50 pl-4">
+                    <div class="font-display font-black text-3xl md:text-4xl text-white metric-value">3×</div>
+                    <div class="text-xs text-white/50 font-semibold mt-1">Faster channel rollouts</div>
+                </div>
+                <div class="border-l-2 border-brand-citrine/50 pl-4">
+                    <div class="font-display font-black text-3xl md:text-4xl text-white metric-value">70%</div>
+                    <div class="text-xs text-white/50 font-semibold mt-1">Less manual data work</div>
+                </div>
+                <div class="border-l-2 border-brand-orange/50 pl-4">
+                    <div class="font-display font-black text-3xl md:text-4xl text-white metric-value">&lt;500<span class="text-lg">ms</span></div>
+                    <div class="text-xs text-white/50 font-semibold mt-1">Agent response time</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== SOCIAL PROOF BAR ===================== -->
+    <section class="bg-brand-ghost border-b border-neutral-100 py-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <p class="text-center text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-5">Trusted by product teams at</p>
+        </div>
+        <div class="relative overflow-hidden">
+            <div class="flex marquee-track whitespace-nowrap">
+                <!-- Placeholder logos — replace with real partner/customer logos -->
+                <div class="flex items-center gap-16 px-8">
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">CompanyOne</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">BrandCo</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">RetailGroup</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">DistribuCorp</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">TechManuf</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">NordicBrand</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">EuroRetail</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">GlobalParts</span>
+                </div>
+                <div class="flex items-center gap-16 px-8">
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">CompanyOne</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">BrandCo</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">RetailGroup</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">DistribuCorp</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">TechManuf</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">NordicBrand</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">EuroRetail</span>
+                    <span class="text-neutral-300 font-display font-black text-xl tracking-tight">GlobalParts</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== THE PROBLEM / WHY ===================== -->
+    <section id="why" class="py-24 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-20 reveal">
+                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-4">The shift</span>
+                <h2 class="font-display text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-6">
+                    Your products need to speak<br class="hidden md:block"> a new language — AI.
+                </h2>
+                <p class="text-base md:text-lg text-neutral-500 font-medium leading-relaxed">
+                    Consumers increasingly discover products through AI assistants, not search engines. If your catalogue isn't structured for machine reasoning, your products don't exist to the fastest-growing discovery channel.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 md:gap-8 reveal">
+                <!-- Old way -->
+                <div class="bg-neutral-50 rounded-2xl p-8 md:p-10 border border-neutral-100 relative overflow-hidden">
+                    <div class="absolute top-6 right-6">
+                        <span class="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-red-400 bg-red-50 border border-red-100 px-2.5 py-1 rounded-full">
+                            <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> Legacy approach
+                        </span>
+                    </div>
+                    <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center text-red-500 mb-6">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </div>
+                    <h3 class="font-display font-black text-lg mb-3 text-brand-navy">Static exports, stale context</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed mb-6">Export a CSV. Copy-paste into a prompt. Hope the AI doesn't hallucinate because the data is already three days old. Repeat for every channel, every market, every update.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] font-bold text-neutral-400 bg-neutral-100 px-2.5 py-1 rounded">Manual exports</span>
+                        <span class="text-[10px] font-bold text-neutral-400 bg-neutral-100 px-2.5 py-1 rounded">Data decay</span>
+                        <span class="text-[10px] font-bold text-neutral-400 bg-neutral-100 px-2.5 py-1 rounded">Hallucination risk</span>
+                        <span class="text-[10px] font-bold text-neutral-400 bg-neutral-100 px-2.5 py-1 rounded">No write-back</span>
+                    </div>
+                </div>
+
+                <!-- MCP way -->
+                <div class="bg-brand-electric/[0.03] rounded-2xl p-8 md:p-10 border border-brand-electric/10 relative overflow-hidden">
+                    <div class="absolute top-6 right-6">
+                        <span class="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-brand-electric bg-brand-electric/10 border border-brand-electric/15 px-2.5 py-1 rounded-full">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-electric"></span> With Bluestone MCP
+                        </span>
+                    </div>
+                    <div class="w-10 h-10 rounded-lg bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-6">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <h3 class="font-display font-black text-lg mb-3 text-brand-navy">Live connection, real-time truth</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed mb-6">AI agents query your catalogue directly — no exports, no middleware. They read, reason over, and write back to your product data in real time. One source of truth, always current.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] font-bold text-brand-electric bg-brand-electric/10 px-2.5 py-1 rounded">Real-time queries</span>
+                        <span class="text-[10px] font-bold text-brand-electric bg-brand-electric/10 px-2.5 py-1 rounded">Zero hallucinations</span>
+                        <span class="text-[10px] font-bold text-brand-electric bg-brand-electric/10 px-2.5 py-1 rounded">Bidirectional</span>
+                        <span class="text-[10px] font-bold text-brand-electric bg-brand-electric/10 px-2.5 py-1 rounded">Sub-500ms</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explainer: What is MCP? -->
+            <div class="mt-16 max-w-3xl mx-auto reveal">
+                <div class="accent-bar pl-6">
+                    <h3 class="font-display font-bold text-base text-brand-navy mb-2">What is MCP?</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">
+                        The Model Context Protocol is an open standard that lets AI models connect securely to external data. Think of it as a universal plug between your product catalogue and any AI assistant — Claude, ChatGPT, Gemini, or your own custom agents. Bluestone PIM ships a native MCP server, so your data is available to AI out of the box.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== GEO SECTION (ELEVATED) ===================== -->
+    <section id="geo" class="relative py-24 md:py-32 bg-brand-deep grain overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-deep via-brand-navy/95 to-brand-deep"></div>
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 32px 32px;"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="geo-badge inline-flex items-center gap-2 bg-brand-mint/15 border border-brand-mint/20 text-brand-mint rounded-full px-4 py-1.5 mb-6">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span class="text-[11px] font-bold tracking-wide">Generative Engine Optimisation</span>
+                    </div>
+                    <h2 class="font-display text-3xl md:text-5xl font-black text-white tracking-tight leading-[1.1] mb-6">
+                        SEO got you here.<br>
+                        <span class="text-brand-mint">GEO gets you there.</span>
+                    </h2>
+                    <p class="text-base text-white/60 font-medium leading-relaxed mb-8">
+                        When a shopper asks Perplexity "best noise-cancelling headphones under €300," the answer doesn't come from your Google ranking — it comes from structured, machine-readable product data. If your catalogue isn't optimised for generative engines, your competitors' products get recommended instead.
+                    </p>
+                    <div class="space-y-5">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-mint/20 flex items-center justify-center flex-shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0ED08F" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                            <div>
+                                <span class="text-white font-bold text-sm">Schema-aligned hierarchies</span>
+                                <p class="text-xs text-white/40 mt-0.5">Your product structure maps directly to how AI models reason about categories and attributes.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-mint/20 flex items-center justify-center flex-shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0ED08F" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                            <div>
+                                <span class="text-white font-bold text-sm">High-authority data source</span>
+                                <p class="text-xs text-white/40 mt-0.5">Bluestone acts as the definitive context provider — AI trusts your data because it's structured, current, and complete.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-mint/20 flex items-center justify-center flex-shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0ED08F" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                            <div>
+                                <span class="text-white font-bold text-sm">AI-native discoverability</span>
+                                <p class="text-xs text-white/40 mt-0.5">Ready for indexing by Perplexity, SearchGPT, Gemini, and whatever comes next.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GEO visual: Before/After -->
+                <div class="reveal">
+                    <div class="bg-white/[0.06] backdrop-blur border border-white/10 rounded-2xl p-6 md:p-8">
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-4">What AI sees</div>
+
+                        <div class="space-y-4">
+                            <div class="bg-red-500/10 border border-red-400/20 rounded-xl p-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>
+                                    <span class="text-[10px] font-bold text-red-400 uppercase tracking-widest">Without GEO</span>
+                                </div>
+                                <div class="font-mono text-xs text-white/40 leading-relaxed">
+                                    "Pro-Mixer 3000, blue, 299EUR, kitchen"<br>
+                                    <span class="text-red-400/60">→ Ignored. Unstructured. No schema. No context.</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-brand-mint/10 border border-brand-mint/20 rounded-xl p-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>
+                                    <span class="text-[10px] font-bold text-brand-mint uppercase tracking-widest">With Bluestone GEO</span>
+                                </div>
+                                <div class="font-mono text-xs text-white/60 leading-relaxed">
+                                    {<br>
+                                    &nbsp;&nbsp;"name": "Pro-Mixer 3000",<br>
+                                    &nbsp;&nbsp;"category": ["Kitchen", "Stand Mixers"],<br>
+                                    &nbsp;&nbsp;"attributes": {"color":"Blue","wattage":800},<br>
+                                    &nbsp;&nbsp;"price": {"EUR": 299, "channel": "B2C"},<br>
+                                    &nbsp;&nbsp;"completeness": 98%<br>
+                                    }<br>
+                                    <span class="text-brand-mint/80">→ Recommended. Structured. Trusted. Cited.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== BUSINESS OUTCOMES ===================== -->
+    <section id="proof" class="py-24 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="text-center mb-20 reveal">
+                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-4">Commercial impact</span>
+                <h2 class="font-display text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-4">
+                    What changes when AI can<br class="hidden md:block"> read <em>and</em> write your catalogue
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 reveal">
+                <div class="hover-lift bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-6">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                    </div>
+                    <h3 class="font-display font-black text-lg mb-3 tracking-tight">Ground truth, zero hallucinations</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">
+                        AI agents pull directly from your official product record. No stale exports, no guessing. Every AI-generated description, comparison, or recommendation is grounded in what's actually true about your products.
+                    </p>
+                </div>
+                <div class="hover-lift bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-brand-orange/10 flex items-center justify-center text-brand-orange mb-6">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </div>
+                    <h3 class="font-display font-black text-lg mb-3 tracking-tight">Days → seconds for enrichment</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">
+                        Instead of a team spending days enriching product data for a new market, an AI agent audits completeness, fills gaps, and publishes — through natural language commands your team already understands.
+                    </p>
+                </div>
+                <div class="hover-lift bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-brand-mint/10 flex items-center justify-center text-brand-mint mb-6">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
+                    <h3 class="font-display font-black text-lg mb-3 tracking-tight">Visible in AI-native search</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">
+                        When someone asks an AI assistant for a recommendation, your structured, GEO-optimised data gets cited. Products without structured data are skipped entirely.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Testimonial / quote -->
+            <div class="mt-16 reveal">
+                <div class="bg-brand-ghost rounded-2xl p-8 md:p-12 border border-neutral-100 max-w-3xl mx-auto text-center">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="mx-auto mb-4 text-brand-electric/20"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z" fill="currentColor"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" fill="currentColor"/></svg>
+                    <p class="text-base md:text-lg text-brand-navy font-medium italic leading-relaxed mb-6">
+                        "We went from two weeks of manual enrichment per market launch to same-day. The AI reads our PIM directly — no exports, no errors."
+                    </p>
+                    <div class="text-sm font-bold text-brand-navy">Head of Product Data</div>
+                    <div class="text-xs text-neutral-400 font-medium">Enterprise manufacturer — Beta partner</div>
+                    <p class="text-[10px] text-neutral-300 mt-3 italic">[Replace with real customer quote]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== MID-PAGE CTA ===================== -->
+    <section class="py-16 bg-brand-electric relative grain overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-electric via-blue-700 to-brand-electric"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 text-center">
+            <h2 class="font-display text-2xl md:text-3xl font-black text-white tracking-tight mb-4">
+                See how your product data looks to AI — in 15 minutes.
+            </h2>
+            <p class="text-white/70 font-medium mb-8 max-w-xl mx-auto">
+                We'll connect to your catalogue and show you exactly what AI agents can (and can't) see today.
+            </p>
+            <a href="#cta-footer" class="inline-flex items-center gap-2 bg-white text-brand-electric px-8 py-4 rounded-xl font-display font-bold text-sm shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all">
+                Book a 15-min demo
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===================== USE CASES (STORY-DRIVEN) ===================== -->
+    <section class="py-24 md:py-32 bg-brand-ghost">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-4">In practice</span>
+                <h2 class="font-display text-3xl md:text-5xl font-black tracking-tight leading-[1.1]">
+                    Three teams. Three problems.<br class="hidden md:block"> One protocol.
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 reveal">
+                <!-- Scenario 1 -->
+                <div class="hover-lift bg-white rounded-2xl overflow-hidden border border-neutral-100 shadow-sm flex flex-col">
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 pb-6">
+                        <div class="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-brand-sky bg-brand-sky/10 px-2.5 py-1 rounded-full mb-4">Product Manager</div>
+                        <h3 class="font-display font-black text-base text-brand-navy leading-snug">"Are our headphones ready for the German launch?"</h3>
+                    </div>
+                    <div class="p-8 pt-6 flex-grow flex flex-col">
+                        <div class="space-y-3 flex-grow">
+                            <div class="flex items-start gap-2.5">
+                                <span class="text-[10px] text-neutral-300 font-bold mt-0.5">Before</span>
+                                <p class="text-xs text-neutral-400 font-medium leading-relaxed">Open a spreadsheet. Filter by market. Cross-check translations. Email the team. Wait 2 days.</p>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="text-[10px] text-brand-electric font-bold mt-0.5">Now</span>
+                                <p class="text-xs text-neutral-600 font-medium leading-relaxed">Ask the AI: it checks completeness for DE, flags 3 missing translations, and fills them — in 40 seconds.</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-neutral-50">
+                            <div class="flex flex-wrap gap-1.5">
+                                <code class="text-[9px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-2 py-0.5 rounded">count_products</code>
+                                <code class="text-[9px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-2 py-0.5 rounded">get_completeness</code>
+                                <code class="text-[9px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-2 py-0.5 rounded">update_attributes</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scenario 2 -->
+                <div class="hover-lift bg-white rounded-2xl overflow-hidden border border-neutral-100 shadow-sm flex flex-col">
+                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-8 pb-6">
+                        <div class="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-2.5 py-1 rounded-full mb-4">Developer</div>
+                        <h3 class="font-display font-black text-base text-brand-navy leading-snug">"Map this supplier CSV to our PIM schema."</h3>
+                    </div>
+                    <div class="p-8 pt-6 flex-grow flex flex-col">
+                        <div class="space-y-3 flex-grow">
+                            <div class="flex items-start gap-2.5">
+                                <span class="text-[10px] text-neutral-300 font-bold mt-0.5">Before</span>
+                                <p class="text-xs text-neutral-400 font-medium leading-relaxed">Read API docs for 2 hours. Write a mapping script. Debug. Test. Push to staging. Full day gone.</p>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="text-[10px] text-brand-electric font-bold mt-0.5">Now</span>
+                                <p class="text-xs text-neutral-600 font-medium leading-relaxed">In Cursor, the AI resolves attribute names, maps columns to dictionary values, and generates the import script — in minutes.</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-neutral-50">
+                            <div class="flex flex-wrap gap-1.5">
+                                <code class="text-[9px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-2 py-0.5 rounded">find_attribute_definitions</code>
+                                <code class="text-[9px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-2 py-0.5 rounded">find_dictionary_values</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scenario 3 -->
+                <div class="hover-lift bg-white rounded-2xl overflow-hidden border border-neutral-100 shadow-sm flex flex-col">
+                    <div class="bg-gradient-to-br from-emerald-50 to-teal-50 p-8 pb-6">
+                        <div class="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-emerald-600 bg-emerald-100 px-2.5 py-1 rounded-full mb-4">Operations Lead</div>
+                        <h3 class="font-display font-black text-base text-brand-navy leading-snug">"Audit 4,000 SKUs for Black Friday readiness."</h3>
+                    </div>
+                    <div class="p-8 pt-6 flex-grow flex flex-col">
+                        <div class="space-y-3 flex-grow">
+                            <div class="flex items-start gap-2.5">
+                                <span class="text-[10px] text-neutral-300 font-bold mt-0.5">Before</span>
+                                <p class="text-xs text-neutral-400 font-medium leading-relaxed">A team of 4 spends a week checking images, descriptions, and pricing across 12 channels. Something always slips.</p>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="text-[10px] text-brand-electric font-bold mt-0.5">Now</span>
+                                <p class="text-xs text-neutral-600 font-medium leading-relaxed">An AI agent runs a bulk audit overnight, flags 312 incomplete records, and auto-enriches 280 of them. The team reviews only the 32 exceptions.</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-neutral-50">
+                            <div class="flex flex-wrap gap-1.5">
+                                <code class="text-[9px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-2 py-0.5 rounded">get_job_information</code>
+                                <code class="text-[9px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-2 py-0.5 rounded">update_attributes_in_products</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== AGENTIC TOOLBOX ===================== -->
+    <section id="toolbox" class="py-24 md:py-32 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="flex flex-col md:flex-row justify-between md:items-end mb-12 gap-4 reveal">
+                <div>
+                    <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-3">For developers</span>
+                    <h2 class="font-display text-3xl md:text-4xl font-black tracking-tight">The Agentic Toolbox</h2>
+                    <p class="text-base text-neutral-500 font-medium mt-2">Six tool categories your AI agents can call today.</p>
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="scrollCarousel(-1)" class="w-10 h-10 rounded-full border border-neutral-200 bg-white flex items-center justify-center hover:bg-neutral-50 transition-all text-brand-electric">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    </button>
+                    <button onclick="scrollCarousel(1)" class="w-10 h-10 rounded-full border border-neutral-200 bg-white flex items-center justify-center hover:bg-neutral-50 transition-all text-brand-electric">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="toolbox-carousel" class="carousel-container reveal">
+                <div class="carousel-card group bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm hover:border-brand-electric/20 hover:shadow-lg transition-all flex flex-col">
+                    <div class="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5 group-hover:bg-brand-electric group-hover:text-white transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                    </div>
+                    <h4 class="font-display font-bold text-base mb-2 text-brand-navy">User Context</h4>
+                    <p class="text-xs text-neutral-500 mb-6 flex-grow font-medium leading-relaxed">The agent sees where you are in the UI and what products you're viewing — context-aware assistance without switching tabs.</p>
+                    <code class="text-[10px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-3 py-2 rounded-lg block text-center">get_user_context()</code>
+                </div>
+                <div class="carousel-card group bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm hover:border-brand-electric/20 hover:shadow-lg transition-all flex flex-col">
+                    <div class="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5 group-hover:bg-brand-electric group-hover:text-white transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <h4 class="font-display font-bold text-base mb-2 text-brand-navy">UI Actions</h4>
+                    <p class="text-xs text-neutral-500 mb-6 flex-grow font-medium leading-relaxed">AI discovers available actions and triggers them directly — clicking buttons, navigating views, executing workflows for the user.</p>
+                    <code class="text-[10px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-3 py-2 rounded-lg block text-center">push_ui_actions()</code>
+                </div>
+                <div class="carousel-card group bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm hover:border-brand-electric/20 hover:shadow-lg transition-all flex flex-col">
+                    <div class="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5 group-hover:bg-brand-electric group-hover:text-white transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.38.17.63.54.6.94V10c0 .36.2.69.51.86a2 2 0 0 1 0 3.43"></path></svg>
+                    </div>
+                    <h4 class="font-display font-bold text-base mb-2 text-brand-navy">Bulk Operations</h4>
+                    <p class="text-xs text-neutral-500 mb-6 flex-grow font-medium leading-relaxed">Orchestrate complex background jobs — mass attribute updates, category reassignments, completeness audits — autonomously.</p>
+                    <code class="text-[10px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-3 py-2 rounded-lg block text-center">update_attributes_in_products()</code>
+                </div>
+                <div class="carousel-card group bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm hover:border-brand-electric/20 hover:shadow-lg transition-all flex flex-col">
+                    <div class="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5 group-hover:bg-brand-electric group-hover:text-white transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    </div>
+                    <h4 class="font-display font-bold text-base mb-2 text-brand-navy">Platform Guidance</h4>
+                    <p class="text-xs text-neutral-500 mb-6 flex-grow font-medium leading-relaxed">The agent searches Bluestone's documentation by meaning, not keywords — it mentors users on how to use the PIM itself.</p>
+                    <code class="text-[10px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-3 py-2 rounded-lg block text-center">platform_guidance_search()</code>
+                </div>
+                <div class="carousel-card group bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm hover:border-brand-electric/20 hover:shadow-lg transition-all flex flex-col">
+                    <div class="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5 group-hover:bg-brand-electric group-hover:text-white transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    </div>
+                    <h4 class="font-display font-bold text-base mb-2 text-brand-navy">Entity Mapping</h4>
+                    <p class="text-xs text-neutral-500 mb-6 flex-grow font-medium leading-relaxed">Resolve categories, attributes, and dictionary values by name. Agents map human-readable terms to system IDs instantly.</p>
+                    <code class="text-[10px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-3 py-2 rounded-lg block text-center">find_attribute_definitions()</code>
+                </div>
+                <div class="carousel-card group bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm hover:border-brand-electric/20 hover:shadow-lg transition-all flex flex-col">
+                    <div class="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5 group-hover:bg-brand-electric group-hover:text-white transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
+                    <h4 class="font-display font-bold text-base mb-2 text-brand-navy">Context Definitions</h4>
+                    <p class="text-xs text-neutral-500 mb-6 flex-grow font-medium leading-relaxed">Switch between languages, markets, and sales channels with rule-aware logic — the agent respects your localisation rules.</p>
+                    <code class="text-[10px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-3 py-2 rounded-lg block text-center">find_context_definitions()</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== MATURITY MODEL (SIMPLIFIED) ===================== -->
+    <section class="py-24 md:py-32 bg-brand-ghost border-y border-neutral-100">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-4">Market positioning</span>
+                <h2 class="font-display text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-4">
+                    Four levels of AI readiness in PIM
+                </h2>
+                <p class="text-base text-neutral-500 font-medium max-w-2xl mx-auto">
+                    Most PIM vendors bolt on AI features. A few expose read-only data. Bluestone is the only platform where AI agents orchestrate the entire product lifecycle natively.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-4 reveal">
+                <div class="bg-white rounded-xl p-6 border border-neutral-100 shadow-sm opacity-60">
+                    <div class="text-xs font-bold text-neutral-300 mb-3 font-display">Level 1</div>
+                    <h4 class="font-display font-bold text-sm mb-2 text-brand-navy">AI-Assisted</h4>
+                    <p class="text-[11px] text-neutral-400 font-medium leading-relaxed">AI helps write descriptions. No data access. Manual workflows remain unchanged.</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 border border-neutral-100 shadow-sm opacity-75">
+                    <div class="text-xs font-bold text-brand-sky/50 mb-3 font-display">Level 2</div>
+                    <h4 class="font-display font-bold text-sm mb-2 text-brand-navy">Read-Only Bridge</h4>
+                    <p class="text-[11px] text-neutral-400 font-medium leading-relaxed">AI can fetch product data via API or MCP wrapper. No write-back. One-directional.</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 border border-neutral-100 shadow-sm opacity-85">
+                    <div class="text-xs font-bold text-brand-sky/80 mb-3 font-display">Level 3</div>
+                    <h4 class="font-display font-bold text-sm mb-2 text-brand-navy">Execution Layer</h4>
+                    <p class="text-[11px] text-neutral-400 font-medium leading-relaxed">AI reads and writes. Bidirectional. But still treated as an add-on, not core architecture.</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 border-2 border-brand-electric shadow-xl relative">
+                    <div class="absolute -top-3 right-4 bg-brand-electric text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Bluestone PIM</div>
+                    <div class="text-xs font-bold text-brand-electric mb-3 font-display">Level 4</div>
+                    <h4 class="font-display font-bold text-sm mb-2 text-brand-navy">Agentic-Core</h4>
+                    <p class="text-[11px] text-neutral-600 font-medium leading-relaxed">AI agents orchestrate the full product lifecycle. Native MCP. Human-on-the-loop. Sub-500ms reasoning. PII tokenisation built in.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== TECH SPECS (COLLAPSED) ===================== -->
+    <section class="py-24 md:py-32 bg-white">
+        <div class="max-w-5xl mx-auto px-5 sm:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-4">Architecture</span>
+                <h2 class="font-display text-3xl md:text-4xl font-black tracking-tight">Built for MACH. Secured for enterprise.</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4 reveal">
+                <div class="accent-bar pl-6 py-3">
+                    <h4 class="font-display font-bold text-sm text-brand-navy mb-1">JSON-RPC 2.0</h4>
+                    <p class="text-xs text-neutral-500 font-medium">Standard protocol. No proprietary lock-in. Works with any MCP-compatible AI host.</p>
+                </div>
+                <div class="accent-bar pl-6 py-3">
+                    <h4 class="font-display font-bold text-sm text-brand-navy mb-1">Bidirectional by default</h4>
+                    <p class="text-xs text-neutral-500 font-medium">Agents read and write. Not just a viewer — a full execution layer for product operations.</p>
+                </div>
+                <div class="accent-bar pl-6 py-3">
+                    <h4 class="font-display font-bold text-sm text-brand-navy mb-1">PII tokenisation</h4>
+                    <p class="text-xs text-neutral-500 font-medium">Sensitive data is tokenised before reaching any LLM. Your "product truth" stays inside a secure perimeter.</p>
+                </div>
+                <div class="accent-bar pl-6 py-3">
+                    <h4 class="font-display font-bold text-sm text-brand-navy mb-1">Granular API key scoping</h4>
+                    <p class="text-xs text-neutral-500 font-medium">Control exactly which datasets each agent can access. Per-key, per-role, per-context.</p>
+                </div>
+                <div class="accent-bar pl-6 py-3">
+                    <h4 class="font-display font-bold text-sm text-brand-navy mb-1">Headless & composable</h4>
+                    <p class="text-xs text-neutral-500 font-medium">Fork the open-source MCP server. Extend with custom tools. System integrators can add client-specific logic.</p>
+                </div>
+                <div class="accent-bar pl-6 py-3">
+                    <h4 class="font-display font-bold text-sm text-brand-navy mb-1">Sub-500ms latency</h4>
+                    <p class="text-xs text-neutral-500 font-medium">Native integration — no middleware tax. Agents reason over live product hierarchies in real time.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 reveal">
+                <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-brand-electric hover:underline">
+                    Read the full technical documentation
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER CTA ===================== -->
+    <footer id="cta-footer" class="relative bg-brand-deep grain overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-electric/15 via-brand-deep to-brand-navy/90"></div>
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 pt-28 pb-12 text-center">
+            <h2 class="font-display text-3xl md:text-5xl font-black text-white tracking-tight leading-[1.1] mb-6">
+                Your products are ready.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-citrine to-brand-orange">Is your PIM?</span>
+            </h2>
+            <p class="text-base text-white/60 font-medium max-w-xl mx-auto mb-10">
+                Join our beta programme and be among the first to give AI agents direct access to your product catalogue. Limited spots available.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-20">
+                <a href="#" class="inline-flex items-center gap-2 bg-white text-brand-navy px-8 py-4 rounded-xl font-display font-bold text-sm shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all">
+                    Request a Demo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="#" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/15 text-white px-8 py-4 rounded-xl font-display font-bold text-sm hover:bg-white/15 transition-all">
+                    Read the Docs
+                </a>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-[10px] font-bold uppercase tracking-widest text-white/25">
+                &copy; 2026 Bluestone PIM. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel
+        function scrollCarousel(direction) {
+            const container = document.getElementById('toolbox-carousel');
+            if (container) {
+                const card = container.querySelector('.carousel-card');
+                if (card) {
+                    const cardWidth = card.offsetWidth + 20;
+                    container.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+                }
+            }
+        }
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
