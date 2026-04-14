@@ -128,6 +128,9 @@
 
         /* GEO pulse */
         .geo-badge { animation: pulse-glow 3s ease-in-out infinite; }
+
+        /* Brand dark gradient */
+        .bg-dark-gradient { background: linear-gradient(135deg, #0C2E4E 0%, #0F05CC 100%); }
     </style>
 </head>
 <body class="bg-white text-brand-navy antialiased">
@@ -156,8 +159,8 @@
     </nav>
 
     <!-- ===================== HERO ===================== -->
-    <header class="relative overflow-hidden bg-brand-deep grain">
-        <div class="absolute inset-0 bg-gradient-to-br from-brand-electric/20 via-brand-deep to-brand-navy/90"></div>
+    <header class="relative overflow-hidden bg-dark-gradient grain">
+        <div class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/20"></div>
         <!-- Subtle grid -->
         <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
 
@@ -308,7 +311,7 @@
     </section>
 
     <!-- ===================== GEO SECTION (ELEVATED) ===================== -->
-    <section id="geo" class="relative py-24 md:py-32 bg-brand-deep grain overflow-hidden">
+    <section id="geo" class="relative py-24 md:py-32 bg-dark-gradient grain overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-t from-brand-deep via-brand-navy/95 to-brand-deep"></div>
         <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 32px 32px;"></div>
 
@@ -447,7 +450,7 @@
     </section>
 
     <!-- ===================== MID-PAGE CTA ===================== -->
-    <section class="py-16 bg-brand-electric relative grain overflow-hidden">
+    <section class="py-16 bg-dark-gradient relative grain overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-brand-electric via-blue-700 to-brand-electric"></div>
         <div class="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 text-center">
             <h2 class="font-display text-2xl md:text-3xl font-black text-white tracking-tight mb-4">
@@ -712,7 +715,7 @@
     </section>
 
     <!-- ===================== FOOTER CTA ===================== -->
-    <footer id="cta-footer" class="relative bg-brand-deep grain overflow-hidden">
+    <footer id="cta-footer" class="relative bg-dark-gradient grain overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-brand-electric/15 via-brand-deep to-brand-navy/90"></div>
         <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
 
