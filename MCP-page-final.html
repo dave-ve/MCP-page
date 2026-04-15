@@ -129,6 +129,24 @@
         /* GEO pulse */
         .geo-badge { animation: pulse-glow 3s ease-in-out infinite; }
 
+        /* Chapter markers */
+        .chapter-marker {
+            display: flex; align-items: center; gap: 16px;
+            padding: 20px 0 0;
+        }
+        .chapter-marker__label {
+            font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em;
+            text-transform: uppercase; color: #cbd5e1; white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .chapter-marker__line { flex: 1; height: 1px; background: #f1f5f9; }
+
+        /* Narrative spine */
+        .spine-card {
+            border-left: 3px solid;
+            padding-left: 20px;
+        }
+
         /* Vendor comparison table */
         .tech-matrix td, .tech-matrix th { padding: 1.1rem 1.25rem; line-height: 1.3; }
         .tech-matrix .sticky-col { position: sticky; left: 0; background: white; z-index: 10; border-right: 1px solid #e2e8f0; }
@@ -170,9 +188,10 @@
                     <span class="font-display font-extrabold text-xl tracking-tight text-brand-navy">BLUESTONE <span class="font-light text-brand-electric">PIM</span></span>
                 </div>
                 <div class="hidden md:flex items-center gap-8 text-[11px] font-bold tracking-widest uppercase text-brand-navy/60">
-                    <a href="#why" class="hover:text-brand-electric transition-colors">Why MCP</a>
-                    <a href="#proof" class="hover:text-brand-electric transition-colors">Results</a>
-                    <a href="#geo" class="hover:text-brand-electric transition-colors">GEO</a>
+                    <a href="#why" class="hover:text-brand-electric transition-colors">The Problem</a>
+                    <a href="#mcp" class="hover:text-brand-electric transition-colors">The Protocol</a>
+                    <a href="#proof" class="hover:text-brand-electric transition-colors">The Value</a>
+                    <a href="#scenarios" class="hover:text-brand-electric transition-colors">In Practice</a>
                     <a href="#toolbox" class="hover:text-brand-electric transition-colors">Toolbox</a>
                 </div>
                 <a href="#cta-footer" class="bg-brand-electric text-white px-5 py-2.5 rounded-lg font-display font-bold text-xs tracking-wide shadow-lg shadow-brand-electric/20 hover:shadow-brand-electric/40 hover:bg-blue-800 transition-all">
@@ -235,6 +254,30 @@
         </div>
     </header>
 
+    <!-- ===================== NARRATIVE SPINE ===================== -->
+    <section class="bg-white border-b border-neutral-100 py-12">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <p class="text-center text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400 mb-10">How it works — in three steps</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="spine-card" style="border-color: #0F05CC;">
+                    <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-2">01 — One Protocol</div>
+                    <h3 class="font-display font-extrabold text-lg text-brand-navy mb-2 leading-snug">MCP connects your data to any AI</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">The Model Context Protocol is an open standard. Bluestone ships a native MCP server — your catalogue is instantly available to Claude, ChatGPT, Gemini, and every AI tool that follows.</p>
+                </div>
+                <div class="spine-card" style="border-color: #3D74F4;">
+                    <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-sky mb-2">02 — Two Directions</div>
+                    <h3 class="font-display font-extrabold text-lg text-brand-navy mb-2 leading-snug">AI reads and writes your catalogue</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">Not just a viewer. AI agents query live product data, reason over it, and write back — enriching records, filling gaps, triggering bulk jobs. No exports. No middleware.</p>
+                </div>
+                <div class="spine-card" style="border-color: #EC672B;">
+                    <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-orange mb-2">03 — Infinite Workflows</div>
+                    <h3 class="font-display font-extrabold text-lg text-brand-navy mb-2 leading-snug">Every team. Every tool. One source of truth.</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">Product managers, developers, operations leads, and system integrators all work through the same MCP connection — no silos, no stale data, no manual sync.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===================== SOCIAL PROOF BAR ===================== -->
     <section class="bg-brand-ghost border-b border-neutral-100 py-6 overflow-hidden">
         <div class="max-w-7xl mx-auto px-5 sm:px-8">
@@ -266,11 +309,18 @@
         </div>
     </section>
 
+    <!-- ===================== CHAPTER 01 MARKER ===================== -->
+    <div class="bg-white">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="chapter-marker"><span class="chapter-marker__label">01 — The Problem</span><div class="chapter-marker__line"></div></div>
+        </div>
+    </div>
+
     <!-- ===================== THE SHIFT (WHY MCP) ===================== -->
-    <section id="why" class="py-24 md:py-32 bg-white">
+    <section id="why" class="pt-12 pb-24 md:pb-32 bg-white">
         <div class="max-w-7xl mx-auto px-5 sm:px-8">
             <div class="max-w-3xl mx-auto text-center mb-20 reveal">
-                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-4">The shift</span>
+                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-4">Why the old way is broken</span>
                 <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1] mb-6">
                     Your products need to speak<br class="hidden md:block"> a new language — AI.
                 </h2>
@@ -321,25 +371,40 @@
                 </div>
             </div>
 
-            <!-- MCP Explainer with duality -->
-            <div class="mt-16 reveal">
-                <div class="bg-brand-ghost rounded-2xl p-8 md:p-10 border border-neutral-100">
-                    <h3 class="font-display font-bold text-xl text-brand-navy mb-3">What is MCP?</h3>
-                    <p class="text-sm text-neutral-500 font-medium leading-relaxed mb-8 max-w-3xl">
-                        The Model Context Protocol is an open standard that lets AI models connect securely to external data. Developed to eliminate the "context gap," MCP allows AI assistants like Claude, ChatGPT, and Gemini to interact with your product data as if it were part of their native knowledge. Bluestone PIM ships a native MCP server, so your data is available to AI out of the box.
-                    </p>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="bg-white rounded-xl p-6 border border-neutral-100 shadow-sm">
-                            <div class="text-2xl mb-3">👁️</div>
-                            <div class="text-[10px] font-bold uppercase tracking-[0.15em] text-brand-electric mb-2">Context — the eyes to see</div>
-                            <p class="text-sm text-neutral-500 font-medium leading-relaxed">MCP gives AI models a live, semantic window into your catalogue. No stale exports — agents see your product truth in real time.</p>
-                        </div>
-                        <div class="bg-white rounded-xl p-6 border border-neutral-100 shadow-sm">
-                            <div class="text-2xl mb-3">🤲</div>
-                            <div class="text-[10px] font-bold uppercase tracking-[0.15em] text-brand-electric mb-2">Tools — the hands to act</div>
-                            <p class="text-sm text-neutral-500 font-medium leading-relaxed">Beyond reading data, MCP tools let agents trigger executable functions — updating attributes, enriching records, running bulk jobs — directly inside the PIM workflow.</p>
-                        </div>
-                    </div>
+        </div>
+    </section>
+
+    <!-- ===================== CHAPTER 02 MARKER ===================== -->
+    <div class="bg-white">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="chapter-marker"><span class="chapter-marker__label">02 — The Protocol</span><div class="chapter-marker__line"></div></div>
+        </div>
+    </div>
+
+    <!-- ===================== MCP EXPLAINER ===================== -->
+    <section id="mcp" class="pt-12 pb-24 md:pb-32 bg-white">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16 reveal">
+                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-4">The Model Context Protocol</span>
+                <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1] mb-6">
+                    MCP is the missing link<br class="hidden md:block"> between product data and AI.
+                </h2>
+                <p class="text-base md:text-lg text-neutral-500 font-medium leading-relaxed">
+                    The Model Context Protocol is an open standard that lets AI models connect securely to external data. Developed to eliminate the "context gap," MCP allows AI assistants like Claude, ChatGPT, and Gemini to interact with your product data as if it were part of their native knowledge. Bluestone PIM ships a native MCP server — your data is available to AI out of the box.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto reveal">
+                <div class="bg-brand-electric/[0.03] border border-brand-electric/10 rounded-2xl p-8">
+                    <div class="w-12 h-12 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric text-2xl mb-5">👁️</div>
+                    <div class="text-[10px] font-bold uppercase tracking-[0.15em] text-brand-electric mb-3">Context — the eyes to see</div>
+                    <h3 class="font-display font-extrabold text-lg text-brand-navy mb-3">AI sees your catalogue live</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">MCP gives AI models a live, semantic window into your catalogue. No stale exports — agents see your product truth in real time, exactly as it exists in your PIM.</p>
+                </div>
+                <div class="bg-brand-sky/[0.03] border border-brand-sky/10 rounded-2xl p-8">
+                    <div class="w-12 h-12 rounded-xl bg-brand-sky/10 flex items-center justify-center text-brand-sky text-2xl mb-5">🤲</div>
+                    <div class="text-[10px] font-bold uppercase tracking-[0.15em] text-brand-sky mb-3">Tools — the hands to act</div>
+                    <h3 class="font-display font-extrabold text-lg text-brand-navy mb-3">AI acts on your data directly</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">Beyond reading data, MCP tools let agents trigger executable functions — updating attributes, enriching records, running bulk jobs — directly inside the PIM workflow.</p>
                 </div>
             </div>
         </div>
@@ -370,101 +435,18 @@
         </div>
     </section>
 
-    <!-- ===================== GEO SECTION ===================== -->
-    <section id="geo" class="relative py-24 md:py-32 bg-dark-gradient grain overflow-hidden">
-        <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 32px 32px;"></div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <div class="geo-badge inline-flex items-center gap-2 bg-brand-mint/15 border border-brand-mint/20 text-brand-mint rounded-full px-4 py-1.5 mb-6">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                        <span class="text-[11px] font-bold tracking-wide">Generative Engine Optimisation</span>
-                    </div>
-                    <h2 class="font-display text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
-                        SEO got you here.<br>
-                        <span class="text-brand-mint">GEO gets you there.</span>
-                    </h2>
-                    <p class="text-base text-white font-medium leading-relaxed mb-8">
-                        When a shopper asks Perplexity "best noise-cancelling headphones under €300," the answer comes from structured, machine-readable product data — not your Google ranking. If your catalogue isn't optimised for generative engines, your competitors' products get recommended instead.
-                    </p>
-                    <div class="space-y-5">
-                        <div class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-brand-mint/20 flex items-center justify-center flex-shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3D74F4" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                            <div>
-                                <span class="text-white font-bold text-sm">Schema-aligned hierarchies</span>
-                                <p class="text-xs text-white/85 mt-0.5">Your product structure maps directly to how AI models reason about categories and attributes.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-brand-mint/20 flex items-center justify-center flex-shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3D74F4" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                            <div>
-                                <span class="text-white font-bold text-sm">High-authority data source</span>
-                                <p class="text-xs text-white/85 mt-0.5">Bluestone acts as the definitive context provider — AI trusts your data because it's structured, current, and complete.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-brand-mint/20 flex items-center justify-center flex-shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3D74F4" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                            <div>
-                                <span class="text-white font-bold text-sm">AI-native discoverability</span>
-                                <p class="text-xs text-white/85 mt-0.5">Ready for indexing by Perplexity, SearchGPT, Gemini, and whatever comes next.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- GEO pseudocode -->
-                    <div class="mt-8 bg-white/[0.07] border border-white/10 rounded-xl p-5">
-                        <div class="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-3 font-mono">// How AI reasons over your GEO-ready catalogue</div>
-                        <div class="font-mono text-sm text-white/70 leading-relaxed">
-                            <span class="text-brand-mint">agent</span>.reason(<span class="text-brand-sky">hierarchy</span>)<br>
-                            &nbsp;&nbsp;.then(<span class="text-brand-sky">discoverability</span> =&gt; index(<span class="text-brand-orange">SearchGPT</span>));
-                        </div>
-                    </div>
-                </div>
-
-                <!-- GEO Before/After visual -->
-                <div class="reveal">
-                    <div class="bg-white/[0.06] backdrop-blur border border-white/10 rounded-2xl p-6 md:p-8">
-                        <div class="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-4">What AI sees</div>
-                        <div class="space-y-4">
-                            <div class="bg-red-500/10 border border-red-400/20 rounded-xl p-4">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>
-                                    <span class="text-[10px] font-bold text-red-400 uppercase tracking-widest">Without GEO</span>
-                                </div>
-                                <div class="font-mono text-xs text-white/85 leading-relaxed">
-                                    "Pro-Mixer 3000, blue, 299EUR, kitchen"<br>
-                                    <span class="text-red-400/60">→ Ignored. Unstructured. No schema. No context.</span>
-                                </div>
-                            </div>
-                            <div class="bg-brand-mint/10 border border-brand-mint/20 rounded-xl p-4">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>
-                                    <span class="text-[10px] font-bold text-brand-mint uppercase tracking-widest">With Bluestone GEO</span>
-                                </div>
-                                <div class="font-mono text-xs text-white leading-relaxed">
-                                    {<br>
-                                    &nbsp;&nbsp;"name": "Pro-Mixer 3000",<br>
-                                    &nbsp;&nbsp;"category": ["Kitchen", "Stand Mixers"],<br>
-                                    &nbsp;&nbsp;"attributes": {"color":"Blue","wattage":800},<br>
-                                    &nbsp;&nbsp;"price": {"EUR": 299, "channel": "B2C"},<br>
-                                    &nbsp;&nbsp;"completeness": 98<br>
-                                    }<br>
-                                    <span class="text-brand-mint/80">→ Recommended. Structured. Trusted. Cited.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- ===================== CHAPTER 03 MARKER ===================== -->
+    <div class="bg-white">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="chapter-marker"><span class="chapter-marker__label">03 — The Value</span><div class="chapter-marker__line"></div></div>
         </div>
-    </section>
+    </div>
 
     <!-- ===================== COMMERCIAL IMPACT ===================== -->
-    <section id="proof" class="py-24 md:py-32 bg-white">
+    <section id="proof" class="pt-12 pb-24 md:pb-32 bg-white">
         <div class="max-w-7xl mx-auto px-5 sm:px-8">
             <div class="text-center mb-20 reveal">
-                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-4">Commercial impact</span>
+                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-4">What MCP unlocks</span>
                 <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1] mb-4">
                     What changes when AI can<br class="hidden md:block"> read <em>and</em> write your catalogue
                 </h2>
@@ -509,6 +491,92 @@
         </div>
     </section>
 
+    <!-- ===================== GEO SECTION ===================== -->
+    <section id="geo" class="relative py-24 md:py-32 bg-dark-gradient grain overflow-hidden">
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 32px 32px;"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="geo-badge inline-flex items-center gap-2 bg-brand-mint/15 border border-brand-mint/20 text-brand-mint rounded-full px-4 py-1.5 mb-6">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span class="text-[11px] font-bold tracking-wide">MCP-powered — Generative Engine Optimisation</span>
+                    </div>
+                    <h2 class="font-display text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
+                        SEO got you here.<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-white">GEO gets you there.</span>
+                    </h2>
+                    <p class="text-base text-white font-medium leading-relaxed mb-8">
+                        When a shopper asks Perplexity "best noise-cancelling headphones under €300," the answer comes from structured, machine-readable product data — not your Google ranking. If your catalogue isn't optimised for generative engines, your competitors' products get recommended instead.
+                    </p>
+                    <div class="space-y-5">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-mint/20 flex items-center justify-center flex-shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3D74F4" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                            <div>
+                                <span class="text-white font-bold text-sm">Schema-aligned hierarchies</span>
+                                <p class="text-xs text-white/85 mt-0.5">Your product structure maps directly to how AI models reason about categories and attributes.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-mint/20 flex items-center justify-center flex-shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3D74F4" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                            <div>
+                                <span class="text-white font-bold text-sm">High-authority data source</span>
+                                <p class="text-xs text-white/85 mt-0.5">Bluestone acts as the definitive context provider — AI trusts your data because it's structured, current, and complete.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-mint/20 flex items-center justify-center flex-shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3D74F4" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                            <div>
+                                <span class="text-white font-bold text-sm">AI-native discoverability</span>
+                                <p class="text-xs text-white/85 mt-0.5">Ready for indexing by Perplexity, SearchGPT, Gemini, and whatever comes next.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 bg-white/[0.07] border border-white/10 rounded-xl p-5">
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-3 font-mono">// How AI reasons over your GEO-ready catalogue</div>
+                        <div class="font-mono text-sm text-white/70 leading-relaxed">
+                            <span class="text-brand-mint">agent</span>.reason(<span class="text-brand-sky">hierarchy</span>)<br>
+                            &nbsp;&nbsp;.then(<span class="text-brand-sky">discoverability</span> =&gt; index(<span class="text-brand-orange">SearchGPT</span>));
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="bg-white/[0.06] backdrop-blur border border-white/10 rounded-2xl p-6 md:p-8">
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-4">What AI sees</div>
+                        <div class="space-y-4">
+                            <div class="bg-red-500/10 border border-red-400/20 rounded-xl p-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>
+                                    <span class="text-[10px] font-bold text-red-400 uppercase tracking-widest">Without MCP + GEO</span>
+                                </div>
+                                <div class="font-mono text-xs text-white/85 leading-relaxed">
+                                    "Pro-Mixer 3000, blue, 299EUR, kitchen"<br>
+                                    <span class="text-red-400/60">→ Ignored. Unstructured. No schema. No context.</span>
+                                </div>
+                            </div>
+                            <div class="bg-brand-mint/10 border border-brand-mint/20 rounded-xl p-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>
+                                    <span class="text-[10px] font-bold text-brand-mint uppercase tracking-widest">With Bluestone MCP + GEO</span>
+                                </div>
+                                <div class="font-mono text-xs text-white leading-relaxed">
+                                    {<br>
+                                    &nbsp;&nbsp;"name": "Pro-Mixer 3000",<br>
+                                    &nbsp;&nbsp;"category": ["Kitchen", "Stand Mixers"],<br>
+                                    &nbsp;&nbsp;"attributes": {"color":"Blue","wattage":800},<br>
+                                    &nbsp;&nbsp;"price": {"EUR": 299, "channel": "B2C"},<br>
+                                    &nbsp;&nbsp;"completeness": 98<br>
+                                    }<br>
+                                    <span class="text-brand-mint/80">→ Recommended. Structured. Trusted. Cited.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===================== MID-PAGE CTA ===================== -->
     <section class="py-16 bg-dark-gradient grain relative overflow-hidden">
         <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
@@ -526,11 +594,18 @@
         </div>
     </section>
 
+    <!-- ===================== CHAPTER 04 MARKER ===================== -->
+    <div class="bg-brand-ghost">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="chapter-marker"><span class="chapter-marker__label">04 — In Practice</span><div class="chapter-marker__line" style="background:#e2e8f0;"></div></div>
+        </div>
+    </div>
+
     <!-- ===================== USE CASES / SCENARIOS ===================== -->
-    <section id="scenarios" class="py-24 md:py-32 bg-brand-ghost">
+    <section id="scenarios" class="pt-12 pb-24 md:pb-32 bg-brand-ghost">
         <div class="max-w-7xl mx-auto px-5 sm:px-8">
             <div class="text-center mb-16 reveal">
-                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-4">In practice</span>
+                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-4">MCP in action — real workflows</span>
                 <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">
                     Four teams. Four problems.<br class="hidden md:block"> One protocol.
                 </h2>
@@ -652,9 +727,9 @@
         <div class="max-w-7xl mx-auto px-5 sm:px-8">
             <div class="flex flex-col md:flex-row justify-between md:items-end mb-12 gap-4 reveal">
                 <div>
-                    <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-3">For developers</span>
+                    <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-3">MCP tools — for developers</span>
                     <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight">The Agentic Toolbox</h2>
-                    <p class="text-base text-neutral-500 font-medium mt-2">Six tool categories your AI agents can call today.</p>
+                    <p class="text-base text-neutral-500 font-medium mt-2">Six MCP tool categories your AI agents can call today.</p>
                 </div>
                 <div class="flex gap-3">
                     <button onclick="scrollCarousel(-1)" class="w-10 h-10 rounded-full border border-neutral-200 bg-white flex items-center justify-center hover:bg-neutral-50 transition-all text-brand-electric">
