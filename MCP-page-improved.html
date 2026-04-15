@@ -133,9 +133,14 @@
         .bg-dark-gradient { background: #0F05CC; }
 
         /* Vendor comparison table */
-        .tech-matrix td, .tech-matrix th { padding: 0.85rem 1rem; line-height: 1.25; }
+        .tech-matrix td, .tech-matrix th { padding: 1.1rem 1.25rem; line-height: 1.3; }
         .tech-matrix .sticky-col { position: sticky; left: 0; background: white; z-index: 10; border-right: 1px solid #e2e8f0; }
         .tech-matrix thead th.sticky-col { background: #0C2E4E; z-index: 20; }
+        .tech-matrix .bluestone-col { background: linear-gradient(140deg, #0F05CC 30%, #3D74F4 100%); color: white; }
+        .tech-matrix thead .bluestone-col { border-left: none; border-right: none; }
+        .tech-matrix tbody tr:hover td:not(.bluestone-col) { background-color: #f8f9ff; }
+        .tech-matrix tbody .section-header { background: #f1f5f9; color: #64748b; }
+        .tech-matrix tbody .section-header.sticky-col { background: #f1f5f9; }
     </style>
 </head>
 <body class="bg-white text-brand-navy antialiased">
@@ -731,7 +736,7 @@
                     <thead>
                         <tr class="bg-brand-navy text-white text-[10px] font-extrabold uppercase tracking-widest">
                             <th class="sticky-col w-48">Market metric</th>
-                            <th class="text-center bg-brand-electric border-x border-white/10 w-48">Bluestone PIM</th>
+                            <th class="text-center bluestone-col w-48">Bluestone PIM</th>
                             <th class="text-center w-32 uppercase">Akeneo</th>
                             <th class="text-center w-32 uppercase">inriver</th>
                             <th class="text-center w-32 uppercase">Salsify</th>
@@ -740,12 +745,12 @@
                         </tr>
                     </thead>
                     <tbody class="text-[11px] font-medium text-neutral-600">
-                        <tr class="bg-neutral-50/50">
-                            <td colspan="7" class="py-3 px-4 font-extrabold text-[9px] text-slate-400 uppercase tracking-widest border-y border-neutral-100 sticky-col">1. Architectural readiness</td>
+                        <tr>
+                            <td colspan="7" class="py-3 px-4 font-extrabold text-[9px] text-slate-500 uppercase tracking-widest border-y border-neutral-100 sticky-col section-header">1. Architectural readiness</td>
                         </tr>
                         <tr class="border-b border-neutral-100">
                             <td class="font-bold sticky-col text-brand-navy">Maturity level</td>
-                            <td class="text-center bg-brand-electric/5 font-bold text-brand-electric">Level 04 (Core)</td>
+                            <td class="text-center bluestone-col font-bold">Level 04 (Core)</td>
                             <td class="text-center">Level 02 (Wrapper)</td>
                             <td class="text-center">Level 02 (Bridge)</td>
                             <td class="text-center">Level 02 (AEO)</td>
@@ -754,7 +759,7 @@
                         </tr>
                         <tr class="border-b border-neutral-100">
                             <td class="font-bold sticky-col text-brand-navy">Foundation</td>
-                            <td class="text-center bg-brand-electric/5 font-bold text-brand-electric uppercase">MACH-Native</td>
+                            <td class="text-center bluestone-col font-bold uppercase">MACH-Native</td>
                             <td class="text-center">Hybrid / Compos.</td>
                             <td class="text-center">Multi-tenant SaaS</td>
                             <td class="text-center">Global PXM Net.</td>
@@ -762,12 +767,12 @@
                             <td class="text-center text-neutral-400">Cloud SaaS</td>
                         </tr>
 
-                        <tr class="bg-neutral-50/50">
-                            <td colspan="7" class="py-3 px-4 font-extrabold text-[9px] text-slate-400 uppercase tracking-widest border-y border-neutral-100 sticky-col">2. MCP protocol depth</td>
+                        <tr>
+                            <td colspan="7" class="py-3 px-4 font-extrabold text-[9px] text-slate-500 uppercase tracking-widest border-y border-neutral-100 sticky-col section-header">2. MCP protocol depth</td>
                         </tr>
                         <tr class="border-b border-neutral-100">
                             <td class="font-bold sticky-col text-brand-navy">Implementation</td>
-                            <td class="text-center bg-brand-electric/5 font-bold text-brand-electric">Full server (Native)</td>
+                            <td class="text-center bluestone-col font-bold">Full server (Native)</td>
                             <td class="text-center">Governance layer</td>
                             <td class="text-center">External suite</td>
                             <td class="text-center">Proprietary/LLM</td>
@@ -776,7 +781,7 @@
                         </tr>
                         <tr class="border-b border-neutral-100">
                             <td class="font-bold sticky-col text-brand-navy">Agent write-access</td>
-                            <td class="text-center bg-brand-electric/5 font-bold text-brand-electric">Full (Bidirectional)</td>
+                            <td class="text-center bluestone-col font-bold">Full (Bidirectional)</td>
                             <td class="text-center">Batch only</td>
                             <td class="text-center">Read only</td>
                             <td class="text-center">Read only</td>
@@ -785,7 +790,7 @@
                         </tr>
                         <tr class="border-b border-neutral-100">
                             <td class="font-bold sticky-col text-brand-navy">Latency (sync)</td>
-                            <td class="text-center bg-brand-electric/5 font-bold text-brand-electric">&lt; 500ms</td>
+                            <td class="text-center bluestone-col font-bold">&lt; 500ms</td>
                             <td class="text-center">1s - 3s (API hook)</td>
                             <td class="text-center">Varies (Middleware)</td>
                             <td class="text-center">1s - 2s</td>
@@ -793,12 +798,12 @@
                             <td class="text-center text-neutral-400">Manual poll</td>
                         </tr>
 
-                        <tr class="bg-neutral-50/50">
-                            <td colspan="7" class="py-3 px-4 font-extrabold text-[9px] text-slate-400 uppercase tracking-widest border-y border-neutral-100 sticky-col">3. Strategic agentic capabilities</td>
+                        <tr>
+                            <td colspan="7" class="py-3 px-4 font-extrabold text-[9px] text-slate-500 uppercase tracking-widest border-y border-neutral-100 sticky-col section-header">3. Strategic agentic capabilities</td>
                         </tr>
                         <tr class="border-b border-neutral-100">
                             <td class="font-bold sticky-col text-brand-navy">Specialised agents</td>
-                            <td class="text-center bg-brand-electric/5 font-bold text-brand-electric">Agentic logic hub</td>
+                            <td class="text-center bluestone-col font-bold">Agentic logic hub</td>
                             <td class="text-center uppercase text-[9px] font-extrabold">Data architect</td>
                             <td class="text-center uppercase text-[9px] font-extrabold">Inspire AI</td>
                             <td class="text-center uppercase text-[9px] font-extrabold">Angie assistant</td>
@@ -807,7 +812,7 @@
                         </tr>
                         <tr class="border-b border-neutral-100">
                             <td class="font-bold sticky-col text-brand-navy">Key feature</td>
-                            <td class="text-center bg-brand-electric/5 font-bold text-brand-electric">Human-on-the-loop</td>
+                            <td class="text-center bluestone-col font-bold">Human-on-the-loop</td>
                             <td class="text-center">Agentic payments</td>
                             <td class="text-center">Unstructured ingest</td>
                             <td class="text-center">Shelf velocity</td>
@@ -815,12 +820,12 @@
                             <td class="text-center text-neutral-400">Standard flow</td>
                         </tr>
 
-                        <tr class="bg-neutral-50/50">
-                            <td colspan="7" class="py-3 px-4 font-extrabold text-[9px] text-slate-400 uppercase tracking-widest border-y border-neutral-100 sticky-col">4. Governance &amp; data security</td>
+                        <tr>
+                            <td colspan="7" class="py-3 px-4 font-extrabold text-[9px] text-slate-500 uppercase tracking-widest border-y border-neutral-100 sticky-col section-header">4. Governance &amp; data security</td>
                         </tr>
                         <tr class="border-b border-neutral-100">
                             <td class="font-bold sticky-col text-brand-navy">PII protection</td>
-                            <td class="text-center bg-brand-electric/5 font-bold text-brand-electric">Tokenisation (PII)</td>
+                            <td class="text-center bluestone-col font-bold">Tokenisation (PII)</td>
                             <td class="text-center">Encrypted transport</td>
                             <td class="text-center">Compliance rules</td>
                             <td class="text-center">Rule engine</td>
