@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIM AI Agent - Full Platform Showcase</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --brand-blue: #0F05CC;
+            --gradient-bottom: #3D74F4;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Blue Classes */
+        .text-brand-blue { color: var(--brand-blue); }
+        .bg-brand-blue { background-color: var(--brand-blue); }
+        .border-brand-blue { border-color: var(--brand-blue); }
+        .bg-brand-gradient {
+            background: linear-gradient(to bottom, var(--brand-blue), var(--gradient-bottom));
+        }
+
+        .check-item::before {
+            content: '✓';
+            margin-right: 0.5rem;
+            color: var(--brand-blue);
+            font-weight: 700;
+        }
+
+        /* Carousel Styles */
+        .carousel-container {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            cursor: grab;
+            user-select: none;
+        }
+        .carousel-container:active {
+            cursor: grabbing;
+        }
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+        .carousel-card {
+            flex: 0 0 350px;
+            pointer-events: none;
+        }
+        .carousel-card * {
+            pointer-events: none;
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-900 overflow-x-hidden">
+
+    <!-- 1. HERO GREETING SECTION -->
+    <section class="max-w-7xl mx-auto px-6 py-24 md:py-32 text-center">
+        <div class="mb-6 inline-block">
+            <span class="text-brand-blue font-bold tracking-widest text-[10px] uppercase bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100">
+                AI Agent
+            </span>
+        </div>
+        <h1 class="text-6xl md:text-8xl font-semibold tracking-tight leading-[1.05] mb-8">
+            Hi, I’m your AI Agent 👋<br>
+            <span class="text-brand-blue">What can I do for you today?</span>
+        </h1>
+        <p class="text-xl text-slate-500 max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
+            I’m here to make your everyday PIM work faster and easier. Ask me what you need — I understand multiple languages, guide you through the platform, and get things done.
+        </p>
+        <button class="bg-brand-blue hover:opacity-90 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-lg hover:shadow-blue-200 flex items-center gap-2 mx-auto">
+            Book A Demo <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </button>
+    </section>
+
+    <!-- 2. CORE CAPABILITIES (COMPLEXITY SECTION) -->
+    <section class="max-w-7xl mx-auto px-6 py-12 md:py-24 border-t border-slate-100">
+        <div class="mb-16">
+            <span class="text-brand-blue font-bold tracking-widest text-[10px] uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                Start Anywhere
+            </span>
+            <h2 class="text-5xl md:text-6xl font-semibold mt-6 mb-4 tracking-tight">
+                Bring me the complexity – <br>
+                <span class="text-brand-blue">I’ll make sense of it</span>
+            </h2>
+            <p class="text-xl text-slate-500 font-medium">
+                Big task, small task, tricky task, next task — your AI Agent is always on the standby.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Find it fast -->
+            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-start transition-all hover:shadow-xl group">
+                <div class="mb-6 p-4 bg-blue-50 rounded-2xl text-brand-blue transition-colors">
+                    <i data-lucide="search" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Find it fast</h3>
+                <p class="text-slate-500 mb-6 leading-relaxed">I help you get to the right products without the usual digging.</p>
+                <ul class="space-y-3 text-slate-700 font-semibold">
+                    <li class="check-item">Search by name, label, category, or attribute</li>
+                    <li class="check-item">Filter by status, context, or condition</li>
+                    <li class="check-item">Zero in on the products that matter</li>
+                </ul>
+            </div>
+
+            <!-- Spot what's missing -->
+            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-start transition-all hover:shadow-xl group">
+                <div class="mb-6 p-4 bg-green-50 rounded-2xl text-green-600 transition-colors">
+                    <i data-lucide="alert-circle" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Spot what's missing</h3>
+                <p class="text-slate-500 mb-6 leading-relaxed">I surface gaps before they turn into publishing problems.</p>
+                <ul class="space-y-3 text-slate-700 font-semibold">
+                    <li class="check-item">See what is incomplete</li>
+                    <li class="check-item">Find products still in draft</li>
+                    <li class="check-item">Understand what is blocking publish</li>
+                </ul>
+            </div>
+
+            <!-- Move faster at scale -->
+            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-start transition-all hover:shadow-xl group">
+                <div class="mb-6 p-4 bg-purple-50 rounded-2xl text-purple-600 transition-colors">
+                    <i data-lucide="zap" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Move faster at scale</h3>
+                <p class="text-slate-500 mb-6 leading-relaxed">Repetitive work becomes simpler when I help handle the heavy lifting.</p>
+                <ul class="space-y-3 text-slate-700 font-semibold">
+                    <li class="check-item">Update labels and attributes</li>
+                    <li class="check-item">Support bulk product changes</li>
+                    <li class="check-item">Reduce manual product work</li>
+                </ul>
+            </div>
+
+            <!-- Sharpen your content -->
+            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-start relative transition-all hover:shadow-xl group">
+                <span class="absolute top-8 right-8 bg-brand-blue text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Coming Soon</span>
+                <div class="mb-6 p-4 bg-indigo-50 rounded-2xl text-indigo-600 transition-colors">
+                    <i data-lucide="sparkles" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Sharpen your content</h3>
+                <p class="text-slate-500 mb-6 leading-relaxed">I help make product content clearer, stronger, and more ready to use.</p>
+                <ul class="space-y-3 text-slate-700 font-semibold">
+                    <li class="check-item">Improve copy and descriptions</li>
+                    <li class="check-item">Support enrichment workflows</li>
+                    <li class="check-item">Strengthen product quality</li>
+                </ul>
+            </div>
+
+            <!-- Keep work moving -->
+            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-start transition-all hover:shadow-xl group">
+                <div class="mb-6 p-4 bg-orange-50 rounded-2xl text-orange-600 transition-colors">
+                    <i data-lucide="users" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Keep work moving</h3>
+                <p class="text-slate-500 mb-6 leading-relaxed">I help teams stay aligned when product work involves more than one person.</p>
+                <ul class="space-y-3 text-slate-700 font-semibold">
+                    <li class="check-item">Support product-linked tasks</li>
+                    <li class="check-item">Clarify next steps</li>
+                    <li class="check-item">Help teams stay coordinated</li>
+                </ul>
+            </div>
+
+            <!-- Guide you as you go -->
+            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-start transition-all hover:shadow-xl group">
+                <div class="mb-6 p-4 bg-blue-100 rounded-2xl text-blue-700 transition-colors">
+                    <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Guide you as you go</h3>
+                <p class="text-slate-500 mb-6 leading-relaxed">Ask naturally. I'll help turn your question into the next useful step.</p>
+                <ul class="space-y-3 text-slate-700 font-semibold">
+                    <li class="check-item">Explain workflows in plain language</li>
+                    <li class="check-item">Help with PPE, export, publish, and more</li>
+                    <li class="check-item">Reduce guesswork while you work</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. CONTEXTUAL AWARENESS -->
+    <section class="bg-slate-50 py-24 md:py-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-semibold mb-6 tracking-tight">
+                I can work with what's <span class="text-brand-blue">in front of you</span>
+            </h2>
+            <p class="text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium">
+                The agent doesn't just answer generic questions. It can understand the page you are on, the filters you’ve applied, and the products you see.
+            </p>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            <div class="space-y-6 lg:text-right">
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center lg:ml-auto mb-4">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 text-slate-800">Selection Search</h4>
+                    <p class="text-sm text-slate-500 font-medium">I can analyze just the products you've selected on the screen.</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="w-10 h-10 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center lg:ml-auto mb-4">
+                        <i data-lucide="mouse-pointer-2" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 text-slate-800">Specific Help</h4>
+                    <p class="text-sm text-slate-500 font-medium">Get help for specific fields or data contexts you're currently editing.</p>
+                </div>
+            </div>
+
+            <div class="relative order-first lg:order-none">
+                <div class="bg-white rounded-[2.5rem] shadow-2xl border border-slate-200 p-6 relative overflow-hidden">
+                   <div class="bg-slate-50 h-64 rounded-2xl flex items-center justify-center border border-dashed border-slate-300">
+                        <i data-lucide="monitor" class="w-12 h-12 text-slate-200"></i>
+                   </div>
+                   <!-- Mock AI Sidebar -->
+                   <div class="absolute top-12 right-12 w-32 bg-white rounded-xl shadow-lg p-3 border border-slate-100 animate-bounce">
+                        <p class="text-[8px] font-bold text-brand-blue uppercase mb-2 tracking-widest">AI Agent</p>
+                        <div class="h-1 w-full bg-slate-100 rounded mb-1"></div>
+                        <div class="h-1 w-3/4 bg-slate-100 rounded"></div>
+                   </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="w-10 h-10 bg-pink-50 text-pink-600 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="layout" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 text-slate-800">Page Aware</h4>
+                    <p class="text-sm text-slate-500 font-medium">I know which module you are using and suggest actions accordingly.</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="filter" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 text-slate-800">Filter Response</h4>
+                    <p class="text-sm text-slate-500 font-medium">I can perform mass actions on all products currently filtered in your view.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. NO LANGUAGE BARRIERS -->
+    <section class="max-w-7xl mx-auto px-6 py-24 md:py-32 flex flex-col lg:flex-row gap-16 items-center">
+        <div class="lg:w-1/2">
+            <h2 class="text-4xl md:text-5xl font-semibold mb-6 tracking-tight">
+                No Language Barriers, <br>
+                <span class="text-brand-blue">Just Answers</span>
+            </h2>
+            <p class="text-lg text-slate-500 mb-10 leading-relaxed font-medium">
+                The Bluestone PIM AI Agent understands multiple languages, enabling a faster experience that empowers global teams.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="flex gap-4">
+                    <div class="bg-blue-50 p-2 rounded-lg text-brand-blue h-fit"><i data-lucide="languages" class="w-5 h-5"></i></div>
+                    <div>
+                        <h5 class="font-bold text-sm">Multilingual teams work faster</h5>
+                        <p class="text-xs text-slate-500 font-medium">Every member works in their preferred tongue.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="bg-blue-50 p-2 rounded-lg text-brand-blue h-fit"><i data-lucide="globe" class="w-5 h-5"></i></div>
+                    <div>
+                        <h5 class="font-bold text-sm">Support multilingual enrichment</h5>
+                        <p class="text-xs text-slate-500 font-medium">Audit translations across web contexts effortlessly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lg:w-1/2 w-full bg-slate-50 rounded-[3rem] p-12 flex flex-col gap-4">
+            <div class="bg-white p-5 rounded-2xl shadow-sm self-start border border-slate-100 max-w-[85%]">
+                <p class="text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-widest">Spanish</p>
+                <p class="text-sm font-semibold">¿Cuántos productos tienen descripciones en español?</p>
+            </div>
+            <div class="bg-white p-5 rounded-2xl shadow-sm self-end border border-slate-100 max-w-[85%]">
+                <p class="text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-widest">German</p>
+                <p class="text-sm font-semibold">Welche Produkte haben unvollständige Daten in der DE-Umgebung?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. THE 24/7 PLATFORM EXPERT (BLUE GRADIENT SECTION) -->
+    <section class="bg-brand-gradient py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row gap-16 items-center">
+            <div class="lg:w-1/2 text-white">
+                <h2 class="text-4xl md:text-5xl font-semibold mb-8 leading-tight tracking-tight">
+                    I’m Your 24/7 Platform Expert 💡🤓☝️
+                </h2>
+                <p class="text-blue-50 text-lg mb-12 opacity-90 font-medium leading-relaxed">
+                    Instant answers, right where you work. Just ask for guidance to find the best way forward — perfect for quick wins and discovering advanced features as you go.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg text-slate-900">
+                        <h4 class="font-bold text-lg mb-2">Workflow Help</h4>
+                        <p class="text-sm text-slate-500 font-medium leading-relaxed">Identify missing data and resolve errors in real-time.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg text-slate-900">
+                        <h4 class="font-bold text-lg mb-2">Expert PIM Advice</h4>
+                        <p class="text-sm text-slate-500 font-medium leading-relaxed">Guidance on best practices and data model terminology.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-1/2 w-full">
+                <div class="glass rounded-[2.5rem] p-10 shadow-2xl">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-12 h-12 bg-brand-blue rounded-xl flex items-center justify-center text-white"><i data-lucide="bot" class="w-7 h-7"></i></div>
+                        <div><p class="font-bold text-slate-900 tracking-tight">AI Agent</p><p class="text-[10px] text-green-500 font-bold uppercase tracking-widest">Active Now</p></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-sm text-slate-600">
+                        <p class="font-bold text-brand-blue mb-3 uppercase text-xs tracking-widest">Instruction</p>
+                        <p class="font-bold text-slate-900 mb-2">Creating Product Bundles</p>
+                        <ul class="space-y-3 font-medium">
+                            <li class="flex gap-2"><span>1.</span> Ensure you have PIM Admin or Write roles.</li>
+                            <li class="flex gap-2"><span>2.</span> Navigate to the desired product details.</li>
+                            <li class="flex gap-2"><span>3.</span> Use the 'Bundle' tab to add linked items.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PRACTICAL OUTCOMES CAROUSEL -->
+    <section class="max-w-7xl mx-auto px-6 py-24 md:py-32">
+        <div class="text-center mb-12">
+            <span class="text-brand-blue font-bold tracking-widest text-[10px] uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                BUILT FOR REAL PIM WORK
+            </span>
+            <h2 class="text-4xl md:text-5xl font-semibold mt-4 mb-4 tracking-tight">
+                Where I can help most
+            </h2>
+            <p class="text-slate-500 text-lg max-w-3xl mx-auto mb-10 font-medium uppercase tracking-tight">
+                PRACTICAL OUTCOMES FOR EVERYDAY WORKFLOWS
+            </p>
+            <div id="filter-container" class="flex flex-wrap justify-center gap-2 mb-10"></div>
+        </div>
+
+        <div class="relative group">
+            <button onclick="scrollManual('left')" class="absolute left-0 top-1/2 -translate-y-1/2 z-30 bg-white/90 shadow-xl border p-5 rounded-full -ml-8 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-blue hover:text-white">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <div id="carousel-viewport" class="carousel-container overflow-x-auto scroll-smooth flex gap-6 px-4 py-8">
+                <div id="cards-grid" class="flex gap-6"></div>
+            </div>
+            <button onclick="scrollManual('right')" class="absolute right-0 top-1/2 -translate-y-1/2 z-30 bg-white/90 shadow-xl border p-5 rounded-full -mr-8 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-blue hover:text-white">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- 7. STRATEGIC IMPACT -->
+    <section class="bg-slate-50 py-24 md:py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-brand-blue font-bold tracking-widest text-[10px] uppercase mb-4 block">Strategic Value</span>
+                <h2 class="text-5xl md:text-6xl font-semibold mb-4 tracking-tight">The Strategic Impact</h2>
+                <p class="text-xl text-slate-500 font-bold italic opacity-70">
+                    "Friction to Flow: AI Agent doesn't just save time – it gives it back."
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm text-center transition-transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-blue-50 text-brand-blue rounded-2xl flex items-center justify-center mx-auto mb-8"><i data-lucide="clock" class="w-8 h-8"></i></div>
+                    <h4 class="text-xl font-bold mb-4 text-slate-800">Time Saved</h4>
+                    <p class="text-slate-500 text-sm font-medium leading-relaxed">Less time spent searching means more time for creative product strategy.</p>
+                </div>
+                <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm text-center transition-transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-8"><i data-lucide="rocket" class="w-8 h-8"></i></div>
+                    <h4 class="text-xl font-bold mb-4 text-slate-800">Time to Market</h4>
+                    <p class="text-slate-500 text-sm font-medium leading-relaxed">Accelerate product updates and launches with intelligent support.</p>
+                </div>
+                <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm text-center transition-transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-8"><i data-lucide="users" class="w-8 h-8"></i></div>
+                    <h4 class="text-xl font-bold mb-4 text-slate-800">Fewer Dependencies</h4>
+                    <p class="text-slate-500 text-sm font-medium leading-relaxed">Teams access data while relying less on technical/IT help.</p>
+                </div>
+                <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm text-center transition-transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-8"><i data-lucide="graduation-cap" class="w-8 h-8"></i></div>
+                    <h4 class="text-xl font-bold mb-4 text-slate-800">Upskilling</h4>
+                    <p class="text-slate-500 text-sm font-medium leading-relaxed">New team members get up to speed faster with simplified complexity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const cards = [
+            { id: 1, category: 'team', title: "Zero-Day Onboarding", description: "Slash the learning curve. New users can ask 'What is a variant group?' or 'What can I do on this page?' for instant training.", icon: 'users', iconClass: 'text-brand-blue' },
+            { id: 4, category: 'team', title: "Team Independence", description: "Break the senior lead bottleneck. Junior members handle complex queries and data validations without waiting for approval.", icon: 'shield-check', iconClass: 'text-green-500' },
+            { id: 2, category: 'speed', title: "Deadline Rescue", description: "Facing a 2-day Black Friday launch? Instantly find which products are missing prices or images to prioritize fixes fast.", icon: 'zap', iconClass: 'text-yellow-500' },
+            { id: 5, category: 'speed', title: "Instant Navigation", description: "Ask 'Which products were updated today?' to navigate your data landscape without manual digging.", icon: 'search', iconClass: 'text-brand-blue' },
+            { id: 8, category: 'speed', title: "Supplier Data Onboarding", description: "Imported 1,000 new products? Instantly catch duplicates, missing brands, or invalid prices before they go live.", icon: 'layers', iconClass: 'text-orange-500' },
+            { id: 6, category: 'quality', title: "Launch Guard", description: "Avoid mistakes. Check completeness for the Web context and find products that would fail validation before you publish.", icon: 'check-circle', iconClass: 'text-indigo-500' },
+            { id: 10, category: 'quality', title: "Catalog Hygiene", description: "Identify 'stale' content or products with duplicate numbers to keep your database lean and accurate.", icon: 'trash-2', iconClass: 'text-red-400' },
+            { id: 12, category: 'quality', title: "Compliance Audit", description: "Avoid legal risks. Ensure all products have 'Country of Origin' and safety warnings filled in before reaching storefronts.", icon: 'file-text', iconClass: 'text-amber-600' },
+            { id: 7, category: 'growth', title: "Market Expansion", description: "Opening a German webshop? Audit your progress to see which products are missing DE translations or prices in EUR.", icon: 'globe', iconClass: 'text-brand-blue' },
+            { id: 9, category: 'growth', title: "SEO Optimizer", description: "Find products missing SEO keywords or those with empty long descriptions to ensure you win the digital shelf.", icon: 'trending-up', iconClass: 'text-emerald-500' },
+            { id: 3, category: 'support', title: "The 'Discovery' Mode", description: "Not sure what to do? Ask 'What actions are available here?' to unlock hidden features and hacks.", icon: 'lightbulb', iconClass: 'text-yellow-600' },
+            { id: 16, category: 'reporting', title: "Executive Insights", description: "Answer management questions: 'What % of products have images?' or 'How many products are in Draft vs Published?'", icon: 'clipboard-list', iconClass: 'text-slate-600' }
+        ];
+
+        const categories = ['all', 'team', 'speed', 'quality', 'growth', 'support', 'reporting'];
+        let currentFilter = 'all';
+        let autoScrollInterval;
+        let isPaused = false;
+        let isMouseDown = false;
+        let startX, scrollLeft;
+
+        function renderFilters() {
+            const container = document.getElementById('filter-container');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="setFilter('${cat}')" class="px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${currentFilter === cat ? 'bg-brand-blue text-white shadow-xl shadow-blue-200' : 'bg-white text-slate-500 hover:bg-slate-100 border border-slate-200'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function renderCards() {
+            const grid = document.getElementById('cards-grid');
+            const viewport = document.getElementById('carousel-viewport');
+            const filtered = currentFilter === 'all' ? cards : cards.filter(c => c.category === currentFilter);
+            viewport.scrollLeft = 0;
+            grid.innerHTML = filtered.map(card => `
+                <div class="carousel-card bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group flex flex-col items-start h-full">
+                    <div class="mb-6 p-4 bg-slate-50 rounded-2xl group-hover:bg-blue-50 transition-colors"><i data-lucide="${card.icon}" class="w-6 h-6 ${card.iconClass}"></i></div>
+                    <h3 class="text-xl font-bold tracking-tight mb-3 group-hover:text-brand-blue transition-colors">${card.title}</h3>
+                    <p class="text-slate-500 text-sm font-medium leading-relaxed">${card.description}</p>
+                </div>
+            `).join('');
+            lucide.createIcons();
+            startAutoScroll();
+        }
+
+        function setFilter(newFilter) { currentFilter = newFilter; renderFilters(); renderCards(); }
+        function startAutoScroll() {
+            clearInterval(autoScrollInterval);
+            const viewport = document.getElementById('carousel-viewport');
+            autoScrollInterval = setInterval(() => {
+                if (!isPaused && !isMouseDown) {
+                    const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+                    if (viewport.scrollLeft >= maxScroll - 1) { viewport.scrollLeft = 0; } else { viewport.scrollLeft += 1; }
+                }
+            }, 30);
+        }
+        function scrollManual(dir) {
+            const viewport = document.getElementById('carousel-viewport');
+            viewport.scrollBy({ left: dir === 'left' ? -374 : 374, behavior: 'smooth' });
+        }
+
+        const viewport = document.getElementById('carousel-viewport');
+        const startDrag = (e) => { isMouseDown = true; viewport.classList.remove('scroll-smooth'); startX = (e.pageX || e.touches[0].pageX) - viewport.offsetLeft; scrollLeft = viewport.scrollLeft; };
+        const stopDrag = () => { isMouseDown = false; viewport.classList.add('scroll-smooth'); };
+        const moveDrag = (e) => { if (!isMouseDown) return; e.preventDefault(); const x = (e.pageX || e.touches[0].pageX) - viewport.offsetLeft; viewport.scrollLeft = scrollLeft - (x - startX) * 2; };
+
+        viewport.addEventListener('mousedown', startDrag);
+        viewport.addEventListener('touchstart', startDrag);
+        window.addEventListener('mouseup', stopDrag);
+        window.addEventListener('touchend', stopDrag);
+        viewport.addEventListener('mousemove', moveDrag);
+        viewport.addEventListener('touchmove', moveDrag);
+        viewport.addEventListener('mouseenter', () => isPaused = true);
+        viewport.addEventListener('mouseleave', () => isPaused = false);
+
+        window.onload = () => { renderFilters(); renderCards(); };
+    </script>
+</body>
+</html>
