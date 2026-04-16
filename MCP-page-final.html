@@ -410,6 +410,101 @@
                     <p class="text-sm text-neutral-500 font-medium leading-relaxed">External AI tools like Claude or ChatGPT connect through a single MCP server — one structured entry point. It handles their queries, coordinates the right tools internally, and returns clean answers. That same tool layer also drives Bluestone's own built-in AI agent.</p>
                 </div>
             </div>
+
+            <!-- DIAGRAM 1: Gateway Flow -->
+            <div class="mt-20 reveal">
+                <p class="text-center text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400 mb-10">How a query flows through MCP</p>
+                <div class="max-w-4xl mx-auto">
+                    <!-- Flow row -->
+                    <div class="flex items-center justify-between gap-2 md:gap-4">
+
+                        <!-- LLMs -->
+                        <div class="flex flex-col items-center gap-3 flex-1">
+                            <div class="text-[9px] font-bold uppercase tracking-[0.15em] text-neutral-400 mb-1">External AI</div>
+                            <div class="flex flex-col gap-2 w-full">
+                                <div class="bg-white border border-neutral-100 rounded-xl px-3 py-2.5 text-center shadow-sm">
+                                    <span class="text-xs font-bold text-brand-navy">Claude</span>
+                                </div>
+                                <div class="bg-white border border-neutral-100 rounded-xl px-3 py-2.5 text-center shadow-sm">
+                                    <span class="text-xs font-bold text-brand-navy">ChatGPT</span>
+                                </div>
+                                <div class="bg-white border border-neutral-100 rounded-xl px-3 py-2.5 text-center shadow-sm">
+                                    <span class="text-xs font-bold text-brand-navy">Gemini</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow in -->
+                        <div class="flex flex-col items-center gap-1 flex-shrink-0">
+                            <span class="text-[8px] font-bold uppercase tracking-[0.1em] text-brand-electric whitespace-nowrap">query</span>
+                            <svg width="48" height="16" viewBox="0 0 48 16" fill="none" class="text-brand-electric"><path d="M0 8h40" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/><path d="M36 4l8 4-8 4" fill="currentColor"/></svg>
+                        </div>
+
+                        <!-- MCP Server -->
+                        <div class="flex flex-col items-center flex-shrink-0">
+                            <div class="text-[9px] font-bold uppercase tracking-[0.15em] text-neutral-400 mb-1">Entry Point</div>
+                            <div class="bg-brand-electric rounded-2xl px-5 py-6 text-center shadow-lg shadow-brand-electric/20 min-w-[100px]">
+                                <div class="text-white text-lg mb-1">⚡</div>
+                                <div class="text-xs font-extrabold text-white leading-tight">MCP</div>
+                                <div class="text-[9px] font-semibold text-white/70 mt-0.5">Server</div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow out right -->
+                        <div class="flex flex-col items-center gap-1 flex-shrink-0">
+                            <span class="text-[8px] font-bold uppercase tracking-[0.1em] text-brand-sky whitespace-nowrap">tools</span>
+                            <svg width="48" height="16" viewBox="0 0 48 16" fill="none" class="text-brand-sky"><path d="M0 8h40" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/><path d="M36 4l8 4-8 4" fill="currentColor"/></svg>
+                        </div>
+
+                        <!-- PIM Tools -->
+                        <div class="flex flex-col items-center gap-3 flex-1">
+                            <div class="text-[9px] font-bold uppercase tracking-[0.15em] text-neutral-400 mb-1">PIM Tools</div>
+                            <div class="flex flex-col gap-2 w-full">
+                                <div class="bg-brand-electric/[0.04] border border-brand-electric/10 rounded-xl px-3 py-2.5 text-center">
+                                    <span class="text-xs font-bold text-brand-electric">Search</span>
+                                </div>
+                                <div class="bg-brand-electric/[0.04] border border-brand-electric/10 rounded-xl px-3 py-2.5 text-center">
+                                    <span class="text-xs font-bold text-brand-electric">Enrich</span>
+                                </div>
+                                <div class="bg-brand-electric/[0.04] border border-brand-electric/10 rounded-xl px-3 py-2.5 text-center">
+                                    <span class="text-xs font-bold text-brand-electric">Publish</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow to data -->
+                        <div class="flex flex-col items-center gap-1 flex-shrink-0">
+                            <span class="text-[8px] font-bold uppercase tracking-[0.1em] text-brand-orange whitespace-nowrap">data</span>
+                            <svg width="48" height="16" viewBox="0 0 48 16" fill="none" class="text-brand-orange"><path d="M0 8h40" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/><path d="M36 4l8 4-8 4" fill="currentColor"/></svg>
+                        </div>
+
+                        <!-- Bluestone PIM -->
+                        <div class="flex flex-col items-center flex-shrink-0">
+                            <div class="text-[9px] font-bold uppercase tracking-[0.15em] text-neutral-400 mb-1">Source</div>
+                            <div class="bg-brand-navy rounded-2xl px-5 py-6 text-center shadow-lg shadow-brand-navy/10 min-w-[100px]">
+                                <div class="text-white text-lg mb-1">🗄️</div>
+                                <div class="text-xs font-extrabold text-white leading-tight">Bluestone</div>
+                                <div class="text-[9px] font-semibold text-white/60 mt-0.5">PIM</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Return arrow below -->
+                    <div class="mt-4 flex items-center justify-center gap-2">
+                        <svg width="320" height="20" viewBox="0 0 320 20" fill="none" class="text-neutral-300 w-full max-w-sm">
+                            <path d="M310 10H10" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
+                            <path d="M14 6l-8 4 8 4" fill="currentColor"/>
+                        </svg>
+                        <span class="text-[8px] font-bold uppercase tracking-[0.1em] text-neutral-400 whitespace-nowrap flex-shrink-0">structured answer returned</span>
+                        <svg width="320" height="20" viewBox="0 0 320 20" fill="none" class="text-neutral-300 w-full max-w-sm">
+                            <path d="M10 10h300" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <!-- END DIAGRAM 1 -->
+
         </div>
     </section>
 
@@ -434,6 +529,78 @@
                     <p class="text-sm text-neutral-500 font-medium leading-relaxed">Product managers, developers, operations leads, and system integrators all work through the same MCP connection — no silos, no stale data, no manual sync.</p>
                 </div>
             </div>
+
+            <!-- DIAGRAM 2: Two-Actor Architecture -->
+            <div class="mt-16 reveal">
+                <p class="text-center text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400 mb-10">Who connects to MCP</p>
+                <div class="max-w-3xl mx-auto">
+                    <!-- Top row: two actors -->
+                    <div class="grid grid-cols-2 gap-6 mb-0">
+
+                        <!-- Internal: Bluestone AI Agent -->
+                        <div class="flex flex-col items-center">
+                            <div class="text-[9px] font-bold uppercase tracking-[0.15em] text-neutral-400 mb-3">Internal</div>
+                            <div class="bg-brand-electric/[0.04] border border-brand-electric/20 rounded-2xl px-6 py-5 text-center w-full">
+                                <div class="text-2xl mb-2">🤖</div>
+                                <div class="text-sm font-extrabold text-brand-navy">Bluestone AI Agent</div>
+                                <div class="text-[10px] text-neutral-400 font-medium mt-1">Built-in automation</div>
+                            </div>
+                            <!-- Connector line down -->
+                            <div class="w-px h-8 bg-brand-electric/30 mt-0"></div>
+                        </div>
+
+                        <!-- External: LLMs -->
+                        <div class="flex flex-col items-center">
+                            <div class="text-[9px] font-bold uppercase tracking-[0.15em] text-neutral-400 mb-3">External</div>
+                            <div class="bg-brand-orange/[0.04] border border-brand-orange/20 rounded-2xl px-6 py-5 text-center w-full">
+                                <div class="text-2xl mb-2">💬</div>
+                                <div class="text-sm font-extrabold text-brand-navy">Claude, ChatGPT, Gemini</div>
+                                <div class="text-[10px] text-neutral-400 font-medium mt-1">Via single MCP server</div>
+                            </div>
+                            <!-- Connector line down -->
+                            <div class="w-px h-8 bg-brand-orange/30 mt-0"></div>
+                        </div>
+
+                    </div>
+
+                    <!-- Converging lines visual -->
+                    <div class="relative h-6 mb-0">
+                        <svg width="100%" height="24" viewBox="0 0 400 24" preserveAspectRatio="none" fill="none">
+                            <path d="M100 0 L200 24" stroke="#0F05CC" stroke-width="1.5" stroke-opacity="0.3"/>
+                            <path d="M300 0 L200 24" stroke="#EC672B" stroke-width="1.5" stroke-opacity="0.3"/>
+                        </svg>
+                    </div>
+
+                    <!-- MCP Layer -->
+                    <div class="bg-brand-electric rounded-2xl px-8 py-6 text-center shadow-xl shadow-brand-electric/20">
+                        <div class="text-[9px] font-bold uppercase tracking-[0.2em] text-white/60 mb-1">The Connection Layer</div>
+                        <div class="text-lg font-extrabold text-white">MCP Server</div>
+                        <div class="text-xs text-white/70 font-medium mt-1">Handles queries · Coordinates tools · Returns structured data</div>
+                    </div>
+
+                    <!-- Line down to PIM -->
+                    <div class="flex justify-center">
+                        <div class="w-px h-8 bg-brand-navy/20"></div>
+                    </div>
+
+                    <!-- PIM Data Layer -->
+                    <div class="bg-brand-navy rounded-2xl px-8 py-5 text-center shadow-lg shadow-brand-navy/10">
+                        <div class="text-[9px] font-bold uppercase tracking-[0.2em] text-white/50 mb-1">The Source of Truth</div>
+                        <div class="text-base font-extrabold text-white">Bluestone PIM — Product Catalogue</div>
+                        <div class="flex justify-center gap-4 mt-3">
+                            <span class="text-[9px] font-bold text-white/50 uppercase tracking-wider">Attributes</span>
+                            <span class="text-white/20">·</span>
+                            <span class="text-[9px] font-bold text-white/50 uppercase tracking-wider">Media</span>
+                            <span class="text-white/20">·</span>
+                            <span class="text-[9px] font-bold text-white/50 uppercase tracking-wider">Channels</span>
+                            <span class="text-white/20">·</span>
+                            <span class="text-[9px] font-bold text-white/50 uppercase tracking-wider">Locales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END DIAGRAM 2 -->
+
         </div>
     </section>
 
