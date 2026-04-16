@@ -129,6 +129,12 @@
         /* GEO pulse */
         .geo-badge { animation: pulse-glow 3s ease-in-out infinite; }
 
+        /* Tool access badges */
+        .badge-internal { background: rgba(15,5,204,0.07); color: #0F05CC; border: 1px solid rgba(15,5,204,0.15); }
+        .badge-external { background: rgba(236,103,43,0.08); color: #EC672B; border: 1px solid rgba(236,103,43,0.2); }
+        .badge-both { background: rgba(61,116,244,0.08); color: #3D74F4; border: 1px solid rgba(61,116,244,0.2); }
+        .tool-badge { display:inline-block; font-size:0.6rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:3px 8px; border-radius:999px; }
+
         /* Chapter markers */
         .chapter-marker {
             display: flex; align-items: center; gap: 16px;
@@ -408,7 +414,7 @@
                     The Model Context Protocol is an open standard that lets AI models connect securely to external data. Developed to eliminate the "context gap," MCP allows AI assistants like Claude, ChatGPT, and Gemini to interact with your product data as if it were part of their native knowledge. Bluestone PIM ships a native MCP server — your data is available to AI out of the box.
                 </p>
             </div>
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto reveal">
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto reveal">
                 <div class="bg-brand-electric/[0.03] border border-brand-electric/10 rounded-2xl p-8">
                     <div class="w-12 h-12 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric text-2xl mb-5">👁️</div>
                     <div class="text-[10px] font-bold uppercase tracking-[0.15em] text-brand-electric mb-3">Context — the eyes to see</div>
@@ -420,6 +426,12 @@
                     <div class="text-[10px] font-bold uppercase tracking-[0.15em] text-brand-sky mb-3">Tools — the hands to act</div>
                     <h3 class="font-display font-extrabold text-lg text-brand-navy mb-3">AI acts on your data directly</h3>
                     <p class="text-sm text-neutral-500 font-medium leading-relaxed">Beyond reading data, MCP tools let agents trigger executable functions — updating attributes, enriching records, running bulk jobs — directly inside the PIM workflow.</p>
+                </div>
+                <div class="bg-brand-orange/[0.03] border border-brand-orange/10 rounded-2xl p-8">
+                    <div class="w-12 h-12 rounded-xl bg-brand-orange/10 flex items-center justify-center text-brand-orange text-2xl mb-5">🔀</div>
+                    <div class="text-[10px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3">One toolbox, two actors</div>
+                    <h3 class="font-display font-extrabold text-lg text-brand-navy mb-3">Internal and external, same tools</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">Bluestone's own built-in AI agent and your external tools — Claude, Cursor, ChatGPT — call the same MCP tools. You control who gets access. The toolbox stays the same.</p>
                 </div>
             </div>
         </div>
@@ -744,7 +756,7 @@
                 <div>
                     <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-3">MCP tools — for developers</span>
                     <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight">The Agentic Toolbox</h2>
-                    <p class="text-base text-neutral-500 font-medium mt-2">Six MCP tool categories your AI agents can call today.</p>
+                    <p class="text-base text-neutral-500 font-medium mt-2 max-w-lg">A shared set of MCP tools — used by Bluestone's built-in AI agent for internal workflows, and available to external tools like Claude or Cursor when you authorise them.</p>
                 </div>
                 <div class="flex gap-3">
                     <button onclick="scrollCarousel(-1)" class="w-10 h-10 rounded-full border border-neutral-200 bg-white flex items-center justify-center hover:bg-neutral-50 transition-all text-brand-electric">
@@ -761,7 +773,10 @@
                     <div class="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5 group-hover:bg-brand-electric group-hover:text-white transition-colors">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
                     </div>
-                    <h4 class="font-display font-bold text-base mb-2 text-brand-navy">User Context</h4>
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="font-display font-bold text-base text-brand-navy">User Context</h4>
+                        <span class="tool-badge badge-internal">Internal</span>
+                    </div>
                     <p class="text-xs text-neutral-500 mb-6 flex-grow font-medium leading-relaxed">The agent sees where you are in the UI and what products you're viewing — context-aware assistance without switching tabs.</p>
                     <code class="text-[10px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-3 py-2 rounded-lg block text-center border border-brand-sky/10">get_user_context()</code>
                 </div>
@@ -769,7 +784,10 @@
                     <div class="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5 group-hover:bg-brand-electric group-hover:text-white transition-colors">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                     </div>
-                    <h4 class="font-display font-bold text-base mb-2 text-brand-navy">UI Actions</h4>
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="font-display font-bold text-base text-brand-navy">UI Actions</h4>
+                        <span class="tool-badge badge-internal">Internal</span>
+                    </div>
                     <p class="text-xs text-neutral-500 mb-6 flex-grow font-medium leading-relaxed">AI discovers available actions and triggers them directly — clicking buttons, navigating views, executing workflows for the user.</p>
                     <code class="text-[10px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-3 py-2 rounded-lg block text-center border border-brand-sky/10">push_ui_actions()</code>
                 </div>
@@ -777,7 +795,10 @@
                     <div class="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5 group-hover:bg-brand-electric group-hover:text-white transition-colors">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1 1.51V10a2 2 0 0 1 0 4v.49z"></path></svg>
                     </div>
-                    <h4 class="font-display font-bold text-base mb-2 text-brand-navy">Bulk Operations</h4>
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="font-display font-bold text-base text-brand-navy">Bulk Operations</h4>
+                        <span class="tool-badge badge-both">Internal + External</span>
+                    </div>
                     <p class="text-xs text-neutral-500 mb-6 flex-grow font-medium leading-relaxed">Orchestrate complex background jobs — mass attribute updates, category reassignments, completeness audits — autonomously.</p>
                     <code class="text-[10px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-3 py-2 rounded-lg block text-center border border-brand-sky/10">update_attributes_in_products()</code>
                 </div>
@@ -785,7 +806,10 @@
                     <div class="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5 group-hover:bg-brand-electric group-hover:text-white transition-colors">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                     </div>
-                    <h4 class="font-display font-bold text-base mb-2 text-brand-navy">Platform Guidance</h4>
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="font-display font-bold text-base text-brand-navy">Platform Guidance</h4>
+                        <span class="tool-badge badge-internal">Internal</span>
+                    </div>
                     <p class="text-xs text-neutral-500 mb-6 flex-grow font-medium leading-relaxed">The agent searches Bluestone's documentation by meaning, not keywords — it mentors users on how to use the PIM itself.</p>
                     <code class="text-[10px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-3 py-2 rounded-lg block text-center border border-brand-sky/10">platform_guidance_search()</code>
                 </div>
@@ -793,7 +817,10 @@
                     <div class="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5 group-hover:bg-brand-electric group-hover:text-white transition-colors">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
                     </div>
-                    <h4 class="font-display font-bold text-base mb-2 text-brand-navy">Entity Mapping</h4>
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="font-display font-bold text-base text-brand-navy">Entity Mapping</h4>
+                        <span class="tool-badge badge-external">External</span>
+                    </div>
                     <p class="text-xs text-neutral-500 mb-6 flex-grow font-medium leading-relaxed">Resolve categories, attributes, and dictionary values by name. Agents map human-readable terms to system IDs instantly.</p>
                     <code class="text-[10px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-3 py-2 rounded-lg block text-center border border-brand-sky/10">find_attribute_definitions()</code>
                 </div>
@@ -801,7 +828,10 @@
                     <div class="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5 group-hover:bg-brand-electric group-hover:text-white transition-colors">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                     </div>
-                    <h4 class="font-display font-bold text-base mb-2 text-brand-navy">Context Definitions</h4>
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="font-display font-bold text-base text-brand-navy">Context Definitions</h4>
+                        <span class="tool-badge badge-both">Internal + External</span>
+                    </div>
                     <p class="text-xs text-neutral-500 mb-6 flex-grow font-medium leading-relaxed">Switch between languages, markets, and sales channels with rule-aware logic — the agent respects your localisation rules.</p>
                     <code class="text-[10px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-3 py-2 rounded-lg block text-center border border-brand-sky/10">find_context_definitions()</code>
                 </div>
