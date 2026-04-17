@@ -170,15 +170,27 @@
         /* Metric value */
         .metric-value { font-variant-numeric: tabular-nums; }
 
-        /* Demo video */
-        .demo-play-btn {
-            width: 80px; height: 80px; border-radius: 50%;
-            background: #0F05CC;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 40px rgba(15, 5, 204, 0.35);
-            transition: transform 0.2s, box-shadow 0.2s;
+        /* Video lightbox */
+        #video-lightbox {
+            display: none; position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+            align-items: center; justify-content: center;
         }
-        .demo-play-btn:hover { transform: scale(1.08); box-shadow: 0 0 60px rgba(15, 5, 204, 0.5); }
+        #video-lightbox.open { display: flex; }
+        #video-lightbox .lb-inner {
+            position: relative; width: 90vw; max-width: 900px; aspect-ratio: 16/9;
+            border-radius: 16px; overflow: hidden;
+            background: #0C2E4E;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+        }
+        #video-lightbox iframe { width: 100%; height: 100%; border: none; }
+        #video-lightbox .lb-close {
+            position: absolute; top: -44px; right: 0;
+            background: none; border: none; cursor: pointer;
+            color: white; font-size: 1.5rem; line-height: 1;
+            opacity: 0.7; transition: opacity 0.15s;
+        }
+        #video-lightbox .lb-close:hover { opacity: 1; }
     </style>
 </head>
 <body class="bg-white text-brand-navy antialiased">
@@ -214,36 +226,61 @@
         <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 pt-20 pb-28 md:pt-28 md:pb-36">
-            <div class="max-w-4xl">
-                <div class="animate-fade-up">
-                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/10 rounded-full px-4 py-1.5 mb-8">
-                        <span class="w-2 h-2 rounded-full bg-brand-mint animate-pulse"></span>
-                        <span class="text-[11px] font-bold text-white tracking-wide">Now in Beta — Native MCP for Product Data</span>
+
+            <!-- Hero two-column -->
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-16">
+
+                <!-- Left: text -->
+                <div class="flex-1 min-w-0">
+                    <div class="animate-fade-up">
+                        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/10 rounded-full px-4 py-1.5 mb-8">
+                            <span class="w-2 h-2 rounded-full bg-brand-mint animate-pulse"></span>
+                            <span class="text-[11px] font-bold text-white tracking-wide">Now in Beta — Native MCP for Product Data</span>
+                        </div>
+                    </div>
+
+                    <h1 class="animate-fade-up delay-1 font-display font-extrabold text-white tracking-tight leading-[1.05] mb-6">
+                        <span class="text-3xl sm:text-4xl md:text-5xl block mb-1">Make Every Product Discoverable by AI</span>
+                        <span class="text-5xl sm:text-6xl md:text-[5rem] block text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-white">Powered by MCP</span>
+                    </h1>
+
+                    <p class="animate-fade-up delay-2 text-lg md:text-xl text-white font-medium leading-relaxed mb-10">
+                        AI agents are the new shoppers. If your product data can't be found, queried, and acted on by Gemini, Claude, ChatGPT, or Perplexity — you're invisible. Bluestone PIM gives AI direct access to the right data, so your products show up, and correctly interpreted when it matters.
+                    </p>
+
+                    <div class="animate-fade-up delay-3 flex flex-wrap gap-4">
+                        <button onclick="openVideoLightbox()" class="inline-flex items-center gap-2 bg-white text-brand-navy px-7 py-3.5 rounded-xl font-display font-bold text-sm shadow-xl hover:shadow-2xl transition-all hover:-translate-y-0.5">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>
+                            See it in action
+                        </button>
+                        <a href="#why" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/15 text-white px-7 py-3.5 rounded-xl font-display font-bold text-sm hover:bg-white/15 transition-all">
+                            How it works
+                        </a>
                     </div>
                 </div>
 
-                <h1 class="animate-fade-up delay-1 font-display font-extrabold text-white tracking-tight leading-[1.05] mb-6">
-                    <span class="text-3xl sm:text-4xl md:text-5xl block mb-1">Make Every Product Discoverable by AI</span>
-                    <span class="text-5xl sm:text-6xl md:text-[5rem] block text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-white">Powered by MCP</span>
-                </h1>
-
-                <p class="animate-fade-up delay-2 text-lg md:text-xl text-white font-medium leading-relaxed max-w-2xl mb-10">
-                    AI agents are the new shoppers. If your product data can't be found, queried, and acted on by Gemini, Claude, ChatGPT, or Perplexity — you're invisible. Bluestone PIM gives AI direct access to the right data, so your products show up, and correctly interpreted when it matters.
-                </p>
-
-                <div class="animate-fade-up delay-3 flex flex-wrap gap-4">
-                    <a href="#demo-video" class="inline-flex items-center gap-2 bg-white text-brand-navy px-7 py-3.5 rounded-xl font-display font-bold text-sm shadow-xl hover:shadow-2xl transition-all hover:-translate-y-0.5">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21" fill="currentColor" stroke="none"></polygon></svg>
-                        See it in action
-                    </a>
-                    <a href="#why" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/15 text-white px-7 py-3.5 rounded-xl font-display font-bold text-sm hover:bg-white/15 transition-all">
-                        How it works
-                    </a>
+                <!-- Right: video thumbnail -->
+                <div class="animate-fade-up delay-4 flex-shrink-0 w-full lg:w-[420px]">
+                    <button onclick="openVideoLightbox()" class="group relative w-full aspect-video rounded-2xl overflow-hidden border border-white/15 shadow-2xl shadow-black/30 block cursor-pointer">
+                        <div class="absolute inset-0 bg-gradient-to-br from-brand-electric/80 to-brand-navy/90"></div>
+                        <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 30px 30px;"></div>
+                        <!-- Play button -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-full bg-white/15 border border-white/30 flex items-center justify-center group-hover:bg-white/25 group-hover:scale-110 transition-all duration-200">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="margin-left:3px"><polygon points="5 3 19 12 5 21"/></svg>
+                            </div>
+                        </div>
+                        <!-- Label -->
+                        <div class="absolute bottom-4 left-0 right-0 text-center">
+                            <span class="text-xs font-bold text-white/70 tracking-wide">Watch: Bluestone MCP in action — 2 min</span>
+                        </div>
+                    </button>
                 </div>
+
             </div>
 
             <!-- Benefit cards -->
-            <div class="animate-fade-up delay-5 grid md:grid-cols-3 gap-5 mt-16">
+            <div class="animate-fade-up delay-5 grid md:grid-cols-3 gap-5">
                 <div class="bg-white/[0.07] border border-white/10 rounded-2xl p-8 flex flex-col items-start relative overflow-hidden hover:bg-white/10 transition-all">
                     <div class="absolute top-6 right-6 text-[9px] font-bold uppercase tracking-widest text-white/30">Interoperability</div>
                     <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-white">
@@ -380,125 +417,7 @@
                 </div>
             </div>
 
-            <!-- DIAGRAM 1: Gateway Flow -->
-            <div class="mt-20 reveal">
-                <p class="text-center text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400 mb-10">How a query flows through MCP</p>
-                <div class="max-w-4xl mx-auto">
-                    <!-- Flow row -->
-                    <div class="flex items-center justify-between gap-2 md:gap-4">
 
-                        <!-- LLMs -->
-                        <div class="flex flex-col items-center gap-3 flex-1">
-                            <div class="text-[9px] font-bold uppercase tracking-[0.15em] text-neutral-400 mb-1">External AI</div>
-                            <div class="flex flex-col gap-2 w-full">
-                                <div class="bg-white border border-neutral-100 rounded-xl px-3 py-2.5 text-center shadow-sm">
-                                    <span class="text-xs font-bold text-brand-navy">Claude</span>
-                                </div>
-                                <div class="bg-white border border-neutral-100 rounded-xl px-3 py-2.5 text-center shadow-sm">
-                                    <span class="text-xs font-bold text-brand-navy">ChatGPT</span>
-                                </div>
-                                <div class="bg-white border border-neutral-100 rounded-xl px-3 py-2.5 text-center shadow-sm">
-                                    <span class="text-xs font-bold text-brand-navy">Gemini</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Arrow in -->
-                        <div class="flex flex-col items-center gap-1 flex-shrink-0">
-                            <span class="text-[8px] font-bold uppercase tracking-[0.1em] text-brand-electric whitespace-nowrap">query</span>
-                            <svg width="48" height="16" viewBox="0 0 48 16" fill="none" class="text-brand-electric"><path d="M0 8h40" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/><path d="M36 4l8 4-8 4" fill="currentColor"/></svg>
-                        </div>
-
-                        <!-- MCP Server -->
-                        <div class="flex flex-col items-center flex-shrink-0">
-                            <div class="text-[9px] font-bold uppercase tracking-[0.15em] text-neutral-400 mb-1">Entry Point</div>
-                            <div class="bg-brand-electric rounded-2xl px-5 py-6 text-center shadow-lg shadow-brand-electric/20 min-w-[100px]">
-                                <div class="text-white text-lg mb-1">⚡</div>
-                                <div class="text-xs font-extrabold text-white leading-tight">MCP</div>
-                                <div class="text-[9px] font-semibold text-white/70 mt-0.5">Server</div>
-                            </div>
-                        </div>
-
-                        <!-- Arrow out right -->
-                        <div class="flex flex-col items-center gap-1 flex-shrink-0">
-                            <span class="text-[8px] font-bold uppercase tracking-[0.1em] text-brand-sky whitespace-nowrap">tools</span>
-                            <svg width="48" height="16" viewBox="0 0 48 16" fill="none" class="text-brand-sky"><path d="M0 8h40" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/><path d="M36 4l8 4-8 4" fill="currentColor"/></svg>
-                        </div>
-
-                        <!-- PIM Tools -->
-                        <div class="flex flex-col items-center gap-3 flex-1">
-                            <div class="text-[9px] font-bold uppercase tracking-[0.15em] text-neutral-400 mb-1">PIM Tools</div>
-                            <div class="flex flex-col gap-2 w-full">
-                                <div class="bg-brand-electric/[0.04] border border-brand-electric/10 rounded-xl px-3 py-2.5 text-center">
-                                    <span class="text-xs font-bold text-brand-electric">Search</span>
-                                </div>
-                                <div class="bg-brand-electric/[0.04] border border-brand-electric/10 rounded-xl px-3 py-2.5 text-center">
-                                    <span class="text-xs font-bold text-brand-electric">Enrich</span>
-                                </div>
-                                <div class="bg-brand-electric/[0.04] border border-brand-electric/10 rounded-xl px-3 py-2.5 text-center">
-                                    <span class="text-xs font-bold text-brand-electric">Publish</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Arrow to data -->
-                        <div class="flex flex-col items-center gap-1 flex-shrink-0">
-                            <span class="text-[8px] font-bold uppercase tracking-[0.1em] text-brand-orange whitespace-nowrap">data</span>
-                            <svg width="48" height="16" viewBox="0 0 48 16" fill="none" class="text-brand-orange"><path d="M0 8h40" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/><path d="M36 4l8 4-8 4" fill="currentColor"/></svg>
-                        </div>
-
-                        <!-- Bluestone PIM -->
-                        <div class="flex flex-col items-center flex-shrink-0">
-                            <div class="text-[9px] font-bold uppercase tracking-[0.15em] text-neutral-400 mb-1">Source</div>
-                            <div class="bg-brand-navy rounded-2xl px-5 py-6 text-center shadow-lg shadow-brand-navy/10 min-w-[100px]">
-                                <div class="text-white text-lg mb-1">🗄️</div>
-                                <div class="text-xs font-extrabold text-white leading-tight">Bluestone</div>
-                                <div class="text-[9px] font-semibold text-white/60 mt-0.5">PIM</div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Return arrow below -->
-                    <div class="mt-4 flex items-center justify-center gap-2">
-                        <svg width="320" height="20" viewBox="0 0 320 20" fill="none" class="text-neutral-300 w-full max-w-sm">
-                            <path d="M310 10H10" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
-                            <path d="M14 6l-8 4 8 4" fill="currentColor"/>
-                        </svg>
-                        <span class="text-[8px] font-bold uppercase tracking-[0.1em] text-neutral-400 whitespace-nowrap flex-shrink-0">structured answer returned</span>
-                        <svg width="320" height="20" viewBox="0 0 320 20" fill="none" class="text-neutral-300 w-full max-w-sm">
-                            <path d="M10 10h300" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <!-- END DIAGRAM 1 -->
-
-        </div>
-    </section>
-
-    <!-- ===================== DEMO VIDEO ===================== -->
-    <section id="demo-video" class="py-16 md:py-20 bg-brand-ghost border-y border-neutral-100">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8">
-            <div class="text-center mb-10 reveal">
-                <span class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-electric mb-3">Live demo</span>
-                <h2 class="font-display text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy">See Bluestone MCP in Action</h2>
-            </div>
-            <div class="reveal">
-                <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden border-2 border-brand-electric/20 bg-white shadow-2xl shadow-brand-electric/10 aspect-video flex items-center justify-center relative cursor-pointer group">
-                    <!-- Background gradient -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-brand-electric/5 via-transparent to-brand-sky/5"></div>
-                    <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 30% 40%, #0F05CC, transparent 50%), radial-gradient(circle at 70% 60%, #3D74F4, transparent 50%);"></div>
-                    <!-- Play button -->
-                    <div class="demo-play-btn z-10">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="white" style="margin-left:4px"><polygon points="5 3 19 12 5 21"/></svg>
-                    </div>
-                    <!-- Label -->
-                    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
-                        <span class="text-sm font-bold text-brand-navy/60 bg-white/80 backdrop-blur px-4 py-2 rounded-full border border-neutral-100">Watch: Bluestone MCP in action — 2 min demo</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1212,7 +1131,38 @@
         </div>
     </footer>
 
+    <!-- Video lightbox -->
+    <div id="video-lightbox">
+        <div class="lb-inner">
+            <button class="lb-close" onclick="closeVideoLightbox()" aria-label="Close">✕</button>
+            <!-- Replace VIDEO_ID with your YouTube video ID -->
+            <iframe id="lightbox-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+    </div>
+
     <script>
+        function openVideoLightbox() {
+            const lb = document.getElementById('video-lightbox');
+            const iframe = document.getElementById('lightbox-iframe');
+            // Replace VIDEO_ID with your actual YouTube video ID
+            iframe.src = 'https://www.youtube.com/embed/VIDEO_ID?autoplay=1&rel=0';
+            lb.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeVideoLightbox() {
+            const lb = document.getElementById('video-lightbox');
+            const iframe = document.getElementById('lightbox-iframe');
+            lb.classList.remove('open');
+            iframe.src = '';
+            document.body.style.overflow = '';
+        }
+        document.getElementById('video-lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeVideoLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeVideoLightbox();
+        });
+
         // Carousel navigation
         function scrollCarousel(direction) {
             const container = document.getElementById('toolbox-carousel');
