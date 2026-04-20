@@ -575,26 +575,64 @@
             <div class="reveal">
                 <h3 class="font-display font-extrabold text-xl text-brand-navy mb-8 text-center">What goes into an Agentic Feed</h3>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="bg-brand-ghost rounded-2xl p-6 border border-neutral-100">
-                        <div class="text-2xl mb-3">🏷️</div>
-                        <h4 class="font-display font-extrabold text-sm text-brand-navy mb-2">Identity &amp; Structure</h4>
-                        <p class="text-xs text-neutral-500 font-medium leading-relaxed">Product names, SKUs, category hierarchies, relationship mappings, and cross-reference identifiers.</p>
+
+                    <!-- Identity & Structure -->
+                    <div class="bg-brand-ghost rounded-3xl p-7">
+                        <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-5 shadow-sm">
+                            <!-- ID card icon -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3D74F4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                                <circle cx="8" cy="12" r="2"></circle>
+                                <line x1="13" y1="10" x2="19" y2="10"></line>
+                                <line x1="13" y1="14" x2="17" y2="14"></line>
+                            </svg>
+                        </div>
+                        <h4 class="font-display font-extrabold text-base text-brand-navy mb-2">Identity &amp; Structure</h4>
+                        <p class="text-sm text-neutral-500 font-medium leading-relaxed">Identifiers, variant trees, and relationship mappings across your catalog.</p>
                     </div>
-                    <div class="bg-brand-ghost rounded-2xl p-6 border border-neutral-100">
-                        <div class="text-2xl mb-3">⚡</div>
-                        <h4 class="font-display font-extrabold text-sm text-brand-navy mb-2">Decision Attributes</h4>
-                        <p class="text-xs text-neutral-500 font-medium leading-relaxed">Specs, dimensions, compatibility notes, variants, and the attributes that drive purchase decisions.</p>
+
+                    <!-- Decision Attributes -->
+                    <div class="bg-brand-ghost rounded-3xl p-7">
+                        <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-5 shadow-sm">
+                            <!-- Hourglass icon -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3D74F4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 3h14"></path>
+                                <path d="M5 21h14"></path>
+                                <path d="M5 3l4.5 9-4.5 9"></path>
+                                <path d="M19 3l-4.5 9 4.5 9"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-display font-extrabold text-base text-brand-navy mb-2">Decision Attributes</h4>
+                        <p class="text-sm text-neutral-500 font-medium leading-relaxed">Technical specs, compatibility matrix, and constraints for reasoning.</p>
                     </div>
-                    <div class="bg-brand-ghost rounded-2xl p-6 border border-neutral-100">
-                        <div class="text-2xl mb-3">💰</div>
-                        <h4 class="font-display font-extrabold text-sm text-brand-navy mb-2">Commercial Content</h4>
-                        <p class="text-xs text-neutral-500 font-medium leading-relaxed">Live pricing, availability, subscription options, regional variants, and promotional context.</p>
+
+                    <!-- Commercial Context -->
+                    <div class="bg-brand-ghost rounded-3xl p-7">
+                        <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-5 shadow-sm">
+                            <!-- Credit card icon -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3D74F4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="6" width="20" height="13" rx="2"></rect>
+                                <line x1="2" y1="11" x2="22" y2="11"></line>
+                                <line x1="6" y1="15" x2="9" y2="15"></line>
+                            </svg>
+                        </div>
+                        <h4 class="font-display font-extrabold text-base text-brand-navy mb-2">Commercial Context</h4>
+                        <p class="text-sm text-neutral-500 font-medium leading-relaxed">Availability signals, pack sizes, and market-specific regional fields.</p>
                     </div>
-                    <div class="bg-brand-ghost rounded-2xl p-6 border border-neutral-100">
-                        <div class="text-2xl mb-3">🔗</div>
-                        <h4 class="font-display font-extrabold text-sm text-brand-navy mb-2">Canonical Refs</h4>
-                        <p class="text-xs text-neutral-500 font-medium leading-relaxed">Authoritative product URLs, media assets, and citation anchors that AI agents use to ground their answers.</p>
+
+                    <!-- Canonical Refs -->
+                    <div class="bg-brand-ghost rounded-3xl p-7">
+                        <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-5 shadow-sm">
+                            <!-- Link / chain curve icon -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3D74F4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-display font-extrabold text-base text-brand-navy mb-2">Canonical Refs</h4>
+                        <p class="text-sm text-neutral-500 font-medium leading-relaxed">Direct links to product pages, data sheets, and certification documents.</p>
                     </div>
+
                 </div>
             </div>
         </div>
