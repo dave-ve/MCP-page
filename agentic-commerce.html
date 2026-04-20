@@ -470,46 +470,50 @@
                 </p>
             </div>
 
-            <div class="flex flex-col md:flex-row items-stretch gap-0 reveal max-w-5xl mx-auto">
-                <!-- Step 1 -->
-                <div class="flex-1 bg-brand-ghost rounded-2xl md:rounded-r-none p-8 border border-neutral-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-electric flex items-center justify-center text-white mb-6 shadow-lg shadow-brand-electric/30">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <div class="grid md:grid-cols-3 gap-6 reveal max-w-5xl mx-auto">
+
+                <!-- Card 1: Ingest -->
+                <div class="bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden flex flex-col items-center text-center p-8 pt-10 relative">
+                    <div class="absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-neutral-300"></div>
+                    <div class="w-14 h-14 rounded-full bg-neutral-100 flex items-center justify-center mb-6">
+                        <!-- Down arrow icon -->
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
                     </div>
-                    <div class="text-[10px] font-bold uppercase tracking-widest text-brand-electric mb-2">Step 1</div>
                     <h3 class="font-display font-extrabold text-lg text-brand-navy mb-3">Ingest</h3>
-                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">Centralise fragmented data from ERP, CMS, DAM, and custom systems into a single, structured source of product truth — with no custom middleware required.</p>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">Centralize fragmented data from ERP, MDM, and Commerce systems into a single source of truth.</p>
                 </div>
-                <!-- Connector -->
-                <div class="hidden md:flex items-center justify-center w-8 flex-shrink-0 -mx-0.5 z-10">
-                    <div class="w-8 h-8 rounded-full bg-brand-electric/10 border-2 border-brand-electric/20 flex items-center justify-center">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F05CC" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+
+                <!-- Card 2: Push & Pull -->
+                <div class="bg-white rounded-2xl border border-brand-electric/30 shadow-sm overflow-hidden flex flex-col items-center text-center p-8 pt-10 relative">
+                    <div class="absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-brand-electric"></div>
+                    <div class="w-14 h-14 rounded-full bg-brand-electric/10 flex items-center justify-center mb-6">
+                        <!-- Left-right arrows icon -->
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F05CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="17 8 21 12 17 16"></polyline>
+                            <polyline points="7 8 3 12 7 16"></polyline>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                        </svg>
                     </div>
-                </div>
-                <!-- Step 2 -->
-                <div class="flex-1 bg-brand-electric/[0.03] rounded-2xl md:rounded-none p-8 border border-brand-electric/10 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-sky flex items-center justify-center text-white mb-6 shadow-lg shadow-brand-sky/30">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
-                    </div>
-                    <div class="text-[10px] font-bold uppercase tracking-widest text-brand-sky mb-2">Step 2</div>
                     <h3 class="font-display font-extrabold text-lg text-brand-navy mb-3">Push &amp; Pull</h3>
-                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">Serve fresh product data to agents dynamically. Fulfil both agent-initiated on-demand queries and brand-push structured feeds — simultaneously, without duplicating infrastructure.</p>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">Broadcast via Feed or listen dynamically via MCP-ready APIs for real-time agent interaction.</p>
                 </div>
-                <!-- Connector -->
-                <div class="hidden md:flex items-center justify-center w-8 flex-shrink-0 -mx-0.5 z-10">
-                    <div class="w-8 h-8 rounded-full bg-brand-electric/10 border-2 border-brand-electric/20 flex items-center justify-center">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F05CC" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+
+                <!-- Card 3: Govern -->
+                <div class="bg-white rounded-2xl border border-emerald-200 shadow-sm overflow-hidden flex flex-col items-center text-center p-8 pt-10 relative">
+                    <div class="absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-emerald-500"></div>
+                    <div class="w-14 h-14 rounded-full bg-emerald-500 flex items-center justify-center mb-6">
+                        <!-- Checkmark icon -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
                     </div>
-                </div>
-                <!-- Step 3 -->
-                <div class="flex-1 bg-brand-ghost rounded-2xl md:rounded-l-none p-8 border border-neutral-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-orange flex items-center justify-center text-white mb-6 shadow-lg shadow-brand-orange/30">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
-                    </div>
-                    <div class="text-[10px] font-bold uppercase tracking-widest text-brand-orange mb-2">Step 3</div>
                     <h3 class="font-display font-extrabold text-lg text-brand-navy mb-3">Govern</h3>
-                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">Configure the 'Agentic Truth' with attribute-level controls, validation rules, and editorial workflows. You decide exactly what AI agents can see and say about your products.</p>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">Control the "Agentic Truth" with strict approval workflows before it ever reaches the AI.</p>
                 </div>
+
             </div>
         </div>
     </section>
