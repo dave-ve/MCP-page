@@ -190,16 +190,15 @@
                 <p class="text-base text-neutral-500 font-medium leading-relaxed">Be there when customers and their AI agents make decisions. Our framework makes it clear and straightforward: bring your data into Bluestone PIM to scale sales and marketing across AI platforms.</p>
             </div>
 
-            <!-- Staggered zigzag layout -->
-            <div class="relative reveal">
-                <!-- Center timeline line -->
-                <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-8 bottom-8 w-px bg-neutral-200 z-0"></div>
+            <!-- Staggered zigzag layout: two columns with center timeline -->
+            <div class="hidden md:flex gap-0 reveal relative">
 
-                <!-- Row 1: Connect (left) + dot -->
-                <div class="flex flex-col md:flex-row items-start gap-4 mb-3 relative z-10">
-                    <div class="w-full md:w-[48%] bg-white rounded-2xl p-6 border border-neutral-100 shadow-sm">
+                <!-- LEFT COLUMN: Connect + Deploy stacked -->
+                <div class="w-[47%] flex flex-col gap-4">
+                    <!-- Connect -->
+                    <div class="bg-white rounded-2xl p-6 border border-neutral-100 shadow-sm">
                         <div class="w-10 h-10 rounded-xl bg-brand-electric flex items-center justify-center text-white mb-4">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="19" r="1"/><path d="M10 12H3m6 0 6-7m-6 7 6 7"/></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="4" height="6" rx="1"/><rect x="18" y="4" width="4" height="6" rx="1"/><rect x="18" y="14" width="4" height="6" rx="1"/><path d="M6 12h6m0 0v-5h4M12 12v5h4"/></svg>
                         </div>
                         <h3 class="font-display font-extrabold text-xl text-brand-navy mb-1.5">Connect</h3>
                         <p class="text-sm font-bold text-brand-navy mb-2">Integrate your commerce engine, ERP, and MDM with Bluestone PIM.</p>
@@ -214,44 +213,10 @@
                         <p class="text-[9px] font-bold uppercase tracking-widest text-brand-electric mb-0.5">Outcome</p>
                         <p class="text-sm font-bold text-brand-navy">A single source of truth connecting all legacy systems</p>
                     </div>
-                    <!-- Timeline dot -->
-                    <div class="hidden md:flex w-[4%] items-start justify-center pt-10">
-                        <div class="w-4 h-4 rounded-full bg-brand-electric border-4 border-white shadow-sm"></div>
-                    </div>
-                    <div class="hidden md:block w-[48%]"></div>
-                </div>
-
-                <!-- Row 2: dot + Optimise (right) -->
-                <div class="flex flex-col md:flex-row items-start gap-4 mb-3 relative z-10">
-                    <div class="hidden md:block w-[48%]"></div>
-                    <!-- Timeline dot -->
-                    <div class="hidden md:flex w-[4%] items-start justify-center pt-10">
-                        <div class="w-4 h-4 rounded-full bg-brand-electric border-4 border-white shadow-sm"></div>
-                    </div>
-                    <div class="w-full md:w-[48%] bg-white rounded-2xl p-6 border border-neutral-100 shadow-sm">
-                        <div class="w-10 h-10 rounded-xl bg-brand-electric flex items-center justify-center text-white mb-4">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
-                        </div>
-                        <h3 class="font-display font-extrabold text-xl text-brand-navy mb-1.5">Optimise</h3>
-                        <p class="text-sm font-bold text-brand-navy mb-2">Add the "Agent-Ready" layer: structured specs, variant logic, and compatibility</p>
-                        <ul class="mb-3">
-                            <li class="flex items-start gap-3 text-sm text-neutral-500 font-medium">
-                                <span class="w-5 h-5 rounded-full bg-brand-electric flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                </span>
-                                Feed enriched data back to your commerce engine to improve storefront UX instantly while maturing for agents.
-                            </li>
-                        </ul>
-                        <p class="text-[9px] font-bold uppercase tracking-widest text-brand-electric mb-0.5">Outcome</p>
-                        <p class="text-sm font-bold text-brand-navy">Governed truth that powers both web and AI discovery</p>
-                    </div>
-                </div>
-
-                <!-- Row 3: Deploy (left) + Ideal if (right) -->
-                <div class="flex flex-col md:flex-row items-start gap-6 relative z-10">
-                    <div class="w-full md:w-[48%] bg-white rounded-2xl p-6 border border-neutral-100 shadow-sm">
+                    <!-- Deploy -->
+                    <div class="bg-white rounded-2xl p-6 border border-neutral-100 shadow-sm">
                         <div class="w-10 h-10 rounded-xl bg-violet-600 flex items-center justify-center text-white mb-4">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                         </div>
                         <h3 class="font-display font-extrabold text-xl text-brand-navy mb-1.5">Deploy</h3>
                         <p class="text-sm font-bold text-brand-navy mb-2">Roll out Agentic Feed to push governed truth to assistants.</p>
@@ -266,14 +231,42 @@
                         <p class="text-[9px] font-bold uppercase tracking-widest text-brand-electric mb-0.5">Outcome</p>
                         <p class="text-sm font-bold text-brand-navy">Live Agentic Commerce with zero migration risk</p>
                     </div>
-                    <!-- Timeline dot -->
-                    <div class="hidden md:flex w-[4%] items-start justify-center pt-10">
-                        <div class="w-4 h-4 rounded-full bg-brand-electric border-4 border-white shadow-sm"></div>
+                </div>
+
+                <!-- CENTER TIMELINE -->
+                <div class="w-[6%] flex flex-col items-center relative">
+                    <div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px bg-neutral-200"></div>
+                    <div class="w-3.5 h-3.5 rounded-full bg-brand-electric border-4 border-white shadow-sm relative z-10 mt-8"></div>
+                    <div class="flex-1"></div>
+                    <div class="w-3.5 h-3.5 rounded-full bg-brand-electric border-4 border-white shadow-sm relative z-10"></div>
+                    <div class="flex-1"></div>
+                    <div class="w-3.5 h-3.5 rounded-full bg-brand-electric border-4 border-white shadow-sm relative z-10 mb-8"></div>
+                </div>
+
+                <!-- RIGHT COLUMN: Optimise + Ideal if -->
+                <div class="w-[47%] flex flex-col gap-4 pt-16">
+                    <!-- Optimise -->
+                    <div class="bg-white rounded-2xl p-6 border border-neutral-100 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-brand-electric flex items-center justify-center text-white mb-4">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+                        </div>
+                        <h3 class="font-display font-extrabold text-xl text-brand-navy mb-1.5">Optimise</h3>
+                        <p class="text-sm font-bold text-brand-navy mb-2">Add the "Agent-Ready" layer: structured specs, variant logic, and compatibility</p>
+                        <ul class="mb-3">
+                            <li class="flex items-start gap-3 text-sm text-neutral-500 font-medium">
+                                <span class="w-5 h-5 rounded-full bg-brand-electric flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                Feed enriched data back to your commerce engine to improve storefront UX instantly while maturing for agents.
+                            </li>
+                        </ul>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-brand-electric mb-0.5">Outcome</p>
+                        <p class="text-sm font-bold text-brand-navy">Governed truth that powers both web and AI discovery</p>
                     </div>
                     <!-- Ideal if -->
-                    <div class="w-full md:w-[48%]">
-                        <h3 class="font-display font-extrabold text-xl text-brand-navy mb-5">This approach is ideal if you:</h3>
-                        <div class="grid grid-cols-2 gap-4">
+                    <div class="pt-2">
+                        <h3 class="font-display font-extrabold text-xl text-brand-navy mb-4">This approach is ideal if you:</h3>
+                        <div class="grid grid-cols-2 gap-x-6 gap-y-4">
                             <div class="flex items-center gap-3">
                                 <span class="w-6 h-6 rounded bg-brand-electric flex items-center justify-center flex-shrink-0">
                                     <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><polyline points="2 7 6 11 12 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -300,6 +293,37 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Mobile fallback: stacked -->
+            <div class="flex md:hidden flex-col gap-4 reveal">
+                <div class="bg-white rounded-2xl p-6 border border-neutral-100 shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-brand-electric flex items-center justify-center text-white mb-4">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="4" height="6" rx="1"/><rect x="18" y="4" width="4" height="6" rx="1"/><rect x="18" y="14" width="4" height="6" rx="1"/><path d="M6 12h6m0 0v-5h4M12 12v5h4"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-xl text-brand-navy mb-1.5">Connect</h3>
+                    <p class="text-sm font-bold text-brand-navy mb-2">Integrate your commerce engine, ERP, and MDM with Bluestone PIM.</p>
+                    <p class="text-[9px] font-bold uppercase tracking-widest text-brand-electric mb-0.5 mt-3">Outcome</p>
+                    <p class="text-sm font-bold text-brand-navy">A single source of truth connecting all legacy systems</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-neutral-100 shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-brand-electric flex items-center justify-center text-white mb-4">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-xl text-brand-navy mb-1.5">Optimise</h3>
+                    <p class="text-sm font-bold text-brand-navy mb-2">Add the "Agent-Ready" layer: structured specs, variant logic, and compatibility</p>
+                    <p class="text-[9px] font-bold uppercase tracking-widest text-brand-electric mb-0.5 mt-3">Outcome</p>
+                    <p class="text-sm font-bold text-brand-navy">Governed truth that powers both web and AI discovery</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-neutral-100 shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-violet-600 flex items-center justify-center text-white mb-4">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-xl text-brand-navy mb-1.5">Deploy</h3>
+                    <p class="text-sm font-bold text-brand-navy mb-2">Roll out Agentic Feed to push governed truth to assistants.</p>
+                    <p class="text-[9px] font-bold uppercase tracking-widest text-brand-electric mb-0.5 mt-3">Outcome</p>
+                    <p class="text-sm font-bold text-brand-navy">Live Agentic Commerce with zero migration risk</p>
                 </div>
             </div>
         </div>
