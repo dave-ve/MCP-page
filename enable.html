@@ -183,81 +183,122 @@
     </section>
 
     <!-- ===================== EASIER PATH ===================== -->
-    <section class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <section class="py-24 bg-brand-ghost">
+        <div class="max-w-5xl mx-auto px-5 sm:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-                <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight leading-[1.1] mb-4">Choose the Easier &amp; Smarter Path<br>to Agentic Commerce</h2>
+                <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight leading-[1.1] mb-5">Choose the Easier &amp; Smarter Path<br>to Agentic Commerce</h2>
                 <p class="text-base text-neutral-500 font-medium leading-relaxed">Be there when customers and their AI agents make decisions. Our framework makes it clear and straightforward: bring your data into Bluestone PIM to scale sales and marketing across AI platforms.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6 mb-16 reveal">
-                <!-- Connect -->
-                <div class="bg-brand-ghost rounded-2xl p-8 flex flex-col">
-                    <div class="w-12 h-12 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-6">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <!-- Staggered zigzag layout -->
+            <div class="relative reveal">
+                <!-- Center timeline line -->
+                <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-8 bottom-8 w-px bg-neutral-200 z-0"></div>
+
+                <!-- Row 1: Connect (left) + dot -->
+                <div class="flex flex-col md:flex-row items-start gap-6 mb-6 relative z-10">
+                    <div class="w-full md:w-[48%] bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-brand-electric flex items-center justify-center text-white mb-5">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="19" r="1"/><path d="M10 12H3m6 0 6-7m-6 7 6 7"/></svg>
+                        </div>
+                        <h3 class="font-display font-extrabold text-2xl text-brand-navy mb-2">Connect</h3>
+                        <p class="text-sm font-bold text-brand-navy mb-4">Integrate your commerce engine, ERP, and MDM with Bluestone PIM.</p>
+                        <ul class="mb-6">
+                            <li class="flex items-start gap-3 text-sm text-neutral-500 font-medium">
+                                <span class="w-5 h-5 rounded-full bg-brand-electric flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                Establish a central hub for all commerce data, ending fragmented silos and unifying your product identifiers.
+                            </li>
+                        </ul>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-brand-electric mb-1">Outcome</p>
+                        <p class="text-sm font-bold text-brand-navy">A single source of truth connecting all legacy systems</p>
                     </div>
-                    <h3 class="font-display font-extrabold text-xl text-brand-navy mb-3">Connect</h3>
-                    <p class="text-sm text-neutral-500 font-medium leading-relaxed mb-4 flex-grow">Integrate your commerce engine, ERP, and MDM with Bluestone PIM. Our platform is a central hub for all commerce data, ending fragmented silos and unifying your product identifiers.</p>
-                    <div class="pt-4 border-t border-neutral-200">
-                        <span class="text-[9px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">Outcome</span>
-                        <p class="text-xs font-semibold text-brand-navy">A single source of truth connecting all legacy systems</p>
+                    <!-- Timeline dot -->
+                    <div class="hidden md:flex w-[4%] items-start justify-center pt-10">
+                        <div class="w-4 h-4 rounded-full bg-brand-electric border-4 border-white shadow-sm"></div>
+                    </div>
+                    <div class="hidden md:block w-[48%]"></div>
+                </div>
+
+                <!-- Row 2: dot + Optimise (right) -->
+                <div class="flex flex-col md:flex-row items-start gap-6 mb-6 relative z-10">
+                    <div class="hidden md:block w-[48%]"></div>
+                    <!-- Timeline dot -->
+                    <div class="hidden md:flex w-[4%] items-start justify-center pt-10">
+                        <div class="w-4 h-4 rounded-full bg-brand-electric border-4 border-white shadow-sm"></div>
+                    </div>
+                    <div class="w-full md:w-[48%] bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-brand-electric flex items-center justify-center text-white mb-5">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+                        </div>
+                        <h3 class="font-display font-extrabold text-2xl text-brand-navy mb-2">Optimise</h3>
+                        <p class="text-sm font-bold text-brand-navy mb-4">Add the "Agent-Ready" layer: structured specs, variant logic, and compatibility</p>
+                        <ul class="mb-6">
+                            <li class="flex items-start gap-3 text-sm text-neutral-500 font-medium">
+                                <span class="w-5 h-5 rounded-full bg-brand-electric flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                Feed enriched data back to your commerce engine to improve storefront UX instantly while maturing for agents.
+                            </li>
+                        </ul>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-brand-electric mb-1">Outcome</p>
+                        <p class="text-sm font-bold text-brand-navy">Governed truth that powers both web and AI discovery</p>
                     </div>
                 </div>
 
-                <!-- Optimise -->
-                <div class="bg-brand-ghost rounded-2xl p-8 flex flex-col">
-                    <div class="w-12 h-12 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-6">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <!-- Row 3: Deploy (left) + Ideal if (right) -->
+                <div class="flex flex-col md:flex-row items-start gap-6 relative z-10">
+                    <div class="w-full md:w-[48%] bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-violet-600 flex items-center justify-center text-white mb-5">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        </div>
+                        <h3 class="font-display font-extrabold text-2xl text-brand-navy mb-2">Deploy</h3>
+                        <p class="text-sm font-bold text-brand-navy mb-4">Roll out Agentic Feed to push governed truth to assistants.</p>
+                        <ul class="mb-6">
+                            <li class="flex items-start gap-3 text-sm text-neutral-500 font-medium">
+                                <span class="w-5 h-5 rounded-full bg-brand-electric flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                Finalise canonical links and sampling-based validation loops to ensure agents represent your catalogue with 100% accuracy.
+                            </li>
+                        </ul>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-brand-electric mb-1">Outcome</p>
+                        <p class="text-sm font-bold text-brand-navy">Live Agentic Commerce with zero migration risk</p>
                     </div>
-                    <h3 class="font-display font-extrabold text-xl text-brand-navy mb-3">Optimise</h3>
-                    <p class="text-sm text-neutral-500 font-medium leading-relaxed mb-4 flex-grow">Create "Agent-Ready" open structured specs, variant logic, and compatibility. Feed enriched data back to your commerce engine to improve storefront UX instantly, while maturing for agents.</p>
-                    <div class="pt-4 border-t border-neutral-200">
-                        <span class="text-[9px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">Outcome</span>
-                        <p class="text-xs font-semibold text-brand-navy">Governed truth that powers both web and AI discovery</p>
+                    <!-- Timeline dot -->
+                    <div class="hidden md:flex w-[4%] items-start justify-center pt-10">
+                        <div class="w-4 h-4 rounded-full bg-brand-electric border-4 border-white shadow-sm"></div>
                     </div>
-                </div>
-
-                <!-- Deploy -->
-                <div class="bg-brand-ghost rounded-2xl p-8 flex flex-col">
-                    <div class="w-12 h-12 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-6">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    </div>
-                    <h3 class="font-display font-extrabold text-xl text-brand-navy mb-3">Deploy</h3>
-                    <p class="text-sm text-neutral-500 font-medium leading-relaxed mb-4 flex-grow">Roll out Agentic Feed to push governed truth to assistants. Enable canonical links and sampling-based validation logic to ensure agents represent your catalogue with 100% accuracy.</p>
-                    <div class="pt-4 border-t border-neutral-200">
-                        <span class="text-[9px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">Outcome</span>
-                        <p class="text-xs font-semibold text-brand-navy">Live Agentic Commerce with zero migration risk</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Ideal if -->
-            <div class="bg-brand-ghost rounded-2xl p-10 reveal">
-                <h3 class="font-display font-extrabold text-xl text-brand-navy mb-6 text-center">This approach is ideal if you:</h3>
-                <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="flex items-start gap-3">
-                        <span class="w-5 h-5 rounded bg-brand-electric/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#0F05CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </span>
-                        <span class="text-sm font-medium text-neutral-600">Have a legacy commerce engine</span>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <span class="w-5 h-5 rounded bg-brand-electric/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#0F05CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </span>
-                        <span class="text-sm font-medium text-neutral-600">Manage complex variants &amp; bundles</span>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <span class="w-5 h-5 rounded bg-brand-electric/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#0F05CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </span>
-                        <span class="text-sm font-medium text-neutral-600">Operate across multiple markets</span>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <span class="w-5 h-5 rounded bg-brand-electric/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#0F05CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </span>
-                        <span class="text-sm font-medium text-neutral-600">Want AI value fast with control</span>
+                    <!-- Ideal if -->
+                    <div class="w-full md:w-[48%]">
+                        <h3 class="font-display font-extrabold text-xl text-brand-navy mb-5">This approach is ideal if you:</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-3">
+                                <span class="w-6 h-6 rounded bg-brand-electric flex items-center justify-center flex-shrink-0">
+                                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><polyline points="2 7 6 11 12 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                <span class="text-sm font-medium text-neutral-700">Have a legacy commerce engine</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="w-6 h-6 rounded bg-brand-electric flex items-center justify-center flex-shrink-0">
+                                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><polyline points="2 7 6 11 12 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                <span class="text-sm font-medium text-neutral-700">Manage complex variants &amp; bundles</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="w-6 h-6 rounded bg-brand-electric flex items-center justify-center flex-shrink-0">
+                                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><polyline points="2 7 6 11 12 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                <span class="text-sm font-medium text-neutral-700">Operate across multiple markets</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="w-6 h-6 rounded bg-brand-electric flex items-center justify-center flex-shrink-0">
+                                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><polyline points="2 7 6 11 12 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                <span class="text-sm font-medium text-neutral-700">Want AI value fast with control</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
