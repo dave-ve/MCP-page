@@ -532,34 +532,45 @@
                 </div>
                 <div class="reveal">
                     <div class="bg-white/[0.06] backdrop-blur border border-white/10 rounded-2xl p-6 md:p-8">
-                        <div class="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-4">What AI sees</div>
+                        <div class="text-xs font-bold uppercase tracking-widest text-white/50 mb-5">What AI sees</div>
                         <div class="space-y-4">
-                            <div class="bg-red-500/10 border border-red-400/20 rounded-xl p-4">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>
-                                    <span class="text-[10px] font-bold text-red-400 uppercase tracking-widest">Without MCP + GEO</span>
+
+                            <!-- Without -->
+                            <div class="bg-red-500/15 border border-red-400/30 rounded-xl p-5">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                                    <span class="text-xs font-bold text-red-300 uppercase tracking-widest">Without MCP + GEO</span>
                                 </div>
-                                <div class="font-mono text-xs text-white/85 leading-relaxed">
-                                    "Pro-Mixer 3000, blue, 299EUR, kitchen"<br>
-                                    <span class="text-red-400/60">→ Ignored. Unstructured. No schema. No context.</span>
+                                <div class="font-mono text-sm text-white leading-relaxed mb-3">
+                                    "Pro-Mixer 3000, blue, 299EUR, kitchen"
                                 </div>
-                            </div>
-                            <div class="bg-brand-mint/10 border border-brand-mint/20 rounded-xl p-4">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>
-                                    <span class="text-[10px] font-bold text-brand-mint uppercase tracking-widest">With Bluestone MCP + GEO</span>
-                                </div>
-                                <div class="font-mono text-xs text-white leading-relaxed">
-                                    {<br>
-                                    &nbsp;&nbsp;"name": "Pro-Mixer 3000",<br>
-                                    &nbsp;&nbsp;"category": ["Kitchen", "Stand Mixers"],<br>
-                                    &nbsp;&nbsp;"attributes": {"color":"Blue","wattage":800},<br>
-                                    &nbsp;&nbsp;"price": {"EUR": 299, "channel": "B2C"},<br>
-                                    &nbsp;&nbsp;"completeness": 98<br>
-                                    }<br>
-                                    <span class="text-brand-mint/80">→ Recommended. Structured. Trusted. Cited.</span>
+                                <div class="flex items-center gap-2 bg-red-500/20 rounded-lg px-3 py-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                    <span class="text-sm font-bold text-red-300">Ignored — unstructured, no schema, no context</span>
                                 </div>
                             </div>
+
+                            <!-- With -->
+                            <div class="bg-emerald-500/15 border border-emerald-400/30 rounded-xl p-5">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                                    <span class="text-xs font-bold text-emerald-300 uppercase tracking-widest">With Bluestone MCP + GEO</span>
+                                </div>
+                                <div class="font-mono text-sm text-white leading-loose mb-3">
+                                    <span class="text-white/50">{</span><br>
+                                    &nbsp;&nbsp;<span class="text-sky-300">"name"</span>: <span class="text-amber-200">"Pro-Mixer 3000"</span>,<br>
+                                    &nbsp;&nbsp;<span class="text-sky-300">"category"</span>: <span class="text-amber-200">["Kitchen", "Stand Mixers"]</span>,<br>
+                                    &nbsp;&nbsp;<span class="text-sky-300">"attributes"</span>: <span class="text-amber-200">&#123;"color":"Blue","wattage":800&#125;</span>,<br>
+                                    &nbsp;&nbsp;<span class="text-sky-300">"price"</span>: <span class="text-amber-200">&#123;"EUR": 299, "channel": "B2C"&#125;</span>,<br>
+                                    &nbsp;&nbsp;<span class="text-sky-300">"completeness"</span>: <span class="text-emerald-300">98</span><br>
+                                    <span class="text-white/50">}</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-emerald-500/20 rounded-lg px-3 py-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6ee7b7" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span class="text-sm font-bold text-emerald-300">Recommended — structured, trusted, cited</span>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
