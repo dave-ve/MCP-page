@@ -551,53 +551,71 @@
             <div class="grid md:grid-cols-2 gap-6 reveal">
                 <!-- Scenario: Developer -->
                 <div class="hover-lift bg-white rounded-2xl overflow-hidden border border-neutral-100 shadow-sm flex flex-col">
-                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-8 pb-6">
-                        <div class="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-2.5 py-1 rounded-full mb-4">Developer</div>
-                        <h3 class="font-display font-extrabold text-base text-brand-navy leading-snug">"Map this supplier CSV to our PIM schema."</h3>
+                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-8 pb-7">
+                        <div class="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-brand-orange bg-brand-orange/15 px-2.5 py-1 rounded-full mb-4">Developer</div>
+                        <h3 class="font-display font-extrabold text-lg text-brand-navy leading-snug">"Map this supplier CSV to our PIM schema."</h3>
                     </div>
-                    <div class="p-8 pt-6 flex-grow flex flex-col">
-                        <div class="grid grid-cols-2 gap-4 flex-grow">
-                            <div class="bg-neutral-50 rounded-xl p-4">
-                                <h4 class="text-[10px] font-bold uppercase tracking-widest text-neutral-300 mb-2">Before</h4>
-                                <p class="text-xs text-neutral-400 font-medium leading-relaxed">Read API docs for 2 hours. Write a mapping script. Debug. Test. Push to staging. Full day gone.</p>
+                    <div class="p-8 flex-grow flex flex-col gap-3">
+                        <!-- Before -->
+                        <div class="rounded-xl p-5 bg-neutral-50 border border-neutral-100">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-[9px] font-bold uppercase tracking-widest text-neutral-400">Before</span>
+                                <div class="flex-1 h-px bg-neutral-200"></div>
                             </div>
-                            <div class="bg-brand-electric/[0.03] border border-brand-electric/10 rounded-xl p-4">
-                                <h4 class="text-[10px] font-bold uppercase tracking-widest text-brand-electric mb-2">Now</h4>
-                                <p class="text-xs text-neutral-600 font-medium leading-relaxed">In Cursor, the AI resolves attribute names, maps columns to dictionary values, and generates the import script — in minutes.</p>
-                            </div>
+                            <p class="text-sm text-neutral-500 font-medium leading-relaxed">Read API docs for 2 hours. Write a mapping script. Debug. Test. Push to staging. Full day gone.</p>
                         </div>
-                        <div class="mt-5 pt-5 border-t border-neutral-50">
-                            <div class="flex flex-wrap gap-1.5">
-                                <code class="text-[9px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-2 py-0.5 rounded border border-brand-sky/10">find_attribute_definitions</code>
-                                <code class="text-[9px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-2 py-0.5 rounded border border-brand-sky/10">find_dictionary_values</code>
+                        <!-- Arrow -->
+                        <div class="flex justify-center text-neutral-300">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+                        </div>
+                        <!-- Now -->
+                        <div class="rounded-xl p-5 bg-brand-electric/[0.05] border border-brand-electric/15">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-[9px] font-bold uppercase tracking-widest text-brand-electric">Now</span>
+                                <div class="flex-1 h-px bg-brand-electric/20"></div>
                             </div>
+                            <p class="text-sm text-neutral-700 font-medium leading-relaxed">In Cursor, the AI resolves attribute names, maps columns to dictionary values, and generates the import script — in minutes.</p>
+                        </div>
+                        <!-- Tools -->
+                        <div class="pt-2 flex flex-wrap gap-1.5">
+                            <code class="text-[10px] font-mono font-bold text-brand-sky/80 bg-brand-sky/8 px-2.5 py-1 rounded-lg border border-brand-sky/15">find_attribute_definitions</code>
+                            <code class="text-[10px] font-mono font-bold text-brand-sky/80 bg-brand-sky/8 px-2.5 py-1 rounded-lg border border-brand-sky/15">find_dictionary_values</code>
                         </div>
                     </div>
                 </div>
 
                 <!-- Scenario: SI Partner -->
                 <div class="hover-lift bg-white rounded-2xl overflow-hidden border border-neutral-100 shadow-sm flex flex-col">
-                    <div class="bg-gradient-to-br from-violet-50 to-purple-50 p-8 pb-6">
+                    <div class="bg-gradient-to-br from-violet-50 to-purple-50 p-8 pb-7">
                         <div class="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-violet-600 bg-violet-100 px-2.5 py-1 rounded-full mb-4">SI Partner</div>
-                        <h3 class="font-display font-extrabold text-base text-brand-navy leading-snug">"We need a custom tool that checks ERP pricing before updating PIM labels."</h3>
+                        <h3 class="font-display font-extrabold text-lg text-brand-navy leading-snug">"We need a custom tool that checks ERP pricing before updating PIM labels."</h3>
                     </div>
-                    <div class="p-8 pt-6 flex-grow flex flex-col">
-                        <div class="grid grid-cols-2 gap-4 flex-grow">
-                            <div class="bg-neutral-50 rounded-xl p-4">
-                                <h4 class="text-[10px] font-bold uppercase tracking-widest text-neutral-300 mb-2">Before</h4>
-                                <p class="text-xs text-neutral-400 font-medium leading-relaxed">Build a custom middleware layer. Manage two APIs. Handle sync conflicts. Weeks of integration work.</p>
+                    <div class="p-8 flex-grow flex flex-col gap-3">
+                        <!-- Before -->
+                        <div class="rounded-xl p-5 bg-neutral-50 border border-neutral-100">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-[9px] font-bold uppercase tracking-widest text-neutral-400">Before</span>
+                                <div class="flex-1 h-px bg-neutral-200"></div>
                             </div>
-                            <div class="bg-brand-electric/[0.03] border border-brand-electric/10 rounded-xl p-4">
-                                <h4 class="text-[10px] font-bold uppercase tracking-widest text-brand-electric mb-2">Now</h4>
-                                <p class="text-xs text-neutral-600 font-medium leading-relaxed">Fork the open-source MCP server, add a custom tool that validates ERP pricing, and deploy — specific to your client's business logic.</p>
-                            </div>
+                            <p class="text-sm text-neutral-500 font-medium leading-relaxed">Build a custom middleware layer. Manage two APIs. Handle sync conflicts. Weeks of integration work.</p>
                         </div>
-                        <div class="mt-5 pt-5 border-t border-neutral-50">
-                            <div class="flex flex-wrap gap-1.5">
-                                <code class="text-[9px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-2 py-0.5 rounded border border-brand-sky/10">fork &amp; extend</code>
-                                <code class="text-[9px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-2 py-0.5 rounded border border-brand-sky/10">custom_tools</code>
-                                <code class="text-[9px] font-mono font-bold text-brand-sky/70 bg-brand-sky/5 px-2 py-0.5 rounded border border-brand-sky/10">open-source MCP server</code>
+                        <!-- Arrow -->
+                        <div class="flex justify-center text-neutral-300">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+                        </div>
+                        <!-- Now -->
+                        <div class="rounded-xl p-5 bg-brand-electric/[0.05] border border-brand-electric/15">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-[9px] font-bold uppercase tracking-widest text-brand-electric">Now</span>
+                                <div class="flex-1 h-px bg-brand-electric/20"></div>
                             </div>
+                            <p class="text-sm text-neutral-700 font-medium leading-relaxed">Fork the open-source MCP server, add a custom tool that validates ERP pricing, and deploy — specific to your client's business logic.</p>
+                        </div>
+                        <!-- Tools -->
+                        <div class="pt-2 flex flex-wrap gap-1.5">
+                            <code class="text-[10px] font-mono font-bold text-brand-sky/80 bg-brand-sky/8 px-2.5 py-1 rounded-lg border border-brand-sky/15">fork &amp; extend</code>
+                            <code class="text-[10px] font-mono font-bold text-brand-sky/80 bg-brand-sky/8 px-2.5 py-1 rounded-lg border border-brand-sky/15">custom_tools</code>
+                            <code class="text-[10px] font-mono font-bold text-brand-sky/80 bg-brand-sky/8 px-2.5 py-1 rounded-lg border border-brand-sky/15">open-source MCP server</code>
                         </div>
                     </div>
                 </div>
