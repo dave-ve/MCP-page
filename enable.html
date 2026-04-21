@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enable Agentic Commerce — Bluestone PIM</title>
+    <meta name="description" content="Enable Agentic Commerce without replacing your commerce engine. Bluestone PIM as your product intelligence layer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-electric': '#0F05CC',
+                        'brand-sky': '#3D74F4',
+                        'brand-navy': '#0C2E4E',
+                        'brand-orange': '#EC672B',
+                        'brand-ghost': '#F4F6FA',
+                        'brand-mint': '#00E5B4',
+                    },
+                    fontFamily: {
+                        display: ['Montserrat', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'dark-gradient': 'linear-gradient(135deg, #0F05CC 0%, #0C2E4E 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Montserrat', sans-serif; color: #0C2E4E; }
+        h1,h2,h3,h4,h5,h6,.font-display { font-family: 'Montserrat', sans-serif; }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .hover-lift:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(15,5,204,0.12); }
+
+        .check-green::before { content: '✓'; color: #10b981; font-weight: 800; margin-right: 8px; }
+        .cross-red::before { content: '✗'; color: #ef4444; font-weight: 800; margin-right: 8px; }
+
+        /* FAQ accordion */
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-answer.open { max-height: 300px; }
+        .faq-chevron { transition: transform 0.3s ease; }
+        .faq-chevron.open { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- ===================== NAV ===================== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b border-neutral-100">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+            <a href="MCP-page-final.html" class="font-display font-extrabold text-brand-navy text-lg tracking-tight">Bluestone <span class="text-brand-electric">PIM</span></a>
+            <a href="#cta" class="bg-brand-electric text-white px-5 py-2.5 rounded-xl font-display font-bold text-sm hover:bg-brand-electric/90 transition-all">Book a Demo</a>
+        </div>
+    </nav>
+
+    <!-- ===================== HERO ===================== -->
+    <header class="pt-28 pb-20 bg-white">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-14">
+                <!-- Left -->
+                <div class="flex-1 max-w-xl">
+                    <h1 class="font-display font-extrabold text-4xl md:text-5xl tracking-tight leading-[1.08] mb-6">
+                        Enable Agentic Commerce<br>
+                        <span class="text-brand-electric">without replacing your<br>commerce engine</span>
+                    </h1>
+                    <p class="text-base text-neutral-500 font-medium leading-relaxed mb-6">
+                        AI agents need structured product truth. You don't have to replatform your commerce engine to deliver it. Add Bluestone PIM as your product intelligence layer.
+                    </p>
+                    <ul class="space-y-2.5 mb-8">
+                        <li class="flex items-start gap-2.5 text-sm font-medium text-neutral-600">
+                            <span class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            Move fast: Agent-ready even in weeks
+                        </li>
+                        <li class="flex items-start gap-2.5 text-sm font-medium text-neutral-600">
+                            <span class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            Lower risk &amp; cost: Enable AI without a core migration
+                        </li>
+                        <li class="flex items-start gap-2.5 text-sm font-medium text-neutral-600">
+                            <span class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            Better accuracy: Structured data beats scraped data
+                        </li>
+                    </ul>
+                    <a href="#cta" class="inline-flex items-center gap-2 bg-brand-electric text-white px-7 py-3.5 rounded-xl font-display font-bold text-sm hover:bg-brand-electric/90 transition-all shadow-lg shadow-brand-electric/20">
+                        Book a Demo
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+                <!-- Right: image -->
+                <div class="flex-shrink-0 w-full lg:w-[420px]">
+                    <img src="enable-main.jpg" alt="Bluestone PIM Agentic Feed diagram" class="w-full rounded-2xl shadow-2xl shadow-brand-navy/10">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== REPLATFORM VS AGENT-READY ===================== -->
+    <section class="py-24 bg-brand-ghost">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+                <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight leading-[1.1] mb-4">Replatform vs. Agent-Ready Product Data Layer</h2>
+                <p class="text-base text-neutral-500 font-medium leading-relaxed">Choose growth over risk by bypassing complex replatforming programmes. Our composable approach opens revenue and agentic commerce opportunities quickly, keeping your business agile and disruption-free.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 reveal">
+                <!-- Replatform -->
+                <div class="bg-white rounded-2xl p-8 border border-neutral-100 shadow-sm">
+                    <h3 class="font-display font-extrabold text-lg text-neutral-700 mb-2">Replatform Commerce</h3>
+                    <p class="text-sm text-neutral-400 font-medium mb-6">Tearing down your existing systems to build something new is expensive and takes years.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 text-sm text-neutral-500 font-medium">
+                            <span class="w-5 h-5 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><line x1="3" y1="3" x2="9" y2="9" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="3" x2="3" y2="9" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+                            </span>
+                            Massive project scope (9–18 months or more)
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-neutral-500 font-medium">
+                            <span class="w-5 h-5 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><line x1="3" y1="3" x2="9" y2="9" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="3" x2="3" y2="9" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+                            </span>
+                            High risk of data regression &amp; site downtime
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-neutral-500 font-medium">
+                            <span class="w-5 h-5 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><line x1="3" y1="3" x2="9" y2="9" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="3" x2="3" y2="9" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+                            </span>
+                            Agent-readiness is a late-stage custom project
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-neutral-500 font-medium">
+                            <span class="w-5 h-5 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><line x1="3" y1="3" x2="9" y2="9" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="3" x2="3" y2="9" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+                            </span>
+                            Truth remains fragmented across systems
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Add Bluestone PIM Layer -->
+                <div class="bg-brand-electric rounded-2xl p-8 shadow-xl shadow-brand-electric/20 relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-white text-brand-electric text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">Recommended</div>
+                    <h3 class="font-display font-extrabold text-lg text-white mb-2">Add Bluestone PIM Layer</h3>
+                    <p class="text-sm text-white/70 font-medium mb-6">Bluestone PIM can sit on top of what you already have. It translates your current data into the format AI needs.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 text-sm text-white font-medium">
+                            <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            Fast time-to-value (weeks/months)
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-white font-medium">
+                            <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            Low operational risk; zero data downtime
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-white font-medium">
+                            <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            Improves ALL channels (Agents, Web, Apps)
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-white font-medium">
+                            <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            Governed "publishable truth" for AI agents
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== EASIER PATH ===================== -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight leading-[1.1] mb-4">Choose the Easier &amp; Smarter Path<br>to Agentic Commerce</h2>
+                <p class="text-base text-neutral-500 font-medium leading-relaxed">Be there when customers and their AI agents make decisions. Our framework makes it clear and straightforward: bring your data into Bluestone PIM to scale sales and marketing across AI platforms.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-16 reveal">
+                <!-- Connect -->
+                <div class="bg-brand-ghost rounded-2xl p-8 flex flex-col">
+                    <div class="w-12 h-12 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-6">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-xl text-brand-navy mb-3">Connect</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed mb-4 flex-grow">Integrate your commerce engine, ERP, and MDM with Bluestone PIM. Our platform is a central hub for all commerce data, ending fragmented silos and unifying your product identifiers.</p>
+                    <div class="pt-4 border-t border-neutral-200">
+                        <span class="text-[9px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">Outcome</span>
+                        <p class="text-xs font-semibold text-brand-navy">A single source of truth connecting all legacy systems</p>
+                    </div>
+                </div>
+
+                <!-- Optimise -->
+                <div class="bg-brand-ghost rounded-2xl p-8 flex flex-col">
+                    <div class="w-12 h-12 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-6">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-xl text-brand-navy mb-3">Optimise</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed mb-4 flex-grow">Create "Agent-Ready" open structured specs, variant logic, and compatibility. Feed enriched data back to your commerce engine to improve storefront UX instantly, while maturing for agents.</p>
+                    <div class="pt-4 border-t border-neutral-200">
+                        <span class="text-[9px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">Outcome</span>
+                        <p class="text-xs font-semibold text-brand-navy">Governed truth that powers both web and AI discovery</p>
+                    </div>
+                </div>
+
+                <!-- Deploy -->
+                <div class="bg-brand-ghost rounded-2xl p-8 flex flex-col">
+                    <div class="w-12 h-12 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-6">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-xl text-brand-navy mb-3">Deploy</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed mb-4 flex-grow">Roll out Agentic Feed to push governed truth to assistants. Enable canonical links and sampling-based validation logic to ensure agents represent your catalogue with 100% accuracy.</p>
+                    <div class="pt-4 border-t border-neutral-200">
+                        <span class="text-[9px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">Outcome</span>
+                        <p class="text-xs font-semibold text-brand-navy">Live Agentic Commerce with zero migration risk</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ideal if -->
+            <div class="bg-brand-ghost rounded-2xl p-10 reveal">
+                <h3 class="font-display font-extrabold text-xl text-brand-navy mb-6 text-center">This approach is ideal if you:</h3>
+                <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="flex items-start gap-3">
+                        <span class="w-5 h-5 rounded bg-brand-electric/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#0F05CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span class="text-sm font-medium text-neutral-600">Have a legacy commerce engine</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="w-5 h-5 rounded bg-brand-electric/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#0F05CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span class="text-sm font-medium text-neutral-600">Manage complex variants &amp; bundles</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="w-5 h-5 rounded bg-brand-electric/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#0F05CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span class="text-sm font-medium text-neutral-600">Operate across multiple markets</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="w-5 h-5 rounded bg-brand-electric/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#0F05CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span class="text-sm font-medium text-neutral-600">Want AI value fast with control</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== BLUEPRINT ===================== -->
+    <section class="py-24 bg-dark-gradient">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+                <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight leading-[1.1] mb-4 text-white">The Blueprint for AI Readiness</h2>
+                <p class="text-base text-white/60 font-medium leading-relaxed">Enterprise-grade security meets AI commerce, giving you the tools to scale your reach without compromising system integrity.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-5 reveal">
+                <div class="bg-white/10 border border-white/10 rounded-2xl p-7 hover:bg-white/15 transition-all">
+                    <div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-white mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-base text-white mb-2">Composable Logic</h3>
+                    <p class="text-sm text-white/60 font-medium leading-relaxed">Modular architecture that fits into any IT stack. Add the capabilities you need now and scale as the AI landscape evolves.</p>
+                </div>
+                <div class="bg-white/10 border border-white/10 rounded-2xl p-7 hover:bg-white/15 transition-all">
+                    <div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-white mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-base text-white mb-2">API-First Backbone</h3>
+                    <p class="text-sm text-white/60 font-medium leading-relaxed">Built for universal connectivity. Our platform bridges the gap between your existing tools and the AI ecosystem without friction.</p>
+                </div>
+                <div class="bg-white/10 border border-white/10 rounded-2xl p-7 hover:bg-white/15 transition-all">
+                    <div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-white mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-base text-white mb-2">Cloud-Native Scalability</h3>
+                    <p class="text-sm text-white/60 font-medium leading-relaxed">Auto-scales across markets and peaks. Our infrastructure handles the technical heavy lifting so you can focus on growth.</p>
+                </div>
+                <div class="bg-white/10 border border-white/10 rounded-2xl p-7 hover:bg-white/15 transition-all">
+                    <div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-white mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-base text-white mb-2">ACP Protocol</h3>
+                    <p class="text-sm text-white/60 font-medium leading-relaxed">Standardising product handshakes, ensuring AI can ingest your catalogue at any commerce touchpoint without hitting technical barriers.</p>
+                </div>
+                <div class="bg-white/10 border border-white/10 rounded-2xl p-7 hover:bg-white/15 transition-all">
+                    <div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-white mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-base text-white mb-2">MCP Enabled</h3>
+                    <p class="text-sm text-white/60 font-medium leading-relaxed">Using the Model Context Protocol to provide AI agents with structured product truth — MCP is as smart as your latest update.</p>
+                </div>
+                <div class="bg-white/10 border border-white/10 rounded-2xl p-7 hover:bg-white/15 transition-all">
+                    <div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-white mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-base text-white mb-2">AI Suite</h3>
+                    <p class="text-sm text-white/60 font-medium leading-relaxed">Generative and analytical AI that enriches, localises, and ensures your products stay accurate — readying your catalogue for AI commerce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== REAL RESULTS ===================== -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+                <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight leading-[1.1] mb-4">Real Results, Real Growth</h2>
+                <p class="text-base text-neutral-500 font-medium leading-relaxed">Enterprise-grade security meets AI commerce, giving you the tools to scale your reach without compromising system integrity.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 reveal">
+                <div class="hover-lift bg-brand-ghost rounded-2xl p-8 border border-neutral-100">
+                    <div class="w-11 h-11 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-lg text-brand-navy mb-3">No More Guessing</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">AI "hallucination" cost sales. We provide the source truth so AI gives customers the right specs, prices, and availability.</p>
+                </div>
+                <div class="hover-lift bg-brand-ghost rounded-2xl p-8 border border-neutral-100">
+                    <div class="w-11 h-11 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-lg text-brand-navy mb-3">Wider Reach</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">Be present on every platform — from ChatGPT and Claude to the next gen of assistants — without re-entering data once.</p>
+                </div>
+                <div class="hover-lift bg-brand-ghost rounded-2xl p-8 border border-neutral-100">
+                    <div class="w-11 h-11 rounded-xl bg-brand-electric/10 flex items-center justify-center text-brand-electric mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3 class="font-display font-extrabold text-lg text-brand-navy mb-3">Lower IT Strain</h3>
+                    <p class="text-sm text-neutral-500 font-medium leading-relaxed">Bluestone is plug-in ready. Marketing manages product data while IT focuses on larger core initiatives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="py-24 bg-brand-ghost">
+        <div class="max-w-3xl mx-auto px-5 sm:px-8">
+            <div class="text-center mb-14 reveal">
+                <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-3 reveal">
+                <div class="bg-white rounded-2xl border border-neutral-100 overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left font-display font-bold text-sm text-brand-navy">
+                        Do we need Agentic Commerce now?
+                        <svg class="faq-chevron w-5 h-5 text-neutral-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 pb-6 text-sm text-neutral-500 font-medium leading-relaxed">AI agents are already being used by consumers to research, compare, and buy products. Early movers are gaining visibility in AI-generated recommendations. Waiting means ceding ground to competitors who are already indexed and structured for AI discovery.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl border border-neutral-100 overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left font-display font-bold text-sm text-brand-navy">
+                        Can't agents just read our website?
+                        <svg class="faq-chevron w-5 h-5 text-neutral-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 pb-6 text-sm text-neutral-500 font-medium leading-relaxed">Web scraping gives AI agents incomplete, stale, and unstructured data — leading to hallucinations and incorrect answers. A structured MCP connection provides live, governed product truth that agents can reason over accurately, every time.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl border border-neutral-100 overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left font-display font-bold text-sm text-brand-navy">
+                        Do we need to replace our commerce engine?
+                        <svg class="faq-chevron w-5 h-5 text-neutral-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 pb-6 text-sm text-neutral-500 font-medium leading-relaxed">No. Bluestone PIM sits as a product intelligence layer on top of your existing commerce engine. Your current stack stays in place — we add the structured, AI-readable product truth layer on top, enabling agentic commerce without a costly migration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER CTA ===================== -->
+    <section id="cta" class="py-28 bg-dark-gradient text-center">
+        <div class="max-w-3xl mx-auto px-5 sm:px-8">
+            <h2 class="font-display text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1] mb-5">
+                Your PIM, MCP-native.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-white">Your products, AI-ready.</span>
+            </h2>
+            <p class="text-base text-white/70 font-medium mb-10 max-w-lg mx-auto">Choose the PIM built for the AI era.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#" class="inline-flex items-center justify-center gap-2 bg-white text-brand-navy px-8 py-4 rounded-xl font-display font-bold text-sm shadow-xl hover:shadow-2xl transition-all hover:-translate-y-0.5">
+                    Book a Demo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a href="MCP-page-final.html" class="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/15 text-white px-8 py-4 rounded-xl font-display font-bold text-sm hover:bg-white/15 transition-all">
+                    Learn About MCP
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="bg-brand-navy py-8">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <span class="font-display font-bold text-white/40 text-sm">© 2025 Bluestone PIM. All rights reserved.</span>
+            <div class="flex gap-6">
+                <a href="MCP-page-final.html" class="text-white/40 hover:text-white text-sm font-medium transition-colors">MCP Page</a>
+                <a href="agentic-commerce.html" class="text-white/40 hover:text-white text-sm font-medium transition-colors">Agentic Commerce</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+        }, { threshold: 0.1 });
+        reveals.forEach(r => observer.observe(r));
+
+        // FAQ toggle
+        function toggleFaq(btn) {
+            const answer = btn.nextElementSibling;
+            const chevron = btn.querySelector('.faq-chevron');
+            answer.classList.toggle('open');
+            chevron.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
