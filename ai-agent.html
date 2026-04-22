@@ -86,105 +86,150 @@
         </button>
     </section>
 
-    <!-- 2. CORE CAPABILITIES (COMPLEXITY SECTION) -->
-    <section class="max-w-7xl mx-auto px-6 py-12 md:py-24 border-t border-slate-100">
-        <div class="mb-16">
+    <!-- 2. CORE CAPABILITIES (ALTERNATING SECTIONS) -->
+    <section class="border-t border-slate-100 py-12 md:py-24">
+        <div class="max-w-7xl mx-auto px-6 mb-20">
             <span class="text-brand-blue font-bold tracking-widest text-[10px] uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
                 Start Anywhere
             </span>
             <h2 class="text-5xl md:text-6xl font-bold mt-6 mb-4 tracking-tight">
-                Bring me the complexity – <br>
+                Bring me the complexity –<br>
                 <span class="text-brand-blue">I’ll make sense of it</span>
             </h2>
             <p class="text-xl text-slate-500 font-medium">
-                Big task, small task, tricky task, next task — your AI Agent is always on the standby.
+                Big task, small task, tricky task, next task — your AI Agent is always on standby.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Find it fast -->
-            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-start transition-all hover:shadow-xl group">
-                <div class="mb-6 p-4 bg-blue-50 rounded-2xl text-brand-blue transition-colors">
+        <!-- Row 1: text left, visual right -->
+        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 mb-24">
+            <div class="lg:w-1/2">
+                <div class="inline-flex p-3 bg-blue-50 rounded-2xl text-brand-blue mb-6">
                     <i data-lucide="search" class="w-8 h-8"></i>
                 </div>
-                <h3 class="text-2xl font-bold mb-4">Find it fast</h3>
-                <p class="text-slate-500 mb-6 leading-relaxed">I help you get to the right products without the usual digging.</p>
-                <ul class="space-y-3 text-slate-700 font-semibold">
-                    <li class="check-item">Search by name, label, category, or attribute</li>
-                    <li class="check-item">Filter by status, context, or condition</li>
-                    <li class="check-item">Zero in on the products that matter</li>
+                <h3 class="text-4xl font-bold mb-4 tracking-tight">Find it fast,<br>fix it faster</h3>
+                <p class="text-lg text-slate-500 mb-8 leading-relaxed font-medium">I help you get to the right products without the usual digging — and surface gaps before they turn into publishing problems.</p>
+                <ul class="space-y-4">
+                    <li class="check-item text-slate-700 font-semibold">Search by name, label, category, or attribute</li>
+                    <li class="check-item text-slate-700 font-semibold">Filter by status, context, or condition</li>
+                    <li class="check-item text-slate-700 font-semibold">Spot incomplete products before they go live</li>
+                    <li class="check-item text-slate-700 font-semibold">Understand exactly what is blocking publish</li>
                 </ul>
             </div>
-
-            <!-- Spot what's missing -->
-            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-start transition-all hover:shadow-xl group">
-                <div class="mb-6 p-4 bg-green-50 rounded-2xl text-green-600 transition-colors">
-                    <i data-lucide="alert-circle" class="w-8 h-8"></i>
+            <div class="lg:w-1/2 bg-slate-50 rounded-[2.5rem] p-10 flex flex-col gap-4">
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4">
+                    <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-brand-blue shrink-0">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">You</p>
+                        <p class="text-sm font-semibold text-slate-800">Which products are missing images in the Web context?</p>
+                    </div>
                 </div>
-                <h3 class="text-2xl font-bold mb-4">Spot what's missing</h3>
-                <p class="text-slate-500 mb-6 leading-relaxed">I surface gaps before they turn into publishing problems.</p>
-                <ul class="space-y-3 text-slate-700 font-semibold">
-                    <li class="check-item">See what is incomplete</li>
-                    <li class="check-item">Find products still in draft</li>
-                    <li class="check-item">Understand what is blocking publish</li>
-                </ul>
-            </div>
-
-            <!-- Move faster at scale -->
-            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-start transition-all hover:shadow-xl group">
-                <div class="mb-6 p-4 bg-purple-50 rounded-2xl text-purple-600 transition-colors">
-                    <i data-lucide="zap" class="w-8 h-8"></i>
+                <div class="bg-brand-blue rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-white shrink-0">
+                        <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-blue-200 font-bold uppercase tracking-widest mb-1">AI Agent</p>
+                        <p class="text-sm font-semibold text-white">Found 47 products without images. 12 are published — want me to flag those first?</p>
+                    </div>
                 </div>
-                <h3 class="text-2xl font-bold mb-4">Move faster at scale</h3>
-                <p class="text-slate-500 mb-6 leading-relaxed">Repetitive work becomes simpler when I help handle the heavy lifting.</p>
-                <ul class="space-y-3 text-slate-700 font-semibold">
-                    <li class="check-item">Update labels and attributes</li>
-                    <li class="check-item">Support bulk product changes</li>
-                    <li class="check-item">Reduce manual product work</li>
-                </ul>
-            </div>
-
-            <!-- Sharpen your content -->
-            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-start relative transition-all hover:shadow-xl group">
-                <span class="absolute top-8 right-8 bg-brand-blue text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Coming Soon</span>
-                <div class="mb-6 p-4 bg-indigo-50 rounded-2xl text-indigo-600 transition-colors">
-                    <i data-lucide="sparkles" class="w-8 h-8"></i>
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4">
+                    <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-brand-blue shrink-0">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">You</p>
+                        <p class="text-sm font-semibold text-slate-800">Yes — show me those 12.</p>
+                    </div>
                 </div>
-                <h3 class="text-2xl font-bold mb-4">Sharpen your content</h3>
-                <p class="text-slate-500 mb-6 leading-relaxed">I help make product content clearer, stronger, and more ready to use.</p>
-                <ul class="space-y-3 text-slate-700 font-semibold">
-                    <li class="check-item">Improve copy and descriptions</li>
-                    <li class="check-item">Support enrichment workflows</li>
-                    <li class="check-item">Strengthen product quality</li>
-                </ul>
             </div>
+        </div>
 
-            <!-- Keep work moving -->
-            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-start transition-all hover:shadow-xl group">
-                <div class="mb-6 p-4 bg-orange-50 rounded-2xl text-orange-600 transition-colors">
-                    <i data-lucide="users" class="w-8 h-8"></i>
+        <!-- Row 2: visual left, text right -->
+        <div class="bg-slate-50 py-24">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row-reverse items-center gap-16">
+                <div class="lg:w-1/2">
+                    <div class="inline-flex p-3 bg-purple-50 rounded-2xl text-purple-600 mb-6">
+                        <i data-lucide="zap" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold mb-4 tracking-tight">Move faster<br>at scale</h3>
+                    <p class="text-lg text-slate-500 mb-8 leading-relaxed font-medium">Repetitive work becomes a prompt. Update, enrich, and bulk-edit your catalogue without the manual grind.</p>
+                    <ul class="space-y-4">
+                        <li class="check-item text-slate-700 font-semibold">Update labels and attributes in bulk</li>
+                        <li class="check-item text-slate-700 font-semibold">Improve copy and descriptions</li>
+                        <li class="check-item text-slate-700 font-semibold">Support enrichment workflows</li>
+                        <li class="check-item text-slate-700 font-semibold">Reduce time spent on repetitive product work</li>
+                    </ul>
                 </div>
-                <h3 class="text-2xl font-bold mb-4">Keep work moving</h3>
-                <p class="text-slate-500 mb-6 leading-relaxed">I help teams stay aligned when product work involves more than one person.</p>
-                <ul class="space-y-3 text-slate-700 font-semibold">
-                    <li class="check-item">Support product-linked tasks</li>
-                    <li class="check-item">Clarify next steps</li>
-                    <li class="check-item">Help teams stay coordinated</li>
-                </ul>
+                <div class="lg:w-1/2 grid grid-cols-2 gap-4">
+                    <div class="bg-white rounded-3xl p-7 shadow-sm border border-slate-100 flex flex-col gap-3">
+                        <div class="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600">
+                            <i data-lucide="layers" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800">Bulk edits</h4>
+                        <p class="text-sm text-slate-500 font-medium leading-relaxed">Apply changes across hundreds of products in seconds.</p>
+                    </div>
+                    <div class="bg-white rounded-3xl p-7 shadow-sm border border-slate-100 flex flex-col gap-3">
+                        <div class="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800">Content polish</h4>
+                        <p class="text-sm text-slate-500 font-medium leading-relaxed">Sharpen descriptions and fill gaps before publishing.</p>
+                    </div>
+                    <div class="bg-white rounded-3xl p-7 shadow-sm border border-slate-100 flex flex-col gap-3">
+                        <div class="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center text-orange-500">
+                            <i data-lucide="clock" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800">Time back</h4>
+                        <p class="text-sm text-slate-500 font-medium leading-relaxed">Hours of manual work replaced with a single prompt.</p>
+                    </div>
+                    <div class="bg-brand-blue rounded-3xl p-7 flex flex-col gap-3">
+                        <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-white">
+                            <i data-lucide="trending-up" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-white">Scale ready</h4>
+                        <p class="text-sm text-blue-100 font-medium leading-relaxed">Works whether you have 100 or 100,000 products.</p>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <!-- Guide you as you go -->
-            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-start transition-all hover:shadow-xl group">
-                <div class="mb-6 p-4 bg-blue-100 rounded-2xl text-blue-700 transition-colors">
+        <!-- Row 3: text left, visual right -->
+        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 mt-24">
+            <div class="lg:w-1/2">
+                <div class="inline-flex p-3 bg-blue-100 rounded-2xl text-blue-700 mb-6">
                     <i data-lucide="graduation-cap" class="w-8 h-8"></i>
                 </div>
-                <h3 class="text-2xl font-bold mb-4">Guide you as you go</h3>
-                <p class="text-slate-500 mb-6 leading-relaxed">Ask naturally. I'll help turn your question into the next useful step.</p>
-                <ul class="space-y-3 text-slate-700 font-semibold">
-                    <li class="check-item">Explain workflows in plain language</li>
-                    <li class="check-item">Help with export, publish, and more</li>
-                    <li class="check-item">Reduce guesswork while you work</li>
+                <h3 class="text-4xl font-bold mb-4 tracking-tight">Guide you<br>as you go</h3>
+                <p class="text-lg text-slate-500 mb-8 leading-relaxed font-medium">Ask naturally. I understand your context, the page you’re on, and the task you’re doing — so help is always relevant.</p>
+                <ul class="space-y-4">
+                    <li class="check-item text-slate-700 font-semibold">Explain workflows in plain language</li>
+                    <li class="check-item text-slate-700 font-semibold">Help with export, publish, and more</li>
+                    <li class="check-item text-slate-700 font-semibold">Keep teams aligned on next steps</li>
+                    <li class="check-item text-slate-700 font-semibold">Reduce guesswork for new and experienced users alike</li>
                 </ul>
+            </div>
+            <div class="lg:w-1/2 bg-slate-50 rounded-[2.5rem] p-10 flex flex-col gap-6">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-3 h-3 rounded-full bg-brand-blue"></div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Context-aware help</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div class="bg-white rounded-2xl px-5 py-4 border border-slate-100 shadow-sm">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Page: Product List</p>
+                        <p class="text-sm font-semibold text-slate-700">How do I export only the filtered products?</p>
+                    </div>
+                    <div class="bg-white rounded-2xl px-5 py-4 border border-slate-100 shadow-sm">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Page: Product Edit</p>
+                        <p class="text-sm font-semibold text-slate-700">What does the "completeness score" mean here?</p>
+                    </div>
+                    <div class="bg-white rounded-2xl px-5 py-4 border border-slate-100 shadow-sm">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Page: Publishing</p>
+                        <p class="text-sm font-semibold text-slate-700">Why are 3 products blocked from publishing?</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
