@@ -1,0 +1,1443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AI Automation — Bluestone PIM</title>
+<meta name="description" content="Bluestone PIM — the only PIM architected for AI automation. Agent-first operations, 700+ APIs, native MCP, API-only by design." />
+
+<!-- Tailwind: pre-compiled inline -->
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+
+
+<style id="tw-compiled">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Montserrat,ui-sans-serif,system-ui;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono,ui-monospace,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.invisible{visibility:hidden}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.inset-x-0{left:0;right:0}.-bottom-32{bottom:-8rem}.-left-32{left:-8rem}.-right-32{right:-8rem}.-top-3{top:-.75rem}.-top-32{top:-8rem}.bottom-0{bottom:0}.left-1\/2{left:50%}.left-5{left:1.25rem}.left-6{left:1.5rem}.right-5{right:1.25rem}.top-0{top:0}.top-1\/2{top:50%}.top-24{top:6rem}.top-5{top:1.25rem}.z-10{z-index:10}.z-50{z-index:50}.z-\[100\]{z-index:100}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-1\.5{margin-right:.375rem}.mr-2{margin-right:.5rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-1\.5{margin-top:.375rem}.mt-16{margin-top:4rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.aspect-video{aspect-ratio:16/9}.h-1{height:.25rem}.h-1\.5{height:.375rem}.h-12{height:3rem}.h-16{height:4rem}.h-20{height:5rem}.h-3{height:.75rem}.h-5{height:1.25rem}.h-7{height:1.75rem}.h-96{height:24rem}.h-\[500px\]{height:500px}.h-\[600px\]{height:600px}.h-\[800px\]{height:800px}.h-full{height:100%}.w-1\.5{width:.375rem}.w-10{width:2.5rem}.w-12{width:3rem}.w-20{width:5rem}.w-3{width:.75rem}.w-5{width:1.25rem}.w-7{width:1.75rem}.w-96{width:24rem}.w-\[500px\]{width:500px}.w-\[600px\]{width:600px}.w-\[800px\]{width:800px}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-5xl{max-width:64rem}.max-w-6xl{max-width:72rem}.max-w-\[1400px\]{max-width:1400px}.max-w-\[40rem\]{max-width:40rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.flex-shrink{flex-shrink:1}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.translate-x-0\.5{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-x-0\.5{--tw-translate-x:0.125rem}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:.375rem}.gap-10{gap:2.5rem}.gap-16{gap:4rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.gap-px{gap:1px}.gap-x-10{-moz-column-gap:2.5rem;column-gap:2.5rem}.gap-x-8{-moz-column-gap:2rem;column-gap:2rem}.gap-y-3{row-gap:.75rem}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.space-y-5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem*var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem*var(--tw-space-y-reverse))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-ink\/10>:not([hidden])~:not([hidden]){border-color:rgba(10,14,31,.1)}.overflow-hidden{overflow:hidden}.whitespace-nowrap{white-space:nowrap}.text-balance{text-wrap:balance}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-r-3xl{border-top-right-radius:1.5rem;border-bottom-right-radius:1.5rem}.border{border-width:1px}.border-2{border-width:2px}.border-y{border-top-width:1px}.border-b,.border-y{border-bottom-width:1px}.border-t{border-top-width:1px}.border-electric{--tw-border-opacity:1;border-color:rgb(30 63 255/var(--tw-border-opacity,1))}.border-ink\/10{border-color:rgba(10,14,31,.1)}.border-ink\/15{border-color:rgba(10,14,31,.15)}.border-ink\/20{border-color:rgba(10,14,31,.2)}.border-paper\/10{border-color:rgba(246,248,252,.1)}.border-paper\/15{border-color:rgba(246,248,252,.15)}.border-paper\/20{border-color:rgba(246,248,252,.2)}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0/var(--tw-bg-opacity,1))}.bg-electric{--tw-bg-opacity:1;background-color:rgb(30 63 255/var(--tw-bg-opacity,1))}.bg-electric\/10{background-color:rgba(30,63,255,.1)}.bg-electric\/15{background-color:rgba(30,63,255,.15)}.bg-electric\/30{background-color:rgba(30,63,255,.3)}.bg-electric\/5{background-color:rgba(30,63,255,.05)}.bg-ink{--tw-bg-opacity:1;background-color:rgb(10 14 31/var(--tw-bg-opacity,1))}.bg-ink\/10{background-color:rgba(10,14,31,.1)}.bg-ink\/95{background-color:rgba(10,14,31,.95)}.bg-ink\/\[0\.02\]{background-color:rgba(10,14,31,.02)}.bg-paper{--tw-bg-opacity:1;background-color:rgb(246 248 252/var(--tw-bg-opacity,1))}.bg-paper-soft{--tw-bg-opacity:1;background-color:rgb(232 238 247/var(--tw-bg-opacity,1))}.bg-paper\/10{background-color:rgba(246,248,252,.1)}.bg-paper\/15{background-color:rgba(246,248,252,.15)}.bg-paper\/30{background-color:rgba(246,248,252,.3)}.bg-paper\/40{background-color:rgba(246,248,252,.4)}.bg-paper\/50{background-color:rgba(246,248,252,.5)}.bg-paper\/90{background-color:rgba(246,248,252,.9)}.bg-paper\/95{background-color:rgba(246,248,252,.95)}.bg-paper\/\[0\.02\]{background-color:rgba(246,248,252,.02)}.bg-paper\/\[0\.03\]{background-color:rgba(246,248,252,.03)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.bg-gradient-to-t{background-image:linear-gradient(to top,var(--tw-gradient-stops))}.from-ink{--tw-gradient-from:#0a0e1f var(--tw-gradient-from-position);--tw-gradient-to:rgba(10,14,31,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.via-ink{--tw-gradient-to:rgba(10,14,31,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),#0a0e1f var(--tw-gradient-via-position),var(--tw-gradient-to)}.via-ink\/85{--tw-gradient-to:rgba(10,14,31,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),rgba(10,14,31,.85) var(--tw-gradient-via-position),var(--tw-gradient-to)}.to-electric\/40{--tw-gradient-to:rgba(30,63,255,.4) var(--tw-gradient-to-position)}.to-transparent{--tw-gradient-to:transparent var(--tw-gradient-to-position)}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-7{padding-left:1.75rem;padding-right:1.75rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-32{padding-top:8rem;padding-bottom:8rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-1{padding-bottom:.25rem}.pb-20{padding-bottom:5rem}.pb-3{padding-bottom:.75rem}.pb-6{padding-bottom:1.5rem}.pl-\[72px\]{padding-left:72px}.pt-16{padding-top:4rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:JetBrains Mono,ui-monospace,monospace}.font-serif{font-family:Montserrat,ui-sans-serif,system-ui}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-6xl{font-size:3.75rem;line-height:1}.text-\[clamp\(1\.5rem\2c 3vw\2c 2\.5rem\)\]{font-size:clamp(1.5rem,3vw,2.5rem)}.text-\[clamp\(1\.75rem\2c 3\.5vw\2c 3\.25rem\)\]{font-size:clamp(1.75rem,3.5vw,3.25rem)}.text-\[clamp\(2\.2rem\2c 4\.5vw\2c 4\.5rem\)\]{font-size:clamp(2.2rem,4.5vw,4.5rem)}.text-\[clamp\(5rem\2c 14vw\2c 10rem\)\]{font-size:clamp(5rem,14vw,10rem)}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-\[1\.02\]{line-height:1.02}.leading-\[1\.05\]{line-height:1.05}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.text-amber{--tw-text-opacity:1;color:rgb(232 163 61/var(--tw-text-opacity,1))}.text-electric{--tw-text-opacity:1;color:rgb(30 63 255/var(--tw-text-opacity,1))}.text-electric\/30{color:rgba(30,63,255,.3)}.text-electric\/70{color:rgba(30,63,255,.7)}.text-electric\/80{color:rgba(30,63,255,.8)}.text-ink{--tw-text-opacity:1;color:rgb(10 14 31/var(--tw-text-opacity,1))}.text-ink\/30{color:rgba(10,14,31,.3)}.text-ink\/40{color:rgba(10,14,31,.4)}.text-ink\/50{color:rgba(10,14,31,.5)}.text-ink\/60{color:rgba(10,14,31,.6)}.text-ink\/70{color:rgba(10,14,31,.7)}.text-ink\/80{color:rgba(10,14,31,.8)}.text-ink\/90{color:rgba(10,14,31,.9)}.text-paper{--tw-text-opacity:1;color:rgb(246 248 252/var(--tw-text-opacity,1))}.text-paper\/30{color:rgba(246,248,252,.3)}.text-paper\/40{color:rgba(246,248,252,.4)}.text-paper\/50{color:rgba(246,248,252,.5)}.text-paper\/60{color:rgba(246,248,252,.6)}.text-paper\/70{color:rgba(246,248,252,.7)}.text-paper\/80{color:rgba(246,248,252,.8)}.text-paper\/90{color:rgba(246,248,252,.9)}.underline{text-decoration-line:underline}.line-through{text-decoration-line:line-through}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-30{opacity:.3}.opacity-40{opacity:.4}.opacity-50{opacity:.5}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-2xl,.shadow-\[0_0_40px_rgba\(30\2c 63\2c 255\2c 0\.3\)\]{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-\[0_0_40px_rgba\(30\2c 63\2c 255\2c 0\.3\)\]{--tw-shadow:0 0 40px rgba(30,63,255,.3);--tw-shadow-colored:0 0 40px var(--tw-shadow-color)}.shadow-\[0_0_60px_rgba\(30\2c 63\2c 255\2c 0\.15\)\]{--tw-shadow:0 0 60px rgba(30,63,255,.15);--tw-shadow-colored:0 0 60px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.blur-3xl{--tw-blur:blur(64px)}.blur-3xl,.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px)}.backdrop-blur-md,.backdrop-blur-sm{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}.hover\:border-paper\/50:hover{border-color:rgba(246,248,252,.5)}.hover\:bg-electric-deep:hover{--tw-bg-opacity:1;background-color:rgb(21 48 204/var(--tw-bg-opacity,1))}.hover\:bg-electric\/5:hover{background-color:rgba(30,63,255,.05)}.hover\:bg-ink\/5:hover{background-color:rgba(10,14,31,.05)}.hover\:bg-paper\/20:hover{background-color:rgba(246,248,252,.2)}.hover\:text-ink:hover{--tw-text-opacity:1;color:rgb(10 14 31/var(--tw-text-opacity,1))}.group:hover .group-hover\:translate-x-1{--tw-translate-x:0.25rem}.group:hover .group-hover\:translate-x-1,.group:hover .group-hover\:translate-y-0\.5{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:translate-y-0\.5{--tw-translate-y:0.125rem}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:bg-electric{--tw-bg-opacity:1;background-color:rgb(30 63 255/var(--tw-bg-opacity,1))}.group:hover .group-hover\:text-paper{--tw-text-opacity:1;color:rgb(246 248 252/var(--tw-text-opacity,1))}@media (min-width:640px){.sm\:flex-row{flex-direction:row}}@media (min-width:768px){.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:left-7{left:1.75rem}.lg\:right-8{right:2rem}.lg\:top-7{top:1.75rem}.lg\:top-8{top:2rem}.lg\:col-span-12{grid-column:span 12/span 12}.lg\:col-span-5{grid-column:span 5/span 5}.lg\:col-span-7{grid-column:span 7/span 7}.lg\:mb-10{margin-bottom:2.5rem}.lg\:mt-20{margin-top:5rem}.lg\:flex{display:flex}.lg\:h-24{height:6rem}.lg\:h-9{height:2.25rem}.lg\:w-24{width:6rem}.lg\:w-9{width:2.25rem}.lg\:grid-cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:flex-row{flex-direction:row}.lg\:items-center{align-items:center}.lg\:gap-16{gap:4rem}.lg\:gap-8{gap:2rem}.lg\:border-b-0{border-bottom-width:0}.lg\:border-l{border-left-width:1px}.lg\:border-r{border-right-width:1px}.lg\:p-10{padding:2.5rem}.lg\:p-12{padding:3rem}.lg\:p-7{padding:1.75rem}.lg\:p-8{padding:2rem}.lg\:px-10{padding-left:2.5rem;padding-right:2.5rem}.lg\:py-32{padding-top:8rem;padding-bottom:8rem}.lg\:py-40{padding-top:10rem;padding-bottom:10rem}.lg\:py-44{padding-top:11rem;padding-bottom:11rem}.lg\:pb-28{padding-bottom:7rem}.lg\:pt-24{padding-top:6rem}.lg\:text-2xl{font-size:1.5rem;line-height:2rem}.lg\:text-3xl{font-size:1.875rem;line-height:2.25rem}.lg\:text-4xl{font-size:2.25rem;line-height:2.5rem}.lg\:text-lg{font-size:1.125rem;line-height:1.75rem}}</style>
+
+<style>
+  :root {
+    --ink: #0A0E1F;
+    --paper: #F6F8FC;
+    --electric: #1E3FFF;
+    --amber: #E8A33D;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Montserrat', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Display — Montserrat heavy for headlines */
+  .display {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+  }
+  .display-italic {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: -0.04em;
+  }
+
+  /* Grain overlay for premium feel */
+  .grain::before {
+    content:'';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.18 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    z-index: 0;
+  }
+
+  /* Hairline grids */
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(10,14,31,0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10,14,31,0.06) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .grid-bg-dark {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  /* Eyebrow/label */
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Number ticker */
+  .num {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+  }
+
+  /* Gradient text */
+  .grad-text {
+    background: linear-gradient(120deg, #0A0E1F 0%, #1E3FFF 50%, #0A0E1F 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Animated underline */
+  .anim-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size .4s ease;
+  }
+  .anim-underline:hover { background-size: 100% 1px; }
+
+  /* Marquee */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    display: flex; gap: 4rem;
+    width: max-content;
+    animation: marquee 60s linear infinite;
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* Fancy ampersand-style separator */
+  .sep-amp {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* Code panel */
+  .code-panel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* Pulse dot */
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(30, 63, 255, 0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(30, 63, 255, 0); }
+  }
+  .pulse-dot { animation: pulse-dot 2s infinite; }
+
+  /* Custom checkbox-like marker */
+  .check-tick {
+    display: inline-block; width: 18px; height: 18px;
+    border-radius: 999px; background: var(--electric);
+    position: relative; flex-shrink: 0;
+  }
+  .check-tick::after {
+    content: ''; position: absolute;
+    left: 5px; top: 8px; width: 7px; height: 3px;
+    border-left: 2px solid white; border-bottom: 2px solid white;
+    transform: rotate(-45deg);
+  }
+
+  /* Tab buttons */
+  .tab-btn[aria-selected="true"] {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .tab-btn[aria-selected="true"] .tab-num {
+    color: var(--amber);
+  }
+
+  /* Level meter */
+  .level-bar {
+    height: 6px; border-radius: 999px;
+    background: rgba(10,14,31,0.08);
+    overflow: hidden; position: relative;
+  }
+  .level-bar::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--electric), #5B7AFF);
+    transform-origin: left;
+  }
+
+  /* Squiggle */
+  .squiggle {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 6'><path d='M0 3 Q 10 0 20 3 T 40 3 T 60 3 T 80 3' stroke='%231E3FFF' stroke-width='2' fill='none'/></svg>");
+    background-repeat: repeat-x;
+    background-size: 80px 6px;
+    background-position: 0 100%;
+    padding-bottom: 6px;
+  }
+
+  /* Diagonal stripe pattern */
+  .stripes-faint {
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(10,14,31,0.04),
+      rgba(10,14,31,0.04) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+  }
+
+  /* Custom scrollbar for visual flair */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { background: var(--ink); border: 2px solid var(--paper); border-radius: 6px; }
+
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .arrow { transform: rotate(45deg); }
+  .arrow { transition: transform .25s ease; }
+
+  /* Force [hidden] to win over Tailwind's display utilities (.grid, .flex, etc.) */
+  [hidden] { display: none !important; }
+
+  /* Floating tag chip */
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+
+<body class="bg-paper text-ink">
+
+<!-- ============== TOP BAR ============== -->
+<header class="border-b border-ink/10 bg-paper sticky top-0 z-50 backdrop-blur-sm bg-paper/90">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-full bg-ink flex items-center justify-center">
+        <div class="w-3 h-3 rounded-full bg-electric"></div>
+      </div>
+      <span class="font-semibold tracking-tight">Bluestone <span class="font-normal text-ink/60">PIM</span></span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-8 text-sm">
+      <a href="#shift" class="anim-underline text-ink/70 hover:text-ink">The Shift</a>
+      <a href="#levels" class="anim-underline text-ink/70 hover:text-ink">Four Levels</a>
+      <a href="#suite" class="anim-underline text-ink/70 hover:text-ink">AI Suite</a>
+      <a href="#compare" class="anim-underline text-ink/70 hover:text-ink">Compare</a>
+    </nav>
+    <a href="#cta" class="text-sm bg-electric text-paper px-4 py-2 rounded-full hover:bg-electric-deep transition-colors">
+      Book an AI briefing →
+    </a>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="relative overflow-hidden border-b border-ink/10">
+  <div class="absolute inset-0 grid-bg opacity-50 pointer-events-none"></div>
+  <div class="absolute -top-32 -right-32 w-[600px] h-[600px] bg-electric/5 rounded-full blur-3xl pointer-events-none"></div>
+  
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10 pt-16 lg:pt-24 pb-20 lg:pb-28">
+    
+    <!-- Top eyebrow -->
+    <div class="mb-8 lg:mb-10">
+      <span class="eyebrow text-ink font-bold">Bluestone PIM AI Automation</span>
+    </div>
+
+    <!-- Two-column hero: text left, video right -->
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+      <!-- LEFT: Headline + subhead + CTAs -->
+      <div class="lg:col-span-7">
+        <h1 class="display text-[clamp(2.2rem,4.5vw,4.5rem)] font-bold mb-8 lg:mb-10 leading-[1.05] tracking-tight text-balance">
+          The new product interface<br>
+          is <span class="text-electric">AI automation</span>
+        </h1>
+        <p class="text-base lg:text-lg text-ink leading-relaxed max-w-xl mb-8 lg:mb-10">
+          While teams are still clicking through dashboards, AI automation and agents are reading, reasoning and acting on product data — at machine speed. Bluestone PIM is the only platform architected from the ground up to live in that world.
+        </p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="#cta" class="group inline-flex items-center gap-2 bg-electric text-paper px-7 py-4 rounded-full font-semibold hover:bg-electric-deep transition-colors">
+            See AI Automation in Action
+            <span class="inline-block group-hover:translate-y-0.5 transition-transform" aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Video thumbnail (opens modal on click) -->
+      <div class="lg:col-span-5">
+        <button type="button" data-video-trigger class="group relative block w-full aspect-video rounded-3xl overflow-hidden bg-ink shadow-2xl border border-ink/20 cursor-pointer">
+          <!-- Background gradient -->
+          <div class="absolute inset-0 bg-gradient-to-br from-ink via-ink to-electric/40"></div>
+          <div class="absolute inset-0 grid-bg-dark opacity-50"></div>
+
+          <!-- Top-left chip -->
+          <div class="absolute top-5 left-5 lg:top-7 lg:left-7">
+            <span class="chip bg-paper/15 text-paper backdrop-blur-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-electric pulse-dot inline-block mr-1.5"></span>
+              LIVE DEMO
+            </span>
+          </div>
+
+          <!-- Play button -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-paper/95 group-hover:bg-electric flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:scale-110">
+              <svg class="w-7 h-7 lg:w-9 lg:h-9 text-ink group-hover:text-paper translate-x-0.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Caption at bottom -->
+          <div class="absolute bottom-0 inset-x-0 p-6 lg:p-8 text-left bg-gradient-to-t from-ink via-ink/85 to-transparent">
+            <span class="eyebrow text-electric">Watch · 2 min</span>
+            <p class="display text-xl lg:text-2xl text-paper mt-2 leading-tight">
+              AI automation,<br>
+              <em class="display-italic">running live</em>
+            </p>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== THE SHIFT (CHALLENGER OPENER) ============== -->
+<section id="shift" class="relative py-24 lg:py-40 border-b border-ink/10">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <div class="grid lg:grid-cols-12 gap-10 mb-16">
+      <div class="lg:col-span-12 text-center max-w-6xl mx-auto">
+        <h3 class="display text-[clamp(1.75rem,3.5vw,3.25rem)] font-medium leading-[1.02] text-balance">
+          You're not behind on an automation feature. You're behind on <span class="display-italic text-electric">a paradigm.</span>
+        </h3>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
+      <!-- Left: The honest reality -->
+      <div class="lg:col-span-7 space-y-6 text-lg leading-relaxed text-ink/80">
+        <p>
+          For twenty years, product information work meant <em>clicks</em>. Open the record. Tab through attributes. Type. Save. Repeat across thousands of SKUs, hundreds of markets, dozens of channels. The interface was the product.
+        </p>
+        <p>
+          Then the rules of the game changed. <strong class="text-ink">AI doesn't click.</strong> It reads. It writes. It reasons. It acts. The serious work — enrichment, translation, validation, syndication — is moving off the screen and into autonomous loops you don't supervise step-by-step.
+        </p>
+        <p>
+          Most PIM vendors are responding the way they always have: <em>add a panel, ship a chatbot, glue an LLM to a button.</em> It looks like progress. It is not. A polished GUI with an AI sidebar is still a GUI-bound system. AI cannot do its best work where humans are still required to click.
+        </p>
+        <p class="text-ink font-bold text-2xl lg:text-3xl pt-6 border-t border-ink/10 leading-tight">
+          The PIM that wins the next decade isn't the one with the prettiest interface. It's the one that doesn't force you to use one.
+        </p>
+      </div>
+
+      <!-- Right: Visual proof of two worlds -->
+      <div class="lg:col-span-5">
+        <div class="bg-ink text-paper rounded-3xl p-8 lg:p-10 relative overflow-hidden grain">
+          <div class="absolute inset-0 grid-bg-dark opacity-40"></div>
+
+          <div class="relative z-10">
+            <span class="eyebrow text-electric/80">Two ways to operate</span>
+
+            <!-- Old world -->
+            <div class="mt-6 pb-6 border-b border-paper/10">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-sm text-paper/60">Yesterday</span>
+                <span class="chip bg-paper/10 text-paper/70">CLICK-DRIVEN</span>
+              </div>
+              <p class="display text-3xl text-paper/60">Find. Open. Edit. Save. Repeat.</p>
+            </div>
+
+            <!-- New world -->
+            <div class="mt-6">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-sm text-electric">Today</span>
+                <span class="chip bg-electric/15 text-electric">AGENT-DRIVEN</span>
+              </div>
+              <p class="display text-3xl">Describe. Approve. <em class="display-italic">Done.</em></p>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-4 text-sm text-ink/50 italic font-serif">
+          The gap between these two columns is the entire competitive frontier of the next decade.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== THE TRAP IN THE MIDDLE ============== -->
+<section class="relative py-24 lg:py-32 border-b border-ink/10">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <div class="grid lg:grid-cols-12 gap-10 mb-16">
+      <div class="lg:col-span-12 text-center max-w-6xl mx-auto">
+        <h3 class="display text-[clamp(1.75rem,3.5vw,3.25rem)] font-medium leading-[1.02]">
+          "We already automate"<br>
+          <span class="display-italic text-electric">That's exactly the problem...</span>
+        </h3>
+        <p class="mt-6 text-lg text-ink/90 mx-auto max-w-2xl">
+          Most teams aren't choosing between clicks and AI. They're stuck in a third state — rigid automation. Hard-coded rules. Custom middleware. Sync scripts that break the moment a supplier renames a column. It feels like progress. It's a ceiling.
+        </p>
+      </div>
+    </div>
+
+    <!-- Three states grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-px bg-ink/10 rounded-3xl overflow-hidden border border-ink/10">
+
+      <!-- STATE I — Manual -->
+      <div class="bg-paper p-8 lg:p-10">
+        <p class="eyebrow text-ink mb-6">State I &nbsp;·&nbsp; Past</p>
+        <h4 class="display text-3xl mb-3 leading-tight text-ink">Manual</h4>
+        <p class="text-sm text-ink leading-relaxed mb-6">
+          Humans tab through screens. Click, type, save, repeat — per SKU, per market, per channel. The interface is the work.
+        </p>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start gap-3">
+            <span class="text-ink/40 mt-1.5 leading-none">&bull;</span>
+            <span class="text-ink leading-snug"><span class="eyebrow text-ink mr-2">Limit</span>Doesn't scale; time-to-market drags</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-ink/40 mt-1.5 leading-none">&bull;</span>
+            <span class="text-ink leading-snug"><span class="eyebrow text-ink mr-2">Cost</span>Headcount-bound throughput</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- STATE II — Rigid Automation (THE TRAP) -->
+      <div class="bg-paper p-8 lg:p-10">
+        <p class="eyebrow text-ink mb-6">State II &nbsp;·&nbsp; <span class="text-amber">The trap</span></p>
+        <h4 class="display text-3xl mb-3 leading-tight text-ink">Rigid automation</h4>
+        <p class="text-sm text-ink leading-relaxed mb-6">
+          ETL scripts, hard-coded rules, vendor-shipped automation menus. Predictable, until something changes — and then everything breaks at once.
+        </p>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start gap-3">
+            <span class="text-ink/40 mt-1.5 leading-none">&bull;</span>
+            <span class="text-ink leading-snug"><span class="eyebrow text-ink mr-2">Limit</span>Brittle to change; capped at the vendor's menu</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-ink/40 mt-1.5 leading-none">&bull;</span>
+            <span class="text-ink leading-snug"><span class="eyebrow text-ink mr-2">Cost</span>Every business shift = engineering ticket or feature request</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- STATE III — AI Automation -->
+      <div class="bg-paper p-8 lg:p-10 relative">
+        <div class="absolute inset-0 border-2 border-electric rounded-r-3xl pointer-events-none"></div>
+        <div class="relative">
+          <p class="eyebrow text-ink mb-6">State III &nbsp;·&nbsp; <span class="text-electric">Now</span></p>
+          <h4 class="display text-3xl mb-3 leading-tight text-ink">AI automation</h4>
+          <p class="text-sm text-ink leading-relaxed mb-6">
+            Rules Engine fires AI Templates. Determinism where you want it, intelligence where you need it. Bends with messy reality without rewriting the script every quarter.
+          </p>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-3">
+              <span class="text-electric mt-1.5 leading-none">&bull;</span>
+              <span class="text-ink leading-snug"><span class="eyebrow text-electric mr-2">Limit</span>Climbs to full agentic; no re-platform</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-electric mt-1.5 leading-none">&bull;</span>
+              <span class="text-ink leading-snug"><span class="eyebrow text-electric mr-2">Cost</span>Pay for outcomes, not for maintaining brittle pipelines</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom synthesis: the bridge -->
+    <div class="mt-16 max-w-6xl mx-auto text-center">
+      <blockquote class="display text-xl lg:text-2xl leading-snug text-ink/90">
+        Other vendors make you choose between rigid and intelligent. <em class="display-italic text-electric">We run both, in the same loop.</em>
+      </blockquote>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== YOUR CEILING — AUTOMATION SURFACE ============== -->
+<section class="relative py-24 lg:py-32 border-b border-ink/10">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <div class="grid lg:grid-cols-12 gap-10 mb-16">
+      <div class="lg:col-span-12 text-center max-w-6xl mx-auto">
+        <h3 class="display text-[clamp(1.75rem,3.5vw,3.25rem)] font-medium leading-[1.02]">
+          Don't ask what they let you automate. <span class="display-italic text-electric">Ask how much of them is automatable.</span>
+        </h3>
+        <p class="mt-6 text-lg text-ink/90 mx-auto max-w-2xl">
+          Most vendors ship a curated menu of automation features. Pretty in the demo, painful in 18 months when the workflow you actually need isn't on the menu. The right question isn't "what does their automation cover?" — it's "how much of the platform can <em>your</em> automation reach?"
+        </p>
+      </div>
+    </div>
+
+    <!-- 700+ APIs hero panel — single, centered -->
+    <div class="max-w-3xl mx-auto mb-12">
+      <div class="text-center">
+        <p class="num text-[clamp(5rem,14vw,10rem)] text-electric leading-none mb-3">700<span>+</span></p>
+        <p class="text-ink text-lg leading-snug max-w-[40rem] mx-auto">
+          Unique APIs across every microservice. Every product, attribute, asset, workflow, sync, transform, hook — independently addressable. <strong class="font-bold">If your team can describe it, your agent can do it.</strong>
+        </p>
+      </div>
+    </div>
+
+
+
+    <!-- Continued: API-first vs API-only as the architectural reason -->
+    <div class="mt-16 lg:mt-20">
+      <div class="text-center max-w-6xl mx-auto mb-12">
+        <h4 class="display text-[clamp(1.5rem,3vw,2.5rem)] font-medium leading-[1.05]">
+          Many PIMs are <em class="display-italic">API-first</em> &ndash;<br>
+          Bluestone PIM is <span class="text-electric">also API-only</span>
+        </h4>
+        <p class="mt-6 text-lg text-ink/90 mx-auto max-w-2xl">
+          API-first means the platform exposes its functions through APIs but was designed around a GUI. API-only means the GUI itself is built on top of the same APIs everyone else uses — the surface is fully programmable, not partly.
+        </p>
+      </div>
+
+
+    <!-- Comparison panels -->
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+      <!-- Card A: API-first (the others) -->
+      <div class="rounded-3xl border border-ink/15 p-8 lg:p-10 bg-paper-soft relative">
+        <div class="flex items-center justify-between mb-6">
+          <span class="chip bg-ink/10 text-ink/70">"API-FIRST"</span>
+          <span class="text-xs text-ink/50 font-mono">~ everyone else</span>
+        </div>
+        <h4 class="display text-3xl mb-4 leading-tight">An API <em class="display-italic">alongside</em> the GUI</h4>
+        <p class="text-ink/70 leading-relaxed mb-6">
+          The platform was designed with screens as the primary surface. APIs were retrofitted to expose <em>some</em> of what the GUI does. Critical operations — workflow approvals, certain configurations, certain bulk actions — still require a human in front of a button.
+        </p>
+        <ul class="space-y-3 text-sm text-ink/70">
+          <li class="flex items-start gap-3">
+            <span class="text-ink/40 font-mono mt-0.5">×</span>
+            <span>Agents hit dead-ends at GUI-only operations</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-ink/40 font-mono mt-0.5">×</span>
+            <span>MCP, when present, is a wrapper — not native</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card B: API-only (Bluestone PIM) -->
+      <div class="rounded-3xl border-2 border-electric p-8 lg:p-10 bg-electric/5 relative shadow-[0_0_60px_rgba(30,63,255,0.15)]">
+        <div class="flex items-center justify-between mb-6">
+          <span class="chip bg-electric text-paper">"API-ONLY"</span>
+          <span class="text-xs text-electric font-mono">Bluestone PIM</span>
+        </div>
+        <h4 class="display text-3xl mb-4 leading-tight">The GUI <em class="display-italic">is just one client</em> of the API</h4>
+        <p class="text-ink/80 leading-relaxed mb-6">
+          Every action, every microservice, every workflow exists as an addressable API surface — the user interface itself is a consumer. If a human can do it in Bluestone PIM, an agent can do it through the API. There is no "you have to click this part."
+        </p>
+        <ul class="space-y-3 text-sm text-ink/80">
+          <li class="flex items-start gap-3">
+            <span class="check-tick mt-0.5"></span>
+            <span>Granular microservices — agents call exactly what they need</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="check-tick mt-0.5"></span>
+            <span>Native MCP layer over the same APIs that power the UI</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== FOUR LEVELS OF AI READINESS ============== -->
+<section id="levels" class="relative py-24 lg:py-32 bg-ink text-paper overflow-hidden">
+  <div class="absolute inset-0 grid-bg-dark opacity-50 pointer-events-none"></div>
+  <div class="absolute top-1/2 -left-32 w-96 h-96 bg-electric/15 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-10 mb-16">
+      <div class="lg:col-span-12 text-center max-w-6xl mx-auto">
+        <h3 class="display text-[clamp(1.75rem,3.5vw,3.25rem)] font-medium leading-[1.02] text-paper text-balance">
+          Not all PIMs that "do AI and automation" are <span class="display-italic text-electric">created equal</span>
+        </h3>
+        <p class="mt-6 text-lg text-paper/90 mx-auto max-w-2xl">
+          Most PIM vendors talk AI. Few have built the architecture for it. Here's how the market actually stacks up.
+        </p>
+      </div>
+    </div>
+
+    <!-- Level Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+
+      <!-- Level 1 -->
+      <div class="border border-paper/15 rounded-2xl p-6 lg:p-7 bg-paper/[0.02] backdrop-blur-sm">
+        <div class="flex items-center justify-between mb-6">
+          <span class="num text-3xl text-paper/40 leading-none">01</span>
+          <span class="chip bg-paper/10 text-paper/85">AI-ASSISTED</span>
+        </div>
+        <h4 class="text-xl font-semibold mb-3">Sidebar AI</h4>
+        <p class="text-sm text-paper/90 leading-relaxed mb-4">
+          AI helps draft a description. Manual workflows otherwise unchanged. Token-priced novelty.
+        </p>
+        <div class="level-bar mb-4"><div class="absolute inset-0 bg-paper/30" style="width: 25%"></div></div>
+        <p class="eyebrow text-paper/65">Many legacy vendors</p>
+      </div>
+
+      <!-- Level 2 -->
+      <div class="border border-paper/15 rounded-2xl p-6 lg:p-7 bg-paper/[0.02] backdrop-blur-sm">
+        <div class="flex items-center justify-between mb-6">
+          <span class="num text-3xl text-paper/40 leading-none">02</span>
+          <span class="chip bg-paper/10 text-paper/85">READ-ONLY</span>
+        </div>
+        <h4 class="text-xl font-semibold mb-3">Bridge to AI</h4>
+        <p class="text-sm text-paper/90 leading-relaxed mb-4">
+          AI can fetch data via API or an MCP wrapper. One-directional. No write-back. Agents can look but not act.
+        </p>
+        <div class="level-bar mb-4"><div class="absolute inset-0 bg-paper/40" style="width: 50%"></div></div>
+        <p class="eyebrow text-paper/65">Many "headless" PIMs</p>
+      </div>
+
+      <!-- Level 3 -->
+      <div class="border border-paper/15 rounded-2xl p-6 lg:p-7 bg-paper/[0.02] backdrop-blur-sm">
+        <div class="flex items-center justify-between mb-6">
+          <span class="num text-3xl text-paper/40 leading-none">03</span>
+          <span class="chip bg-paper/10 text-paper/85">EXECUTION</span>
+        </div>
+        <h4 class="text-xl font-semibold mb-3">Bidirectional add-on</h4>
+        <p class="text-sm text-paper/90 leading-relaxed mb-4">
+          AI reads and writes — but as a layer on top, not in the core. Agents bump into GUI-only operations. Treated as a feature, not architecture.
+        </p>
+        <div class="level-bar mb-4"><div class="absolute inset-0 bg-paper/50" style="width: 75%"></div></div>
+        <p class="eyebrow text-paper/65">PIMs with AI add-ons</p>
+      </div>
+
+      <!-- Level 4 - BLUESTONE -->
+      <div class="relative border-2 border-electric rounded-2xl p-6 lg:p-7 bg-electric/10 shadow-[0_0_40px_rgba(30,63,255,0.3)]">
+        <span class="absolute -top-3 left-6 chip bg-electric text-paper px-3 py-1.5">★ BLUESTONE PIM</span>
+        <div class="flex items-center justify-between mb-6 mt-2">
+          <span class="num text-3xl text-paper leading-none">04</span>
+          <span class="chip bg-electric/30 text-paper">AGENTIC-CORE</span>
+        </div>
+        <h4 class="text-xl font-semibold mb-3">Native, not bolted</h4>
+        <p class="text-sm text-paper/90 leading-relaxed mb-4">
+          AI agents orchestrate the full product lifecycle. Native MCP, sub-500 ms reasoning, human-on-the-loop, every microservice independently addressable. Built for agents, supervised by humans.
+        </p>
+        <div class="level-bar mb-4"><div class="absolute inset-0 bg-electric" style="width: 100%"></div></div>
+        <p class="eyebrow text-electric">Only at this level</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== UNIFIED AI SUITE ============== -->
+<section id="suite" class="relative py-24 lg:py-32 bg-paper-soft border-b border-ink/10">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <div class="grid lg:grid-cols-12 gap-10 mb-16">
+      <div class="lg:col-span-12 text-center max-w-6xl mx-auto">
+        <h3 class="display text-[clamp(1.75rem,3.5vw,3.25rem)] font-medium leading-[1.02]">
+          One toolbox. <span class="display-italic text-electric">Many tools.</span>
+        </h3>
+        <p class="mt-6 text-lg text-ink/90 mx-auto max-w-2xl">
+          Read separately, each looks like a feature. Read together, they're a coordinated toolset — shared context, shared templates, shared rules, shared API and MCP surface. Agents pick up the right tool for the job.
+        </p>
+      </div>
+    </div>
+
+    <!-- Suite grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/10 rounded-3xl overflow-hidden border border-ink/10">
+
+      <!-- AI Agent -->
+      <article class="bg-paper p-8 lg:p-10 group hover:bg-electric/5 transition-colors">
+        <div class="flex items-center justify-between mb-5">
+          <span class="num text-3xl text-electric">01</span>
+          <span class="chip bg-electric/10 text-electric">CONVERSATIONAL</span>
+        </div>
+        <h4 class="display text-3xl mb-3 leading-tight">AI Agent</h4>
+        <p class="text-ink/70 leading-relaxed mb-5 text-sm">
+          A colleague that lives in your PIM. Knows the page you're on, the products you're filtering, what's missing before publish. Speaks dozens of languages. Acts on what's in front of you, in bulk.
+        </p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="chip border border-ink/15">find &amp; fix</span>
+          <span class="chip border border-ink/15">bulk update</span>
+          <span class="chip border border-ink/15">platform expert</span>
+        </div>
+      </article>
+
+      <!-- MCP -->
+      <article class="bg-paper p-8 lg:p-10 group hover:bg-electric/5 transition-colors">
+        <div class="flex items-center justify-between mb-5">
+          <span class="num text-3xl text-electric">02</span>
+          <span class="chip bg-electric/10 text-electric">PROTOCOL</span>
+        </div>
+        <h4 class="display text-3xl mb-3 leading-tight">MCP Layer</h4>
+        <p class="text-ink/70 leading-relaxed mb-5 text-sm">
+          Open standard. Whatever AI surface your team prefers — Claude, ChatGPT, Cursor, the in-PIM Agent, your own — drives operations through one protocol. Bidirectional. Native, not wrapped.
+        </p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="chip border border-ink/15">live context</span>
+          <span class="chip border border-ink/15">tool calls</span>
+          <span class="chip border border-ink/15">open-source server</span>
+        </div>
+      </article>
+
+      <!-- AI Enrich -->
+      <article class="bg-paper p-8 lg:p-10 group hover:bg-electric/5 transition-colors">
+        <div class="flex items-center justify-between mb-5">
+          <span class="num text-3xl text-electric">03</span>
+          <span class="chip bg-electric/10 text-electric">GENERATIVE</span>
+        </div>
+        <h4 class="display text-3xl mb-3 leading-tight">AI Enrich</h4>
+        <p class="text-ink/70 leading-relaxed mb-5 text-sm">
+          Specs in, persuasive on-brand content out — at scale and in dozens of languages. Custom voice instructions. Reads images. Multi-model under the hood for cost/quality control.
+        </p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="chip border border-ink/15">multilingual</span>
+          <span class="chip border border-ink/15">brand voice</span>
+          <span class="chip border border-ink/15">image-aware</span>
+        </div>
+      </article>
+
+      <!-- AI Analyst -->
+      <article class="bg-paper p-8 lg:p-10 group hover:bg-electric/5 transition-colors">
+        <div class="flex items-center justify-between mb-5">
+          <span class="num text-3xl text-electric">04</span>
+          <span class="chip bg-electric/10 text-electric">QUALITY</span>
+        </div>
+        <h4 class="display text-3xl mb-3 leading-tight">AI Analyst</h4>
+        <p class="text-ink/70 leading-relaxed mb-5 text-sm">
+          24/7 data quality auditor. Detects anomalies and miscategorisations across millions of SKUs. Every suggestion comes with a confidence score and a one-click fix. Pairs with completeness scoring.
+        </p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="chip border border-ink/15">anomaly detection</span>
+          <span class="chip border border-ink/15">confidence scoring</span>
+          <span class="chip border border-ink/15">one-click fix</span>
+        </div>
+      </article>
+
+      <!-- AI Linguist -->
+      <article class="bg-paper p-8 lg:p-10 group hover:bg-electric/5 transition-colors">
+        <div class="flex items-center justify-between mb-5">
+          <span class="num text-3xl text-electric">05</span>
+          <span class="chip bg-electric/10 text-electric">GLOBAL</span>
+        </div>
+        <h4 class="display text-3xl mb-3 leading-tight">AI Linguist</h4>
+        <p class="text-ink/70 leading-relaxed mb-5 text-sm">
+          Native enrichment and translation that respects local context, market nuance and brand vocabulary. Launch into new geographies in days, not quarters.
+        </p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="chip border border-ink/15">localisation</span>
+          <span class="chip border border-ink/15">market-aware</span>
+          <span class="chip border border-ink/15">terminology control</span>
+        </div>
+      </article>
+
+      <!-- AI Templates -->
+      <article class="bg-paper p-8 lg:p-10 group hover:bg-electric/5 transition-colors">
+        <div class="flex items-center justify-between mb-5">
+          <span class="num text-3xl text-electric">06</span>
+          <span class="chip bg-electric/10 text-electric">REUSABLE</span>
+        </div>
+        <h4 class="display text-3xl mb-3 leading-tight">AI Templates</h4>
+        <p class="text-ink/70 leading-relaxed mb-5 text-sm">
+          Save your prompts, instructions, fields and model settings as reusable blueprints. The connective tissue between AI Enrich, AI Linguist, AI Analyst — and the Rules Engine that triggers them.
+        </p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="chip border border-ink/15">governance</span>
+          <span class="chip border border-ink/15">repeatability</span>
+          <span class="chip border border-ink/15">team-shared</span>
+        </div>
+      </article>
+
+      <!-- AI DAM -->
+      <article class="bg-paper p-8 lg:p-10 group hover:bg-electric/5 transition-colors">
+        <div class="flex items-center justify-between mb-5">
+          <span class="num text-3xl text-electric">07</span>
+          <span class="chip bg-electric/10 text-electric">VISUAL</span>
+        </div>
+        <h4 class="display text-3xl mb-3 leading-tight">AI DAM</h4>
+        <p class="text-ink/70 leading-relaxed mb-5 text-sm">
+          Visual assets enriched with the same intelligence as your text data. Auto-tagging, content extraction, alt text, smart search — the asset layer becomes structured and queryable.
+        </p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="chip border border-ink/15">auto-tag</span>
+          <span class="chip border border-ink/15">visual search</span>
+          <span class="chip border border-ink/15">accessibility</span>
+        </div>
+      </article>
+
+      <!-- Rules Engine -->
+      <article class="bg-paper p-8 lg:p-10 group hover:bg-electric/5 transition-colors">
+        <div class="flex items-center justify-between mb-5">
+          <span class="num text-3xl text-electric">08</span>
+          <span class="chip bg-electric/10 text-electric">DETERMINISTIC</span>
+        </div>
+        <h4 class="display text-3xl mb-3 leading-tight">Rules Engine</h4>
+        <p class="text-ink/70 leading-relaxed mb-5 text-sm">
+          The deterministic spine. Event-driven and scheduled rules trigger AI Templates, sync products, change status, generate PDFs — all gated by your business logic. AI gets the creativity, rules get the control.
+        </p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="chip border border-ink/15">event-based</span>
+          <span class="chip border border-ink/15">triggers AI</span>
+          <span class="chip border border-ink/15">audit trail</span>
+        </div>
+      </article>
+
+      <!-- Connective tissue card -->
+      <article class="bg-ink text-paper p-8 lg:p-10 relative overflow-hidden">
+        <div class="absolute inset-0 grid-bg-dark opacity-50"></div>
+        <div class="relative">
+          <span class="eyebrow text-electric">The combination</span>
+          <p class="display text-2xl mt-4 mb-4 leading-tight">
+            Each tool is good.<br>
+            <em class="display-italic text-electric">Together they're a toolbox.</em>
+          </p>
+          <p class="text-paper/70 text-sm leading-relaxed">
+            Rules Engine fires an AI Template. The Template orchestrates comprehensive AI enrichment. AI Analyst validates the output. The AI Agent assists you with bulk edits. MCP exposes the same surface to external agents &mdash; want to use Claude or ChatGPT to query your catalogue or trigger tasks? That works too.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== IN PRACTICE - WORKFLOW SCENARIOS ============== -->
+<section class="relative py-24 lg:py-32 border-b border-ink/10">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <div class="grid lg:grid-cols-12 gap-10 mb-16">
+      <div class="lg:col-span-12 text-center max-w-6xl mx-auto">
+        <h3 class="display text-[clamp(1.75rem,3.5vw,3.25rem)] font-medium leading-[1.02]">
+          What your operations<br>
+          look like, <span class="display-italic text-electric">in real terms</span>
+        </h3>
+      </div>
+    </div>
+
+    <!-- Tab nav -->
+    <div role="tablist" class="flex flex-wrap gap-2 mb-8 border-b border-ink/10 pb-1">
+      <button role="tab" aria-selected="true" data-tab="t1" class="tab-btn px-5 py-3 rounded-full border border-ink/15 text-sm font-medium hover:bg-ink/5 transition-colors">
+        <span class="tab-num font-mono text-xs mr-2 text-ink/40">01</span>Onboard a new supplier
+      </button>
+      <button role="tab" aria-selected="false" data-tab="t2" class="tab-btn px-5 py-3 rounded-full border border-ink/15 text-sm font-medium hover:bg-ink/5 transition-colors">
+        <span class="tab-num font-mono text-xs mr-2 text-ink/40">02</span>Launch into a new market
+      </button>
+      <button role="tab" aria-selected="false" data-tab="t3" class="tab-btn px-5 py-3 rounded-full border border-ink/15 text-sm font-medium hover:bg-ink/5 transition-colors">
+        <span class="tab-num font-mono text-xs mr-2 text-ink/40">03</span>Operate via Claude or Cursor
+      </button>
+      <button role="tab" aria-selected="false" data-tab="t4" class="tab-btn px-5 py-3 rounded-full border border-ink/15 text-sm font-medium hover:bg-ink/5 transition-colors">
+        <span class="tab-num font-mono text-xs mr-2 text-ink/40">04</span>Custom SI integration
+      </button>
+    </div>
+
+    <!-- Tab panels -->
+    <div class="grid lg:grid-cols-12 gap-10">
+
+      <!-- TAB 1 -->
+      <div id="t1" role="tabpanel" class="tab-panel lg:col-span-12 grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-7">
+          <span class="eyebrow text-electric mb-3 block">Scenario · Supplier onboarding</span>
+          <h4 class="display text-3xl lg:text-4xl mb-5 leading-tight">5,000 SKUs from a messy CSV. Live in hours.</h4>
+          <ol class="space-y-5">
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">01</span>
+              <div>
+                <p class="font-medium">Map and import</p>
+                <p class="text-sm text-ink/60">In Cursor, the AI uses Bluestone PIM's MCP to resolve attribute names, dictionary values and contexts. Mapping script: minutes.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">02</span>
+              <div>
+                <p class="font-medium">Trigger AI Enrich via Rules Engine</p>
+                <p class="text-sm text-ink/60">Rule: "if supplier_id = X and status = Draft → run AI Enrich Template 'Outdoor v3'." Fires on import event.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">03</span>
+              <div>
+                <p class="font-medium">AI Analyst sweeps</p>
+                <p class="text-sm text-ink/60">Anomalies surfaced with confidence scores. Missing materials, mis-categorisations, oddities — flagged with one-click fixes.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">04</span>
+              <div>
+                <p class="font-medium">Sync &amp; publish</p>
+                <p class="text-sm text-ink/60">Rules Engine "Sync products" rule lifts validated SKUs into PAPI. Storefront live before lunch.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <aside class="lg:col-span-5">
+          <div class="rounded-3xl bg-ink text-paper p-6 lg:p-8 sticky top-24">
+            <span class="eyebrow text-electric">Before / After</span>
+            <div class="mt-5 space-y-4">
+              <div class="flex items-center justify-between border-b border-paper/10 pb-3">
+                <span class="text-sm text-paper/60">Time to live</span>
+                <span class="font-mono text-paper/80 line-through">2–3 weeks</span>
+                <span class="num text-electric text-xl">~4 hrs</span>
+              </div>
+              <div class="flex items-center justify-between border-b border-paper/10 pb-3">
+                <span class="text-sm text-paper/60">Manual touches per SKU</span>
+                <span class="font-mono text-paper/80 line-through">~28</span>
+                <span class="num text-electric text-xl">0–2</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-paper/60">Errors caught pre-launch</span>
+                <span class="font-mono text-paper/80 line-through">~60%</span>
+                <span class="num text-electric text-xl">~99%</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- TAB 2 -->
+      <div id="t2" role="tabpanel" hidden class="tab-panel lg:col-span-12 grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-7">
+          <span class="eyebrow text-electric mb-3 block">Scenario · New market</span>
+          <h4 class="display text-3xl lg:text-4xl mb-5 leading-tight">Norway, Sweden, Finland — full catalogue, two days</h4>
+          <ol class="space-y-5">
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">01</span>
+              <div>
+                <p class="font-medium">Spin up new contexts</p>
+                <p class="text-sm text-ink/60">Three new languages and market contexts created via API. No clicking through forms.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">02</span>
+              <div>
+                <p class="font-medium">AI Linguist Templates</p>
+                <p class="text-sm text-ink/60">Each language gets its own template — terminology, tone of voice, regulatory phrasing locked in.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">03</span>
+              <div>
+                <p class="font-medium">Bulk run, scheduled</p>
+                <p class="text-sm text-ink/60">Rule fires AI Linguist nightly for newly-published products. Translators move from typing to reviewing.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">04</span>
+              <div>
+                <p class="font-medium">AI Analyst, per-language</p>
+                <p class="text-sm text-ink/60">Quality sweep in each locale: missing fields, awkward phrasing, off-brand terminology.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <aside class="lg:col-span-5">
+          <div class="rounded-3xl bg-ink text-paper p-6 lg:p-8 sticky top-24">
+            <span class="eyebrow text-electric">Before / After</span>
+            <div class="mt-5 space-y-4">
+              <div class="flex items-center justify-between border-b border-paper/10 pb-3">
+                <span class="text-sm text-paper/60">Translation cycle</span>
+                <span class="font-mono text-paper/80 line-through">8–12 weeks</span>
+                <span class="num text-electric text-xl">~48 hrs</span>
+              </div>
+              <div class="flex items-center justify-between border-b border-paper/10 pb-3">
+                <span class="text-sm text-paper/60">Per-language cost</span>
+                <span class="font-mono text-paper/80 line-through">€€€</span>
+                <span class="num text-electric text-xl">€</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-paper/60">Brand consistency</span>
+                <span class="font-mono text-paper/80">variable</span>
+                <span class="num text-electric text-xl">locked</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- TAB 3 -->
+      <div id="t3" role="tabpanel" hidden class="tab-panel lg:col-span-12 grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-7">
+          <span class="eyebrow text-electric mb-3 block">Scenario · Surface-agnostic operations</span>
+          <h4 class="display text-3xl lg:text-4xl mb-5 leading-tight">Drive your PIM from Claude, Cursor — or anywhere else</h4>
+          <ol class="space-y-5">
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">01</span>
+              <div>
+                <p class="font-medium">Connect any MCP client</p>
+                <p class="text-sm text-ink/60">Claude Desktop, Cursor, ChatGPT, custom agent — they all speak the same protocol. Connection is a few clicks.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">02</span>
+              <div>
+                <p class="font-medium">Operate in natural language</p>
+                <p class="text-sm text-ink/60">Bulk edits, completeness audits, status changes, category reassignments. The agent calls the right MCP tools; the operator stays on intent, not interface.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">03</span>
+              <div>
+                <p class="font-medium">Engineering teams use Cursor</p>
+                <p class="text-sm text-ink/60">New attribute? Schema change? Just describe it in Cursor. The MCP resolves IDs, generates the migration, runs it against test before prod.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">04</span>
+              <div>
+                <p class="font-medium">The Bluestone PIM UI is one client of many</p>
+                <p class="text-sm text-ink/60">Browser UI, Claude Desktop, Cursor, your CI pipeline — all co-equal consumers of the same API. The PIM doesn't dictate the surface.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <aside class="lg:col-span-5">
+          <div class="rounded-3xl bg-ink text-paper p-6 lg:p-8 sticky top-24">
+            <span class="eyebrow text-electric">Why this matters</span>
+            <p class="mt-4 text-paper/80 leading-relaxed text-sm">
+              Most PIMs lock your team into <em>their</em> interface. Bluestone PIM's API-only architecture means the surface your team is most productive in — Claude, Cursor, the in-app Agent, a custom dashboard — is a real choice, not a workaround.
+            </p>
+            <div class="mt-6 pt-6 border-t border-paper/10">
+              <span class="eyebrow text-electric">Time horizon</span>
+              <p class="display text-3xl mt-2">Today.<em class="display-italic text-paper/60 text-base"> already shipped.</em></p>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- TAB 4 -->
+      <div id="t4" role="tabpanel" hidden class="tab-panel lg:col-span-12 grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-7">
+          <span class="eyebrow text-electric mb-3 block">Scenario · SI partner build</span>
+          <h4 class="display text-3xl lg:text-4xl mb-5 leading-tight">Custom logic, shipped in days</h4>
+          <ol class="space-y-5">
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">01</span>
+              <div>
+                <p class="font-medium">Fork the open-source MCP server</p>
+                <p class="text-sm text-ink/60">Start from Bluestone LABS' production-ready MCP repo. Licence-clean, opinionated, extensible.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">02</span>
+              <div>
+                <p class="font-medium">Add a custom tool</p>
+                <p class="text-sm text-ink/60">Example: "validate ERP pricing before any PIM label change." A new MCP tool with a few dozen lines of glue code.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">03</span>
+              <div>
+                <p class="font-medium">Deploy to client</p>
+                <p class="text-sm text-ink/60">Same protocol, client-specific business logic. Their agent now knows their rules.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="num text-2xl text-electric leading-none w-10 shrink-0">04</span>
+              <div>
+                <p class="font-medium">Cursor-friendly delivery</p>
+                <p class="text-sm text-ink/60">Documentation as MCP. Devs onboard via prompt. New attributes? Just ask.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <aside class="lg:col-span-5">
+          <div class="rounded-3xl bg-ink text-paper p-6 lg:p-8 sticky top-24">
+            <span class="eyebrow text-electric">Partner economics</span>
+            <div class="mt-5 space-y-4">
+              <div class="flex items-center justify-between border-b border-paper/10 pb-3">
+                <span class="text-sm text-paper/60">Custom integration</span>
+                <span class="font-mono text-paper/80 line-through">weeks</span>
+                <span class="num text-electric text-xl">days</span>
+              </div>
+              <div class="flex items-center justify-between border-b border-paper/10 pb-3">
+                <span class="text-sm text-paper/60">Maintenance burden</span>
+                <span class="font-mono text-paper/80 line-through">high</span>
+                <span class="num text-electric text-xl">low</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-paper/60">Re-usability across clients</span>
+                <span class="font-mono text-paper/80">limited</span>
+                <span class="num text-electric text-xl">high</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== COMPARISON TABLE ============== -->
+<section id="compare" class="relative py-24 lg:py-32 bg-ink text-paper overflow-hidden">
+  <div class="absolute inset-0 grid-bg-dark opacity-50 pointer-events-none"></div>
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <div class="grid lg:grid-cols-12 gap-10 mb-16">
+      <div class="lg:col-span-12 text-center max-w-6xl mx-auto">
+        <h3 class="display text-[clamp(1.75rem,3.5vw,3.25rem)] font-medium leading-[1.02] text-paper">
+          How Bluestone PIM compares,<br>
+          <span class="display-italic text-electric">side by side</span>
+        </h3>
+        <p class="mt-6 text-lg text-paper/90 mx-auto max-w-2xl">
+          Eight dimensions that decide whether AI automation actually works in production. Here's how a typical PIM stacks up against the architecture we've built.
+        </p>
+      </div>
+    </div>
+
+    <div class="rounded-3xl border border-paper/10 overflow-hidden max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-3 text-sm">
+        <!-- Header row -->
+        <div class="bg-paper/[0.03] p-6 border-b lg:border-b-0 lg:border-r border-paper/10">
+          <span class="eyebrow text-paper/50">Dimension</span>
+        </div>
+        <div class="bg-paper/[0.03] p-6 border-b lg:border-b-0 lg:border-r border-paper/10">
+          <span class="eyebrow text-paper/60">Other PIMs</span>
+          <p class="text-paper/50 text-xs mt-1">typical state of the market</p>
+        </div>
+        <div class="bg-electric/15 p-6 border-b lg:border-b-0 border border-electric">
+          <span class="eyebrow text-electric">Bluestone PIM</span>
+          <p class="text-paper text-xs mt-1">agent-first by design</p>
+        </div>
+
+        <!-- Row 1: Architecture -->
+        <div class="p-6 border-t border-paper/10 font-medium">Architecture</div>
+        <div class="p-6 border-t border-paper/10 lg:border-l text-paper/80">API-first, with screens as the primary surface. Some operations still require the GUI.</div>
+        <div class="p-6 border-t border-electric lg:border-l border-electric bg-electric/5 text-paper">
+          <strong class="text-electric">API-only.</strong> The GUI is one client of the API; every action is reachable as a service.
+        </div>
+
+        <!-- Row 2: Microservices -->
+        <div class="p-6 border-t border-paper/10 font-medium">Microservices</div>
+        <div class="p-6 border-t border-paper/10 lg:border-l text-paper/80">Coarse-grained or partially decomposed; agents over-fetch and over-write.</div>
+        <div class="p-6 border-t border-electric lg:border-l border-electric bg-electric/5 text-paper">
+          <strong class="text-electric">Granular.</strong> Each function independently addressable through 700+ APIs.
+        </div>
+
+        <!-- Row 3: AI integration -->
+        <div class="p-6 border-t border-paper/10 font-medium">AI integration</div>
+        <div class="p-6 border-t border-paper/10 lg:border-l text-paper/80">Sidebar feature or add-on layer on top of existing core.</div>
+        <div class="p-6 border-t border-electric lg:border-l border-electric bg-electric/5 text-paper">
+          <strong class="text-electric">Native.</strong> AI is part of the core workflow architecture.
+        </div>
+
+        <!-- Row 4: MCP -->
+        <div class="p-6 border-t border-paper/10 font-medium">MCP support</div>
+        <div class="p-6 border-t border-paper/10 lg:border-l text-paper/80">Read-only wrapper where present; often planned, rarely shipped.</div>
+        <div class="p-6 border-t border-electric lg:border-l border-electric bg-electric/5 text-paper">
+          <strong class="text-electric">Native MCP.</strong> Bidirectional. Open-source server, forkable and extensible.
+        </div>
+
+        <!-- Row 5: Agent reach -->
+        <div class="p-6 border-t border-paper/10 font-medium">Agent reach</div>
+        <div class="p-6 border-t border-paper/10 lg:border-l text-paper/80">Most operations possible; some still require a human in the GUI.</div>
+        <div class="p-6 border-t border-electric lg:border-l border-electric bg-electric/5 text-paper">
+          <strong class="text-electric">Full lifecycle.</strong> No GUI-only corners; agents can complete any workflow.
+        </div>
+
+        <!-- Row 6: Workflow + AI -->
+        <div class="p-6 border-t border-paper/10 font-medium">Workflow + AI</div>
+        <div class="p-6 border-t border-paper/10 lg:border-l text-paper/80">Workflow tool and AI features live separately; ETL scripts often required outside the platform.</div>
+        <div class="p-6 border-t border-electric lg:border-l border-electric bg-electric/5 text-paper">
+          <strong class="text-electric">Rules Engine + AI Templates</strong> as one fabric — deterministic and adaptive in the same loop.
+        </div>
+
+        <!-- Row 7: Automation ceiling -->
+        <div class="p-6 border-t border-paper/10 font-medium">Automation ceiling</div>
+        <div class="p-6 border-t border-paper/10 lg:border-l text-paper/80">Vendor-defined; what's automatable is whatever the vendor decided to ship.</div>
+        <div class="p-6 border-t border-electric lg:border-l border-electric bg-electric/5 text-paper">
+          <strong class="text-electric">Customer-defined.</strong> Anything addressable through the API is automatable.
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FAQ / OBJECTIONS ============== -->
+<section class="relative py-24 lg:py-32 border-b border-ink/10">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-10 mb-16">
+      <div class="lg:col-span-12 text-center max-w-6xl mx-auto">
+        <h3 class="display text-[clamp(1.75rem,3.5vw,3.25rem)] font-medium leading-[1.02] text-balance">
+          Common questions. <span class="display-italic text-electric">Honest answers.</span>
+        </h3>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-x-10">
+      <div class="lg:col-span-12 divide-y divide-ink/10 border-y border-ink/10">
+
+        <details class="group py-6">
+          <summary class="flex items-start gap-6 cursor-pointer">
+            <span class="num text-3xl text-ink/30 w-12 shrink-0">01</span>
+            <span class="display text-2xl lg:text-3xl flex-1 leading-tight">"Our team likes the GUI. They don't want to be replaced by agents."</span>
+            <span class="arrow text-2xl text-ink/40 mt-1">+</span>
+          </summary>
+          <div class="mt-5 pl-[72px] text-ink/70 leading-relaxed max-w-3xl">
+            Nobody's replacing them. Bluestone PIM's GUI is genuinely good — it's where humans review, approve and exception-handle. The agent does the busy work; your team does the judgement. Most teams report finally getting time for the strategic work they were hired for.
+          </div>
+        </details>
+
+        <details class="group py-6">
+          <summary class="flex items-start gap-6 cursor-pointer">
+            <span class="num text-3xl text-ink/30 w-12 shrink-0">02</span>
+            <span class="display text-2xl lg:text-3xl flex-1 leading-tight">"We just bought a different PIM eighteen months ago."</span>
+            <span class="arrow text-2xl text-ink/40 mt-1">+</span>
+          </summary>
+          <div class="mt-5 pl-[72px] text-ink/70 leading-relaxed max-w-3xl">
+            Understood — and we'd ask: can it do what's on this page? Walk through the four levels honestly. If your platform is at Level I or II, the question isn't whether to migrate, it's how. We've helped teams stage it: start where the operational ROI is fastest — usually AI Enrich and AI Analyst — then expand into rule-driven automation, then full agent-first ops.
+          </div>
+        </details>
+
+        <details class="group py-6">
+          <summary class="flex items-start gap-6 cursor-pointer">
+            <span class="num text-3xl text-ink/30 w-12 shrink-0">03</span>
+            <span class="display text-2xl lg:text-3xl flex-1 leading-tight">"AI hallucinates. We can't trust it with our catalogue."</span>
+            <span class="arrow text-2xl text-ink/40 mt-1">+</span>
+          </summary>
+          <div class="mt-5 pl-[72px] text-ink/70 leading-relaxed max-w-3xl">
+            Right — which is why every AI Analyst suggestion ships with a confidence score and a reason. Why AI Enrich previews before it applies. Why the Rules Engine sits as a deterministic gate in front of generative actions. You're on the loop, not out of it. The architecture is built for human-on-the-loop oversight.
+          </div>
+        </details>
+
+        <details class="group py-6">
+          <summary class="flex items-start gap-6 cursor-pointer">
+            <span class="num text-3xl text-ink/30 w-12 shrink-0">04</span>
+            <span class="display text-2xl lg:text-3xl flex-1 leading-tight">"Our other vendor says they're MCP-ready too."</span>
+            <span class="arrow text-2xl text-ink/40 mt-1">+</span>
+          </summary>
+          <div class="mt-5 pl-[72px] text-ink/70 leading-relaxed max-w-3xl">
+            Ask three questions. (1) Is the MCP a wrapper around an existing limited API, or native to the platform? (2) Is it bidirectional with write-back, or read-only? (3) Can an external agent complete a full workflow without hitting a GUI-only step? If they can't answer all three with "native, bidirectional, yes" — they're at Level II.
+          </div>
+        </details>
+
+        <details class="group py-6">
+          <summary class="flex items-start gap-6 cursor-pointer">
+            <span class="num text-3xl text-ink/30 w-12 shrink-0">05</span>
+            <span class="display text-2xl lg:text-3xl flex-1 leading-tight">"Sounds expensive. We're not enterprise."</span>
+            <span class="arrow text-2xl text-ink/40 mt-1">+</span>
+          </summary>
+          <div class="mt-5 pl-[72px] text-ink/70 leading-relaxed max-w-3xl">
+            AI Enrich is a core feature, free of charge to all Bluestone PIM users. Pricing scales with what you actually use. The economic argument is usually the easy part: replace headcount-bound workflows with template-bound ones and the math gets very friendly very fast.
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== AGENTIC COMMERCE — BYPRODUCT PAYOFF ============== -->
+<section class="relative py-24 lg:py-32 border-b border-ink/10 bg-paper-soft overflow-hidden">
+  <div class="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-electric/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <div class="mb-16 max-w-5xl">
+      <span class="eyebrow text-electric block mb-4">The byproduct</span>
+      <h3 class="display text-[clamp(1.75rem,3.5vw,3.25rem)] font-medium leading-[1.02]">
+        You set out to automate operations.<br>
+        <span class="display-italic text-electric">You're also agentic-commerce ready.</span>
+      </h3>
+      <p class="mt-6 text-lg text-ink/90 mx-auto max-w-3xl">
+        This whole page has been about your team — making PIM work happen at agent speed. With no extra build, the same MCP architecture that powers all of it makes your catalogue readable by external AI agents too. Same spine. Two payoffs.
+      </p>
+    </div>
+
+    <!-- Two-card payoff -->
+    <div class="grid lg:grid-cols-12 gap-6 lg:gap-8">
+
+      <!-- Left: What you set out to do -->
+      <div class="lg:col-span-5 rounded-3xl border border-ink/15 p-8 lg:p-10 bg-paper relative">
+        <div class="flex items-center justify-between mb-6">
+          <span class="chip bg-ink/10 text-ink/60">WHAT YOU SET OUT TO DO</span>
+          <span class="num text-3xl text-ink/30">01</span>
+        </div>
+        <h4 class="display text-2xl lg:text-3xl mb-4 leading-tight">Run your PIM at <em class="display-italic">agent speed</em></h4>
+        <ul class="text-sm text-ink/70 space-y-3 mt-5">
+          <li class="flex items-start gap-3"><span class="text-electric mt-0.5">→</span> Eliminate click-bound operational work</li>
+          <li class="flex items-start gap-3"><span class="text-electric mt-0.5">→</span> Trigger AI Templates from the Rules Engine</li>
+          <li class="flex items-start gap-3"><span class="text-electric mt-0.5">→</span> Automate anything via 700+ granular APIs</li>
+          <li class="flex items-start gap-3"><span class="text-electric mt-0.5">→</span> Run an AI Agent that lives inside the PIM</li>
+        </ul>
+      </div>
+
+      <!-- Right: What you also got, free -->
+      <div class="lg:col-span-7 rounded-3xl border-2 border-electric p-8 lg:p-10 bg-electric/5 relative shadow-[0_0_60px_rgba(30,63,255,0.15)]">
+        <div class="flex items-center justify-between mb-6">
+          <span class="chip bg-electric text-paper">WHAT YOU ALSO GOT &mdash; FREE</span>
+          <span class="num text-3xl text-electric/30">02</span>
+        </div>
+        <h4 class="display text-3xl lg:text-4xl mb-4 leading-tight">A catalogue <em class="display-italic">external AI can cite</em></h4>
+        <p class="text-ink/80 leading-relaxed mb-6">
+          The same MCP layer that powers internal automation exposes your catalogue &mdash; live, structured, queryable &mdash; to ChatGPT, Claude, Gemini, Perplexity, and whatever launches next quarter. When buyers ask an AI for product recommendations, your products land in the answer set, not invisible to it.
+        </p>
+        <p class="text-ink/60 text-sm italic mb-6 max-w-xl">
+          That's a separate sales conversation &mdash; different buyer, different ROI math. But it costs you nothing extra to get there. The architecture you adopted to fix operations <em>is</em> the one that makes commerce-via-agents possible.
+        </p>
+        <a href="https://www.bluestonepim.com/mcp" class="inline-flex items-center gap-2 bg-electric hover:bg-electric-deep text-paper px-6 py-3 rounded-full font-medium text-sm transition-colors">
+          See the agentic commerce page <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== FINAL CTA ============== -->
+<section id="cta" class="relative py-32 lg:py-44 overflow-hidden bg-ink text-paper">
+  <div class="absolute inset-0 grid-bg-dark opacity-40 pointer-events-none"></div>
+  <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-electric/15 rounded-full blur-3xl pointer-events-none"></div>
+  
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="max-w-4xl">
+      <span class="eyebrow text-electric">Closing argument</span>
+      <h2 class="display text-[clamp(1.75rem,3.5vw,3.25rem)] font-medium leading-[1.02] mt-6 mb-10">
+        By 2030, product operations<br>
+        will be AI-driven.<br>
+        <span class="display-italic text-electric">The only question is whose.</span>
+      </h2>
+      <p class="text-xl text-paper/70 max-w-2xl mb-12 leading-relaxed">
+        Thirty minutes with our team. We'll walk through your stack honestly, place it on the four-level model, and show you what an AI-native equivalent looks like running against your own data.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 mb-16">
+        <a href="#" class="group inline-flex items-center gap-2 bg-electric hover:bg-electric-deep text-paper px-8 py-5 rounded-full font-medium text-lg transition-colors">
+          Book the AI briefing
+          <span class="inline-block group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+        <a href="https://www.bluestonepim.com/mcp" class="inline-flex items-center gap-2 border border-paper/20 hover:border-paper/50 text-paper px-8 py-5 rounded-full font-medium text-lg transition-colors">
+          Explore the MCP page
+        </a>
+      </div>    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="bg-paper py-14">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-full bg-ink flex items-center justify-center">
+          <div class="w-3 h-3 rounded-full bg-electric"></div>
+        </div>
+        <div>
+          <p class="font-semibold tracking-tight">Bluestone PIM</p>
+          <p class="text-xs text-ink/50 font-mono">The PIM built for the AI era</p>
+        </div>
+      </div>
+
+      <nav class="flex flex-wrap gap-x-8 gap-y-3 text-sm text-ink/60">
+        <a href="https://www.bluestonepim.com/ai-for-pim/ai-vision" class="anim-underline hover:text-ink">AI Vision</a>
+        <a href="https://www.bluestonepim.com/mcp" class="anim-underline hover:text-ink">MCP</a>
+        <a href="https://www.bluestonepim.com/ai-for-pim/ai-agent" class="anim-underline hover:text-ink">AI Agent</a>
+        <a href="https://www.bluestonepim.com/ai-for-pim/ai-enrich" class="anim-underline hover:text-ink">AI Enrich</a>
+        <a href="https://www.bluestonepim.com/ai-for-pim/ai-analyst" class="anim-underline hover:text-ink">AI Analyst</a>
+        <a href="https://www.bluestonepim.com/ai-for-pim/ai-linguist" class="anim-underline hover:text-ink">AI Linguist</a>
+        <a href="https://www.bluestonepim.com/ai-for-pim/ai-templates" class="anim-underline hover:text-ink">AI Templates</a>
+        <a href="https://www.bluestonepim.com/ai-dam" class="anim-underline hover:text-ink">AI DAM</a>
+      </nav>
+
+      <p class="text-xs text-ink/40 font-mono">© 2026 Bluestone PIM</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== VIDEO MODAL ============== -->
+<div id="video-modal" class="fixed inset-0 z-[100] hidden bg-ink/95 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="Video player">
+  <button type="button" data-video-close class="absolute top-5 right-5 lg:top-8 lg:right-8 w-12 h-12 rounded-full bg-paper/10 hover:bg-paper/20 text-paper flex items-center justify-center transition-colors z-10" aria-label="Close video">
+    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M18 6L6 18M6 6l12 12"/>
+    </svg>
+  </button>
+  <div class="absolute inset-0 flex items-center justify-center p-6 lg:p-12" data-video-overlay>
+    <div class="w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl relative">
+      <!-- TODO: replace data-video-src with your actual video URL (YouTube/Vimeo/etc.) -->
+      <iframe
+        id="video-iframe"
+        class="absolute inset-0 w-full h-full"
+        src=""
+        data-video-src="https://www.youtube.com/embed/REPLACE_WITH_VIDEO_ID?autoplay=1&rel=0"
+        title="Bluestone PIM — AI Automation in action"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ============== JS ============== -->
+<script>
+  // Tabs
+  const tabs = document.querySelectorAll('[role="tab"]');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      tabs.forEach(x => x.setAttribute('aria-selected','false'));
+      t.setAttribute('aria-selected','true');
+      const id = t.dataset.tab;
+      panels.forEach(p => {
+        if (p.id === id) p.removeAttribute('hidden');
+        else p.setAttribute('hidden','');
+      });
+    });
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('in');
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Video modal — opens hero video in a popup, clears src on close to stop playback
+  const videoTrigger = document.querySelector('[data-video-trigger]');
+  const videoModal   = document.getElementById('video-modal');
+  const videoClose   = document.querySelector('[data-video-close]');
+  const videoOverlay = document.querySelector('[data-video-overlay]');
+  const videoIframe  = document.getElementById('video-iframe');
+
+  function openVideo() {
+    if (!videoModal) return;
+    videoModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    if (videoIframe && videoIframe.dataset.videoSrc) {
+      videoIframe.src = videoIframe.dataset.videoSrc;
+    }
+  }
+  function closeVideo() {
+    if (!videoModal) return;
+    videoModal.classList.add('hidden');
+    document.body.style.overflow = '';
+    if (videoIframe) videoIframe.src = '';
+  }
+
+  videoTrigger?.addEventListener('click', openVideo);
+  videoClose?.addEventListener('click', closeVideo);
+  videoOverlay?.addEventListener('click', (e) => {
+    if (e.target === videoOverlay) closeVideo();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoModal && !videoModal.classList.contains('hidden')) closeVideo();
+  });
+</script>
+
+</body>
+</html>
