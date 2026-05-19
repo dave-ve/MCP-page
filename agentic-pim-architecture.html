@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Agentic PIM Architecture — Bluestone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --border-soft: #E5E7EB;
+    --text: #0F172A;
+    --text-muted: #475569;
+    --text-faint: #94A3B8;
+    --brand: #1E3A8A;
+    --brand-dark: #102D6B;
+    --brand-tint: #EAF1FC;
+    --brand-edge: #C5D8F2;
+    --accent: #0F6E56;
+    --accent-dark: #085041;
+    --accent-tint: #E8F4ED;
+    --accent-edge: #BFDBCB;
+    --font-main: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-main);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 72px 48px 88px;
+  }
+
+  /* ---- Header ---- */
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-main);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-faint);
+    border-bottom: 1px solid var(--border-soft);
+    padding-bottom: 16px;
+    margin-bottom: 56px;
+  }
+  .meta .right { display: flex; gap: 24px; }
+
+  h1 {
+    font-family: var(--font-main);
+    font-weight: 800;
+    font-size: clamp(44px, 6.5vw, 80px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin: 0 0 28px;
+    color: var(--text);
+  }
+  h1 .weight-light {
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .lede {
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 0 80px;
+  }
+
+  /* ---- Diagram ---- */
+  .diagram { margin-bottom: 56px; }
+
+  .layer-row {
+    display: grid;
+    grid-template-columns: 180px 1fr 130px;
+    gap: 28px;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .left-label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    font-family: var(--font-main);
+    font-size: 14px;
+    line-height: 1.35;
+    color: var(--text);
+  }
+  .left-label .label-icon {
+    font-size: 22px;
+    color: var(--brand);
+    opacity: 0.85;
+    flex-shrink: 0;
+  }
+  .left-label .label-text {
+    text-align: right;
+  }
+  .left-label .top {
+    display: block;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .left-label .bottom {
+    display: block;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .layer-card {
+    background: var(--brand-tint);
+    border: 1px solid var(--brand-edge);
+    border-radius: 14px;
+    padding: 22px 28px;
+    transition: transform 0.2s ease;
+  }
+  .layer-card:hover { transform: translateY(-1px); }
+
+  .layer-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 0 16px;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--brand-dark);
+    letter-spacing: -0.015em;
+  }
+  .layer-title .layer-icon {
+    font-size: 22px;
+    color: var(--brand);
+  }
+
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: #FFFFFF;
+    border: 1px solid var(--brand-edge);
+    border-radius: 999px;
+    font-family: var(--font-main);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--brand-dark);
+    white-space: nowrap;
+  }
+  .chip i {
+    font-size: 14px;
+    color: var(--brand);
+  }
+
+  .sub-divider {
+    height: 1px;
+    background: var(--brand-edge);
+    margin: 14px 36px;
+    opacity: 0.7;
+  }
+
+  .right-tag {
+    font-family: var(--font-main);
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--brand);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---- The Standard ---- */
+  .standard-divider {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 36px 0 16px;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent-dark);
+  }
+  .standard-divider::before,
+  .standard-divider::after {
+    content: '';
+    flex: 1;
+    border-top: 1px dashed var(--accent);
+    opacity: 0.5;
+  }
+  .standard-divider .standard-icon {
+    font-size: 18px;
+    color: var(--accent);
+  }
+
+  .standard-band {
+    background: var(--accent-tint);
+    border: 1px solid var(--accent-edge);
+    border-radius: 14px;
+    padding: 18px 28px;
+  }
+  .standard-band .chip {
+    background: #FFFFFF;
+    border-color: var(--accent-edge);
+    color: var(--accent-dark);
+  }
+  .standard-band .chip i {
+    color: var(--accent);
+  }
+
+  .model-strip {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    font-family: var(--font-main);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.01em;
+  }
+  .model-strip .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text);
+    font-weight: 700;
+    margin-right: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+  }
+  .model-strip .label i {
+    color: var(--brand);
+    font-size: 14px;
+  }
+  .model-strip .model {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .model-strip .dot {
+    color: var(--text-faint);
+    font-size: 11px;
+  }
+
+  .brand-icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: var(--text);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    flex-shrink: 0;
+  }
+  .brand-icon.anthropic {
+    -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg');
+    mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg');
+  }
+  .brand-icon.openai {
+    -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg');
+    mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg');
+  }
+  .brand-icon.gemini {
+    -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googlegemini.svg');
+    mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googlegemini.svg');
+  }
+  .brand-icon.meta {
+    -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/meta.svg');
+    mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/meta.svg');
+  }
+  .brand-icon.mistral {
+    -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/mistralai.svg');
+    mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/mistralai.svg');
+  }
+  .brand-icon.opensource {
+    -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/opensourceinitiative.svg');
+    mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/opensourceinitiative.svg');
+  }
+
+  /* ---- Reading guide ---- */
+  .guide {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 72px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .guide-card .guide-icon {
+    display: block;
+    font-size: 24px;
+    color: var(--brand);
+    margin-bottom: 14px;
+  }
+  .guide h3 {
+    font-family: var(--font-main);
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-faint);
+    margin: 0 0 8px;
+  }
+  .guide p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+  .guide p strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-soft);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-main);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 900px) {
+    .page { padding: 48px 24px; }
+    .layer-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .left-label {
+      justify-content: flex-start;
+    }
+    .left-label .label-text { text-align: left; }
+    .right-tag { text-align: left; }
+    .guide {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .meta .right { display: none; }
+    .guide { grid-template-columns: 1fr; }
+    .layer-title { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="meta">
+    <span>A framework</span>
+    <div class="right">
+      <span>Bluestone PIM</span>
+      <span>v1.0</span>
+    </div>
+  </div>
+
+  <header>
+    <h1><span class="weight-light">The</span> Agentic PIM<br>Architecture</h1>
+    <p class="lede">Four layers of an agent-ready product information platform. The product master at the bottom, the agent surface at the top, every layer open. Underpinned by The Standard.</p>
+  </header>
+
+  <section class="diagram" aria-label="Bluestone agentic PIM architecture diagram">
+
+    <!-- Layer 1: System of engagement -->
+    <div class="layer-row">
+      <div class="left-label">
+        <i class="ti ti-pointer label-icon" aria-hidden="true"></i>
+        <div class="label-text">
+          <span class="top">System of</span>
+          <span class="bottom">engagement</span>
+        </div>
+      </div>
+      <div class="layer-card">
+        <h2 class="layer-title">
+          <i class="ti ti-messages layer-icon" aria-hidden="true"></i>
+          Bluestone workbench
+        </h2>
+        <div class="items">
+          <span class="chip"><i class="ti ti-device-desktop" aria-hidden="true"></i>UI</span>
+          <span class="chip"><i class="ti ti-plug" aria-hidden="true"></i>MCP</span>
+          <span class="chip"><i class="ti ti-apps" aria-hidden="true"></i>App marketplace</span>
+          <span class="chip"><i class="ti ti-webhook" aria-hidden="true"></i>Webhooks</span>
+          <span class="chip"><i class="ti ti-message-circle" aria-hidden="true"></i>Slack &amp; Teams</span>
+        </div>
+      </div>
+      <div class="right-tag">Any agent<br>surface</div>
+    </div>
+
+    <!-- Layer 2: System of agency -->
+    <div class="layer-row">
+      <div class="left-label">
+        <i class="ti ti-cpu label-icon" aria-hidden="true"></i>
+        <div class="label-text">
+          <span class="top">System of</span>
+          <span class="bottom">agency</span>
+        </div>
+      </div>
+      <div class="layer-card">
+        <h2 class="layer-title">
+          <i class="ti ti-bolt layer-icon" aria-hidden="true"></i>
+          Built for agents
+        </h2>
+        <div class="items">
+          <span class="chip"><i class="ti ti-plug-connected" aria-hidden="true"></i>Native MCP</span>
+          <span class="chip"><i class="ti ti-api" aria-hidden="true"></i>Task-level APIs</span>
+          <span class="chip"><i class="ti ti-cpu" aria-hidden="true"></i>BYOM</span>
+          <span class="chip"><i class="ti ti-stairs-up" aria-hidden="true"></i>L5 parity</span>
+          <span class="chip"><i class="ti ti-eye-check" aria-hidden="true"></i>Audit</span>
+        </div>
+      </div>
+      <div class="right-tag">Any model,<br>any runtime</div>
+    </div>
+
+    <!-- Layer 3: System of work (taller, two rows) -->
+    <div class="layer-row">
+      <div class="left-label">
+        <i class="ti ti-tool label-icon" aria-hidden="true"></i>
+        <div class="label-text">
+          <span class="top">System of</span>
+          <span class="bottom">work</span>
+        </div>
+      </div>
+      <div class="layer-card">
+        <h2 class="layer-title">
+          <i class="ti ti-stack-2 layer-icon" aria-hidden="true"></i>
+          Product operations
+        </h2>
+        <div class="items">
+          <span class="chip"><i class="ti ti-truck-loading" aria-hidden="true"></i>Onboarding</span>
+          <span class="chip"><i class="ti ti-sparkles" aria-hidden="true"></i>Enrichment</span>
+          <span class="chip"><i class="ti ti-checks" aria-hidden="true"></i>Validation</span>
+          <span class="chip"><i class="ti ti-broadcast" aria-hidden="true"></i>Syndication</span>
+          <span class="chip"><i class="ti ti-rocket" aria-hidden="true"></i>Publishing</span>
+        </div>
+        <div class="sub-divider"></div>
+        <div class="items">
+          <span class="chip"><i class="ti ti-building-store" aria-hidden="true"></i>Marketplaces</span>
+          <span class="chip"><i class="ti ti-shopping-bag" aria-hidden="true"></i>Webshops</span>
+          <span class="chip"><i class="ti ti-shopping-cart" aria-hidden="true"></i>Retail</span>
+          <span class="chip"><i class="ti ti-building-skyscraper" aria-hidden="true"></i>B2B portals</span>
+          <span class="chip"><i class="ti ti-search" aria-hidden="true"></i>Search</span>
+          <span class="chip"><i class="ti ti-share-3" aria-hidden="true"></i>Social commerce</span>
+        </div>
+      </div>
+      <div class="right-tag">Any app,<br>any channel</div>
+    </div>
+
+    <!-- Layer 4: System of context -->
+    <div class="layer-row">
+      <div class="left-label">
+        <i class="ti ti-database label-icon" aria-hidden="true"></i>
+        <div class="label-text">
+          <span class="top">System of</span>
+          <span class="bottom">context</span>
+        </div>
+      </div>
+      <div class="layer-card">
+        <h2 class="layer-title">
+          <i class="ti ti-database layer-icon" aria-hidden="true"></i>
+          Product master
+        </h2>
+        <div class="items">
+          <span class="chip"><i class="ti ti-blocks" aria-hidden="true"></i>Flexible model</span>
+          <span class="chip"><i class="ti ti-photo" aria-hidden="true"></i>DAM</span>
+          <span class="chip"><i class="ti ti-stack" aria-hidden="true"></i>Variants</span>
+          <span class="chip"><i class="ti ti-world" aria-hidden="true"></i>Locales</span>
+          <span class="chip"><i class="ti ti-hierarchy" aria-hidden="true"></i>Taxonomies</span>
+        </div>
+      </div>
+      <div class="right-tag">Any commerce<br>stack</div>
+    </div>
+
+    <!-- The Standard -->
+    <div class="standard-divider">
+      <i class="ti ti-shield-check standard-icon" aria-hidden="true"></i>
+      The Standard
+    </div>
+    <div class="standard-band">
+      <div class="items">
+        <span class="chip"><i class="ti ti-list-numbers" aria-hidden="true"></i>11-point standard</span>
+        <span class="chip"><i class="ti ti-stairs-up" aria-hidden="true"></i>L5 parity</span>
+        <span class="chip"><i class="ti ti-certificate" aria-hidden="true"></i>MACH-certified</span>
+        <span class="chip"><i class="ti ti-api" aria-hidden="true"></i>API-first since 2016</span>
+        <span class="chip"><i class="ti ti-shield-check" aria-hidden="true"></i>Governance</span>
+      </div>
+    </div>
+
+    <!-- Model strip with brand icons -->
+    <div class="model-strip">
+      <span class="label"><i class="ti ti-cpu" aria-hidden="true"></i>Model-agnostic</span>
+      <span class="model"><i class="brand-icon anthropic" aria-hidden="true"></i>Anthropic</span>
+      <span class="dot">·</span>
+      <span class="model"><i class="brand-icon openai" aria-hidden="true"></i>OpenAI</span>
+      <span class="dot">·</span>
+      <span class="model"><i class="brand-icon gemini" aria-hidden="true"></i>Gemini</span>
+      <span class="dot">·</span>
+      <span class="model"><i class="brand-icon meta" aria-hidden="true"></i>LLaMA</span>
+      <span class="dot">·</span>
+      <span class="model"><i class="brand-icon mistral" aria-hidden="true"></i>Mistral</span>
+      <span class="dot">·</span>
+      <span class="model"><i class="brand-icon opensource" aria-hidden="true"></i>Open source</span>
+    </div>
+
+  </section>
+
+  <section class="guide" aria-label="How to read this diagram">
+    <div class="guide-card">
+      <i class="ti ti-stack-2 guide-icon" aria-hidden="true"></i>
+      <h3>Top to bottom</h3>
+      <p>Closest-to-user at the top, deepest substrate at the bottom. The <strong>workbench</strong> is where humans and agents meet; the <strong>product master</strong> is what they reason against.</p>
+    </div>
+    <div class="guide-card">
+      <i class="ti ti-arrows-shuffle guide-icon" aria-hidden="true"></i>
+      <h3>The middle layer</h3>
+      <p>Bluestone is deliberately <strong>runtime-agnostic</strong>. Agents run wherever the customer wants — Claude, GPT, Gemini, internal — and operate against Bluestone through MCP and task-level APIs.</p>
+    </div>
+    <div class="guide-card">
+      <i class="ti ti-arrows-maximize guide-icon" aria-hidden="true"></i>
+      <h3>The right tags</h3>
+      <p>Every layer says <strong>any X</strong>. Openness is structural, not a feature. This is the line that separates Bluestone from PIMs that bolted a single proprietary AI assistant onto the UI.</p>
+    </div>
+    <div class="guide-card">
+      <i class="ti ti-anchor guide-icon" aria-hidden="true"></i>
+      <h3>The underpinning</h3>
+      <p><strong>The Standard</strong> is the cross-cutting trust commitment — the 11-point standard for agent-ready PIM, the L5 parity bar, MACH certification. It anchors everything above.</p>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span>Bluestone PIM — Architecture brief</span>
+    <span>2026</span>
+  </div>
+
+</div>
+
+</body>
+</html>
