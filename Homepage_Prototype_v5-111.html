@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bluestone PIM — The product platform built for what comes next.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:       #1652f0;
+  --blue-dark:  #0f3fc4;
+  --blue-soft:  #e8efff;
+  --blue-glow:  rgba(22, 82, 240, 0.08);
+  --black:      #0a0a0a;
+  --grey-1:     #2a2a2a;
+  --grey-2:     #5a5a5a;
+  --grey-3:     #8a8a8a;
+  --grey-4:     #c0c0c0;
+  --line:       #e8e8e8;
+  --line-soft:  #f2f2f2;
+  --off:        #fafaf8;
+  --white:      #ffffff;
+  --display:    'IBM Plex Mono', monospace;
+  --body:       'Inter', system-ui, sans-serif;
+  --mono:       'JetBrains Mono', monospace;
+  --header-h:   76px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--body);
+  background: var(--white);
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--blue); color: white; }
+
+/* ─── HEADER ─── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-h);
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 48px;
+  height: 100%; display: grid; grid-template-columns: auto 1fr auto;
+  align-items: center; gap: 48px;
+}
+.logo {
+  font-family: var(--body); font-weight: 700; font-size: 20px;
+  letter-spacing: -0.03em; color: var(--black); cursor: pointer;
+  display: flex; align-items: center; gap: 10px; user-select: none;
+}
+.logo-dot { width: 9px; height: 9px; background: var(--blue); border-radius: 50%; }
+.logo em { font-style: normal; color: var(--blue); font-weight: 400; }
+
+.main-nav { display: flex; align-items: center; gap: 0; }
+.nav-item {
+  height: var(--header-h); display: flex; align-items: center; padding: 0 20px;
+  font-family: var(--body); font-size: 14.5px; font-weight: 500; color: var(--grey-1);
+  cursor: pointer; background: none; border: none; gap: 6px; white-space: nowrap;
+  position: relative; transition: color 0.15s;
+}
+.nav-item:hover { color: var(--black); }
+.nav-item.open { color: var(--blue); }
+.nav-item.open::after {
+  content: ''; position: absolute; bottom: 0; left: 20px; right: 20px;
+  height: 2px; background: var(--blue);
+}
+.chevron {
+  width: 11px; height: 11px; color: var(--grey-3);
+  transition: transform 0.18s, color 0.15s;
+}
+.nav-item.open .chevron { transform: rotate(180deg); color: var(--blue); }
+
+.ctas { display: flex; align-items: center; gap: 10px; }
+.btn {
+  font-family: var(--body); font-size: 13.5px; font-weight: 600; padding: 11px 22px;
+  border-radius: 4px; cursor: pointer; white-space: nowrap; border: 1px solid;
+  letter-spacing: -0.005em; transition: all 0.15s;
+  background: none; color: inherit;
+}
+.btn-ghost { background: white; color: var(--black); border-color: var(--grey-4); }
+.btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+.btn-primary { background: var(--blue); color: white; border-color: var(--blue); }
+.btn-primary:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+
+/* secondary nav */
+.secondary-nav {
+  position: absolute; top: 0; right: 48px;
+  display: flex; align-items: center; gap: 24px;
+  height: 28px; margin-top: 12px;
+  font-size: 11.5px; color: var(--grey-3); font-weight: 500;
+}
+.secondary-nav a { color: inherit; text-decoration: none; cursor: pointer; transition: color 0.15s; }
+.secondary-nav a:hover { color: var(--blue); }
+
+/* ─── MEGA MENU ─── */
+.menu-wrap {
+  position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 90;
+  background: var(--white); border-bottom: 1px solid var(--line);
+  box-shadow: 0 24px 60px rgba(10, 10, 10, 0.07);
+  display: none;
+}
+.menu-wrap.open { display: block; }
+.menu-inner { max-width: 1440px; margin: 0 auto; padding: 44px 48px 52px; }
+.menu-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.menu-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 56px; }
+.sec-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--grey-3); margin-bottom: 22px;
+}
+.mlink {
+  display: block; padding: 14px 0; cursor: pointer; border: none;
+  background: none; text-align: left; width: 100%; color: var(--black);
+  border-bottom: 1px solid transparent; transition: border-color 0.15s, padding 0.15s;
+}
+.mlink:hover { border-bottom-color: var(--blue); padding-left: 4px; }
+.mlink:hover .ml-title { color: var(--blue); }
+.ml-title {
+  font-family: var(--display); font-size: 16px; font-weight: 600; line-height: 1.2;
+  margin-bottom: 4px; transition: color 0.15s; letter-spacing: -0.015em;
+}
+.ml-desc { font-size: 13px; color: var(--grey-2); line-height: 1.45; }
+.ml-desc strong { color: var(--blue); font-weight: 500; }
+.pill {
+  font-family: var(--mono); font-size: 9px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 2px 7px; border-radius: 2px; vertical-align: 2px;
+  background: var(--blue-soft); color: var(--blue);
+}
+.pill-new { background: #fff4e0; color: #b06000; }
+
+.menu-cta-bar {
+  margin-top: 32px; padding: 20px 28px;
+  background: var(--off); border-left: 2px solid var(--blue);
+  display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+}
+.menu-cta-bar .label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--grey-2); flex-shrink: 0; margin-right: 8px;
+}
+.menu-cta-bar .mc {
+  font-size: 13px; font-weight: 500; color: var(--black);
+  text-decoration: none; cursor: pointer; transition: color 0.15s;
+  display: flex; align-items: center; gap: 6px;
+}
+.menu-cta-bar .mc:hover { color: var(--blue); }
+.menu-cta-bar .mc::after { content: '→'; color: var(--grey-3); }
+.menu-cta-bar .mc:hover::after { color: var(--blue); }
+.menu-cta-bar .sep { color: var(--grey-4); }
+
+.backdrop {
+  position: fixed; inset: 0; z-index: 80; background: rgba(10, 10, 10, 0.18);
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+}
+.backdrop.open { opacity: 1; pointer-events: auto; }
+
+/* ─── SECTIONS ─── */
+.section {
+  width: 100%; max-width: 1280px; margin: 0 auto; padding: 120px 48px;
+}
+.section.wide { max-width: none; padding: 120px 0; }
+.section.tight { padding: 80px 48px; }
+.section.dark { background: var(--black); color: var(--white); }
+.section.off { background: var(--off); }
+.section-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+.eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--blue);
+  font-weight: 500; margin-bottom: 28px;
+}
+.eyebrow.grey { color: var(--grey-3); }
+.eyebrow.white { color: var(--blue); }
+
+
+/* ─── METRICS STRIP ─── */
+.metrics-strip {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--off);
+}
+.metrics-strip-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 48px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.ms-item {
+  padding: 28px 0 26px;
+  display: flex; flex-direction: column; gap: 6px;
+  position: relative;
+}
+.ms-item:not(:last-child)::after {
+  content: ''; position: absolute; right: 0; top: 20%; bottom: 20%;
+  width: 1px; background: var(--line);
+}
+.ms-num {
+  font-family: var(--display); font-size: 36px; font-weight: 700;
+  color: var(--blue); letter-spacing: -0.03em; line-height: 1;
+}
+.ms-num.sm { font-size: 22px; letter-spacing: -0.02em; }
+.ms-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--grey-3); font-weight: 500; margin-bottom: 2px;
+}
+.ms-desc { font-size: 13px; color: var(--grey-2); line-height: 1.4; }
+
+/* ─── MAPI/PAPI DIAGRAM ─── */
+.arch-diagram {
+  margin-top: 56px; border: 1px solid var(--line); overflow: hidden;
+}
+.arch-diagram-head {
+  padding: 22px 32px; border-bottom: 1px solid var(--line); background: var(--off);
+  display: flex; justify-content: space-between; align-items: baseline;
+}
+.arch-diagram-head-title {
+  font-family: var(--display); font-size: 18px; font-weight: 600;
+  color: var(--black); letter-spacing: -0.015em;
+}
+.arch-diagram-head-tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--blue); font-weight: 500;
+}
+/* Actors */
+.arch-actors {
+  display: grid; grid-template-columns: repeat(6, 1fr); background: var(--white);
+}
+.arch-actor {
+  padding: 18px 12px 14px; text-align: center; border-right: 1px solid var(--line);
+  font-size: 12px; font-weight: 500; color: var(--grey-1);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.arch-actor:last-child { border-right: none; }
+.arch-actor-icon {
+  font-family: var(--mono); font-size: 20px; color: var(--blue); line-height: 1;
+}
+.arch-actor.human .arch-actor-icon { color: var(--grey-2); }
+/* Arrow row */
+.arch-arrows-row {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  background: var(--white); border-top: 1px solid var(--line-soft);
+}
+.arch-arr {
+  text-align: center; padding: 4px 0; font-size: 14px; color: var(--grey-3);
+  border-right: 1px solid var(--line-soft);
+}
+.arch-arr:last-child { border-right: none; }
+/* MAPI layer */
+.arch-mapi {
+  background: var(--white); border-top: 1px solid var(--line);
+  padding: 20px 32px;
+  display: flex; justify-content: space-between; align-items: center; gap: 32px;
+}
+.arch-layer-name {
+  flex-shrink: 0;
+}
+.arch-layer-name .abbr {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--blue); font-weight: 500; margin-bottom: 4px;
+}
+.arch-layer-name .full {
+  font-family: var(--display); font-size: 18px; font-weight: 700;
+  color: var(--black); letter-spacing: -0.015em;
+}
+.arch-layer-desc {
+  font-size: 13.5px; color: var(--grey-2); line-height: 1.5;
+}
+/* Gate */
+.arch-gate-wrap {
+  background: var(--off); border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  padding: 14px 32px; gap: 0;
+  position: relative;
+}
+.arch-gate-line {
+  flex: 1; height: 1px; background: var(--grey-4);
+}
+.arch-gate {
+  background: var(--blue); color: white; padding: 10px 32px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; font-weight: 600; flex-shrink: 0;
+  display: flex; align-items: center; gap: 12px;
+}
+.arch-gate-arrow {
+  font-size: 12px; color: var(--grey-4);
+}
+/* PAPI layer */
+.arch-papi {
+  background: var(--white);
+  padding: 20px 32px;
+  display: flex; justify-content: space-between; align-items: center; gap: 32px;
+}
+/* Down arrow row */
+.arch-down-row {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  background: var(--off); border-top: 1px solid var(--line);
+}
+.arch-down {
+  text-align: center; padding: 4px 0; font-size: 14px; color: var(--grey-3);
+  border-right: 1px solid var(--line-soft);
+}
+.arch-down:last-child { border-right: none; }
+/* Channels */
+.arch-channels {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  background: var(--white); border-top: 1px solid var(--line);
+}
+.arch-channel {
+  padding: 16px 12px 18px; text-align: center; border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+}
+.arch-channel:last-child { border-right: none; }
+.arch-channel-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--grey-3); margin-bottom: 2px;
+}
+.arch-channel-name {
+  font-size: 12px; font-weight: 500; color: var(--grey-1);
+}
+
+/* Recognition bar — earlier in page now */
+.recognition-bar {
+  margin-top: 40px; padding: 20px 28px;
+  border: 1px solid var(--line); background: var(--off);
+  display: flex; gap: 28px; align-items: center; flex-wrap: wrap;
+}
+.recognition-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--grey-2); font-weight: 500;
+  flex-shrink: 0;
+}
+.recognition-items {
+  display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+}
+.recognition-item {
+  font-family: var(--body); font-size: 13px; font-weight: 600;
+  color: var(--black);
+}
+.recognition-item .light {
+  font-weight: 400; color: var(--grey-2); font-size: 12px;
+}
+.recognition-sep { color: var(--grey-4); }
+
+
+/* ─── SECTION 1 — HERO ─── */
+.hero {
+  padding: 88px 48px 110px; max-width: 1280px; margin: 0 auto;
+  position: relative;
+  display: grid; grid-template-columns: 1.45fr 0.8fr; gap: 56px; align-items: center;
+}
+.hero-content { min-width: 0; }
+.hero-h {
+  font-family: var(--display); font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 600; line-height: 1.12; letter-spacing: -0.03em;
+  margin-bottom: 32px; color: var(--black);
+}
+.hero-h em {
+  font-style: normal; color: var(--blue); font-weight: 300;
+}
+.hero-sub {
+  font-family: var(--body); font-size: clamp(17px, 1.4vw, 20px);
+  font-weight: 400; color: var(--grey-1); line-height: 1.5;
+  margin-bottom: 36px; max-width: 620px; letter-spacing: -0.005em;
+}
+.hero-intro {
+  font-size: 16px; color: var(--grey-1); line-height: 1.65; max-width: 620px;
+  margin-bottom: 40px;
+}
+.hero-intro strong { color: var(--black); font-weight: 600; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.cta-big { font-size: 14px; font-weight: 600; padding: 16px 32px; }
+
+/* Hero image placeholder */
+.hero-visual {
+  aspect-ratio: 4 / 3;
+  background: var(--off);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; color: var(--grey-3);
+  position: relative; overflow: hidden;
+}
+.hero-visual::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(22,82,240,0.04) 0%, transparent 60%);
+}
+.hero-visual-icon {
+  width: 48px; height: 48px; border: 1.5px solid var(--grey-4); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; color: var(--grey-3);
+}
+.hero-visual-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--grey-3);
+}
+
+.hero-decoration {
+  position: absolute; top: 80px; right: 48px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em;
+  color: var(--grey-3); text-align: right; line-height: 1.8;
+}
+.hero-decoration .line { display: block; }
+.hero-decoration .blue { color: var(--blue); }
+
+/* ─── SECTION 2 — ERA INVERSION ─── */
+.section h2 {
+  font-family: var(--display); font-size: clamp(32px, 4.5vw, 54px);
+  font-weight: 600; line-height: 1.08; letter-spacing: -0.025em;
+  margin-bottom: 24px; max-width: 1000px;
+}
+.section h2 em { font-style: normal; color: var(--blue); font-weight: 300; }
+.section h2 .accent { color: var(--blue); }
+.section-intro {
+  font-family: var(--body); font-size: 19px;
+  font-weight: 400; color: var(--grey-2); line-height: 1.55;
+  max-width: 920px; margin-bottom: 64px;
+}
+
+.era-table {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  border: 1px solid var(--line); margin-top: 16px;
+}
+.era-col { padding: 32px 36px; }
+.era-col:first-child { border-right: 1px solid var(--line); background: var(--off); }
+.era-col:last-child { background: var(--blue-soft); }
+.era-head {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--grey-2);
+  font-weight: 500; padding-bottom: 18px; border-bottom: 1px solid var(--line);
+  margin-bottom: 18px;
+}
+.era-col:last-child .era-head { color: var(--blue); border-bottom-color: rgba(22, 82, 240, 0.18); }
+.era-tagline {
+  font-family: var(--display); font-style: italic; font-size: 14px;
+  color: var(--grey-2); display: block; margin-top: 6px; font-weight: 300;
+}
+.era-col:last-child .era-tagline { color: var(--blue-dark); }
+.era-row {
+  padding: 16px 0; font-size: 16px; line-height: 1.5; color: var(--grey-1);
+  border-bottom: 1px solid var(--line-soft);
+}
+.era-col:last-child .era-row { color: var(--black); font-weight: 500; }
+.era-row:last-child { border-bottom: none; }
+
+.era-closer {
+  font-family: var(--body); font-size: 20px;
+  font-weight: 400; color: var(--grey-1); line-height: 1.5;
+  margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line);
+  max-width: 880px; margin-left: auto; margin-right: auto; text-align: center;
+}
+.era-closer strong { font-weight: 700; color: var(--black); }
+
+/* ─── SECTION 3 — THREE DIMENSIONS ─── */
+.dim-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  border: 1px solid var(--line); margin-top: 16px;
+}
+.dim-card { padding: 44px 40px; background: var(--white); position: relative; transition: background 0.25s; }
+.dim-card:not(:last-child) { border-right: 1px solid var(--line); }
+.dim-card:hover { background: var(--off); }
+.dim-num {
+  font-family: var(--mono); font-size: 11px; color: var(--blue);
+  font-weight: 500; letter-spacing: 0.12em; margin-bottom: 28px;
+}
+.dim-card h3 {
+  font-family: var(--display); font-size: 22px; font-weight: 600;
+  line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 18px;
+  color: var(--black);
+}
+.dim-card p { font-size: 15px; color: var(--grey-2); line-height: 1.6; }
+
+.dim-download {
+  margin-top: 36px; padding: 22px 28px;
+  background: var(--off); border-left: 2px solid var(--blue);
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer;
+}
+.dim-download:hover .dim-download-link { color: var(--blue-dark); }
+.dim-download-text {
+  font-family: var(--body); font-size: 16px;
+  color: var(--grey-1); font-weight: 400;
+}
+.dim-download-text strong { color: var(--black); font-weight: 600; }
+.dim-download-link {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em;
+  color: var(--blue); font-weight: 500; transition: color 0.15s;
+}
+
+/* ─── SECTION 4 — MATURITY LADDER ─── */
+.section.off h2 em { color: var(--blue); }
+.ladder {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+  margin-top: 56px; position: relative;
+}
+.ladder-step {
+  padding: 28px 22px 32px; border: 1px solid var(--line);
+  background: var(--white); cursor: pointer; transition: all 0.2s;
+  position: relative; min-height: 220px;
+  display: flex; flex-direction: column;
+}
+.ladder-step:hover {
+  border-color: var(--grey-3); transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+.ladder-step.is-current {
+  background: var(--blue); color: white; border-color: var(--blue);
+  box-shadow: 0 12px 32px rgba(22, 82, 240, 0.25);
+}
+.ladder-step.is-current:hover { background: var(--blue-dark); transform: translateY(-3px); }
+.ladder-level {
+  font-family: var(--display); font-size: 32px; font-weight: 700;
+  letter-spacing: -0.03em; color: var(--blue);
+  margin-bottom: 18px; line-height: 1;
+}
+.ladder-step.is-current .ladder-level { color: white; }
+.ladder-label {
+  font-family: var(--body); font-size: 15px; font-weight: 600;
+  margin-bottom: 14px; color: var(--black); letter-spacing: -0.005em;
+}
+.ladder-step.is-current .ladder-label { color: white; }
+.ladder-desc { font-size: 13px; color: var(--grey-2); line-height: 1.5; flex-grow: 1; }
+.ladder-step.is-current .ladder-desc { color: rgba(255,255,255,0.9); }
+.ladder-current-tag {
+  position: absolute; top: -12px; right: 16px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 99px;
+  background: var(--black); color: white; font-weight: 500;
+}
+.ladder-cta { margin-top: 44px; text-align: left; }
+
+/* ─── SECTION 5 — DARK TECHNICAL BAND ─── */
+.section.dark .eyebrow { color: var(--blue); opacity: 0.95; }
+.section.dark h2 { color: white; }
+.section.dark h2 em, .section.dark h2 .accent { color: var(--blue); }
+.section.dark .section-intro { color: #b0b0b0; }
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  margin-top: 64px; border-top: 1px solid #2a2a2a; border-bottom: 1px solid #2a2a2a;
+}
+.metric { padding: 48px 32px 44px; position: relative; }
+.metric:not(:last-child) { border-right: 1px solid #2a2a2a; }
+.metric-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--grey-3); margin-bottom: 24px;
+}
+.metric-num {
+  font-family: var(--display); font-size: 58px; font-weight: 700;
+  letter-spacing: -0.03em; color: var(--blue); line-height: 1;
+  margin-bottom: 18px;
+}
+.metric-num.small { font-size: 32px; }
+.metric-desc { font-size: 14px; color: #b8b8b8; line-height: 1.5; }
+.metric-desc strong { color: white; font-weight: 500; }
+
+/* SDK and integration sub-blocks inside dark band */
+.tech-extras {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  margin-top: 64px; padding-top: 56px; border-top: 1px solid #2a2a2a;
+}
+.tech-extra-block .extra-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 18px;
+}
+.tech-extra-block .extra-h {
+  font-family: var(--display); font-size: 20px; font-weight: 600;
+  color: white; letter-spacing: -0.015em; margin-bottom: 18px;
+  line-height: 1.3;
+}
+.tech-extra-block .extra-body {
+  font-size: 14px; color: #b8b8b8; line-height: 1.6; margin-bottom: 22px;
+}
+.tech-extra-block .extra-body strong { color: white; font-weight: 500; }
+.tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tech-tag {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em;
+  padding: 6px 12px; border: 1px solid #333; border-radius: 3px;
+  color: #ccc; background: rgba(255,255,255,0.02);
+}
+.tech-cta-row {
+  margin-top: 56px; display: flex; gap: 16px; flex-wrap: wrap;
+}
+.metric-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--body); font-size: 14px; font-weight: 600;
+  color: white; padding: 14px 28px;
+  border: 1px solid #444; border-radius: 4px;
+  cursor: pointer; background: none; transition: all 0.15s;
+  text-decoration: none;
+}
+.metric-link:hover { background: white; color: var(--black); border-color: white; }
+.metric-link.primary { background: var(--blue); border-color: var(--blue); }
+.metric-link.primary:hover { background: var(--blue-dark); border-color: var(--blue-dark); color: white; }
+
+/* ─── SECTION 6 — FOUR OUTCOMES ─── */
+.outcome-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--line); border: 1px solid var(--line); margin-top: 16px;
+}
+.outcome-card {
+  background: var(--white); padding: 44px 44px; cursor: pointer;
+  transition: background 0.2s; display: flex; flex-direction: column;
+  min-height: 220px;
+}
+.outcome-card:hover { background: var(--off); }
+.outcome-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--blue);
+  font-weight: 500; margin-bottom: 22px;
+}
+.outcome-h {
+  font-family: var(--display); font-size: 22px; font-weight: 500;
+  line-height: 1.25; letter-spacing: -0.02em; color: var(--black);
+  margin-bottom: 28px; max-width: 480px;
+}
+.outcome-link {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em;
+  color: var(--grey-3); transition: color 0.15s; white-space: nowrap;
+  margin-top: auto; padding-top: 24px; border-top: 1px solid var(--line);
+  display: inline-block;
+}
+.outcome-card:hover .outcome-link { color: var(--blue); }
+
+/* ─── SECTION 7 — CUSTOMER LOGOS ─── */
+.section.logos { padding: 80px 48px; }
+.logos-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--grey-3);
+  text-align: center; margin-bottom: 40px;
+}
+.logo-strip {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 48px;
+  align-items: center;
+}
+.logo-mock {
+  height: 34px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 13px; color: var(--grey-3);
+  font-weight: 600; letter-spacing: 0.08em; opacity: 0.7;
+  transition: opacity 0.15s, color 0.15s;
+}
+.logo-mock:hover { opacity: 1; color: var(--grey-1); }
+
+/* ─── NEW: RECOGNITION BAR ─── */
+.recognition-bar {
+  margin-top: 56px; padding: 28px 36px;
+  background: var(--off); border-left: 2px solid var(--blue);
+  display: grid; grid-template-columns: auto 1fr; gap: 36px;
+  align-items: center;
+}
+.recognition-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--grey-2); font-weight: 500;
+  line-height: 1.5;
+}
+.recognition-items {
+  display: flex; gap: 28px; flex-wrap: wrap; align-items: center;
+}
+.recognition-item {
+  font-family: var(--display); font-size: 15px; font-weight: 500;
+  color: var(--black); letter-spacing: -0.005em;
+}
+.recognition-item .light {
+  font-style: italic; font-weight: 400; color: var(--grey-2); font-size: 13px;
+}
+.recognition-sep { color: var(--grey-4); }
+
+/* ─── SECTION 8 — PERSONA ENTRY ─── */
+.section.persona-section {
+  background: var(--blue-soft); padding: 110px 48px;
+  max-width: none;
+}
+.persona-inner { max-width: 1280px; margin: 0 auto; }
+.persona-section h2 em { color: var(--blue-dark); }
+.persona-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+  margin-top: 48px;
+}
+.persona-btn {
+  background: var(--white); border: 1px solid transparent;
+  padding: 28px 22px 28px; cursor: pointer; transition: all 0.18s;
+  text-align: left; font-family: var(--body);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.persona-btn:hover {
+  border-color: var(--blue);
+  box-shadow: 0 12px 28px rgba(22, 82, 240, 0.14); transform: translateY(-3px);
+}
+.persona-btn-label {
+  font-family: var(--mono); font-size: 10px; color: var(--blue);
+  font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.persona-btn-h {
+  font-family: var(--display); font-size: 15px; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--black); line-height: 1.3;
+}
+.persona-btn-tagline {
+  font-size: 12.5px; color: var(--grey-2); line-height: 1.45;
+  margin-top: auto; padding-top: 12px;
+}
+
+/* ─── SECTION 8 — TWO LENSES ─── */
+.lens-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px;
+}
+.lens-card {
+  background: var(--white); padding: 44px 40px;
+  border-top: 3px solid var(--blue);
+  display: flex; flex-direction: column;
+}
+.lens-card.tech { border-top-color: var(--black); }
+.lens-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--blue); font-weight: 500; margin-bottom: 18px;
+}
+.lens-card.tech .lens-label { color: var(--black); }
+.lens-h {
+  font-family: var(--display); font-size: 22px; font-weight: 600;
+  line-height: 1.25; letter-spacing: -0.02em; color: var(--black); margin-bottom: 26px;
+}
+.lens-list { list-style: none; margin-bottom: 28px; flex-grow: 1; }
+.lens-list li {
+  font-size: 15px; color: var(--grey-1); line-height: 1.5;
+  padding-left: 22px; position: relative; margin-bottom: 14px;
+}
+.lens-list li::before {
+  content: '→'; position: absolute; left: 0; color: var(--blue); font-weight: 600;
+}
+.lens-card.tech .lens-list li::before { color: var(--grey-1); }
+.lens-link {
+  font-family: var(--body); font-size: 14px; font-weight: 600;
+  color: var(--blue); text-decoration: none; cursor: pointer;
+  border-bottom: 1px solid transparent; padding-bottom: 2px; align-self: flex-start;
+  transition: border-color 0.15s;
+}
+.lens-link:hover { border-bottom-color: var(--blue); }
+
+/* ─── SECTION 9 — CLOSING CTA ─── */
+.closing { text-align: center; padding: 130px 48px 100px; }
+.closing h2 { margin-left: auto; margin-right: auto; text-align: center; max-width: 900px; }
+.closing .section-intro {
+  margin-left: auto; margin-right: auto; text-align: center;
+  margin-bottom: 48px; max-width: 720px;
+}
+.closing-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+.closing-explore {
+  font-family: var(--body); font-size: 15px;
+  color: var(--grey-2); font-weight: 400; line-height: 1.6;
+}
+.closing-explore a {
+  font-family: var(--body); font-style: normal; font-weight: 600;
+  color: var(--blue); text-decoration: none; cursor: pointer;
+  border-bottom: 1px solid transparent; padding-bottom: 2px;
+  transition: border-color 0.15s;
+}
+.closing-explore a:hover { border-bottom-color: var(--blue); }
+.closing-explore .sep { margin: 0 14px; color: var(--grey-4); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--black); color: #999; padding: 90px 48px 40px;
+}
+footer .footer-inner { max-width: 1280px; margin: 0 auto; }
+footer h5 {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: white; margin-bottom: 18px;
+  font-weight: 500;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: 40px;
+  padding-bottom: 64px; border-bottom: 1px solid #2a2a2a;
+}
+.footer-col a {
+  display: block; font-size: 13px; color: #999; margin-bottom: 10px;
+  text-decoration: none; cursor: pointer; transition: color 0.15s;
+}
+.footer-col a:hover { color: white; }
+.footer-tagline {
+  font-family: var(--display); font-size: 18px;
+  color: white; line-height: 1.4; max-width: 320px; margin-bottom: 28px;
+  font-weight: 400; letter-spacing: -0.01em;
+}
+.footer-bottom {
+  padding-top: 36px; font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.05em; color: #777;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-signature {
+  font-family: var(--display); font-size: 15px;
+  color: white; font-weight: 400; letter-spacing: -0.01em;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1100px) {
+  .menu-grid-2, .menu-grid-3 { grid-template-columns: 1fr; gap: 36px; }
+  .dim-grid { grid-template-columns: 1fr; }
+  .dim-card:not(:last-child) { border-right: none; border-bottom: 1px solid var(--line); }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .metric:not(:last-child) { border-right: none; }
+  .metric:nth-child(odd) { border-right: 1px solid #2a2a2a; }
+  .metric:nth-child(-n+2) { border-bottom: 1px solid #2a2a2a; }
+  .tech-extras { grid-template-columns: 1fr; }
+  .outcome-grid { grid-template-columns: 1fr; }
+  .ladder { grid-template-columns: repeat(2, 1fr); }
+  .persona-grid { grid-template-columns: repeat(2, 1fr); }
+  .lens-grid { grid-template-columns: 1fr; }
+  .logo-strip { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: repeat(3, 1fr); }
+  .recognition-bar { grid-template-columns: 1fr; gap: 16px; }
+  .hero { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { aspect-ratio: 16 / 9; max-height: 360px; }
+}
+@media (max-width: 740px) {
+  .header-inner { grid-template-columns: auto auto; gap: 16px; padding: 0 24px; }
+  .main-nav, .secondary-nav { display: none; }
+  .section, .hero { padding-left: 24px; padding-right: 24px; }
+  .closing, .section.persona-section, .section.logos { padding-left: 24px; padding-right: 24px; }
+  .era-table { grid-template-columns: 1fr; }
+  .era-col:first-child { border-right: none; border-bottom: 1px solid var(--line); }
+  .ladder, .persona-grid, .lens-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero-decoration { display: none; }
+  .hero-visual { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="secondary-nav">
+    <a>Pricing</a>
+    <a>Login</a>
+  </div>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-dot"></span>
+      Bluestone <em>PIM</em>
+    </div>
+    <nav class="main-nav">
+      <button class="nav-item" data-menu="operate" id="btn-operate">
+        Operate Autonomously
+        <svg class="chevron" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="nav-item" data-menu="built" id="btn-built">
+        Built for Agents
+        <svg class="chevron" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="nav-item" data-menu="resources" id="btn-resources">
+        Resources
+        <svg class="chevron" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="nav-item" data-menu="partners" id="btn-partners">
+        Partners
+        <svg class="chevron" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="nav-item" data-menu="company" id="btn-company">
+        Company
+        <svg class="chevron" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </nav>
+    <div class="ctas">
+      <button class="btn btn-ghost">Take the Assessment</button>
+      <button class="btn btn-primary">Book a Demo</button>
+    </div>
+  </div>
+</header>
+
+<!-- ─── MEGA MENU — OPERATE AUTONOMOUSLY ─── -->
+<div class="menu-wrap" id="menu-operate">
+  <div class="menu-inner">
+    <div class="menu-grid-2">
+      <div>
+        <div class="sec-label">The four outcomes</div>
+        <button class="mlink">
+          <div class="ml-title">Accelerate Channel Revenue</div>
+          <div class="ml-desc">From quarters to days. <strong>Talkmore +15% online sales.</strong></div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Automate Product Workflows</div>
+          <div class="ml-desc">Hours back to your team. <strong>Nordic construction -70% time.</strong></div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Enforce One Source of Truth</div>
+          <div class="ml-desc">Product truth your team, your customers, and every agent can act on.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Get Cited by AI Answer Engines</div>
+          <div class="ml-desc">GEO / AEO. Be the product an LLM recommends, not the one it skips. <strong>Adobe +393% AI referral.</strong></div>
+        </button>
+      </div>
+      <div>
+        <div class="sec-label">Proof &amp; entry points</div>
+        <button class="mlink">
+          <div class="ml-title">Customer Stories</div>
+          <div class="ml-desc">Talkmore. Neumann. Wilhelmsen. Saint-Gobain. 70+ countries.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">The State of the Agentic PIM</div>
+          <div class="ml-desc">Bi-annual benchmark report. What L1–L5 actually looks like.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">The Maturity Assessment</div>
+          <div class="ml-desc">Five minutes. Personalised. Where does your stack sit today?</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">ROI Calculator</div>
+          <div class="ml-desc">Hours back. Cost-per-SKU. What you'd recover in year one.</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MEGA MENU — BUILT FOR AGENTS ─── -->
+<div class="menu-wrap" id="menu-built">
+  <div class="menu-inner">
+    <div class="menu-grid-2">
+      <div>
+        <div class="sec-label">The architecture</div>
+        <button class="mlink">
+          <div class="ml-title">Headless, API-first</div>
+          <div class="ml-desc"><strong>700+ task-level APIs.</strong> Full UI/API parity. Built API-first for ten years.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Governance by Design</div>
+          <div class="ml-desc">Separate APIs for internal control and public exposure. Nothing reaches a channel by accident.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Open by Default</div>
+          <div class="ml-desc">Your models, your agents, open protocols like MCP. BYOM included. No walled garden.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Integration Patterns</div>
+          <div class="ml-desc">ERP · Commerce engines · Marketplace syndication · Event streams.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Security &amp; Scalability</div>
+          <div class="ml-desc">SOC 2 · ISO 27001 · MACH-certified. 70+ countries. Millions of SKUs.</div>
+        </button>
+      </div>
+      <div>
+        <div class="sec-label">On the platform</div>
+        <button class="mlink">
+          <div class="ml-title">AI Agent</div>
+          <div class="ml-desc">Your in-platform conversational operator.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">MCP (Agent Gateway) <span class="pill pill-new">New</span></div>
+          <div class="ml-desc">How Claude, ChatGPT, Cursor operate Bluestone autonomously.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">AI Capabilities</div>
+          <div class="ml-desc">AI Enrich · AI Linguist · AI Analyst · AI DAM · AI Workflow</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Extension Hub</div>
+          <div class="ml-desc">Extend capabilities, connect to other systems. Pre-built connectors and accelerators.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Bluestone LABS <span class="pill">Un-gated</span></div>
+          <div class="ml-desc">Self-serve developer canvas. MCP sandbox · schema layouts.</div>
+        </button>
+      </div>
+    </div>
+    <div class="menu-cta-bar">
+      <span class="label">For evaluators</span>
+      <a class="mc">Book a Technical Deep-Dive</a>
+      <span class="sep">·</span>
+      <a class="mc">API Documentation</a>
+      <span class="sep">·</span>
+      <a class="mc">Try Bluestone LABS</a>
+      <span class="sep">·</span>
+      <a class="mc">Trust Center</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MEGA MENU — RESOURCES ─── -->
+<div class="menu-wrap" id="menu-resources">
+  <div class="menu-inner">
+    <div class="menu-grid-3">
+      <div>
+        <div class="sec-label">Learn</div>
+        <button class="mlink">
+          <div class="ml-title">Blog</div>
+          <div class="ml-desc">Agentic commerce, EU DPP, MACH, AI in PIM. New posts weekly.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Guides &amp; Ebooks</div>
+          <div class="ml-desc">"How to compare AI Agents in PIM." "Prepare for Agentic Commerce 2026."</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Glossary</div>
+          <div class="ml-desc">PIM, MACH, MCP, GEO, AEO, A2A — defined.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Webinars &amp; Events</div>
+          <div class="ml-desc">Live sessions and recordings. Customer talks. Roadmap previews.</div>
+        </button>
+      </div>
+      <div>
+        <div class="sec-label">Industry recognition</div>
+        <button class="mlink">
+          <div class="ml-title">Gartner PIM Market Guide 2025 <span class="pill">Cited</span></div>
+          <div class="ml-desc">Bluestone PIM recognised as Representative Vendor. Free download.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">The State of the Agentic PIM</div>
+          <div class="ml-desc">Bi-annual benchmark report. Our own category research.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Reviews &amp; Ratings</div>
+          <div class="ml-desc">G2 4.3 · Gartner Peer Insights 4.6 · Capterra 4.6 · Software Advice 4.63.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Press &amp; News</div>
+          <div class="ml-desc">Latest announcements, partnerships, recognition.</div>
+        </button>
+      </div>
+      <div>
+        <div class="sec-label">For developers</div>
+        <button class="mlink">
+          <div class="ml-title">API Documentation</div>
+          <div class="ml-desc">Full reference. OpenAPI specs. Authentication, SDKs, examples.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Bluestone LABS</div>
+          <div class="ml-desc">Un-gated developer canvas. MCP sandbox. Test schemas live.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Help Center</div>
+          <div class="ml-desc">Knowledge base, tutorials, integration guides.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Certification Programme</div>
+          <div class="ml-desc">Become a certified Bluestone PIM specialist. For partners and customers.</div>
+        </button>
+      </div>
+    </div>
+    <div class="menu-cta-bar">
+      <span class="label">Stay current</span>
+      <a class="mc">Subscribe to the newsletter</a>
+      <span class="sep">·</span>
+      <a class="mc">Download the ROI Calculator</a>
+      <span class="sep">·</span>
+      <a class="mc">Take the Maturity Assessment</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MEGA MENU — PARTNERS (minimal) ─── -->
+<div class="menu-wrap" id="menu-partners">
+  <div class="menu-inner">
+    <div class="menu-grid-2">
+      <div>
+        <div class="sec-label">Partners</div>
+        <button class="mlink">
+          <div class="ml-title">Find a Partner</div>
+          <div class="ml-desc">Directory of implementation and technology partners — by region, industry and certification.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Become a Partner</div>
+          <div class="ml-desc">Programme tiers, benefits and certification. Build a practice on Bluestone PIM.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Partner Portal <span class="pill">Login</span></div>
+          <div class="ml-desc">Enablement, deal registration and co-marketing for existing partners.</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MEGA MENU — COMPANY ─── -->
+<div class="menu-wrap" id="menu-company">
+  <div class="menu-inner">
+    <div class="menu-grid-2">
+      <div>
+        <div class="sec-label">About us</div>
+        <button class="mlink">
+          <div class="ml-title">Our Story</div>
+          <div class="ml-desc">Ten years of API-first choices. Now the agentic foundation.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Culture Code</div>
+          <div class="ml-desc">How we work. What we believe. Who we're hiring.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Careers</div>
+          <div class="ml-desc">Join the team building the category.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Brand Assets</div>
+          <div class="ml-desc">Logos, guidelines, press kit.</div>
+        </button>
+      </div>
+      <div>
+        <div class="sec-label">Trust &amp; contact</div>
+        <button class="mlink">
+          <div class="ml-title">Trust Center</div>
+          <div class="ml-desc">SOC 2 · ISO 27001 · GDPR. Security, compliance, certifications.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Upcoming Events</div>
+          <div class="ml-desc">Where to meet us. Conferences, summits, meetups.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Press &amp; News</div>
+          <div class="ml-desc">Announcements, recognition, coverage.</div>
+        </button>
+        <button class="mlink">
+          <div class="ml-title">Contact</div>
+          <div class="ml-desc">Sales · Support · Partnerships · Press · Locations.</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="backdrop" id="backdrop"></div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SECTION 1 — HERO                            -->
+<!-- ════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-content">
+    <div style="font-family: var(--body); font-size: 15px; font-weight: 600; color: var(--blue); letter-spacing: -0.01em; margin-bottom: 24px;">The Agentic PIM</div>
+    <h1 class="hero-h">Product information, operated by AI agents. <em>Governed by your team.</em></h1>
+    <p class="hero-sub">Bluestone PIM turns the daily work of product data — onboarding, enrichment, validation, publishing — into something machines do. The result: one source of product truth your team, your customers, and every agent can act on.</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary cta-big">Book a Demo</button>
+      <a href="#what-changes" class="btn btn-ghost cta-big">What changes for your team</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-visual-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 13l4-4 3 3 4-5 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/></svg>
+    </div>
+    <div class="hero-visual-label">Image / product visual</div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- METRICS STRIP — for architects scanning     -->
+<!-- ════════════════════════════════════════════ -->
+<div class="metrics-strip">
+  <div class="metrics-strip-inner">
+    <div class="ms-item">
+      <div class="ms-label">API surface</div>
+      <div class="ms-num">700+</div>
+      <div class="ms-desc">Task-level endpoints. Surgical, granular, idempotent.</div>
+    </div>
+    <div class="ms-item">
+      <div class="ms-label">UI / API parity</div>
+      <div class="ms-num">100%</div>
+      <div class="ms-desc">Every UI operation has a machine-callable equivalent.</div>
+    </div>
+    <div class="ms-item">
+      <div class="ms-label">Agent protocol</div>
+      <div class="ms-num sm">MCP native</div>
+      <div class="ms-desc">Claude, ChatGPT, Cursor and custom agents.</div>
+    </div>
+    <div class="ms-item">
+      <div class="ms-label">Certification</div>
+      <div class="ms-num sm">First MACH PIM</div>
+      <div class="ms-desc">Composable, headless, cloud-native, API-first.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- CUSTOMER LOGOS — right under the metrics      -->
+<!-- ════════════════════════════════════════════ -->
+<section class="section logos" style="padding-top: 64px; padding-bottom: 64px;">
+  <div class="logos-label">Trusted by enterprise buyers who saw this coming</div>
+  <div class="logo-strip">
+    <div class="logo-mock">SAINT-GOBAIN</div>
+    <div class="logo-mock">TALKMORE</div>
+    <div class="logo-mock">NEUMANN</div>
+    <div class="logo-mock">DOLBY</div>
+    <div class="logo-mock">INTERSPORT</div>
+    <div class="logo-mock">COOP</div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SECTION 2 — WHY NOW + WHAT IT IS (combined)  -->
+<!-- ════════════════════════════════════════════ -->
+<section class="section" id="platform">
+  <h2 style="text-align: center; margin-left: auto; margin-right: auto;">The product data playbook just <em>got inverted.</em></h2>
+  <p class="section-intro" style="text-align: center; margin-left: auto; margin-right: auto;">You may already have AI in your PIM — buttons that draft text, suggest fixes, flag gaps. But a human still does the work. The agentic playbook is different: agents do the work, and your people govern it.</p>
+
+  <div class="era-table">
+    <div class="era-col">
+      <div class="era-head">
+        Old playbook
+        <span class="era-tagline">AI assists — a human still does the work</span>
+      </div>
+      <div class="era-row">AI suggests; a human still maps and fixes every feed</div>
+      <div class="era-row">GenAI drafts text; quality still checked by hand</div>
+      <div class="era-row">Keywords and backlinks drive discovery</div>
+      <div class="era-row">UI is the product; APIs serve developers</div>
+    </div>
+    <div class="era-col">
+      <div class="era-head">
+        Agentic playbook
+        <span class="era-tagline">agents do the work — humans govern</span>
+      </div>
+      <div class="era-row">Agents ingest, map and enrich supplier feeds natively</div>
+      <div class="era-row">Data quality enforced continuously, at machine speed</div>
+      <div class="era-row">Structured attributes drive AI discoverability</div>
+      <div class="era-row">API is the product; UI is one channel</div>
+    </div>
+  </div>
+
+  <p class="era-closer">Most PIMs are still playing the old game. <strong>Choose one built for the new one.</strong></p>
+
+  <!-- The three dimensions, now with business + tech translation -->
+  <div style="margin-top: 72px;">
+    <h3 style="font-family: var(--display); font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 40px; color: var(--black); text-align: center;">Built so agents can run it — and you can trust them to.</h3>
+  </div>
+
+  <div class="dim-grid">
+    <div class="dim-card">
+      <h3>Built Headless. Built Agentic.</h3>
+      <p>Every function lives behind a task-level API — so your people, your agents and your channels all reach the same product truth, through whatever interface they use.</p>
+      <p style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--blue); font-weight: 500;">For your team: anything a person can do, an agent can do too.</p>
+    </div>
+    <div class="dim-card">
+      <h3>Agents Drive. Humans Govern.</h3>
+      <p>The platform plans, executes and iterates the daily work around the clock. Your team sets the brief and steps in where judgement, governance and brand voice matter.</p>
+      <p style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--blue); font-weight: 500;">For your team: stop doing the work. Start directing it.</p>
+    </div>
+    <div class="dim-card">
+      <h3>Trusted by Design. Open by Default.</h3>
+      <p>Continuous validation and full data lineage keep the truth trustworthy. Open by default — bring your own model, your own agents, connect over open protocols.</p>
+      <p style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--blue); font-weight: 500;">For your team: agents move fast, but nothing wrong reaches a channel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SECTION 6 — FOUR OUTCOMES                   -->
+<!-- ════════════════════════════════════════════ -->
+<section class="section" id="what-changes">
+  <h2>What changes <em>for your business.</em></h2>
+  <p class="section-intro">Four outcomes the agentic shift delivers — for the people who run product, and the people who fund it.</p>
+
+  <div class="outcome-grid">
+    <div class="outcome-card">
+      <div class="outcome-label">Outcome 01 · Revenue</div>
+      <div class="outcome-h">From product launches that take quarters to product workflows that run autonomously.</div>
+      <span class="outcome-link">Read the outcome →</span>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-label">Outcome 02 · Workflows</div>
+      <div class="outcome-h">Thousands of human hours back to your team. Every quarter.</div>
+      <span class="outcome-link">Read the outcome →</span>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-label">Outcome 03 · Trust</div>
+      <div class="outcome-h">One source of product truth your team, your customers, and every agent can be trusted to act on.</div>
+      <span class="outcome-link">Read the outcome →</span>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-label">Outcome 04 · GEO / AEO</div>
+      <div class="outcome-h">Get cited by AI answer engines. Be the product an LLM recommends — not the one it skips.</div>
+      <span class="outcome-link">Read the outcome →</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SECTION 5 — DARK TECHNICAL BAND             -->
+<!-- ════════════════════════════════════════════ -->
+<section class="section dark" style="max-width: none;">
+  <div class="section-inner">
+    <h2>Plugs into <em>the stack you have.</em> Scales to the one you're building.</h2>
+    <p class="section-intro">Ten years of API-first decisions means you don't rip and replace. You integrate, connect, and extend — from wherever you are today.</p>
+
+    <!-- Integration patterns + scale block -->
+    <div class="tech-extras">
+      <div class="tech-extra-block">
+        <div class="extra-label">Integration patterns · pre-built</div>
+        <div class="extra-h">Plugs into the stack you already have.</div>
+        <div class="extra-body">
+          ERP (SAP, NetSuite, MS Dynamics). Commerce engines (Shopify, commercetools, BigCommerce). Marketplace syndication. <strong>Event-driven webhooks, SNS/SQS, Kafka-compatible.</strong> BFF layer support. Pre-built connectors and accelerators in the Extension Hub.
+        </div>
+        <div class="tech-tags">
+          <span class="tech-tag">SAP</span>
+          <span class="tech-tag">NetSuite</span>
+          <span class="tech-tag">Shopify</span>
+          <span class="tech-tag">commercetools</span>
+          <span class="tech-tag">Kafka</span>
+          <span class="tech-tag">SNS/SQS</span>
+          <span class="tech-tag">Algolia</span>
+          <span class="tech-tag">Sitecore</span>
+        </div>
+      </div>
+      <div class="tech-extra-block">
+        <div class="extra-label">Scale · security · sovereignty</div>
+        <div class="extra-h">Enterprise scale. Regional deployment. Data sovereignty.</div>
+        <div class="extra-body">
+          Production clusters in <strong>EU, US, and APAC.</strong> Operating across 70+ countries with millions of SKUs in production. <strong>SOC 2 Type II. ISO 27001. GDPR compliant.</strong> BYOM — run your own LLM in your own account. Customer data stays within the boundary you configure.
+        </div>
+        <div class="tech-tags">
+          <span class="tech-tag">SOC 2 Type II</span>
+          <span class="tech-tag">ISO 27001</span>
+          <span class="tech-tag">GDPR</span>
+          <span class="tech-tag">EU · US · APAC</span>
+          <span class="tech-tag">BYOM</span>
+          <span class="tech-tag">AWS Partner</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech-cta-row">
+      <a class="metric-link primary">Architecture deep-dive →</a>
+      <a class="metric-link">API documentation →</a>
+      <a class="metric-link">Try Bluestone LABS un-gated →</a>
+    </div>
+
+    <div style="margin-top: 56px; padding-top: 36px; border-top: 1px solid #2a2a2a; display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap;">
+      <div style="font-size: 17px; color: #d8d8d8; line-height: 1.5; max-width: 620px;">Most enterprise PIMs are stalled two or three levels below agent-native. <strong style="color:white; font-weight:600;">Find out where your stack sits</strong> — five questions, a personalised maturity score.</div>
+      <a class="metric-link primary" style="white-space:nowrap;">Take the Maturity Assessment →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SECTION 9 — CLOSING CTA                     -->
+<!-- ════════════════════════════════════════════ -->
+<section class="closing">
+  <h2>See the difference <em>agentic makes.</em></h2>
+  <p class="section-intro">A short conversation, tailored to your business — where it fits, what it changes, and what it would mean for your product operations.</p>
+  <div class="closing-cta">
+    <button class="btn btn-primary cta-big">Book a Demo</button>
+    <button class="btn btn-ghost cta-big">Take the Assessment</button>
+  </div>
+  <div class="closing-explore">
+    Or explore the platform <a>Built for Agents →</a><span class="sep">·</span>the outcomes <a>Operate Autonomously →</a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="logo" style="color: white; margin-bottom: 28px;">
+          <span class="logo-dot"></span>
+          Bluestone <em style="color: var(--blue);">PIM</em>
+        </div>
+        <div class="footer-tagline">The Agentic PIM. Agents drive. Humans govern.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Operate Autonomously</h5>
+        <a>Accelerate Channel Revenue</a>
+        <a>Automate Product Workflows</a>
+        <a>Enforce One Source of Truth</a>
+        <a>Get Cited by AI Answer Engines</a>
+        <a>Customer Stories</a>
+        <a>ROI Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h5>Built for Agents</h5>
+        <a>Headless, API-first</a>
+        <a>Governance by Design</a>
+        <a>Open by Default</a>
+        <a>AI Agent</a>
+        <a>MCP (Agent Gateway)</a>
+        <a>Integration Patterns</a>
+        <a>Bluestone LABS</a>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <a>Blog</a>
+        <a>Guides &amp; Ebooks</a>
+        <a>Gartner Market Guide</a>
+        <a>State of the Agentic PIM</a>
+        <a>The Standard (PDF)</a>
+        <a>Glossary</a>
+        <a>API Documentation</a>
+      </div>
+      <div class="footer-col">
+        <h5>Partners</h5>
+        <a>Find a Partner</a>
+        <a>Become a Partner</a>
+        <a>Certification</a>
+        <a>Partner Portal</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a>Our Story</a>
+        <a>Careers</a>
+        <a>Trust Center</a>
+        <a>News</a>
+        <a>Contact</a>
+        <a>Pricing</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Bluestone PIM · MACH-certified · MCP-native · SOC 2 · ISO 27001</span>
+      <span class="footer-signature">The infrastructure for product truth.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+let active = null;
+const backdrop = document.getElementById('backdrop');
+
+function openMenu(key) {
+  if (active === key) { closeAll(); return; }
+  closeAll(false);
+  active = key;
+  const m = document.getElementById('menu-' + key);
+  const b = document.getElementById('btn-' + key);
+  if (m) m.classList.add('open');
+  if (b) b.classList.add('open');
+  backdrop.classList.add('open');
+}
+function closeAll(reset = true) {
+  document.querySelectorAll('.menu-wrap').forEach(m => m.classList.remove('open'));
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('open'));
+  backdrop.classList.remove('open');
+  if (reset) active = null;
+}
+document.querySelectorAll('.nav-item[data-menu]').forEach(btn => {
+  btn.addEventListener('click', e => { e.stopPropagation(); openMenu(btn.dataset.menu); });
+});
+backdrop.addEventListener('click', () => closeAll());
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
