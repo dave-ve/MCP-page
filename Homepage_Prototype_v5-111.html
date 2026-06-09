@@ -39,6 +39,13 @@ body {
 }
 ::selection { background: var(--blue); color: white; }
 
+/* ─── PAGE GREYED-OUT / DISABLED STATE ─── */
+body { background: #d8d8d8; }
+header, .menu-wrap, .backdrop, section, footer {
+  opacity: 0.45;
+  filter: grayscale(0.2);
+}
+
 /* ─── HEADER ─── */
 header {
   position: sticky;
