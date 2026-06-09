@@ -39,9 +39,9 @@ body {
 }
 ::selection { background: var(--blue); color: white; }
 
-/* ─── PAGE GREYED-OUT / DISABLED STATE ─── */
+/* ─── PAGE GREYED-OUT / DISABLED STATE (menu stays fully visible) ─── */
 body { background: #d8d8d8; }
-header, .menu-wrap, .backdrop, section, footer {
+section, footer {
   opacity: 0.45;
   filter: grayscale(0.2);
 }
