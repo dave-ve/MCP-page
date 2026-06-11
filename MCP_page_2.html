@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP (Agent Gateway) — Bluestone PIM (page content)</title>
+<style>
+:root{
+  --blue:#1652f0;--blue-dark:#0f3fc4;--blue-soft:#e8efff;--blue-soft-2:#f2f5ff;
+  --black:#0a0a0a;--grey-1:#2a2a2a;--grey-2:#5a5a5a;--grey-3:#8a8a8a;--grey-4:#c0c0c0;
+  --line:#e8e8e8;--line-soft:#f2f2f2;--off:#fafaf8;--white:#ffffff;
+  --display:'JetBrains Mono',monospace;--body:'JetBrains Mono',monospace;--mono:'JetBrains Mono',monospace;
+  --header-h:76px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--white);color:var(--black);font-size:15px;line-height:1.6;letter-spacing:-0.01em;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--blue);color:white;}
+
+/* HEADER + MENU */
+header{position:sticky;top:0;z-index:100;height:var(--header-h);background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.header-inner{width:100%;max-width:1440px;margin:0 auto;padding:0 48px;height:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:48px;}
+.logo{font-family:var(--body);font-weight:700;font-size:20px;letter-spacing:-0.03em;color:var(--black);cursor:pointer;display:flex;align-items:center;gap:10px;user-select:none;}
+.logo-dot{width:9px;height:9px;background:var(--blue);border-radius:50%;}
+.logo em{font-style:normal;color:var(--blue);font-weight:400;}
+.main-nav{display:flex;align-items:center;gap:0;}
+.nav-item{height:var(--header-h);display:flex;align-items:center;padding:0 18px;font-family:var(--body);font-size:14.5px;font-weight:500;color:var(--grey-1);cursor:pointer;background:none;border:none;gap:6px;white-space:nowrap;position:relative;transition:color 0.15s;}
+.nav-item:hover{color:var(--black);}
+.nav-item.open{color:var(--blue);}
+.nav-item.open::after{content:'';position:absolute;bottom:0;left:18px;right:18px;height:2px;background:var(--blue);}
+.chevron{width:11px;height:11px;color:var(--grey-3);transition:transform 0.18s,color 0.15s;}
+.nav-item.open .chevron{transform:rotate(180deg);color:var(--blue);}
+.ctas{display:flex;align-items:center;gap:10px;}
+.btn{font-family:var(--body);font-size:13.5px;font-weight:600;padding:11px 22px;border-radius:4px;cursor:pointer;white-space:nowrap;border:1px solid;letter-spacing:-0.005em;transition:all 0.15s;background:none;color:inherit;text-decoration:none;display:inline-block;}
+.btn-ghost{background:white;color:var(--black);border-color:var(--grey-4);}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
+.btn-primary{background:var(--blue);color:white;border-color:var(--blue);}
+.btn-primary:hover{background:var(--blue-dark);border-color:var(--blue-dark);}
+.secondary-nav{position:absolute;top:0;right:48px;display:flex;align-items:center;gap:24px;height:28px;margin-top:12px;font-size:11.5px;color:var(--grey-3);font-weight:500;}
+.secondary-nav a{color:inherit;text-decoration:none;cursor:pointer;transition:color 0.15s;}
+.secondary-nav a:hover{color:var(--blue);}
+.menu-wrap{position:fixed;top:var(--header-h);left:0;right:0;z-index:90;background:var(--white);border-bottom:1px solid var(--line);box-shadow:0 24px 60px rgba(10,10,10,0.07);display:none;}
+.menu-wrap.open{display:block;}
+.menu-inner{max-width:1440px;margin:0 auto;padding:44px 48px 52px;}
+.menu-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:80px;}
+.menu-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:56px;}
+.menu-grid-1{display:grid;grid-template-columns:1fr;max-width:560px;}
+.sec-label{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey-3);margin-bottom:22px;}
+.mlink{display:block;padding:14px 0;cursor:pointer;border:none;background:none;text-align:left;width:100%;color:var(--black);border-bottom:1px solid transparent;transition:border-color 0.15s,padding 0.15s;text-decoration:none;}
+.mlink:hover{border-bottom-color:var(--blue);padding-left:4px;}
+.mlink:hover .ml-title{color:var(--blue);}
+.ml-title{font-family:var(--display);font-size:16px;font-weight:600;line-height:1.2;margin-bottom:4px;transition:color 0.15s;letter-spacing:-0.015em;}
+.ml-desc{font-size:13px;color:var(--grey-2);line-height:1.45;}
+.ml-desc strong{color:var(--blue);font-weight:500;}
+.pill{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:2px 7px;border-radius:2px;vertical-align:2px;background:var(--blue-soft);color:var(--blue);}
+.menu-cta-bar{margin-top:32px;padding:20px 28px;background:var(--off);border-left:2px solid var(--blue);display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.menu-cta-bar .label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-2);flex-shrink:0;margin-right:8px;}
+.menu-cta-bar .mc{font-size:13px;font-weight:500;color:var(--black);text-decoration:none;cursor:pointer;transition:color 0.15s;}
+.menu-cta-bar .mc:hover{color:var(--blue);}
+.menu-cta-bar .mc::after{content:' →';color:var(--grey-3);}
+.menu-cta-bar .sep{color:var(--grey-4);}
+.backdrop{position:fixed;inset:0;z-index:80;background:rgba(10,10,10,0.18);opacity:0;pointer-events:none;transition:opacity 0.2s;}
+.backdrop.open{opacity:1;pointer-events:auto;}
+
+/* PAGE SWITCHER */
+.page-switcher{position:sticky;top:var(--header-h);z-index:70;background:var(--blue-soft-2);border-bottom:1px solid var(--line);}
+.page-switcher-inner{max-width:1280px;margin:0 auto;padding:0 48px;display:flex;gap:0;align-items:center;flex-wrap:wrap;}
+.ps-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-3);margin-right:24px;padding:14px 0;}
+.ps-tab{font-family:var(--body);font-size:13px;font-weight:500;color:var(--grey-2);background:none;border:none;cursor:pointer;padding:14px 18px;border-bottom:2px solid transparent;transition:all 0.15s;white-space:nowrap;}
+.ps-tab:hover{color:var(--black);}
+.ps-tab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600;}
+
+.page{display:none;}
+.page.active{display:block;}
+
+/* SECTION SCAFFOLD */
+.sec{max-width:1180px;margin:0 auto;padding:96px 48px;}
+.sec.tight{padding:64px 48px;}
+.sec.off{background:var(--off);max-width:none;}
+.sec.dark{background:var(--black);color:white;max-width:none;}
+.sec .inner{max-width:1180px;margin:0 auto;padding:0 48px;}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:14px;}
+.sec.dark .eyebrow{color:var(--blue);}
+
+/* HERO */
+.phero{max-width:1180px;margin:0 auto;padding:72px 48px 64px;display:grid;grid-template-columns:1.4fr 0.8fr;gap:56px;align-items:center;}
+.phero-cat{font-family:var(--body);font-size:14px;font-weight:600;color:var(--blue);letter-spacing:-0.01em;margin-bottom:20px;}
+.phero-h{font-family:var(--display);font-size:clamp(30px,3.6vw,46px);font-weight:600;line-height:1.12;letter-spacing:-0.03em;color:var(--black);margin-bottom:26px;}
+.phero-h em{font-style:normal;color:var(--blue);font-weight:300;}
+.phero-sub{font-size:19px;color:var(--grey-1);line-height:1.5;margin-bottom:34px;}
+.phero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+.cta-big{font-size:14px;font-weight:600;padding:16px 30px;}
+.phero-visual{aspect-ratio:4/3;background:var(--off);border:1px solid var(--line);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--grey-3);}
+.phero-visual-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-3);}
+
+/* HEADINGS */
+.h2{font-family:var(--display);font-size:clamp(21px,2.1vw,29px);font-weight:600;line-height:1.18;letter-spacing:-0.02em;color:var(--black);max-width:760px;margin-bottom:20px;}
+.h2 em{font-style:normal;color:var(--blue);font-weight:300;}
+.sec.dark .h2{color:white;}
+.sec.dark .h2 em{color:var(--blue);}
+.lead{font-size:17px;color:var(--grey-1);line-height:1.62;max-width:680px;}
+.lead + .lead{margin-top:18px;}
+.lead strong{color:var(--black);font-weight:600;}
+.sec.dark .lead{color:#c5c5c5;}
+.sec.dark .lead strong{color:white;}
+.h2.center{margin-left:auto;margin-right:auto;text-align:center;}
+.lead.center{margin-left:auto;margin-right:auto;text-align:center;}
+
+/* SPLIT PANEL (agents do / people do / nothing does) */
+.split{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px;text-align:left;}
+.split.two{grid-template-columns:1fr 1fr;max-width:820px;margin-left:auto;margin-right:auto;}
+
+/* TEXT + IMAGE SPLIT */
+.ti{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;max-width:1180px;margin:0 auto;}
+.ti.flip .ti-text{order:2;}
+.ti-visual{aspect-ratio:4/3;background:var(--off);border:1px solid var(--line);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--grey-3);}
+.ti-visual-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-3);}
+.split-col{background:var(--white);padding:34px 30px;}
+.split-col.accent{background:var(--white);}
+.split-head{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--line);}
+.split-head svg{width:22px;height:22px;flex-shrink:0;}
+.split-col .split-head{color:var(--blue);}
+.split-col.muted .split-head{color:var(--grey-3);border-bottom-color:var(--line);}
+.split-tag{font-family:var(--display);font-size:15px;letter-spacing:-0.01em;text-transform:none;font-weight:600;margin:0;}
+.split-col .split-tag{color:var(--black);}
+.split-col.accent .split-tag{color:var(--black);}
+.split-col.muted .split-tag{color:var(--grey-2);}
+.split-list{list-style:none;}
+.split-list li{font-size:14.5px;color:var(--grey-1);line-height:1.5;padding-left:20px;position:relative;margin-bottom:12px;}
+.split-list li::before{content:'';position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--blue);}
+.split-col.muted .split-list li::before{background:var(--grey-4);}
+
+/* CARDS (work handled / truth / cited) */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px;text-align:left;}
+.cards.three{grid-template-columns:repeat(3,1fr);}
+.card{background:var(--white);padding:34px 28px;display:flex;flex-direction:column;}
+.card-icon{width:26px;height:26px;color:var(--blue);margin-bottom:18px;}
+.card-num{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:16px;font-weight:500;}
+.card h4{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-0.015em;color:var(--black);margin-bottom:12px;line-height:1.25;}
+.card p{font-size:14px;color:var(--grey-2);line-height:1.55;}
+
+/* CONTRAST PAIR (assist vs act) */
+.contrast{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px auto 0;max-width:720px;}
+.contrast-item{padding:24px 26px;border:1px solid var(--line);border-radius:5px;background:var(--white);}
+.contrast-item.act{border-color:var(--blue);background:var(--white);}
+.contrast-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-3);font-weight:500;margin-bottom:12px;}
+.contrast-item.act .contrast-tag{color:var(--blue);}
+.contrast-h{font-family:var(--display);font-size:16px;font-weight:600;color:var(--black);letter-spacing:-0.01em;margin-bottom:8px;}
+.contrast-d{font-size:14px;color:var(--grey-2);line-height:1.5;}
+.contrast-d em{font-style:normal;color:var(--black);font-weight:600;}
+.punch{font-family:var(--display);font-size:18px;font-weight:600;color:var(--black);letter-spacing:-0.015em;line-height:1.4;max-width:680px;margin-top:32px;}
+.punch em{font-style:normal;color:var(--blue);font-weight:300;}
+.cards-lead{font-family:var(--display);font-size:15px;font-weight:600;color:var(--grey-2);letter-spacing:-0.01em;text-align:center;margin:56px 0 0;}
+
+/* THEN / NOW CONTRAST (the shift) */
+.thennow{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;margin-top:40px;max-width:980px;}
+.tn-col{padding:30px 32px;border:1px solid var(--line);border-radius:6px;background:var(--white);}
+.tn-col.then{opacity:0.78;}
+.tn-col.now{border-color:var(--blue);}
+.tn-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;margin-bottom:14px;color:var(--grey-3);}
+.tn-col.now .tn-tag{color:var(--blue);}
+.tn-h{font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.01em;color:var(--black);margin-bottom:12px;line-height:1.3;}
+.tn-d{font-size:14px;color:var(--grey-2);line-height:1.6;}
+.tn-d strong{color:var(--black);font-weight:600;}
+.tn-arrow{display:flex;align-items:center;justify-content:center;padding:0 20px;color:var(--grey-4);}
+.tn-arrow svg{width:26px;height:26px;}
+
+/* PROPAGATION DIAGRAM (one error -> everywhere) */
+.prop{display:grid;grid-template-columns:auto auto 1fr;gap:28px;align-items:center;margin-top:40px;max-width:900px;}
+.prop-source{padding:22px 24px;border:1px solid var(--blue);border-radius:6px;background:var(--white);text-align:center;min-width:160px;}
+.prop-source .ps-tag{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-3);margin-bottom:8px;}
+.prop-source .ps-h{font-family:var(--display);font-size:15px;font-weight:600;color:var(--black);letter-spacing:-0.01em;line-height:1.3;}
+.prop-source .ps-h em{font-style:normal;color:var(--blue);}
+.prop-fan{display:flex;align-items:center;justify-content:center;color:var(--grey-4);}
+.prop-fan svg{width:34px;height:46px;}
+.prop-targets{display:flex;flex-direction:column;gap:8px;}
+.prop-target{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--grey-1);padding:9px 14px;border:1px solid var(--line);border-radius:4px;background:var(--white);}
+.prop-target svg{width:15px;height:15px;color:var(--grey-3);flex-shrink:0;}
+.prop-caption{font-size:13px;color:var(--grey-3);margin-top:22px;font-style:italic;max-width:680px;}
+
+/* PROP VERTICAL LAYOUT (text left, vertical diagram right) */
+.prop-split{display:grid;grid-template-columns:1.05fr 0.9fr;gap:64px;align-items:start;max-width:1080px;margin:40px auto 0;}
+.prop-split .prop-caption{margin-top:24px;}
+.prop-vertical{display:flex;flex-direction:column;align-items:stretch;gap:12px;max-width:340px;width:100%;justify-self:center;}
+.prop-vertical .prop-source{align-self:center;min-width:200px;}
+.prop-vfan{display:flex;align-items:center;justify-content:center;color:var(--grey-3);margin:4px 0;}
+.prop-vfan svg{width:64px;height:48px;}
+
+/* BULLET LISTS */
+.blist{list-style:none;margin-top:28px;max-width:760px;}
+.blist li{font-size:16px;color:var(--grey-1);line-height:1.55;padding-left:28px;position:relative;margin-bottom:16px;}
+.blist li::before{content:'→';position:absolute;left:0;color:var(--blue);font-weight:600;}
+.blist li strong{color:var(--black);font-weight:600;}
+
+/* VALUE BULLETS (bigger, titled) */
+.vlist{list-style:none;margin-top:32px;max-width:820px;}
+.vlist li{padding:22px 0;border-top:1px solid var(--line);}
+.vlist li:last-child{border-bottom:1px solid var(--line);}
+.vlist .vt{font-family:var(--display);font-size:17px;font-weight:600;color:var(--black);letter-spacing:-0.01em;margin-bottom:6px;}
+.vlist .vd{font-size:15px;color:var(--grey-2);line-height:1.55;}
+
+/* COMPLIANCE / TAG ROW */
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:0.04em;padding:6px 12px;border:1px solid var(--line);border-radius:3px;color:var(--grey-1);background:var(--off);}
+
+/* DEFINITION BOX */
+.defbox{background:var(--blue-soft-2);padding:34px 38px;max-width:880px;border-radius:4px;margin-top:8px;}
+.defbox h4{font-family:var(--display);font-size:19px;font-weight:600;margin-bottom:20px;letter-spacing:-0.015em;}
+.defbox p{font-size:16px;color:var(--grey-1);line-height:1.65;}
+.defbox strong{color:var(--blue);font-weight:600;}
+.defgrid{display:grid;grid-template-columns:1fr 1fr;gap:36px;}
+.def-term{font-family:var(--display);font-size:15px;font-weight:600;color:var(--blue);letter-spacing:-0.005em;margin-bottom:8px;}
+.def-d{font-size:15px;color:var(--grey-1);line-height:1.55;}
+.def-close{margin-top:24px;padding-top:22px;border-top:1px solid rgba(22,82,240,0.18);font-size:15px;color:var(--grey-1);line-height:1.6;}
+
+/* REGULATORY FRAMED CALLOUT (white frame on off background) */
+.regbox{background:var(--white);border:1px solid var(--line);padding:32px 38px;max-width:880px;border-radius:4px;margin-top:32px;}
+.regbox-label{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:14px;}
+.regbox p{font-size:15.5px;color:var(--grey-1);line-height:1.6;margin:0;}
+.regbox p strong{color:var(--black);font-weight:600;}
+.regbox .blist{margin-top:22px;}
+.regbox .blist li{font-size:15px;margin-bottom:12px;}
+.regbox .tagrow{margin-top:22px;}
+
+/* CODE BLOCK (for Built for Agents pages) */
+.codewrap{margin-top:24px;max-width:980px;}
+.codewrap + .codewrap{margin-top:18px;}
+.codewrap .codelabel{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:8px;display:flex;align-items:baseline;gap:14px;}
+.codewrap .codelabel .codestep{color:var(--grey-3);}
+.codeblock{font-family:var(--mono);font-size:13px;line-height:1.6;background:#0e1116;color:#d6dde4;padding:18px 22px;border-radius:4px;overflow-x:auto;white-space:pre;}
+.codeblock .ck{color:#7cb7ff;}      /* keyword (curl, GET, POST) */
+.codeblock .cs{color:#9eda9e;}      /* string */
+.codeblock .cc{color:#8a96a4;font-style:italic;}  /* comment */
+.codeblock .cv{color:#e8c468;}      /* variable / brace */
+
+/* STAT ROW (technical proof points inline) */
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);background:var(--white);margin-top:36px;max-width:980px;}
+.statrow .stat{padding:24px 22px;border-right:1px solid var(--line);}
+.statrow .stat:last-child{border-right:none;}
+.statrow .stat-n{font-family:var(--display);font-size:26px;font-weight:600;color:var(--blue);letter-spacing:-0.02em;line-height:1;margin-bottom:6px;}
+.statrow .stat-l{font-family:var(--body);font-size:12.5px;color:var(--grey-2);line-height:1.4;}
+
+/* TWO-TRACK INTEGRATION SPLIT (Extension Hub vs Connectivity Suite) */
+.tracks{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1080px;margin:40px auto 0;}
+.track{border:1px solid var(--line);background:var(--white);border-radius:6px;padding:32px 34px;display:flex;flex-direction:column;}
+.track-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:14px;}
+.track-name{font-family:var(--display);font-size:21px;font-weight:600;letter-spacing:-0.015em;color:var(--black);margin-bottom:6px;line-height:1.2;}
+.track-when{font-family:var(--body);font-size:13px;color:var(--grey-3);margin-bottom:18px;font-style:italic;}
+.track-body{font-size:14.5px;color:var(--grey-1);line-height:1.6;margin-bottom:18px;}
+.track-list{list-style:none;margin:0 0 22px;padding:0;}
+.track-list li{font-size:14px;color:var(--grey-1);line-height:1.5;padding-left:22px;position:relative;margin-bottom:9px;}
+.track-list li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border:1.5px solid var(--blue);border-radius:1px;}
+.track-foot{margin-top:auto;padding-top:8px;}
+.track-link{font-family:var(--body);font-size:14px;font-weight:600;color:var(--blue);text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:gap 0.15s;}
+.track-link:hover{gap:10px;}
+.track.tailored .track-list li::before{border-radius:50%;}
+
+/* RELATED CAPABILITIES (cross-link block at end of Built for Agents pages) */
+.related-block{padding:56px 48px;background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.related-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:500;text-align:center;margin-bottom:28px;}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1100px;margin:0 auto;}
+.related-card{padding:24px 26px;border:1px solid var(--line);background:var(--white);border-radius:4px;text-decoration:none;display:block;transition:border-color 0.15s,transform 0.15s;cursor:pointer;}
+.related-card:hover{border-color:var(--blue);transform:translateY(-1px);}
+.related-card-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-3);margin-bottom:8px;}
+.related-card-title{font-family:var(--display);font-size:16px;font-weight:600;color:var(--black);letter-spacing:-0.01em;margin-bottom:6px;}
+.related-card-desc{font-size:13.5px;color:var(--grey-1);line-height:1.5;}
+
+/* SPEC TABLE (for data-model coverage on MCP page, etc.) */
+.spec-table{width:100%;max-width:980px;margin-top:28px;border-collapse:collapse;font-family:var(--body);}
+.spec-table th,.spec-table td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:14px;}
+.spec-table th{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey-3);font-weight:500;background:var(--off);}
+.spec-table td.check{color:var(--blue);text-align:center;width:80px;font-weight:600;}
+.spec-table .spec-cat{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-2);background:var(--off);}
+.spec-table tbody tr:hover{background:var(--off);}
+.spec-table strong{color:var(--black);font-weight:600;}
+
+/* SECOND SUBNAV (Built for Agents) - JS shows the matching one based on active page */
+.page-switcher.built-nav{display:none;}
+.page-switcher.built-nav.active{display:block;}
+.page-switcher.operate-nav{display:block;}
+.page-switcher.operate-nav:not(.active){display:none;}
+
+/* ECON HANDOFF BAND */
+.econ{background:var(--off);border-left:2px solid var(--blue);padding:30px 34px;max-width:880px;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;}
+.econ-t{font-size:16px;color:var(--grey-1);line-height:1.55;max-width:560px;}
+.econ-t strong{color:var(--black);font-weight:600;}
+.econ a{font-family:var(--body);font-size:14px;font-weight:600;color:var(--blue);text-decoration:none;white-space:nowrap;border-bottom:1px solid transparent;padding-bottom:2px;}
+.econ a:hover{border-bottom-color:var(--blue);}
+
+/* CROSSLINK */
+.crosslink{background:var(--off);border:1px solid var(--line);padding:30px 34px;max-width:880px;border-radius:4px;}
+.crosslink h4{font-family:var(--display);font-size:18px;font-weight:600;margin-bottom:10px;letter-spacing:-0.015em;}
+.crosslink p{font-size:15px;color:var(--grey-2);line-height:1.55;margin-bottom:14px;}
+.crosslink a{font-family:var(--body);font-size:14px;font-weight:600;color:var(--blue);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;}
+.crosslink a:hover{border-bottom-color:var(--blue);}
+
+/* CREDENTIALS STRIP (locked technical proof line, sits under hero) */
+.creds-strip{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey-2);text-align:center;padding:18px 48px;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--white);font-weight:500;}
+.creds-strip .cs-sep{color:var(--grey-4);margin:0 16px;font-weight:400;}
+.creds-strip strong{color:var(--blue);font-weight:500;}
+
+/* BUILT ON BAND (recurring architectural footprint on Operate pages) */
+.built-on{padding:64px 48px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--off);text-align:center;}
+.bo-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:32px;}
+.bo-beats{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;max-width:1100px;margin:0 auto 40px;}
+.bo-beat{display:flex;flex-direction:column;align-items:center;gap:16px;font-family:var(--display);font-size:14.5px;font-weight:500;color:var(--black);letter-spacing:-0.005em;line-height:1.4;text-align:center;}
+.bo-icon{width:38px;height:38px;color:var(--blue);flex-shrink:0;}
+.bo-link{font-family:var(--body);font-size:13.5px;font-weight:600;color:var(--blue);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;cursor:pointer;display:inline-block;}
+.bo-link:hover{border-bottom-color:var(--blue);}
+
+/* CLOSING */
+.closing{text-align:center;padding:110px 48px 100px;max-width:840px;margin:0 auto;}
+.closing .h2{margin:0 auto 18px;text-align:center;}
+.closing .lead{margin:0 auto 36px;text-align:center;}
+.closing-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{background:var(--black);color:#999;padding:84px 48px 40px;}
+footer .footer-inner{max-width:1280px;margin:0 auto;}
+footer h5{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:white;margin-bottom:18px;font-weight:500;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:40px;padding-bottom:60px;border-bottom:1px solid #2a2a2a;}
+.footer-col a{display:block;font-size:13px;color:#999;margin-bottom:10px;text-decoration:none;cursor:pointer;transition:color 0.15s;}
+.footer-col a:hover{color:white;}
+.footer-tagline{font-family:var(--display);font-size:18px;color:white;line-height:1.4;max-width:320px;margin-bottom:28px;font-weight:400;letter-spacing:-0.01em;}
+.footer-bottom{padding-top:34px;font-family:var(--mono);font-size:11px;letter-spacing:0.05em;color:#777;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.footer-signature{font-family:var(--display);font-size:15px;color:white;font-weight:400;letter-spacing:-0.01em;}
+
+@media(max-width:1100px){
+  .menu-grid-2,.menu-grid-3{grid-template-columns:1fr;gap:36px;}
+  .phero{grid-template-columns:1fr;gap:40px;}
+  .phero-visual{aspect-ratio:16/9;}
+  .split,.cards,.cards.three{grid-template-columns:1fr;}
+  .split.two{grid-template-columns:1fr;}
+  .contrast{grid-template-columns:1fr;}
+  .ti{grid-template-columns:1fr;gap:36px;}
+  .ti.flip .ti-text{order:0;}
+  .ti-visual{aspect-ratio:16/9;}
+  .thennow{grid-template-columns:1fr;gap:14px;}
+  .tn-arrow{transform:rotate(90deg);padding:4px 0;}
+  .prop{grid-template-columns:1fr;gap:18px;}
+  .prop-fan{transform:rotate(90deg);}
+  .prop-fan svg{width:28px;height:38px;}
+  .prop-split{grid-template-columns:1fr;gap:40px;}
+  .prop-vertical{justify-self:start;max-width:none;}
+  .defgrid{grid-template-columns:1fr;gap:24px;}
+  .tracks{grid-template-columns:1fr;gap:18px;}
+  .footer-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:740px){
+  .header-inner{grid-template-columns:auto auto;gap:16px;padding:0 24px;}
+  .main-nav,.secondary-nav{display:none;}
+  .sec,.phero,.closing{padding-left:24px;padding-right:24px;}
+  .footer-grid{grid-template-columns:1fr;}
+  .ps-label{display:none;}
+  .built-on{padding:48px 24px;}
+  .bo-beats{grid-template-columns:repeat(2,1fr);gap:30px;}
+  .bo-icon{width:34px;height:34px;}
+}
+</style>
+
+<style>
+body{background:var(--off, #f7f7f5);}
+.page{display:block;}
+</style>
+</head>
+<body>
+
+<div class="page" id="page-mcp">
+
+  <div class="phero">
+    <div>
+      <div class="phero-cat">Built for Agents</div>
+      <h1 class="phero-h">Your agents operate Bluestone PIM. <em>Through an open standard, not an integration.</em></h1>
+      <p class="phero-sub">Native MCP exposes your full data model to any agent that speaks the protocol — Claude, ChatGPT, Cursor, or the agent your own team builds. No custom adapters, no shims, no proprietary glue.</p>
+      <div class="phero-cta">
+        <a class="btn btn-primary cta-big">Book a Technology Session</a>
+      </div>
+    </div>
+    <div class="phero-visual">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M3 13l4-4 3 3 4-5 7 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="phero-visual-label">Image / product visual</span>
+    </div>
+  </div>
+
+  <div class="creds-strip">
+    <span>API-first</span><span class="cs-sep">·</span><span>MCP-native</span><span class="cs-sep">·</span><span>LLM-neutral</span><span class="cs-sep">·</span><span>MACH certified</span><span class="cs-sep">·</span><span>EU AI Act-ready</span>
+  </div>
+
+  <section class="sec off">
+    <div class="inner">
+      <div class="eyebrow" style="text-align:center;">What this gives you</div>
+      <h2 class="h2 center">Open protocol. <em>Native implementation. Full coverage.</em></h2>
+      <p class="lead center">MCP (Model Context Protocol) is the emerging standard for AI agents to operate external systems. Bluestone PIM was built API-first ten years ago — MCP is the protocol layer that exposes that architecture to any agent that speaks it.</p>
+      <div class="cards three">
+        <div class="card"><svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg><h4>Any MCP-capable agent</h4><p>Claude Desktop, ChatGPT Apps, Cursor, your own custom agent — whatever speaks MCP can read, query, and operate Bluestone PIM.</p></div>
+        <div class="card"><svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h4M10 17.5h4M6.5 10v4M17.5 10v4"/></svg><h4>Full data model, not a slice</h4><p>Products, catalogues, attributes, contexts, assets, publishing, workflow — every concept in the platform is reachable through MCP.</p></div>
+        <div class="card"><svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg><h4>Production-ready governance</h4><p>Same access controls, same audit trail, same workflow rules as the rest of the platform. Agents operate within your safety boundary.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="inner">
+      <div class="eyebrow">What MCP gives an agent access to</div>
+      <h2 class="h2">The data model, <em>fully covered.</em></h2>
+      <p class="lead">MCP is live today. Any MCP-capable agent — Claude, ChatGPT, Cursor, or your own — connects through Bluestone Labs and gets read and write access across the full Bluestone PIM concept space. Not a thin wrapper — the same depth your team works with.</p>
+      <table class="spec-table">
+        <thead><tr><th>Concept</th><th style="text-align:center;">Read</th><th style="text-align:center;">Write</th></tr></thead>
+        <tbody>
+        <tr><td colspan="3" class="spec-cat">Products</td></tr>
+        <tr><td><strong>Product (single, group, variant)</strong><br><span style="color:var(--grey-2);font-size:13px;">Including variant group assignment and promotion</span></td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td><strong>Attribute values</strong><br><span style="color:var(--grey-2);font-size:13px;">Simple, dictionary, column, matrix, compound</span></td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td><strong>Product connections</strong><br><span style="color:var(--grey-2);font-size:13px;">Cross-sell, related, accessories</span></td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td><strong>Completeness score</strong><br><span style="color:var(--grey-2);font-size:13px;">Per context, per catalogue; create and manage requirements</span></td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td><strong>Product history</strong><br><span style="color:var(--grey-2);font-size:13px;">Who changed what, when (read-only)</span></td><td class="check">✓</td><td class="check">—</td></tr>
+        <tr><td colspan="3" class="spec-cat">Catalogues & attributes</td></tr>
+        <tr><td><strong>Catalogues & category trees</strong><br><span style="color:var(--grey-2);font-size:13px;">Hierarchical nodes, product-to-node membership</span></td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td><strong>Attribute definitions</strong><br><span style="color:var(--grey-2);font-size:13px;">Simple, dictionary, column, matrix, compound, relation types</span></td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td colspan="3" class="spec-cat">Contexts & assets</td></tr>
+        <tr><td><strong>Contexts (language/market)</strong><br><span style="color:var(--grey-2);font-size:13px;">Read-only definitions; read/write context-scoped values</span></td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td><strong>Assets & media</strong><br><span style="color:var(--grey-2);font-size:13px;">Search, browse, upload via presigned S3 flow</span></td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td colspan="3" class="spec-cat">Publishing & workflow</td></tr>
+        <tr><td><strong>Sync / publish</strong><br><span style="color:var(--grey-2);font-size:13px;">Trigger sync, view publish history, get diffs</span></td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td><strong>Tasks & workflows</strong><br><span style="color:var(--grey-2);font-size:13px;">List, assign, update status</span></td><td class="check">✓</td><td class="check">✓</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:24px;"><a class="track-link" style="font-size:15px;">Connect through Bluestone Labs &rarr;</a></p>
+    </div>
+  </section>
+
+  <div class="related-block">
+    <div class="related-eyebrow">Related capabilities</div>
+    <div class="related-grid">
+      <a class="related-card ps-jump" data-page="aiagent">
+        <div class="related-card-tag">Built for Agents</div>
+        <div class="related-card-title">AI Agent</div>
+        <div class="related-card-desc">The operational agent inside the Bluestone UI — a separate capability for teams working in the platform directly.</div>
+      </a>
+      <a class="related-card ps-jump" data-page="open">
+        <div class="related-card-tag">Built for Agents</div>
+        <div class="related-card-title">Open by Default</div>
+        <div class="related-card-desc">Why MCP-native fits with our broader LLM-neutral and open-protocols posture.</div>
+      </a>
+      <a class="related-card ps-jump" data-page="headless">
+        <div class="related-card-tag">Built for Agents</div>
+        <div class="related-card-title">Headless, API-first</div>
+        <div class="related-card-desc">The 700+ task APIs that MCP exposes to agents in a standard, protocol-level way.</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="closing">
+    <h2 class="h2 center">See an agent <em>operate your catalogue, live.</em></h2>
+    <p class="lead center">A short conversation about your agent strategy — and what becomes possible when Claude, ChatGPT, or your own model can read and write directly to your PIM.</p>
+    <div class="closing-cta">
+      <a class="btn btn-primary cta-big">Book a Technology Session</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
