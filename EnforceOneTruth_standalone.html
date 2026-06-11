@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enforce One Source of Truth — Bluestone PIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1652f0;--blue-dark:#0f3fc4;--blue-soft:#e8efff;--blue-soft-2:#f2f5ff;
+  --black:#0a0a0a;--grey-1:#2a2a2a;--grey-2:#5a5a5a;--grey-3:#8a8a8a;--grey-4:#c0c0c0;
+  --line:#e8e8e8;--line-soft:#f2f2f2;--off:#fafaf8;--white:#ffffff;
+  --display:'JetBrains Mono',monospace;--body:'JetBrains Mono',monospace;--mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--white);color:var(--black);font-size:15px;line-height:1.6;letter-spacing:-0.01em;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--blue);color:white;}
+
+.btn{font-family:var(--body);font-size:13.5px;font-weight:600;padding:11px 22px;border-radius:4px;cursor:pointer;white-space:nowrap;border:1px solid;letter-spacing:-0.005em;transition:all 0.15s;background:none;color:inherit;text-decoration:none;display:inline-block;}
+.btn-primary{background:var(--blue);color:white;border-color:var(--blue);}
+.btn-primary:hover{background:var(--blue-dark);border-color:var(--blue-dark);}
+
+/* SECTION SCAFFOLD */
+.sec{max-width:1180px;margin:0 auto;padding:96px 48px;}
+.sec.tight{padding:64px 48px;}
+.sec.off{background:var(--off);max-width:none;}
+.sec .inner{max-width:1180px;margin:0 auto;padding:0 48px;}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:14px;}
+
+/* HERO */
+.phero{max-width:1180px;margin:0 auto;padding:72px 48px 64px;display:grid;grid-template-columns:1.4fr 0.8fr;gap:56px;align-items:center;}
+.phero-cat{font-family:var(--body);font-size:14px;font-weight:600;color:var(--blue);letter-spacing:-0.01em;margin-bottom:20px;}
+.phero-h{font-family:var(--display);font-size:clamp(30px,3.6vw,46px);font-weight:600;line-height:1.12;letter-spacing:-0.03em;color:var(--black);margin-bottom:26px;}
+.phero-h em{font-style:normal;color:var(--blue);font-weight:300;}
+.phero-sub{font-size:19px;color:var(--grey-1);line-height:1.5;margin-bottom:34px;}
+.phero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+.cta-big{font-size:14px;font-weight:600;padding:16px 30px;}
+.phero-visual{aspect-ratio:4/3;background:var(--off);border:1px solid var(--line);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--grey-3);}
+.phero-visual-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-3);}
+
+/* HEADINGS */
+.h2{font-family:var(--display);font-size:clamp(21px,2.1vw,29px);font-weight:600;line-height:1.18;letter-spacing:-0.02em;color:var(--black);max-width:760px;margin-bottom:20px;}
+.h2 em{font-style:normal;color:var(--blue);font-weight:300;}
+.h2.center{margin-left:auto;margin-right:auto;text-align:center;}
+.lead{font-size:17px;color:var(--grey-1);line-height:1.62;max-width:680px;}
+.lead + .lead{margin-top:18px;}
+.lead strong{color:var(--black);font-weight:600;}
+.lead.center{margin-left:auto;margin-right:auto;text-align:center;}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px;text-align:left;}
+.cards.three{grid-template-columns:repeat(3,1fr);}
+.card{background:var(--white);padding:34px 28px;display:flex;flex-direction:column;}
+.card-icon{width:26px;height:26px;color:var(--blue);margin-bottom:18px;}
+.card h4{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-0.015em;color:var(--black);margin-bottom:12px;line-height:1.25;}
+.card p{font-size:14px;color:var(--grey-2);line-height:1.55;}
+
+/* PROPAGATION DIAGRAM */
+.prop-split{display:grid;grid-template-columns:1.05fr 0.9fr;gap:64px;align-items:start;max-width:1080px;margin:40px auto 0;}
+.prop-vertical{display:flex;flex-direction:column;align-items:stretch;gap:12px;max-width:340px;width:100%;justify-self:center;}
+.prop-source{padding:22px 24px;border:1px solid var(--blue);border-radius:6px;background:var(--white);text-align:center;min-width:200px;align-self:center;}
+.prop-source .ps-tag{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-3);margin-bottom:8px;}
+.prop-source .ps-h{font-family:var(--display);font-size:15px;font-weight:600;color:var(--black);letter-spacing:-0.01em;line-height:1.3;}
+.prop-source .ps-h em{font-style:normal;color:var(--blue);}
+.prop-vfan{display:flex;align-items:center;justify-content:center;color:var(--grey-3);margin:4px 0;}
+.prop-vfan svg{width:64px;height:48px;}
+.prop-targets{display:flex;flex-direction:column;gap:8px;}
+.prop-target{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--grey-1);padding:9px 14px;border:1px solid var(--line);border-radius:4px;background:var(--white);}
+.prop-target svg{width:15px;height:15px;color:var(--grey-3);flex-shrink:0;}
+
+/* PUNCH */
+.punch{font-family:var(--display);font-size:18px;font-weight:600;color:var(--black);letter-spacing:-0.015em;line-height:1.4;max-width:680px;margin-top:32px;}
+.punch em{font-style:normal;color:var(--blue);font-weight:300;}
+
+/* BULLET LISTS */
+.blist{list-style:none;margin-top:28px;max-width:760px;}
+.blist li{font-size:16px;color:var(--grey-1);line-height:1.55;padding-left:28px;position:relative;margin-bottom:16px;}
+.blist li::before{content:'→';position:absolute;left:0;color:var(--blue);font-weight:600;}
+.blist li strong{color:var(--black);font-weight:600;}
+
+/* REGULATORY BOX */
+.regbox{background:var(--white);border:1px solid var(--line);padding:32px 38px;max-width:880px;border-radius:4px;margin-top:32px;}
+.regbox-label{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:14px;}
+.regbox p{font-size:15.5px;color:var(--grey-1);line-height:1.6;margin:0;}
+.regbox p strong{color:var(--black);font-weight:600;}
+.regbox .blist{margin-top:22px;}
+.regbox .blist li{font-size:15px;margin-bottom:12px;}
+.regbox .tagrow{margin-top:22px;}
+
+/* TAG ROW */
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:0.04em;padding:6px 12px;border:1px solid var(--line);border-radius:3px;color:var(--grey-1);background:var(--off);}
+
+/* CREDENTIALS STRIP */
+.creds-strip{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey-2);text-align:center;padding:18px 48px;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--white);font-weight:500;}
+.creds-strip .cs-sep{color:var(--grey-4);margin:0 16px;font-weight:400;}
+
+/* BUILT ON BAND */
+.built-on{padding:64px 48px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--off);text-align:center;}
+.bo-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:32px;}
+.bo-beats{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;max-width:1100px;margin:0 auto 40px;}
+.bo-beat{display:flex;flex-direction:column;align-items:center;gap:16px;font-family:var(--display);font-size:14.5px;font-weight:500;color:var(--black);letter-spacing:-0.005em;line-height:1.4;text-align:center;}
+.bo-icon{width:38px;height:38px;color:var(--blue);flex-shrink:0;}
+.bo-link{font-family:var(--body);font-size:13.5px;font-weight:600;color:var(--blue);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;cursor:pointer;display:inline-block;}
+.bo-link:hover{border-bottom-color:var(--blue);}
+
+/* CLOSING */
+.closing{text-align:center;padding:110px 48px 100px;max-width:840px;margin:0 auto;}
+.closing .h2{margin:0 auto 18px;text-align:center;}
+.closing .lead{margin:0 auto 36px;text-align:center;}
+.closing-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{background:var(--black);color:#999;padding:84px 48px 40px;}
+footer .footer-inner{max-width:1280px;margin:0 auto;}
+footer h5{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:white;margin-bottom:18px;font-weight:500;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:40px;padding-bottom:60px;border-bottom:1px solid #2a2a2a;}
+.footer-col a{display:block;font-size:13px;color:#999;margin-bottom:10px;text-decoration:none;cursor:pointer;transition:color 0.15s;}
+.footer-col a:hover{color:white;}
+.footer-tagline{font-family:var(--display);font-size:18px;color:white;line-height:1.4;max-width:320px;margin-bottom:28px;font-weight:400;letter-spacing:-0.01em;}
+.footer-bottom{padding-top:34px;font-family:var(--mono);font-size:11px;letter-spacing:0.05em;color:#777;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.footer-signature{font-family:var(--display);font-size:15px;color:white;font-weight:400;letter-spacing:-0.01em;}
+
+@media(max-width:1100px){
+  .phero{grid-template-columns:1fr;gap:40px;}
+  .phero-visual{aspect-ratio:16/9;}
+  .cards,.cards.three{grid-template-columns:1fr;}
+  .prop-split{grid-template-columns:1fr;gap:40px;}
+  .prop-vertical{justify-self:start;max-width:none;}
+  .footer-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:740px){
+  .sec,.phero,.closing{padding-left:24px;padding-right:24px;}
+  .footer-grid{grid-template-columns:1fr;}
+  .built-on{padding:48px 24px;}
+  .bo-beats{grid-template-columns:repeat(2,1fr);gap:30px;}
+  .bo-icon{width:34px;height:34px;}
+}
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="phero">
+    <div>
+      <div class="phero-cat">Operate Autonomously</div>
+      <h1 class="phero-h">One source of product truth your team, your customers, and <em>every agent can act on.</em></h1>
+      <p class="phero-sub">When agents act at machine speed, the data they act on has to be right — because a mistake reaches every channel before anyone notices. Truth your people and your machines can both rely on.</p>
+      <div class="phero-cta">
+        <a class="btn btn-primary cta-big">Book a Demo</a>
+      </div>
+    </div>
+    <div class="phero-visual">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6l7-3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="phero-visual-label">Image / product visual</span>
+    </div>
+  </div>
+
+  <!-- CREDENTIALS STRIP -->
+  <div class="creds-strip">
+    <span>API-first</span><span class="cs-sep">·</span><span>MCP-native</span><span class="cs-sep">·</span><span>LLM-neutral</span><span class="cs-sep">·</span><span>MACH certified</span><span class="cs-sep">·</span><span>EU AI Act-ready</span>
+  </div>
+
+  <!-- WHAT ONE TRUTH MEANS -->
+  <section class="sec off">
+    <div class="inner">
+      <div class="eyebrow" style="text-align:center;">What "one source of truth" actually means</div>
+      <h2 class="h2 center">Not one place to store data. <em>One version everyone can trust.</em></h2>
+      <div class="cards three">
+        <div class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+          <h4>Validated continuously</h4>
+          <p>Checked as it changes, not in quarterly QA. Errors caught before a channel ever sees them.</p>
+        </div>
+        <div class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5v4a3 3 0 0 0 3 3h6.5"/></svg>
+          <h4>Traceable end to end</h4>
+          <p>Every value carries its lineage — where it came from, when it changed, who or what changed it.</p>
+        </div>
+        <div class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15 0 18M12 3c-2.5 2.7-2.5 15 0 18"/></svg>
+          <h4>Consistent everywhere</h4>
+          <p>One product, read the same way by every person, channel and agent. No drift between systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE NEW STAKES -->
+  <section class="sec">
+    <div class="eyebrow">The new stakes</div>
+    <div class="prop-split">
+      <div class="prop-text">
+        <h2 class="h2">When agents act at machine speed, <em>bad data does too.</em></h2>
+        <p class="lead">Before agents, a person looked at a record before it shipped. A wrong price or mismatched spec got caught at that checkpoint. Agents publishing hundreds of records an hour don't stop to look. By the time the mistake is spotted, it's already live on every marketplace, every sales channel, and every AI answer engine that pulled from your feed.</p>
+      </div>
+      <div class="prop-vertical">
+        <div class="prop-source">
+          <div class="ps-tag">One bad value</div>
+          <div class="ps-h">A single <em>wrong attribute</em></div>
+        </div>
+        <div class="prop-vfan">
+          <svg viewBox="0 0 46 34" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M23 2 v8"/><path d="M23 10 c0 8 -17 6 -17 22"/><path d="M23 10 v22"/><path d="M23 10 c0 8 17 6 17 22"/></svg>
+        </div>
+        <div class="prop-targets">
+          <div class="prop-target"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg>Every marketplace listing</div>
+          <div class="prop-target"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15 0 18"/></svg>Every sales channel</div>
+          <div class="prop-target"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5h16M4 5l8 7 8-7M4 5v14h16V5"/></svg>Every AI answer engine</div>
+        </div>
+      </div>
+    </div>
+    <p class="punch" style="margin-top:48px;">Get the data right and speed is your advantage. <em>Get it wrong and speed is the problem.</em></p>
+  </section>
+
+  <!-- ACCOUNTABILITY + COMPLIANCE -->
+  <section class="sec off">
+    <div class="inner">
+      <div class="eyebrow">The decision you're accountable for</div>
+      <h2 class="h2">You can't let an agent act on data <em>you can't vouch for.</em></h2>
+      <p class="lead">An agent making thousands of decisions a day is only as safe as the data underneath it. To stand behind every call it makes on your behalf, you need to prove where each value came from and that it was right — not just trust that it was.</p>
+      <p class="punch">That proof used to be a nice-to-have. <em>Now the regulators require it.</em></p>
+      <div class="regbox">
+        <div class="regbox-label">Regulatory readiness</div>
+        <p>EU AI Act and EU DPP both demand provenance and traceability most platforms can't show. Here it's designed in — part of the product, not bought as a separate services engagement.</p>
+        <ul class="blist">
+          <li>Full <strong>data lineage and audit trail</strong> across every human and agent action</li>
+          <li>Provenance on each value — <strong>where it came from, who or what changed it, when</strong></li>
+          <li>Compliance shipped as a <strong>product feature</strong>, not a professional-services line</li>
+        </ul>
+        <div class="tagrow">
+          <span class="tag">EU AI Act-ready</span>
+          <span class="tag">EU DPP-ready</span>
+          <span class="tag">GS1</span>
+          <span class="tag">Full audit trail</span>
+          <span class="tag">Data provenance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILT ON -->
+  <section class="built-on">
+    <div class="bo-eyebrow">Built on</div>
+    <div class="bo-beats">
+      <span class="bo-beat">
+        <svg class="bo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v4h-4"/><path d="M8.5 12l2.5 2.5L16 9"/></svg>
+        Continuous validation
+      </span>
+      <span class="bo-beat">
+        <svg class="bo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 12h4M11 12l6-6M11 12l6 6"/></svg>
+        Full data lineage
+      </span>
+      <span class="bo-beat">
+        <svg class="bo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="5" rx="1"/><rect x="3" y="13" width="18" height="5" rx="1"/></svg>
+        Two-Layer API
+      </span>
+      <span class="bo-beat">
+        <svg class="bo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        Audit-grade history
+      </span>
+    </div>
+    <a class="bo-link">See how it's built  →</a>
+  </section>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <h2 class="h2 center">See what trustworthy product data <em>makes possible.</em></h2>
+    <p class="lead center">You can't hand work to agents you don't trust. A short conversation — where your product truth stands today, and what becomes possible when every agent can be trusted to act on it.</p>
+    <div class="closing-cta">
+      <a class="btn btn-primary cta-big">Book a Demo</a>
+    </div>
+  </div>
+
+<!-- FOOTER -->
+<footer><div class="footer-inner">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div style="font-family:var(--body);font-weight:700;font-size:20px;letter-spacing:-0.03em;color:white;display:flex;align-items:center;gap:10px;margin-bottom:24px;"><span style="width:9px;height:9px;background:var(--blue);border-radius:50%;display:inline-block;"></span>Bluestone <em style="font-style:normal;color:var(--blue);font-weight:400;">PIM</em></div>
+      <div class="footer-tagline">The Agentic PIM. Agents drive. Humans govern.</div>
+    </div>
+    <div class="footer-col"><h5>Operate Autonomously</h5><a>Automate Product Workflows</a><a>Enforce One Source of Truth</a><a>Get Cited by AI Answer Engines</a><a>Customer Stories</a></div>
+    <div class="footer-col"><h5>Built for Agents</h5><a>Headless, API-first</a><a>Open by Default</a><a>Integration Patterns</a><a>AI Agent</a><a>MCP (Agent Gateway)</a><a>Bluestone LABS</a></div>
+    <div class="footer-col"><h5>Resources</h5><a>Blog</a><a>Guides &amp; E-books</a><a>Case studies</a><a>Gartner Market Guide</a><a>API Documentation</a></div>
+    <div class="footer-col"><h5>Partners</h5><a>Partner Program</a><a>Find a Partner</a><a>Certification</a><a>Partner Portal</a></div>
+    <div class="footer-col"><h5>Company</h5><a>Our Story</a><a>Careers</a><a>Trust Center</a><a>News</a><a>Contact</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Bluestone PIM · MACH-certified · MCP-native · SOC 2 · ISO 27001</span>
+    <span class="footer-signature">The infrastructure for product truth.</span>
+  </div>
+</div></footer>
+
+</body>
+</html>
