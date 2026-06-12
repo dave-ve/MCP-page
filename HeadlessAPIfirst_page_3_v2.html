@@ -223,15 +223,15 @@ header{position:sticky;top:0;z-index:100;height:var(--header-h);background:rgba(
 .regbox .tagrow{margin-top:22px;}
 
 /* CODE BLOCK (for Built for Agents pages) */
-.codewrap{margin-top:24px;max-width:980px;}
+.codewrap{margin-top:24px;max-width:760px;margin-left:auto;margin-right:auto;}
 .codewrap + .codewrap{margin-top:18px;}
 .codewrap .codelabel{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:8px;display:flex;align-items:baseline;gap:14px;}
 .codewrap .codelabel .codestep{color:var(--grey-3);}
-.codeblock{font-family:var(--mono);font-size:13px;line-height:1.6;background:#0e1116;color:#d6dde4;padding:18px 22px;border-radius:4px;overflow-x:auto;white-space:pre;}
-.codeblock .ck{color:#7cb7ff;}      /* keyword (curl, GET, POST) */
-.codeblock .cs{color:#9eda9e;}      /* string */
-.codeblock .cc{color:#8a96a4;font-style:italic;}  /* comment */
-.codeblock .cv{color:#e8c468;}      /* variable / brace */
+.codeblock{font-family:var(--mono);font-size:13px;line-height:1.6;background:#f4f5f7;color:var(--grey-1);border:1px solid var(--line);padding:18px 22px;border-radius:4px;overflow-x:auto;white-space:pre;}
+.codeblock .ck{color:var(--blue);}           /* keyword (curl, GET, POST) */
+.codeblock .cs{color:#166534;}               /* string */
+.codeblock .cc{color:var(--grey-3);font-style:italic;}  /* comment */
+.codeblock .cv{color:#b45309;}               /* variable / brace */
 
 /* STAT ROW (technical proof points inline) */
 .statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);background:var(--white);margin-top:36px;max-width:980px;}
@@ -454,50 +454,106 @@ body{background:var(--off, #f7f7f5);}
       <p class="lead">Bulk operations, scheduled automation, task-level calls — they're all there, and you reach for whichever fits the job. What's changed is what granularity is <em>for</em>. When a person wires a fixed integration, a few broad endpoints do the work. When an agent decides what to do at runtime — update one attribute, in one market, on the products that fail a check — it needs every operation exposed as something it can call.</p>
       <p class="punch">That's what 700+ task-level APIs actually buy you: <em>no vendor-defined ceiling on what an agent can operate.</em></p>
       <p class="lead">The whole platform is reachable — not just the handful of bulk jobs designed for a pre-agentic era.</p>
+      <div style="overflow-x:auto;margin-top:48px;">
+        <table class="spec-table" style="max-width:100%;">
+          <thead>
+            <tr>
+              <th style="width:180px;background:var(--black);color:white;font-size:11px;letter-spacing:0.08em;border-bottom:none;"></th>
+              <th style="background:var(--blue);color:white;text-align:center;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;padding:16px 20px;border-bottom:none;">Bluestone PIM API Coverage</th>
+              <th style="background:var(--grey-1);color:white;text-align:center;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;padding:16px 20px;border-bottom:none;">Traditional PIM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--grey-1);white-space:nowrap;">Integration Cost</td>
+              <td><strong style="color:var(--blue);">Lower cost</strong> — fewer custom adapters and reduced middleware / maintenance</td>
+              <td><strong>Higher cost</strong> — more custom adapters, additional middleware, greater maintenance overhead</td>
+            </tr>
+            <tr style="background:var(--off);">
+              <td style="font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--grey-1);white-space:nowrap;">Time-to-Market</td>
+              <td><strong style="color:var(--blue);">Faster</strong> — channels and workflows can be delivered quickly</td>
+              <td><strong>Slower</strong> — vendor bottlenecks and additional engineering slow delivery</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--grey-1);white-space:nowrap;">Vendor Risk</td>
+              <td><strong style="color:var(--blue);">Reduced risk</strong> — UI parity through public APIs; transparent capabilities</td>
+              <td><strong>Higher risk</strong> — UI-only actions and roadmap dependency create blind spots</td>
+            </tr>
+            <tr style="background:var(--off);">
+              <td style="font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--grey-1);white-space:nowrap;">Scaling</td>
+              <td><strong style="color:var(--blue);">Scales without rework</strong> — broad, granular API coverage supports growth</td>
+              <td><strong>Requires rework</strong> — gaps in API coverage surface as the stack expands</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
   <section class="sec">
     <div class="eyebrow" style="text-align:center;">The two-layer API</div>
-    <h2 class="h2 center">Two layers. <em>Two jobs.</em></h2>
+    <h2 class="h2 center">The Dual API Strategy: <em>Security and Performance for Enterprises.</em></h2>
     <p class="lead center">Different jobs need different surfaces. Bluestone PIM has two complementary APIs, each optimised for what it's for.</p>
-    <div class="split two">
-      <div class="split-col">
-        <div class="split-head">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15" r="1.4"/></svg>
-          <span class="split-tag">Management API</span>
+    <div style="overflow-x:auto;margin-top:40px;">
+      <table class="spec-table" style="max-width:100%;">
+        <thead>
+          <tr>
+            <th style="width:160px;background:var(--off);border-bottom:1px solid var(--line);"></th>
+            <th style="background:var(--blue);color:white;text-align:center;font-size:13px;letter-spacing:0.04em;text-transform:none;font-weight:600;border-bottom:none;padding:18px 24px;">Management API (MAPI)</th>
+            <th style="background:var(--black);color:white;text-align:center;font-size:13px;letter-spacing:0.04em;text-transform:none;font-weight:600;border-bottom:none;padding:18px 24px;">Public API (PAPI)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey-2);font-weight:600;background:var(--off);">Purpose</td>
+            <td><strong>Secure Control.</strong> MAPI is the interface for managing all platform components. It provides granular read/write access to your PIM, DAM, and other core services.</td>
+            <td><strong>High-Performance Delivery.</strong> PAPI is a highly optimised, read-only interface designed to serve large amounts of product data to any number of external systems and channels.</td>
+          </tr>
+          <tr style="background:var(--off);">
+            <td style="font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey-2);font-weight:600;">Use Case</td>
+            <td>Integrating with an ERP, automating data enrichment, or programmatically creating and updating a product with its name, number, type, and description.</td>
+            <td>Powering your headless commerce storefront, feeding a mobile application, or syndicating content to thousands of distributor portals simultaneously.</td>
+          </tr>
+          <tr>
+            <td style="font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey-2);font-weight:600;background:var(--off);">Authentication</td>
+            <td>OAuth and OpenID Connect tokens, ensuring enterprise-grade identity and access management.</td>
+            <td>Simple API keys per system, designed for easy and safe integration with external services and channels.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sec off">
+    <div class="inner">
+      <div class="eyebrow">Developer toolkit</div>
+      <h2 class="h2">Developer-Centric Toolkit: <em>REST, Real-Time Events.</em></h2>
+      <p class="lead">Everything you need to build, automate, and integrate — without workarounds or custom middleware.</p>
+      <div class="cards three" style="margin-top:40px;">
+        <div class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <h4>REST & Advanced Search Queries</h4>
+          <p>Choose broad control or highly efficient targeted queries — the same surface, optimised for how you want to work.</p>
         </div>
-        <div style="font-family:var(--display);font-size:18px;font-weight:600;margin:8px 0 6px;color:var(--black);">MAPI</div>
-        <p style="font-size:14px;color:var(--grey-1);margin-bottom:14px;line-height:1.55;">Secure read/write for integrations and agent operations.</p>
-        <ul class="split-list">
-          <li>Granular read/write access to PIM, DAM, and core services</li>
-          <li>OAuth and OpenID Connect token authentication</li>
-          <li>For ERP integrations, enrichment workflows, agent operations</li>
-          <li>Enterprise-grade identity and access management</li>
-        </ul>
-      </div>
-      <div class="split-col accent">
-        <div class="split-head">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15 0 18M12 3c-2.5 2.7-2.5 15 0 18"/></svg>
-          <span class="split-tag">Public API</span>
+        <div class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <h4>Event-Driven Workflows</h4>
+          <p>Respond instantly with webhooks and enterprise message queues. No polling, no lag — events fire when they happen.</p>
         </div>
-        <div style="font-family:var(--display);font-size:18px;font-weight:600;margin:8px 0 6px;color:var(--black);">PAPI</div>
-        <p style="font-size:14px;color:var(--grey-1);margin-bottom:14px;line-height:1.55;">High-performance read-only delivery to channels.</p>
-        <ul class="split-list">
-          <li>Read-optimised, designed for thousands of consumers</li>
-          <li>Simple API key per system</li>
-          <li>For headless storefronts, mobile apps, marketplace syndication</li>
-          <li>Sub-minute latency, predictable performance</li>
-        </ul>
+        <div class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <h4>OpenAPI Documentation</h4>
+          <p>Explore, test, and integrate using standardised docs, Swagger, and Postman. Your team gets hands-on from day one.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="sec off">
     <div class="inner">
-      <div class="eyebrow">Show me</div>
-      <h2 class="h2">Five calls to populate <em>a headless storefront.</em></h2>
-      <p class="lead">Here's how an integrator populates a new commerce front-end from a clean catalogue — the actual calls, endpoints, and flow.</p>
+      <div class="eyebrow" style="text-align:center;">Example workflow</div>
+      <h2 class="h2 center">Populating a <em>Headless Commerce Platform.</em></h2>
+      <p class="lead center">Here's how an integrator populates a new commerce front-end from a clean catalogue — the actual calls, endpoints, and flow.</p>
     <div class="codewrap">
       <div class="codelabel"><span class="codestep">1</span><span>Fetch catalogues</span></div>
       <div class="codeblock"><span class="ck">curl</span> -X GET \
@@ -537,6 +593,60 @@ POST /your-webhook-handler
     </div>
     </div>
   </section>
+
+  <section class="sec">
+    <div class="eyebrow" style="text-align:center;">See it yourself</div>
+    <h2 class="h2 center">Try out how it works — <em>see the API in action.</em></h2>
+    <p class="lead center">Real calls against the Bluestone PIM API. Pick an operation and see exactly what to send and what comes back.</p>
+    <div style="margin-top:36px;max-width:760px;margin-left:auto;margin-right:auto;">
+      <div style="display:flex;gap:0;border-bottom:2px solid var(--line);margin-bottom:28px;">
+        <button onclick="switchApiTab('create')" id="tab-create" style="font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;padding:12px 24px;background:none;border:none;cursor:pointer;color:var(--blue);border-bottom:2px solid var(--blue);margin-bottom:-2px;">Create</button>
+        <button onclick="switchApiTab('find')" id="tab-find" style="font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;padding:12px 24px;background:none;border:none;cursor:pointer;color:var(--grey-3);border-bottom:2px solid transparent;margin-bottom:-2px;">Find</button>
+        <button onclick="switchApiTab('modify')" id="tab-modify" style="font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;padding:12px 24px;background:none;border:none;cursor:pointer;color:var(--grey-3);border-bottom:2px solid transparent;margin-bottom:-2px;">Modify</button>
+        <button onclick="switchApiTab('verify')" id="tab-verify" style="font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;padding:12px 24px;background:none;border:none;cursor:pointer;color:var(--grey-3);border-bottom:2px solid transparent;margin-bottom:-2px;">Verify</button>
+      </div>
+      <div id="panel-create">
+        <div class="codelabel" style="margin-bottom:8px;"><span>Create a new product</span></div>
+        <div class="codeblock"><span class="ck">curl</span> -v -X POST \
+  <span class="cs">"https://app.bluestonepim.com/api/products"</span> \
+  -H <span class="cs">"Authorization: Bearer {MAPI_TOKEN}"</span> \
+  -H <span class="cs">"Content-Type: application/json"</span> \
+  -d <span class="cs">'{"name": "A brand new product", "number": "1234-5678-90AB"}'</span>
+
+<span class="cc"># HTTP/1.1 201 Created</span></div>
+      </div>
+      <div id="panel-find" style="display:none;">
+        <div class="codelabel" style="margin-bottom:8px;"><span>Find a product by number</span></div>
+        <div class="codeblock"><span class="ck">curl</span> -v -X GET \
+  <span class="cs">"https://app.bluestonepim.com/api/products/search/1234-5678-90AB"</span> \
+  -H <span class="cs">"Authorization: Bearer {MAPI_TOKEN}"</span></div>
+      </div>
+      <div id="panel-modify" style="display:none;">
+        <div class="codelabel" style="margin-bottom:8px;"><span>Attach attributes to a product</span></div>
+        <div class="codeblock"><span class="ck">curl</span> -v -X POST \
+  <span class="cs">"https://app.bluestonepim.com/api/products/71b892ca-034f-4cab-b412-fc0866528ec1/attributes"</span> \
+  -H <span class="cs">"Authorization: Bearer {MAPI_TOKEN}"</span> \
+  -H <span class="cs">"Content-Type: application/json"</span> \
+  -d <span class="cs">'[{"key": "color", "value": "Midnight Blue"}]'</span></div>
+      </div>
+      <div id="panel-verify" style="display:none;">
+        <div class="codelabel" style="margin-bottom:8px;"><span>Check product publish status</span></div>
+        <div class="codeblock"><span class="ck">curl</span> -v -X GET \
+  <span class="cs">"https://app.bluestonepim.com/api/products/71b892ca-034f-4cab-b412-fc0866528ec1/status"</span> \
+  -H <span class="cs">"Authorization: Bearer {MAPI_TOKEN}"</span></div>
+      </div>
+    </div>
+  </section>
+  <script>
+  function switchApiTab(tab) {
+    ['create','find','modify','verify'].forEach(function(t) {
+      document.getElementById('panel-'+t).style.display = t === tab ? 'block' : 'none';
+      var btn = document.getElementById('tab-'+t);
+      btn.style.color = t === tab ? 'var(--blue)' : 'var(--grey-3)';
+      btn.style.borderBottomColor = t === tab ? 'var(--blue)' : 'transparent';
+    });
+  }
+  </script>
 
   <div class="related-block">
     <div class="related-eyebrow">Related capabilities</div>
