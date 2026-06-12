@@ -401,55 +401,42 @@ body{background:var(--off, #f7f7f5);}
     </div>
   </section>
 
-  <!-- THE WOW: WHAT AN AGENT CAN DO -->
+  <!-- WHAT AGENTS CAN DO -->
   <section class="sec">
-    <div class="eyebrow" style="text-align:center;">In practice</div>
-    <h2 class="h2 center">Talk to your catalogue. <em>In plain language.</em></h2>
-    <p class="lead center">These aren't hypothetical. Connect Claude or ChatGPT to Bluestone PIM via MCP and ask it anything — the agent reads and writes your actual product data. Here's what that looks like.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:40px;max-width:1080px;margin-left:auto;margin-right:auto;">
-
-      <div style="border:1px solid var(--line);border-radius:5px;background:var(--white);padding:28px 28px;">
-        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;font-weight:500;">Audit & completeness</div>
-        <div style="font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.01em;color:var(--black);margin-bottom:14px;line-height:1.3;">Find every gap, across every market</div>
-        <div style="font-family:var(--mono);font-size:12.5px;line-height:1.6;background:var(--off);border-left:2px solid var(--blue);padding:12px 16px;color:var(--grey-1);margin-bottom:12px;">"Which products in the German context are missing weight, colour, and EAN? Group them by supplier and show completeness scores."</div>
-        <div style="font-size:13px;color:var(--grey-2);line-height:1.5;">The agent queries completeness across contexts, surfaces the gaps, groups by supplier — and hands back a structured list ready to route to enrichment.</div>
+    <div class="eyebrow" style="text-align:center;">What agents can do</div>
+    <h2 class="h2 center">Operations your agents can run. <em>Out of the box.</em></h2>
+    <p class="lead center">Once connected via MCP, agents can read and write across your data model programmatically — in automated pipelines, A2A workflows, or through any MCP-capable tool. No custom integration required for any of this.</p>
+    <div class="cards three" style="margin-top:40px;">
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        <h4>Audit completeness across markets</h4>
+        <p>Query completeness scores per context, surface attribute gaps by catalogue or supplier, and route the results to the next step in the pipeline.</p>
       </div>
-
-      <div style="border:1px solid var(--line);border-radius:5px;background:var(--white);padding:28px 28px;">
-        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;font-weight:500;">Enrichment at scale</div>
-        <div style="font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.01em;color:var(--black);margin-bottom:14px;line-height:1.3;">Fill gaps and generate copy, hands-off</div>
-        <div style="font-family:var(--mono);font-size:12.5px;line-height:1.6;background:var(--off);border-left:2px solid var(--blue);padding:12px 16px;color:var(--grey-1);margin-bottom:12px;">"Take all products in New Arrivals with incomplete descriptions. Generate market-ready copy in English and French, matching the brand voice guide."</div>
-        <div style="font-size:13px;color:var(--grey-2);line-height:1.5;">Reads your existing content for tone, fills descriptions across both contexts, writes back — no export, no re-import, no manual steps.</div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 5.3L20 9.2l-4 3.9 1 5.6-5-2.8-5 2.8 1-5.6-4-3.9 5.8-.9z"/></svg>
+        <h4>Enrich and write back at scale</h4>
+        <p>Read products with gaps, generate attribute values or descriptions, and write them back — across any context, without leaving the agent workflow.</p>
       </div>
-
-      <div style="border:1px solid var(--line);border-radius:5px;background:var(--white);padding:28px 28px;">
-        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;font-weight:500;">Catalogue structure</div>
-        <div style="font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.01em;color:var(--black);margin-bottom:14px;line-height:1.3;">Build and organise in seconds</div>
-        <div style="font-family:var(--mono);font-size:12.5px;line-height:1.6;background:var(--off);border-left:2px solid var(--blue);padding:12px 16px;color:var(--grey-1);margin-bottom:12px;">"Create a category node called Smart Home Bundles under Electronics. Assign these 12 product IDs to it and set the sort order by margin."</div>
-        <div style="font-size:13px;color:var(--grey-2);line-height:1.5;">Creates the node, assigns the products, applies the sort — a task that would take 20 minutes in the UI takes one prompt.</div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="4" rx="1"/><rect x="3" y="14" width="6" height="4" rx="1"/><rect x="15" y="14" width="6" height="4" rx="1"/><path d="M12 7v3M12 10H6v4M12 10h6v4"/></svg>
+        <h4>Build and reorganise catalogue structure</h4>
+        <p>Create category nodes, assign products, update hierarchy and membership — structural changes that would take hours in the UI, done in a single operation.</p>
       </div>
-
-      <div style="border:1px solid var(--line);border-radius:5px;background:var(--white);padding:28px 28px;">
-        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;font-weight:500;">Compliance validation</div>
-        <div style="font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.01em;color:var(--black);margin-bottom:14px;line-height:1.3;">Check readiness before it becomes a problem</div>
-        <div style="font-family:var(--mono);font-size:12.5px;line-height:1.6;background:var(--off);border-left:2px solid var(--blue);padding:12px 16px;color:var(--grey-1);margin-bottom:12px;">"Check all products tagged for the EU market against the DPP completeness template. List any missing mandatory attributes, grouped by product type."</div>
-        <div style="font-size:13px;color:var(--grey-2);line-height:1.5;">Runs the check across your full EU-tagged catalogue, surfaces the mandatory gaps before they become a compliance issue.</div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        <h4>Validate compliance readiness</h4>
+        <p>Check products against completeness templates — EU DPP, channel requirements, internal standards — and return structured gap reports for downstream action.</p>
       </div>
-
-      <div style="border:1px solid var(--line);border-radius:5px;background:var(--white);padding:28px 28px;">
-        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;font-weight:500;">Cross-market intelligence</div>
-        <div style="font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.01em;color:var(--black);margin-bottom:14px;line-height:1.3;">Compare and reason across contexts</div>
-        <div style="font-family:var(--mono);font-size:12.5px;line-height:1.6;background:var(--off);border-left:2px solid var(--blue);padding:12px 16px;color:var(--grey-1);margin-bottom:12px;">"Show me all products where the German context has higher completeness than the UK context. What attributes are consistently missing on the UK side?"</div>
-        <div style="font-size:13px;color:var(--grey-2);line-height:1.5;">Compares scores across context pairs, identifies the pattern — the kind of cross-market analysis that used to take a full reporting sprint.</div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15 0 18M12 3c-2.5 2.7-2.5 15 0 18"/></svg>
+        <h4>Compare data across contexts</h4>
+        <p>Read and diff values across language or market contexts — completeness, attribute coverage, published state — without any custom reporting logic.</p>
       </div>
-
-      <div style="border:1px solid var(--line);border-radius:5px;background:var(--white);padding:28px 28px;">
-        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;font-weight:500;">Publishing & sync</div>
-        <div style="font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.01em;color:var(--black);margin-bottom:14px;line-height:1.3;">Review changes, then push with confidence</div>
-        <div style="font-family:var(--mono);font-size:12.5px;line-height:1.6;background:var(--off);border-left:2px solid var(--blue);padding:12px 16px;color:var(--grey-1);margin-bottom:12px;">"Show me all products modified in the last 48 hours that haven't been synced to the B2B channel. Give me a diff, then trigger the sync once I confirm."</div>
-        <div style="font-size:13px;color:var(--grey-2);line-height:1.5;">Queries publish history, surfaces the diff, waits for human sign-off, then triggers the sync — human-in-the-loop exactly where you want it.</div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19h18M3 5h18M12 5v14M5 12h4M15 12h4"/></svg>
+        <h4>Trigger publishing and sync</h4>
+        <p>Initiate channel syncs, retrieve publish history, inspect diffs — and gate the trigger on upstream conditions, so publication only happens when the data is ready.</p>
       </div>
-
     </div>
   </section>
 
