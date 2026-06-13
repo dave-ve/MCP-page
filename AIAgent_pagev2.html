@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent — Bluestone PIM (page content)</title>
+  <style>
+:root{
+  --blue:#1652f0;--blue-dark:#0f3fc4;--blue-soft:#e8efff;--blue-soft-2:#f2f5ff;
+  --black:#0a0a0a;--grey-1:#2a2a2a;--grey-2:#5a5a5a;--grey-3:#8a8a8a;--grey-4:#c0c0c0;
+  --line:#e8e8e8;--line-soft:#f2f2f2;--off:#fafaf8;--white:#ffffff;
+  --display:'JetBrains Mono',monospace;--body:'JetBrains Mono',monospace;--mono:'JetBrains Mono',monospace;
+  --header-h:76px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--white);color:var(--black);font-size:15px;line-height:1.6;letter-spacing:-0.01em;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--blue);color:white;}
+
+/* HEADER + MENU */
+header{position:sticky;top:0;z-index:100;height:var(--header-h);background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.header-inner{width:100%;max-width:1440px;margin:0 auto;padding:0 48px;height:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:48px;}
+.logo{font-family:var(--body);font-weight:700;font-size:20px;letter-spacing:-0.03em;color:var(--black);cursor:pointer;display:flex;align-items:center;gap:10px;user-select:none;}
+.logo-dot{width:9px;height:9px;background:var(--blue);border-radius:50%;}
+.logo em{font-style:normal;color:var(--blue);font-weight:400;}
+.main-nav{display:flex;align-items:center;gap:0;}
+.nav-item{height:var(--header-h);display:flex;align-items:center;padding:0 18px;font-family:var(--body);font-size:14.5px;font-weight:500;color:var(--grey-1);cursor:pointer;background:none;border:none;gap:6px;white-space:nowrap;position:relative;transition:color 0.15s;}
+.nav-item:hover{color:var(--black);}
+.nav-item.open{color:var(--blue);}
+.nav-item.open::after{content:'';position:absolute;bottom:0;left:18px;right:18px;height:2px;background:var(--blue);}
+.chevron{width:11px;height:11px;color:var(--grey-3);transition:transform 0.18s,color 0.15s;}
+.nav-item.open .chevron{transform:rotate(180deg);color:var(--blue);}
+.ctas{display:flex;align-items:center;gap:10px;}
+.btn{font-family:var(--body);font-size:13.5px;font-weight:600;padding:11px 22px;border-radius:4px;cursor:pointer;white-space:nowrap;border:1px solid;letter-spacing:-0.005em;transition:all 0.15s;background:none;color:inherit;text-decoration:none;display:inline-block;}
+.btn-ghost{background:white;color:var(--black);border-color:var(--grey-4);}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
+.btn-primary{background:var(--blue);color:white;border-color:var(--blue);}
+.btn-primary:hover{background:var(--blue-dark);border-color:var(--blue-dark);}
+.secondary-nav{position:absolute;top:0;right:48px;display:flex;align-items:center;gap:24px;height:28px;margin-top:12px;font-size:11.5px;color:var(--grey-3);font-weight:500;}
+.secondary-nav a{color:inherit;text-decoration:none;cursor:pointer;transition:color 0.15s;}
+.secondary-nav a:hover{color:var(--blue);}
+.menu-wrap{position:fixed;top:var(--header-h);left:0;right:0;z-index:90;background:var(--white);border-bottom:1px solid var(--line);box-shadow:0 24px 60px rgba(10,10,10,0.07);display:none;}
+.menu-wrap.open{display:block;}
+.menu-inner{max-width:1440px;margin:0 auto;padding:44px 48px 52px;}
+.menu-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:80px;}
+.menu-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:56px;}
+.menu-grid-1{display:grid;grid-template-columns:1fr;max-width:560px;}
+.sec-label{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey-3);margin-bottom:22px;}
+.mlink{display:block;padding:14px 0;cursor:pointer;border:none;background:none;text-align:left;width:100%;color:var(--black);border-bottom:1px solid transparent;transition:border-color 0.15s,padding 0.15s;text-decoration:none;}
+.mlink:hover{border-bottom-color:var(--blue);padding-left:4px;}
+.mlink:hover .ml-title{color:var(--blue);}
+.ml-title{font-family:var(--display);font-size:16px;font-weight:600;line-height:1.2;margin-bottom:4px;transition:color 0.15s;letter-spacing:-0.015em;}
+.ml-desc{font-size:13px;color:var(--grey-2);line-height:1.45;}
+.ml-desc strong{color:var(--blue);font-weight:500;}
+.pill{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:2px 7px;border-radius:2px;vertical-align:2px;background:var(--blue-soft);color:var(--blue);}
+.backdrop{position:fixed;inset:0;z-index:80;background:rgba(10,10,10,0.18);opacity:0;pointer-events:none;transition:opacity 0.2s;}
+.backdrop.open{opacity:1;pointer-events:auto;}
+
+/* PAGE SWITCHER */
+.page-switcher{position:sticky;top:var(--header-h);z-index:70;background:var(--blue-soft-2);border-bottom:1px solid var(--line);}
+.page-switcher-inner{max-width:1280px;margin:0 auto;padding:0 48px;display:flex;gap:0;align-items:center;flex-wrap:wrap;}
+.ps-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-3);margin-right:24px;padding:14px 0;}
+.ps-tab{font-family:var(--body);font-size:13px;font-weight:500;color:var(--grey-2);background:none;border:none;cursor:pointer;padding:14px 18px;border-bottom:2px solid transparent;transition:all 0.15s;white-space:nowrap;text-decoration:none;}
+.ps-tab:hover{color:var(--black);}
+.ps-tab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600;}
+
+.page{display:none;}
+.page.active{display:block;}
+
+/* SECTION SCAFFOLD */
+.sec{max-width:1180px;margin:0 auto;padding:96px 48px;}
+.sec.tight{padding:64px 48px;}
+.sec.off{background:var(--off);max-width:none;}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:14px;}
+
+/* HERO */
+.phero{max-width:1180px;margin:0 auto;padding:72px 48px 64px;display:grid;grid-template-columns:1.4fr 0.8fr;gap:56px;align-items:center;}
+.phero-cat{font-family:var(--body);font-size:14px;font-weight:600;color:var(--blue);letter-spacing:-0.01em;margin-bottom:20px;}
+.phero-h{font-family:var(--display);font-size:clamp(30px,3.6vw,46px);font-weight:600;line-height:1.12;letter-spacing:-0.03em;color:var(--black);margin-bottom:26px;}
+.phero-h em{font-style:normal;color:var(--blue);font-weight:300;}
+.phero-sub{font-size:18px;color:var(--grey-1);line-height:1.55;margin-bottom:34px;}
+.phero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+.cta-big{font-size:14px;font-weight:600;padding:16px 30px;}
+.phero-visual{aspect-ratio:4/3;background:var(--off);border:1px solid var(--line);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--grey-3);}
+.phero-visual-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-3);}
+
+/* HEADINGS */
+.h2{font-family:var(--display);font-size:clamp(21px,2.1vw,29px);font-weight:600;line-height:1.18;letter-spacing:-0.02em;color:var(--black);max-width:760px;margin-bottom:20px;}
+.h2 em{font-style:normal;color:var(--blue);font-weight:300;}
+.lead{font-size:17px;color:var(--grey-1);line-height:1.62;max-width:680px;}
+.lead strong{color:var(--black);font-weight:600;}
+.h2.center{margin-left:auto;margin-right:auto;text-align:center;}
+.lead.center{margin-left:auto;margin-right:auto;text-align:center;}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px;text-align:left;}
+.card{background:var(--white);padding:34px 28px;display:flex;flex-direction:column;}
+.card-icon{width:26px;height:26px;color:var(--blue);margin-bottom:18px;}
+.card h4{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-0.015em;color:var(--black);margin-bottom:12px;line-height:1.25;}
+.card p{font-size:14px;color:var(--grey-2);line-height:1.55;}
+
+/* SPLIT PANEL */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;text-align:left;}
+
+/* CONTRAST PAIR */
+.contrast{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:32px auto 0;max-width:980px;}
+.contrast-item{padding:24px 26px;border:1px solid var(--line);border-radius:5px;background:var(--white);}
+.contrast-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:12px;}
+.contrast-h{font-family:var(--display);font-size:16px;font-weight:600;color:var(--black);letter-spacing:-0.01em;margin-bottom:8px;}
+.contrast-d{font-size:14px;color:var(--grey-2);line-height:1.5;}
+
+/* CODE / DEMO BLOCKS */
+.codeblock{font-family:var(--mono);font-size:13px;line-height:1.6;background:#0e1116;color:#d6dde4;padding:18px 22px;border-radius:4px;overflow-x:auto;white-space:pre;}
+.codeblock .cc{color:#8a96a4;font-style:italic;}
+
+/* PROP / LAYOUT STYLES */
+.prop-target{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--grey-1);padding:12px 16px;border:1px solid var(--line);border-radius:4px;background:var(--white);}
+.prop-target svg{width:15px;height:15px;color:var(--blue);flex-shrink:0;}
+
+/* CREDENTIALS STRIP */
+.creds-strip{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey-2);text-align:center;padding:18px 48px;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--white);font-weight:500;}
+.creds-strip .cs-sep{color:var(--grey-4);margin:0 16px;font-weight:400;}
+
+/* RELATED CAPABILITIES */
+.related-block{padding:56px 48px;background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.related-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:500;text-align:center;margin-bottom:28px;}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1100px;margin:0 auto;}
+.related-card{padding:24px 26px;border:1px solid var(--line);background:var(--white);border-radius:4px;text-decoration:none;display:block;transition:border-color 0.15s,transform 0.15s;cursor:pointer;}
+.related-card:hover{border-color:var(--blue);transform:translateY(-1px);}
+.related-card-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-3);margin-bottom:8px;}
+.related-card-title{font-family:var(--display);font-size:16px;font-weight:600;color:var(--black);letter-spacing:-0.01em;margin-bottom:6px;}
+.related-card-desc{font-size:13.5px;color:var(--grey-1);line-height:1.5;}
+
+/* CLOSING */
+.closing{text-align:center;padding:110px 48px 100px;max-width:840px;margin:0 auto;}
+.closing .h2{margin:0 auto 18px;text-align:center;}
+.closing .lead{margin:0 auto 36px;text-align:center;}
+
+/* FOOTER */
+footer{background:var(--black);color:#999;padding:84px 48px 40px;}
+footer .footer-inner{max-width:1280px;margin:0 auto;}
+footer h5{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:white;margin-bottom:18px;font-weight:500;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:40px;padding-bottom:60px;border-bottom:1px solid #2a2a2a;}
+.footer-col a{display:block;font-size:13px;color:#999;margin-bottom:10px;text-decoration:none;transition:color 0.15s;}
+.footer-col a:hover{color:white;}
+.footer-tagline{font-family:var(--display);font-size:18px;color:white;line-height:1.4;max-width:320px;margin-bottom:28px;font-weight:400;letter-spacing:-0.01em;}
+.footer-bottom{padding-top:34px;font-family:var(--mono);font-size:11px;letter-spacing:0.05em;color:#777;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.footer-signature{font-family:var(--display);font-size:15px;color:white;font-weight:400;letter-spacing:-0.01em;}
+
+@media(max-width:1100px){
+  .menu-grid-2,.menu-grid-3{grid-template-columns:1fr;gap:36px;}
+  .phero{grid-template-columns:1fr;gap:40px;}
+  .phero-visual{aspect-ratio:16/9;}
+  .cards,.contrast,.split{grid-template-columns:1fr;gap:16px;}
+  .footer-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:740px){
+  .header-inner{grid-template-columns:auto auto;gap:16px;padding:0 24px;}
+  .main-nav,.secondary-nav{display:none;}
+  .sec,.phero,.closing{padding-left:24px;padding-right:24px;}
+  .footer-grid{grid-template-columns:1fr;}
+  .ps-label{display:none;}
+}
+  </style>
+
+<style>
+/* standalone: page is always visible, no JS toggling needed */
+body{background:var(--off, #f7f7f5);}
+.page{display:block;}
+
+/* WORKED EXAMPLE — prompt bubble + agent steps + result */
+.demo{max-width:880px;margin:36px auto 0;border:1px solid var(--line);border-radius:10px;background:var(--white);overflow:hidden;}
+.demo-prompt{display:flex;gap:12px;align-items:flex-start;padding:22px 26px;background:var(--blue-soft-2,#eef2ff);border-bottom:1px solid var(--line);}
+.demo-prompt .who{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);font-weight:600;flex-shrink:0;padding-top:3px;width:46px;}
+.demo-prompt .msg{font-family:var(--display);font-size:18px;line-height:1.45;color:var(--black);font-weight:500;}
+.demo-body{padding:22px 26px;}
+.demo-body .who{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-3);font-weight:600;margin-bottom:16px;}
+.demo-steps{list-style:none;margin:0;padding:0;counter-reset:step;}
+.demo-steps li{position:relative;padding:0 0 16px 40px;counter-increment:step;}
+.demo-steps li:last-child{padding-bottom:0;}
+.demo-steps li::before{content:counter(step);position:absolute;left:0;top:-1px;width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;font-family:var(--mono);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;}
+.demo-steps li::after{content:"";position:absolute;left:11.5px;top:24px;bottom:4px;width:1px;background:var(--line);}
+.demo-steps li:last-child::after{display:none;}
+.demo-steps .st{font-size:14.5px;color:var(--grey-1);line-height:1.5;}
+.demo-steps .st strong{color:var(--black);font-weight:600;}
+.demo-result{margin-top:20px;padding:16px 18px;background:var(--off);border-radius:6px;border-left:3px solid var(--blue);font-size:14px;color:var(--grey-1);line-height:1.55;}
+.demo-result strong{color:var(--black);font-weight:600;}
+.demo-cap{font-family:var(--mono);font-size:11px;color:var(--grey-3);text-align:center;margin-top:16px;font-style:italic;}
+
+/* compact prompt cards (range of complex asks) */
+.promptgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:880px;margin:28px auto 0;}
+.promptcard{border:1px solid var(--line);border-radius:8px;background:var(--white);padding:18px 20px;}
+.promptcard .pc-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:10px;}
+.promptcard .pc-q{font-size:14.5px;color:var(--black);line-height:1.45;font-weight:500;margin-bottom:8px;}
+.promptcard .pc-a{font-size:13px;color:var(--grey-2);line-height:1.5;}
+@media(max-width:740px){.promptgrid{grid-template-columns:1fr;}}
+
+/* mid-page CTA band */
+.midcta{text-align:center;padding:8px 0 4px;}
+</style>
+</head>
+<body>
+
+<div class="page active" id="page-aiagent">
+
+  <div class="phero">
+    <div>
+      <div class="phero-cat">Built for Agents</div>
+      <h1 class="phero-h">An operator inside the product. <em>Not a chatbot beside it.</em></h1>
+      <p class="phero-sub">Hi, I’m your AI Agent 👋 What can I do for you today? I’m here to make your everyday PIM work faster and easier. Ask me what you need — I understand multiple languages, guide you through the platform, and get things done.</p>
+      <div class="phero-cta">
+        <a class="btn btn-primary cta-big">See the Agent in Action</a>
+      </div>
+    </div>
+    <div class="phero-visual">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M3 13l4-4 3 3 4-5 7 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="phero-visual-label">AI Agent Operational View</span>
+    </div>
+  </div>
+
+  <div class="creds-strip">
+    <span>API-first</span><span class="cs-sep">·</span><span>MCP-native</span><span class="cs-sep">·</span><span>LLM-neutral</span><span class="cs-sep">·</span><span>MACH certified</span><span class="cs-sep">·</span><span>EU AI Act-ready</span>
+  </div>
+
+  <section class="sec off">
+    <div class="inner">
+      <div class="eyebrow" style="text-align:center;">Start Anywhere</div>
+      <h2 class="h2 center">Bring me the complexity – <br><em>I’ll make sense of it</em></h2>
+      <p class="lead center">Big task, small task, tricky task, next task — your AI Agent is always on standby.</p>
+      
+      <div class="cards">
+        <div class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg>
+          <h4>Find it fast, fix it faster</h4>
+          <p>I help you get to the right products without the usual digging — and surface gaps before they turn into publishing problems.</p>
+          <ul style="margin-top: 14px; padding-left: 16px; font-size: 13.5px; color: var(--grey-2); line-height: 1.6;">
+            <li>Search by name, label, category, or attribute</li>
+            <li>Spot incomplete products before they go live</li>
+            <li>Understand exactly what is blocking publish</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+          <h4>Move faster at scale</h4>
+          <p>Stop clicking through menus. Ask the agent to act, filter, and bulk-update — and get back to work that matters.</p>
+          <ul style="margin-top: 14px; padding-left: 16px; font-size: 13.5px; color: var(--grey-2); line-height: 1.6;">
+            <li>Update labels and attributes across many products at once</li>
+            <li>Chain a filter and a bulk action in a single ask</li>
+            <li>Run the kind of multi-step job you'd build in the Rules Engine</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15 0 18M12 3c-2.5 2.7-2.5 15 0 18"/></svg>
+          <h4>I work with what’s in front of you</h4>
+          <p>The agent understands your current page, the filters you’ve applied, and the products you’re looking at — so help is always specific to what you’re doing right now.</p>
+          <ul style="margin-top: 14px; padding-left: 16px; font-size: 13.5px; color: var(--grey-2); line-height: 1.6;">
+            <li>Knows which page and workflow you’re in</li>
+            <li>Acts on the products you have selected</li>
+            <li>Responds based on your active filters and views</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKED EXAMPLE — complex multi-step task in action -->
+  <section class="sec">
+    <div class="inner" style="max-width: 980px; margin: 0 auto;">
+      <div class="eyebrow" style="text-align:center;">Give me the complex stuff</div>
+      <h2 class="h2 center">One sentence. <em>A multi-step job, done.</em></h2>
+      <p class="lead center">The kind of task that's a sequence of filters and bulk actions in the UI — ask for it in plain language, and the agent runs the whole sequence.</p>
+
+      <div class="demo">
+        <div class="demo-prompt">
+          <span class="who">You</span>
+          <span class="msg">"Find all products in Spring 2026 that are invalid, label them 'Needs Fix', and show me the list."</span>
+        </div>
+        <div class="demo-body">
+          <div class="who">AI Agent</div>
+          <ul class="demo-steps">
+            <li><span class="st">Resolves the <strong>Spring 2026</strong> category and filters it to <strong>invalid products</strong></span></li>
+            <li><span class="st">Bulk-applies the <strong>'Needs Fix'</strong> label across the matching set</span></li>
+            <li><span class="st">Pushes a ready-to-apply filter to your product list so you can review them</span></li>
+          </ul>
+          <div class="demo-result"><strong>Result:</strong> a query and two bulk operations from one instruction — the products are labelled and on screen, ready for your team to act on.</div>
+        </div>
+      </div>
+      <p class="demo-cap">A real task the agent handles end to end. You stay in control of the editorial decisions.</p>
+
+      <div class="promptgrid">
+        <div class="promptcard">
+          <div class="pc-tag">Seasonal archive</div>
+          <div class="pc-q">"Archive everything labelled 'Winter 2024' that hasn't been updated in over six months."</div>
+          <div class="pc-a">Combines a label and a last-updated filter, then runs the archive job on the matching set.</div>
+        </div>
+        <div class="promptcard">
+          <div class="pc-tag">Multi-context publish</div>
+          <div class="pc-q">"Publish all valid products in Accessories to both the English and German contexts."</div>
+          <div class="pc-a">Filters for valid products and triggers the publish across both contexts at once.</div>
+        </div>
+        <div class="promptcard">
+          <div class="pc-tag">Data cleanup</div>
+          <div class="pc-q">"Remove the 'Legacy Price' attribute from every product labelled 'Migrated'."</div>
+          <div class="pc-a">Resolves the label and the attribute, then bulk-removes it across the filtered set.</div>
+        </div>
+        <div class="promptcard">
+          <div class="pc-tag">Completeness audit</div>
+          <div class="pc-q">"How many products in Electronics have a completeness score below 50%?"</div>
+          <div class="pc-a">Counts the set, then pushes the filter to your UI so you can work through them.</div>
+        </div>
+      </div>
+
+      <div class="midcta" style="margin-top:40px;">
+        <a class="btn btn-primary cta-big">See the Agent in Action</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec off">
+    <div class="inner" style="max-width: 980px; margin: 0 auto;">
+      <div class="eyebrow" style="text-align:center;">Instant Answers Embedded Anywhere</div>
+      <h2 class="h2 center">I’m Your 24/7 Platform Expert 💡🤓☝️</h2>
+      <p class="lead center" style="margin-bottom: 40px;">Not just quick answers — guidance on the work that's actually hard. How to build a complex filter, the right way to bulk-update a tricky set, how a Rules-Engine-style task gets done. Ask in plain language and get a way forward, right where you work.</p>
+      
+      <div class="contrast">
+        <div class="contrast-item">
+          <div class="contrast-tag">✓ Workflow Help</div>
+          <div class="contrast-h">Workflow Help</div>
+          <div class="contrast-d">From "how do I?" to done in seconds — ask anything and keep your momentum.</div>
+        </div>
+        <div class="contrast-item">
+          <div class="contrast-tag">✓ Context Knowledge</div>
+          <div class="contrast-h">Expert PIM Advice</div>
+          <div class="contrast-d">Best practices and terminology explained in plain language, right when you need them.</div>
+        </div>
+        <div class="contrast-item">
+          <div class="contrast-tag">✓ Inline Education</div>
+          <div class="contrast-h">Latest Features</div>
+          <div class="contrast-d">Never miss a new capability — get guided tours and summaries without leaving your workflow.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="inner" style="max-width: 980px; margin: 0 auto;">
+      <div class="eyebrow">Seamless Global Deployments</div>
+      <h2 class="h2">No Language Barriers, <br><em>Just Answers</em></h2>
+      <p class="lead" style="margin-bottom: 32px;">The AI agent’s multilingual fluency ensures a seamless, high-speed experience that empowers global teams.</p>
+      
+      <div class="split">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="prop-target"><strong>Help regional teams work faster</strong></div>
+          <div class="prop-target"><strong>Support multilingual enrichment</strong></div>
+          <div class="prop-target"><strong>Keep content quality consistent</strong></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div class="codeblock" style="padding: 10px 16px; font-size: 11.5px;"><span class="cc">// ES</span> "¿Qué falta en nuestro catálogo de ropa de primavera antes del lanzamiento?"</div>
+          <div class="codeblock" style="padding: 10px 16px; font-size: 11.5px;"><span class="cc">// FR</span> "Que manque-t-il dans notre catalogue de vêtements de printemps avant le lancement ?"</div>
+          <div class="codeblock" style="padding: 10px 16px; font-size: 11.5px;"><span class="cc">// DE</span> "Was fehlt in unserem Frühlingsbekleidungskatalog vor dem Start?"</div>
+          <div class="codeblock" style="padding: 10px 16px; font-size: 11.5px;"><span class="cc">// NO</span> "Hva mangler i vår vårkatalog for klær før lansering?"</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec off">
+    <div class="inner">
+      <div class="eyebrow" style="text-align:center;">Strategic Value</div>
+      <h2 class="h2 center">The Strategic Impact</h2>
+      <p class="lead center" style="font-style: italic; color: var(--blue); margin-bottom: 46px;">"Friction to Flow: AI Agent doesn't just save time – it gives it back."</p>
+      
+      <div class="cards" style="grid-template-columns: repeat(4, 1fr); max-width: 1180px; margin: 0 auto; background: var(--line);">
+        <div class="card" style="padding: 28px 24px;">
+          <h4 style="font-size: 16px; margin-bottom: 8px; color: var(--blue);">Time Saved</h4>
+          <p style="font-size: 13.5px; line-height: 1.5; color: var(--grey-2);">Less time spent searching means more time for creative product strategy.</p>
+        </div>
+        <div class="card" style="padding: 28px 24px;">
+          <h4 style="font-size: 16px; margin-bottom: 8px; color: var(--blue);">Time to Market</h4>
+          <p style="font-size: 13.5px; line-height: 1.5; color: var(--grey-2);">Accelerate product updates and launches with intelligent support.</p>
+        </div>
+        <div class="card" style="padding: 28px 24px;">
+          <h4 style="font-size: 16px; margin-bottom: 8px; color: var(--blue);">Fewer Dependencies</h4>
+          <p style="font-size: 13.5px; line-height: 1.5; color: var(--grey-2);">Teams access data while relying less on technical/IT help.</p>
+        </div>
+        <div class="card" style="padding: 28px 24px;">
+          <h4 style="font-size: 16px; margin-bottom: 8px; color: var(--blue);">Upskilling</h4>
+          <p style="font-size: 13.5px; line-height: 1.5; color: var(--grey-2);">New team members get up to speed faster with simplified complexity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="related-block">
+    <div class="related-eyebrow">Related capabilities</div>
+    <div class="related-grid">
+      <div class="related-card">
+        <div class="related-card-tag">Built for Agents</div>
+        <div class="related-card-title">MCP (Agent Gateway)</div>
+        <div class="related-card-desc">The open protocol layer that gives the Agent access to the full Bluestone PIM data model.</div>
+      </div>
+      <div class="related-card">
+        <div class="related-card-tag">Built for Agents</div>
+        <div class="related-card-title">AI Capabilities</div>
+        <div class="related-card-desc">The six purpose-built AI agents the Agent can invoke for specific PIM work.</div>
+      </div>
+      <div class="related-card">
+        <div class="related-card-tag">Built for Agents</div>
+        <div class="related-card-title">Headless, API-first</div>
+        <div class="related-card-desc">The 700+ task APIs the Agent calls under the hood to do its work.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="closing">
+    <h2 class="h2 center">See the Agent <em>operate your catalogue.</em></h2>
+    <p class="lead center">A short demo session — watch the Agent find, fix, and ship product data work that used to mean a week of clicking.</p>
+    <div class="closing-cta">
+      <a class="btn btn-primary cta-big">Book a Demo</a>
+    </div>
+  </div>
+
+</div>
+
+
+</body>
+</html>
