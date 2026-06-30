@@ -159,6 +159,32 @@ body{font-family:var(--body);background:var(--white);color:var(--black);font-siz
 .ben-list li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--blue);}
 @media(max-width:760px){.ben-grid,.ben-grid.three{grid-template-columns:1fr;}}
 
+/* REACH — where you can sell (three light columns) */
+.reach{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;max-width:1040px;margin-top:36px;}
+.reach-col h4{font-family:var(--display);font-size:16px;font-weight:600;letter-spacing:-0.01em;color:var(--blue);margin-bottom:10px;}
+.reach-col p{font-size:14px;color:var(--grey-1);line-height:1.58;margin-bottom:12px;}
+.reach-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.reach-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.01em;color:var(--grey-2);background:var(--off);border:1px solid var(--line);padding:3px 9px;border-radius:20px;}
+@media(max-width:820px){.reach{grid-template-columns:1fr;gap:28px;}}
+
+/* REACH — agentic commerce accent block */
+.reach-agentic{margin-top:34px;max-width:1000px;padding:24px 28px;background:var(--blue-soft-2);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;}
+.reach-agentic-label{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:10px;}
+.reach-agentic p{font-size:14.5px;color:var(--grey-1);line-height:1.62;}
+.reach-agentic p strong{color:var(--black);font-weight:600;}
+
+/* PROOF — customer result accent band */
+.proof{background:var(--blue);color:#fff;}
+.proof .inner{padding-top:56px;padding-bottom:56px;}
+.proof-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:18px;}
+.proof-big{font-family:var(--display);font-size:clamp(34px,5vw,56px);font-weight:600;letter-spacing:-0.03em;line-height:1;margin-bottom:18px;}
+.proof-big span{color:#bcd0ff;}
+.proof-sub{font-size:16px;line-height:1.55;color:rgba(255,255,255,0.92);max-width:600px;margin-bottom:30px;}
+.proof-row{display:flex;gap:48px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.22);padding-top:26px;}
+.proof-metric .pm-val{font-family:var(--display);font-size:28px;font-weight:600;letter-spacing:-0.02em;line-height:1;}
+.proof-metric .pm-lbl{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:8px;}
+@media(max-width:680px){.proof-row{gap:28px;}}
+
 /* INTERACTIVE COST CALCULATOR */
 .calc{display:grid;grid-template-columns:1fr 0.85fr;gap:28px;max-width:1040px;margin-top:34px;align-items:stretch;}
 .calc-inputs{border:1px solid var(--line);border-radius:12px;padding:32px 34px;background:var(--white);}
@@ -313,14 +339,72 @@ body{font-family:var(--body);background:var(--white);color:var(--black);font-siz
           </ul>
         </div>
       </div>
-      <p class="body-p" style="margin-top:28px;font-size:15px;">Speed into each channel is covered on <a href="#" style="color:var(--blue);text-decoration:none;border-bottom:1px solid transparent;">Automate Product Workflows</a>; being found by AI buyers on <a href="#" style="color:var(--blue);text-decoration:none;border-bottom:1px solid transparent;">Get Discovered by AI Agents</a>. This page is about what that growth costs to run.</p>
+      <p class="body-p" style="margin-top:28px;font-size:15px;">Speed into each channel is covered on <a href="#" style="color:var(--blue);text-decoration:none;border-bottom:1px solid transparent;">Automate Product Workflows</a>; being found by AI buyers on <a href="#" style="color:var(--blue);text-decoration:none;border-bottom:1px solid transparent;">Get Cited by AI Answer Engines</a>. This page is about what that growth costs to run.</p>
+    </div>
+  </section>
+
+  <!-- Section Reach — where your data goes -->
+  <section class="sec">
+    <div class="inner">
+      <div class="sec-eyebrow">Reach</div>
+      <h2 class="h2">Ready for wherever your customers <em>are buying.</em></h2>
+      <p class="body-p">Whatever your channel mix looks like today — and whatever it becomes — Bluestone is ready for it. Where you sell and how you manage distribution stays your choice.</p>
+      <div class="reach">
+        <div class="reach-col">
+          <h4>Storefronts &amp; commerce</h4>
+          <p>Your web shops and apps read from one source, on the commerce engine you already run.</p>
+          <div class="reach-tags">
+            <span class="reach-tag">commercetools</span>
+            <span class="reach-tag">Adobe Commerce</span>
+            <span class="reach-tag">Shopify</span>
+          </div>
+        </div>
+        <div class="reach-col">
+          <h4>Syndication &amp; channel management</h4>
+          <p>Feed marketplaces and partner portals directly, or connect a best-of-breed channel manager like Productsup to run syndication and optimisation at scale across hundreds of destinations.</p>
+          <div class="reach-tags">
+            <span class="reach-tag">Productsup</span>
+            <span class="reach-tag">Channable</span>
+            <span class="reach-tag">Marketplaces</span>
+          </div>
+        </div>
+        <div class="reach-col">
+          <h4>Trading partners &amp; new markets</h4>
+          <p>Share verified data through GS1 networks, and open new regions and languages without redoing the work each time.</p>
+          <div class="reach-tags">
+            <span class="reach-tag">GS1 / 1WorldSync</span>
+            <span class="reach-tag">New regions</span>
+            <span class="reach-tag">Languages</span>
+          </div>
+        </div>
+      </div>
+      <div class="reach-agentic">
+        <div class="reach-agentic-label">The channel that's just emerging</div>
+        <p>And there's a new buying surface forming: <strong>AI agents that reach for product data directly.</strong> When a shopper asks an assistant to compare or buy, the agent pulls from whatever data it can read — and Bluestone serves it over open protocols like <strong>MCP</strong>, so your products stay eligible as commerce moves from search boxes to agents. The channels you'll sell through in three years may not exist yet; the foundation for them does.</p>
+        <p style="margin-top:14px;font-size:13.5px;"><a href="#" style="color:var(--blue);text-decoration:none;font-weight:600;">Get Cited by AI Answer Engines →</a></p>
+      </div>
+      <p class="body-p" style="margin-top:30px;font-size:15px;">Standard or bespoke, you connect each system once — and from then on it stays current on its own, every time the data changes.</p>
+    </div>
+  </section>
+
+  <!-- Proof — Zeeman customer result -->
+  <section class="sec proof">
+    <div class="inner">
+      <div class="proof-eyebrow">In practice — Zeeman</div>
+      <div class="proof-big">Six weeks <span>to one.</span></div>
+      <p class="proof-sub">That's how far new-market launch time dropped once Zeeman ran its catalogue from one governed source — every market drawing from the same data, instead of rebuilding it market by market.</p>
+      <div class="proof-row">
+        <div class="proof-metric"><div class="pm-val">40,000</div><div class="pm-lbl">SKUs managed</div></div>
+        <div class="proof-metric"><div class="pm-val">1,300</div><div class="pm-lbl">Stores</div></div>
+        <div class="proof-metric"><div class="pm-val">6 → 1</div><div class="pm-lbl">Weeks to launch a market</div></div>
+      </div>
     </div>
   </section>
 
   <!-- Section D — the maths (numbers come last, once the mechanism is believed) -->
-  <section class="sec">
+  <section class="sec off">
     <div class="sec-eyebrow">The numbers</div>
-    <h2 class="h2">What do the numbers look like?</h2>
+    <h2 class="h2">What could the numbers look like <em>for you?</em></h2>
     <p class="body-p">It comes down to one figure — cost per SKU: the fully-loaded annual cost of running your product data, divided by the products you actively sell. Four lines feed it, and they don't all respond the same way once agents are operating the catalogue.</p>
 
     <div class="metric-box" style="max-width:1040px;margin-top:8px;margin-bottom:30px;">
@@ -423,7 +507,7 @@ body{font-family:var(--body);background:var(--white);color:var(--black);font-siz
 
 
   <!-- Section R — revenue acceleration (the growth leg of the asymmetry) -->
-  <section class="sec off">
+  <section class="sec">
     <div class="inner">
       <div class="sec-eyebrow">The upside</div>
       <h2 class="h2">Revenue climbs. <em>The cost to run it stays close to flat.</em></h2>
@@ -433,7 +517,7 @@ body{font-family:var(--body);background:var(--white);color:var(--black);font-siz
   </section>
 
   <!-- Section E — the decade bet -->
-  <section class="sec">
+  <section class="sec off">
     <div class="inner">
       <div class="sec-eyebrow">Built to last</div>
       <h2 class="h2">One decision <em>that holds for years.</em></h2>
