@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rules Engine with AI | Bluestone PIM</title>
+<meta name="description" content="Deterministic, event-driven automation in Bluestone PIM. You author the trigger and conditions; AI Enrich and AI Linguist run as actions inside a rule you control.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0A0A;
+    --navy:#0A2540;
+    --blue:#1863DC;
+    --blue-d:#1454BC;
+    --tint:#F1FAFE;
+    --white:#FFFFFF;
+    --muted:#54626F;
+    --dim:#8A96A3;
+    --line:#E1E8EF;
+    --line-navy:rgba(255,255,255,.16);
+    --maxw:1160px;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--white);color:var(--ink);
+    font-family:var(--mono);font-size:15px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  h1,h2,h3{font-family:var(--mono);color:var(--navy);font-weight:700;margin:0;line-height:1.22}
+  h1{font-size:clamp(29px,4vw,42px);letter-spacing:-.01em}
+  h2{font-size:clamp(25px,3vw,34px);letter-spacing:-.005em}
+  h3{font-size:18px}
+  p{margin:0}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:600}
+  .muted{color:var(--muted)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+
+  /* buttons — 2px radius, 2px solid, mono */
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:600;font-size:14px;
+    padding:11px 20px;border-radius:2px;border:2px solid var(--blue);transition:.16s;cursor:pointer}
+  .btn-primary{background:var(--blue);color:#fff}
+  .btn-primary:hover{background:var(--blue-d);border-color:var(--blue-d)}
+  .btn-outline{background:transparent;color:var(--blue)}
+  .btn-outline:hover{background:rgba(24,99,220,.06)}
+  .btn-on-dark-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .btn-on-dark-primary:hover{background:var(--blue-d)}
+  .btn-on-dark-ghost{background:transparent;color:#fff;border-color:var(--line-navy)}
+  .btn-on-dark-ghost:hover{border-color:#fff}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:16px;color:var(--navy)}
+  .logo .mark{width:20px;height:20px;border-radius:2px;background:var(--blue);display:inline-block}
+  .nav-links{display:flex;gap:26px;align-items:center;font-size:13.5px;color:var(--muted)}
+  .nav-links a:hover{color:var(--navy)}
+  @media(max-width:760px){.nav-links a:not(.btn){display:none}}
+
+  /* section rhythm */
+  section{padding:84px 0}
+  .tinted{background:var(--tint)}
+  .sec-head{max-width:720px}
+  .sec-head h2{margin-top:14px}
+  .sec-head p{margin-top:14px;color:var(--muted);font-size:16px}
+
+  /* HERO */
+  .hero{padding:76px 0 72px}
+  .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:center}
+  @media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:42px}}
+  .hero h1{margin:16px 0 0}
+  .hero .lead{margin-top:20px;font-size:16px;color:var(--muted);max-width:520px;line-height:1.7}
+  .hero .lead b{color:var(--ink);font-weight:600}
+  .cta-row{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+  .tag{font-size:11.5px;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);padding:6px 11px;border-radius:2px;background:#fff}
+  .tag b{color:var(--blue);font-weight:600}
+
+  /* RULE PIPELINE (signature) — looks like config, fits mono */
+  .rule{background:#fff;border:1px solid var(--line);border-radius:4px;padding:20px;box-shadow:0 24px 60px -40px rgba(10,37,64,.35)}
+  .rule-head{display:flex;align-items:center;justify-content:space-between;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--dim);margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:12px}
+  .rule-head .dot{width:7px;height:7px;border-radius:50%;background:#16A34A;display:inline-block;margin-right:7px}
+  .node{position:relative;background:#fff;border:1px solid var(--line);border-radius:3px;padding:12px 14px}
+  .connector{height:22px;width:2px;margin:0 auto;background:var(--line);position:relative;overflow:hidden}
+  .connector .pulse{position:absolute;left:-2px;top:-8px;width:6px;height:12px;border-radius:4px;background:var(--blue);animation:flow 3.4s linear infinite}
+  .connector.c2 .pulse{animation-delay:.85s}.connector.c3 .pulse{animation-delay:1.7s}
+  @keyframes flow{0%{transform:translateY(-12px);opacity:0}14%{opacity:1}86%{opacity:1}100%{transform:translateY(26px);opacity:0}}
+  .node .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .node .v{margin-top:4px;font-size:13.5px;font-weight:600;color:var(--navy)}
+  .node .v small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:3px}
+  .node.ai{border-color:var(--blue);background:var(--tint)}
+  .node.ai .k{color:var(--blue)}
+  .badge-model{font-size:9.5px;color:var(--blue);border:1px solid var(--blue);border-radius:2px;padding:2px 6px;float:right;letter-spacing:.04em}
+
+  /* SPECTRUM */
+  .spectrum{display:grid;grid-template-columns:1fr 1.22fr 1fr;margin-top:44px;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff}
+  @media(max-width:860px){.spectrum{grid-template-columns:1fr}}
+  .sp{padding:28px 24px}
+  .sp + .sp{border-left:1px solid var(--line)}
+  @media(max-width:860px){.sp + .sp{border-left:0;border-top:1px solid var(--line)}}
+  .sp .pos{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+  .sp h3{margin:11px 0 8px;font-size:17px}
+  .sp p{color:var(--muted);font-size:13.5px}
+  .sp.here{background:var(--tint);position:relative;box-shadow:inset 0 0 0 2px var(--blue)}
+  .sp.here .pos{color:var(--blue)}
+  .here-flag{position:absolute;top:16px;right:16px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--blue);border:1px solid var(--blue);padding:3px 8px;border-radius:2px}
+  .sp .link{display:inline-flex;gap:6px;margin-top:12px;font-size:13px;color:var(--blue);font-weight:600}
+  .sp .link:hover{gap:9px}
+
+  /* VISION / OUTCOME */
+  .vision{padding:100px 0}
+  .vision-intro{max-width:730px;margin:0 auto;text-align:center}
+  .vision-intro h2{margin-top:14px;font-size:clamp(30px,4vw,44px);line-height:1.18}
+  .vision-intro p{margin-top:18px;color:var(--muted);font-size:16.5px;line-height:1.75}
+  .stat-strip{display:grid;grid-template-columns:repeat(3,1fr);margin:46px auto 0;max-width:840px;border:1px solid var(--line);border-radius:4px;background:var(--tint);overflow:hidden}
+  .stat{padding:26px 22px;text-align:center}
+  .stat + .stat{border-left:1px solid var(--line)}
+  .stat .fig{font-size:29px;font-weight:700;color:var(--blue);letter-spacing:-.01em;line-height:1}
+  .stat .lab{font-size:12px;color:var(--muted);margin-top:9px;line-height:1.5}
+  @media(max-width:640px){.stat-strip{grid-template-columns:1fr}.stat+.stat{border-left:0;border-top:1px solid var(--line)}}
+  .outcomes{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:56px}
+  @media(max-width:900px){.outcomes{grid-template-columns:repeat(2,1fr);gap:30px}}
+  @media(max-width:520px){.outcomes{grid-template-columns:1fr}}
+  .oc-n{font-size:12px;color:var(--blue);font-weight:600;letter-spacing:.04em}
+  .oc h3{font-size:16px;margin:10px 0 7px}
+  .oc p{color:var(--muted);font-size:13.5px;line-height:1.65}
+  .vision-cue{display:flex;flex-direction:column;align-items:center;gap:5px;margin-top:60px;text-align:center}
+  .vision-cue span{color:var(--dim);font-size:13px}
+  .cue-link{color:var(--blue);font-weight:600;font-size:15px}
+  .cue-link:hover{text-decoration:underline}
+
+  /* STEPS */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+  @media(max-width:820px){.steps{grid-template-columns:1fr}}
+  .step{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px}
+  .step .num{font-size:12px;color:var(--blue);font-weight:600;letter-spacing:.04em}
+  .step h3{margin:12px 0 8px;font-size:17px}
+  .step p{color:var(--muted);font-size:13.5px}
+  .step.ai-step{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue)}
+
+  /* PILLARS */
+  .pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:46px}
+  @media(max-width:760px){.pillars{grid-template-columns:1fr}}
+  .pillar{background:#fff;border:1px solid var(--line);border-radius:4px;padding:26px;transition:.16s}
+  .pillar:hover{border-color:var(--blue);transform:translateY(-2px)}
+  .pillar .pk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:600}
+  .pillar h3{margin:12px 0 9px;font-size:19px}
+  .pillar p{color:var(--muted);font-size:14px}
+  .pillar .proof{margin-top:15px;padding-top:15px;border-top:1px solid var(--line);font-size:12px;color:var(--dim);line-height:1.8}
+
+  /* EXAMPLES — mono config blocks */
+  .examples{display:grid;gap:14px;margin-top:44px}
+  .ex{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:4px;padding:20px 22px}
+  .ex .idx{font-size:12px;color:var(--blue);font-weight:600}
+  .ex code{font-size:13px;color:var(--navy);line-height:1.9;display:block}
+  .ex code .kw{color:var(--dim);font-weight:600}
+  .ex code .t{color:var(--blue)}
+  .ex code .a{color:#16A34A;font-weight:600}
+  .ex code .eng{color:var(--blue);font-weight:600}
+
+  /* GOVERN */
+  .govern{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  @media(max-width:820px){.govern{grid-template-columns:1fr;gap:26px}}
+  .govern h2{margin-top:14px}
+  .checklist{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:13px}
+  .checklist li{display:flex;gap:11px;align-items:flex-start;color:var(--muted);font-size:14.5px}
+  .checklist li b{color:var(--navy);font-weight:600}
+  .checklist svg{flex:none;margin-top:3px}
+
+  /* BRIDGE */
+  .bridge{border:1px solid var(--line);border-radius:4px;padding:32px 34px;background:var(--tint);
+    display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .bridge h3{font-size:21px}
+  .bridge p{color:var(--muted);margin-top:8px;max-width:560px;font-size:14px}
+
+  /* DARK CTA band — the one dark section */
+  .cta{background:var(--navy);color:#fff;text-align:center;padding:96px 0}
+  .cta .eyebrow{color:#7FB2FF}
+  .cta h2{color:#fff;max-width:620px;margin:14px auto 0}
+  .cta p{color:rgba(255,255,255,.72);margin:16px auto 0;max-width:520px;font-size:16px}
+  .cta .cta-row{justify-content:center;margin-top:30px}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:40px 0;background:#fff}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+  .foot-tag{color:var(--muted);font-size:13px}
+  .foot-meta{font-size:11.5px;color:var(--dim);letter-spacing:.03em}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#"><span class="mark"></span>Bluestone PIM</a>
+    <nav class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#pillars">Why it's different</a>
+      <a href="#examples">Examples</a>
+      <a class="btn btn-primary" href="#demo">Book a demo</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <span class="eyebrow">The Rules Engine</span>
+      <h1>Your catalogue, running on rules you write.</h1>
+      <p class="lead">Bluestone PIM's Rules Engine watches every product and <b>acts the moment your conditions are met</b> — filling attributes, changing status, syncing to channels, and running AI enrichment and translation. <b>You set the logic; the work runs itself.</b></p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#demo">Book a demo</a>
+        <a class="btn btn-outline" href="#how">See how a rule runs →</a>
+      </div>
+      <div class="tags">
+        <span class="tag"><b>›</b> Deterministic</span>
+        <span class="tag"><b>›</b> Event-driven</span>
+        <span class="tag"><b>›</b> BYOM / LLM-neutral</span>
+        <span class="tag"><b>›</b> Human-in-the-loop</span>
+        <span class="tag"><b>›</b> Fully auditable</span>
+      </div>
+    </div>
+
+    <div class="rule reveal" aria-label="Example rule: trigger, condition, AI action, result">
+      <div class="rule-head">
+        <span><span class="dot"></span>Rule · Active</span>
+        <span>enrich-apparel-descriptions</span>
+      </div>
+      <div class="node">
+        <div class="k">When / Trigger</div>
+        <div class="v">Completeness score drops below threshold<small>Fires on the event — not on a schedule or a click</small></div>
+      </div>
+      <div class="connector c1"><span class="pulse"></span></div>
+      <div class="node">
+        <div class="k">If / Condition</div>
+        <div class="v">Completeness &lt; 80% · Category = Apparel<small>A product query you define in the builder</small></div>
+      </div>
+      <div class="connector c2"><span class="pulse"></span></div>
+      <div class="node ai">
+        <div class="k">Then / Action <span class="badge-model">your model</span></div>
+        <div class="v">Run AI Enrich on the description<small>AI is a step inside your rule, not the decision-maker</small></div>
+      </div>
+      <div class="connector c3"><span class="pulse"></span></div>
+      <div class="node">
+        <div class="k">Result</div>
+        <div class="v">Validated against the data model → applied<small>Or routed to review — your choice per rule</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION / OUTCOME -->
+<section id="outcome" class="vision">
+  <div class="wrap">
+    <div class="vision-intro reveal">
+      <span class="eyebrow">Now with AI</span>
+      <h2>The Rules Engine you can rely on. Now even more capable with AI.</h2>
+      <p>New products land and fill themselves in. Data drifts and the engine corrects it. A market opens and the translations follow. Your product information stays complete, consistent and channel-ready around the clock — while your team spends its time on the calls that need a human, not the busywork that doesn't.</p>
+    </div>
+
+    <div class="stat-strip reveal">
+      <div class="stat"><div class="fig">24/7</div><div class="lab">Rules run continuously — no batch window, nothing to babysit.</div></div>
+      <div class="stat"><div class="fig">Sub-minute</div><div class="lab">From a data change to channel-ready output.</div></div>
+      <div class="stat"><div class="fig">Millions</div><div class="lab">Of SKUs governed by the same set of rules.</div></div>
+    </div>
+
+    <div class="outcomes reveal">
+      <div class="oc">
+        <div class="oc-n">01</div>
+        <h3>Always ready to sell</h3>
+        <p>Every product clears its quality bar and publishes the moment its data qualifies. No backlog, no stale listings.</p>
+      </div>
+      <div class="oc">
+        <div class="oc-n">02</div>
+        <h3>Faster to every market</h3>
+        <p>New languages and channels are covered as rules fire — not as quarterly projects. Launches drop from weeks to minutes.</p>
+      </div>
+      <div class="oc">
+        <div class="oc-n">03</div>
+        <h3>Scales without headcount</h3>
+        <p>The same rules run across your whole catalogue. Growth stops meaning more manual work.</p>
+      </div>
+      <div class="oc">
+        <div class="oc-n">04</div>
+        <h3>Your team on what matters</h3>
+        <p>People set the standards and handle the exceptions. The engine handles the repetitive enrichment, status and publishing.</p>
+      </div>
+    </div>
+
+    <div class="vision-cue reveal">
+      <span>So how does this actually run?</span>
+      <a class="cue-link" href="#how">See how a rule works ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- SPECTRUM -->
+<section id="where" class="tinted">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Where this sits</span>
+      <h2>Between doing it by hand and handing over the wheel.</h2>
+      <p>There's a spectrum of automation. On one end you click through every enrichment yourself. On the other, an agent decides its own steps. The rules engine is the middle you control completely.</p>
+    </div>
+    <div class="spectrum reveal">
+      <div class="sp">
+        <div class="pos">Manual</div>
+        <h3>You do every step</h3>
+        <p>Run AI Enrich on a selection, review, apply — product by product, batch by batch. Accurate, but it doesn't scale and it never runs while you sleep.</p>
+      </div>
+      <div class="sp here">
+        <span class="here-flag">You are here</span>
+        <div class="pos">Rules engine with AI</div>
+        <h3>You author the logic; AI does the labor</h3>
+        <p>A deterministic trigger → condition → action you define. AI Enrich and AI Linguist are actions inside it. It runs on its own the moment data qualifies — and you can read exactly why it fired.</p>
+      </div>
+      <div class="sp">
+        <div class="pos">Agentic</div>
+        <h3>Agents decide the steps</h3>
+        <p>Goal-driven agents onboard, enrich and publish autonomously while your team governs. The next altitude, when you're ready for it.</p>
+        <a class="link" href="https://www.bluestonepim.com/automate-product-workflows">Automate Product Workflows →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>A rule is three parts. AI is one of them.</h2>
+      <p>Build it in the rule builder — no code. The engine watches for the event, checks your condition, and only then runs the action. That's why the outcome is predictable every time.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="num">01 — Trigger</div>
+        <h3>Something changes</h3>
+        <p>A status change, a shift in completeness score, or a product matching a saved query. The rule listens for the event and reacts to it — continuously.</p>
+      </div>
+      <div class="step ai-step reveal">
+        <div class="num">02 — Action</div>
+        <h3>The engine runs the action</h3>
+        <p>Set or correct an attribute, change status, sync to channels — or run AI Enrich and AI Linguist. One rule, many possible actions, on the model and channels you've connected.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">03 — Result</div>
+        <h3>Validated, then applied</h3>
+        <p>Output is checked against your data model and either applied automatically or routed to a person for review. Broken rules are detected and deactivated on their own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars" class="tinted">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why it's different</span>
+      <h2>Automation that acts — without acting on its own.</h2>
+      <p>This isn't AI that only suggests and waits for a click. And it isn't autonomy you have to take on faith. It does the work, strictly along logic you wrote.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="pk">Pillar 01</div>
+        <h3>You author the logic, AI does the labor</h3>
+        <p>The rule is a trigger → condition → action you define in the builder. AI Enrich and AI Linguist are just the step that fills the content — the branching is always yours.</p>
+        <div class="proof">→ Product-query conditions<br>→ AI Enrich · AI Linguist as selectable actions</div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pk">Pillar 02</div>
+        <h3>Fires on the event, not a click or a calendar</h3>
+        <p>Enrichment happens the instant a product hits a status, crosses a completeness threshold, or matches a query. Content maintains itself as data moves.</p>
+        <div class="proof">→ Status-change triggers<br>→ Completeness-score triggers</div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pk">Pillar 03</div>
+        <h3>Predictable and governed by design</h3>
+        <p>Toggle auto-apply or human review per rule. Every output is validated against your data model, and broken rules are caught and switched off automatically.</p>
+        <div class="proof">→ Review-or-auto-apply toggle<br>→ Auto-deactivation of broken rules</div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pk">Pillar 04</div>
+        <h3>Runs on your model — no lock-in</h3>
+        <p>Bring your own model. The AI action calls whatever LLM your key points to, and tokens are billed by your provider. Switch models without touching the rule.</p>
+        <div class="proof">→ OpenAI · Anthropic · Google · Azure<br>→ No per-feature AI markup</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXAMPLES -->
+<section id="examples">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Examples</span>
+      <h2>What a rule actually looks like.</h2>
+      <p>Three you could set up this afternoon. Read them left to right — trigger, condition, action, outcome. Some run AI; some don't need it.</p>
+    </div>
+    <div class="examples">
+      <div class="ex reveal">
+        <div class="idx">01</div>
+        <code><span class="kw">WHEN</span> all required attributes are filled <span class="kw">AND</span> completeness = <span class="t">100%</span><br><span class="kw">THEN</span> <span class="eng">change status</span> to Ready → <span class="eng">sync</span> to channels</code>
+      </div>
+      <div class="ex reveal">
+        <div class="idx">02</div>
+        <code><span class="kw">WHEN</span> completeness <span class="t">&lt; 80%</span> <span class="kw">AND</span> category = <span class="t">Apparel</span><br><span class="kw">THEN</span> <span class="a">AI Enrich</span> the description → validate → apply</code>
+      </div>
+      <div class="ex reveal">
+        <div class="idx">03</div>
+        <code><span class="kw">WHEN</span> status changes to <span class="t">Ready for translation</span><br><span class="kw">THEN</span> <span class="a">AI Linguist</span> into all market languages → route to review</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERN -->
+<section id="govern" class="tinted">
+  <div class="wrap govern">
+    <div class="reveal">
+      <span class="eyebrow">Control</span>
+      <h2>The rule fires. You stay accountable.</h2>
+      <p class="muted" style="margin-top:14px">Automation shouldn't mean giving up the parts you're answerable for. Control is built into the mechanism, not bolted on after.</p>
+    </div>
+    <ul class="checklist reveal">
+      <li><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="1.5" y="1.5" width="17" height="17" rx="2" stroke="#1863DC" stroke-width="1.5"/><path d="M6 10.5l2.5 2.5L14 7.5" stroke="#1863DC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Every rule is readable.</b> Trigger and condition are stated in plain terms — anyone can see why it ran.</span></li>
+      <li><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="1.5" y="1.5" width="17" height="17" rx="2" stroke="#1863DC" stroke-width="1.5"/><path d="M6 10.5l2.5 2.5L14 7.5" stroke="#1863DC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Review or auto-apply, per rule.</b> Keep a person in the loop where judgment matters; automate the rest.</span></li>
+      <li><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="1.5" y="1.5" width="17" height="17" rx="2" stroke="#1863DC" stroke-width="1.5"/><path d="M6 10.5l2.5 2.5L14 7.5" stroke="#1863DC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Output is validated.</b> AI results are checked against your data model before anything is written.</span></li>
+      <li><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="1.5" y="1.5" width="17" height="17" rx="2" stroke="#1863DC" stroke-width="1.5"/><path d="M6 10.5l2.5 2.5L14 7.5" stroke="#1863DC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Self-healing.</b> Rules that break are detected and deactivated automatically — no silent misfires.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- BRIDGE -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="bridge reveal">
+      <div>
+        <span class="eyebrow">The bigger picture</span>
+        <h3 style="margin-top:10px">Ready to let agents run the whole workflow?</h3>
+        <p>Rules are the deterministic layer you control step by step. When you want the daily work — onboarding, enrichment, validation, publishing — to run on its own, that's the agentic PIM.</p>
+      </div>
+      <a class="btn btn-outline" href="https://www.bluestonepim.com/automate-product-workflows">Automate Product Workflows →</a>
+    </div>
+  </div>
+</section>
+
+<!-- DARK CTA -->
+<section id="demo" class="cta">
+  <div class="wrap">
+    <span class="eyebrow">Book a demo</span>
+    <h2>See a rule run on your catalogue.</h2>
+    <p>A short conversation about the repetitive enrichment you're doing by hand today — and what it looks like when a rule does it for you.</p>
+    <div class="cta-row">
+      <a class="btn btn-on-dark-primary" href="#">Book a demo</a>
+      <a class="btn btn-on-dark-ghost" href="https://help.bluestonepim.com/">Read the docs →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <a class="logo" href="#"><span class="mark"></span>Bluestone PIM</a>
+    <span class="foot-tag">Rules Engine with AI · Deterministic. Event-driven. Yours.</span>
+    <span class="foot-meta">© 2026 · MACH-certified · MCP-native · SOC 2 · ISO 27001</span>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
