@@ -134,24 +134,24 @@ h2.h2{font-size:clamp(21px,2.1vw,30px);line-height:1.16;letter-spacing:-0.02em;c
 .ucsec .story-tab.active::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--mint2));}
 
 .ucsec .story{border:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.03);}
-.ucsec .story-need{background:#fff;border-right:1px solid var(--line);}
-.ucsec .story-out{background:var(--blue);}
-.ucsec .story-need .story-eyebrow{color:var(--grey-3);}
-.ucsec .story-out .story-eyebrow{color:var(--cyan);}
+.ucsec .story-need{background:var(--blue);border-right:1px solid rgba(255,255,255,0.15);}
+.ucsec .story-out{background:#fff;}
+.ucsec .story-need .story-eyebrow{color:rgba(255,255,255,0.65);}
+.ucsec .story-out .story-eyebrow{color:var(--blue);font-size:14px;}
 .ucsec .story-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
 .ucsec .story-head h3{margin-bottom:0;}
-.ucsec .story-ic{width:32px;height:32px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ucsec .story-ic{width:32px;height:32px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .ucsec .story-ic svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-.ucsec .story-need h3{color:var(--black);margin-bottom:0;}
-.ucsec .story-out h3{color:#fff;margin-bottom:0;}
-.ucsec .story-need p{color:var(--grey-1);}
-.ucsec .story-out p{color:rgba(255,255,255,0.9);}
-.ucsec .story-need .do{color:var(--grey-1);}
-.ucsec .story-need .do em{color:var(--blue-dark);}
-.ucsec .story-out .do{color:rgba(255,255,255,0.9);}
-.ucsec .story-out .do em{color:var(--mint2);}
+.ucsec .story-need h3{color:#fff;margin-bottom:0;}
+.ucsec .story-out h3{color:var(--black);margin-bottom:0;}
+.ucsec .story-need p{color:#fff;}
+.ucsec .story-out p{color:var(--grey-1);}
+.ucsec .story-ask-label{font-family:var(--mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;color:var(--mint2);margin-top:20px;margin-bottom:10px;}
+.ucsec .story-bubble{background:#fff;border:none;border-radius:14px 14px 14px 2px;padding:18px 20px;font-size:20px;font-style:italic;color:var(--navy);line-height:1.5;letter-spacing:-0.01em;}
 .ucsec .story-shot{border-color:var(--line);background:#fff;color:var(--grey-3);}
-.ucsec .story-tools .chip{color:var(--blue-dark);background:var(--blue-soft);border:none;}
+.ucsec .story-tools-label{font-family:var(--mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;color:var(--mint2);margin-top:20px;margin-bottom:10px;}
+.ucsec .story-need .story-tools{margin-top:0;}
+.ucsec .story-tools .chip{color:var(--blue-dark);background:var(--blue-soft);border:none;font-size:13px;padding:5px 11px;}
 
 .ucsec .story-arrow{border-color:rgba(255,255,255,0.25);background:transparent;color:rgba(255,255,255,0.7);}
 .ucsec .story-arrow:hover{border-color:var(--cyan);color:var(--cyan);}
@@ -306,58 +306,62 @@ h2.h2{font-size:clamp(21px,2.1vw,30px);line-height:1.16;letter-spacing:-0.02em;c
         <div class="story-track" id="story-track">
           <div class="story">
             <div class="story-need">
-              <div class="story-eyebrow">The need</div>
               <div class="story-head"><span class="story-ic"><svg viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13L22 12v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6l3.5-7z"/></svg></span><h3>Onboard &amp; enrich</h3></div>
-              <p>Reshaping messy supplier spreadsheets by hand, writing localized descriptions one by one, or pulling characteristics out of product photos is slow and error-prone.</p>
-              <p class="do">You ask: <em>“Onboard this supplier feed and map it to our data model.”</em></p>
+              <p>Messy supplier feeds, one-by-one descriptions, characteristics pulled from photos — normally slow, manual work.</p>
+              <div class="story-ask-label">You ask</div>
+              <div class="story-bubble">"Onboard this supplier feed and map it to our data model."</div>
+              <div class="story-tools-label">MCP tools used</div>
+              <div class="story-tools"><span class="chip">Search</span><span class="chip">Create</span><span class="chip">Update</span><span class="chip">Categories</span><span class="chip">Upload</span><span class="chip">Label</span><span class="chip">Describe</span><span class="chip">Enrich</span><span class="chip">Translate</span><span class="chip">Analyse</span></div>
             </div>
             <div class="story-out">
               <div class="story-eyebrow">The outcome</div>
               <p>Raw feeds and unsorted media become rich, localized, context-mapped catalogue records, ready for review.</p>
               <div class="img-ph story-shot">Screenshot — enriched product record after onboarding</div>
-              <div class="story-tools"><span class="chip">Search</span><span class="chip">Create</span><span class="chip">Update</span><span class="chip">Categories</span><span class="chip">Upload</span><span class="chip">Label</span><span class="chip">Describe</span><span class="chip">Enrich</span><span class="chip">Translate</span><span class="chip">Analyse</span></div>
             </div>
           </div>
           <div class="story">
             <div class="story-need">
-              <div class="story-eyebrow">The need</div>
               <div class="story-head"><span class="story-ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5-8 4.5-8-4.5L12 3z"/><path d="M4 12l8 4.5 8-4.5"/><path d="M4 16.5L12 21l8-4.5"/></svg></span><h3>Build the structure</h3></div>
-              <p>Connecting hundreds of standalone products into variant models, and mapping cross-sell accessories in bulk, is painful administrative overhead.</p>
-              <p class="do">You ask: <em>“Group today’s new footwear into variants by size and colour.”</em></p>
+              <p>Connecting products into variants and mapping cross-sell links in bulk is painful admin work.</p>
+              <div class="story-ask-label">You ask</div>
+              <div class="story-bubble">"Group today's new footwear into variants by size and colour."</div>
+              <div class="story-tools-label">MCP tools used</div>
+              <div class="story-tools"><span class="chip">Variants</span><span class="chip">Relations</span><span class="chip">Update</span><span class="chip">Analyse</span><span class="chip">Suggest fixes</span></div>
             </div>
             <div class="story-out">
               <div class="story-eyebrow">The outcome</div>
               <p>Multi-layered variants and product relations form in seconds, opening up cross-sell across your storefront.</p>
               <div class="img-ph story-shot">Screenshot — variant group and cross-sell relations</div>
-              <div class="story-tools"><span class="chip">Variants</span><span class="chip">Relations</span><span class="chip">Update</span><span class="chip">Analyse</span><span class="chip">Suggest fixes</span></div>
             </div>
           </div>
           <div class="story">
             <div class="story-need">
-              <div class="story-eyebrow">The need</div>
               <div class="story-head"><span class="story-ic"><svg viewBox="0 0 24 24"><path d="M12 14l3.5-3.5"/><path d="M20.3 17a8 8 0 1 0-16.6 0"/><path d="M12 6v2"/></svg></span><h3>Get products out</h3></div>
-              <p>Staging a seasonal push means updating tags, rewriting channel copy, isolating unfinished drafts, and mapping products to each marketplace by hand.</p>
-              <p class="do">You ask: <em>“Label all outdoor products ‘Summer Sale 2026’ and publish the promo.”</em></p>
+              <p>Staging a seasonal push means updating tags, copy and marketplace mapping, all by hand.</p>
+              <div class="story-ask-label">You ask</div>
+              <div class="story-bubble">"Label all outdoor products 'Summer Sale 2026' and publish the promo."</div>
+              <div class="story-tools-label">MCP tools used</div>
+              <div class="story-tools"><span class="chip">Bulk status</span><span class="chip">Publish</span><span class="chip">Contexts</span><span class="chip">Sync to API</span><span class="chip">Update</span><span class="chip">Categories</span><span class="chip">Create task</span><span class="chip">Assign</span></div>
             </div>
             <div class="story-out">
               <div class="story-eyebrow">The outcome</div>
               <p>Large volumes of targeted products are cataloged, contextualized and pushed live across channels in a single pass.</p>
               <div class="img-ph story-shot">Screenshot — bulk publish across channel contexts</div>
-              <div class="story-tools"><span class="chip">Bulk status</span><span class="chip">Publish</span><span class="chip">Contexts</span><span class="chip">Sync to API</span><span class="chip">Update</span><span class="chip">Categories</span><span class="chip">Create task</span><span class="chip">Assign</span></div>
             </div>
           </div>
           <div class="story">
             <div class="story-need">
-              <div class="story-eyebrow">The need</div>
               <div class="story-head"><span class="story-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/><path d="M8.5 11l1.8 1.8 3.2-3.6"/></svg></span><h3>Keep it in shape</h3></div>
-              <p>Tracking down missing records, checking validation rules, and archiving legacy products piles up into an operational backlog.</p>
-              <p class="do">You ask: <em>“Audit the Electronics catalog and create a task per issue.”</em></p>
+              <p>Tracking missing records, checking rules, archiving old products — it piles up fast.</p>
+              <div class="story-ask-label">You ask</div>
+              <div class="story-bubble">"Audit the Electronics catalog and create a task per issue."</div>
+              <div class="story-tools-label">MCP tools used</div>
+              <div class="story-tools"><span class="chip">Completeness</span><span class="chip">Validation</span><span class="chip">History</span><span class="chip">Audit trail</span><span class="chip">Search</span><span class="chip">Update</span><span class="chip">Create task</span><span class="chip">Assign</span></div>
             </div>
             <div class="story-out">
               <div class="story-eyebrow">The outcome</div>
               <p>Catalogue gaps are flagged and turned into assigned tasks for the team, before they become compliance risks.</p>
               <div class="img-ph story-shot">Screenshot — audit results turned into assigned tasks</div>
-              <div class="story-tools"><span class="chip">Completeness</span><span class="chip">Validation</span><span class="chip">History</span><span class="chip">Audit trail</span><span class="chip">Search</span><span class="chip">Update</span><span class="chip">Create task</span><span class="chip">Assign</span></div>
             </div>
           </div>
         </div>
