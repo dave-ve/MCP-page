@@ -134,18 +134,22 @@ h2.h2{font-size:clamp(21px,2.1vw,30px);line-height:1.16;letter-spacing:-0.02em;c
 .ucsec .story-tab.active::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--mint2));}
 
 .ucsec .story{border:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.03);}
-.ucsec .story-need{background:rgba(255,255,255,0.045);border-right:1px solid rgba(255,255,255,0.14);}
+.ucsec .story-need{background:#fff;border-right:1px solid var(--line);}
 .ucsec .story-out{background:var(--blue);}
-.ucsec .story-need .story-eyebrow{color:rgba(255,255,255,0.5);}
+.ucsec .story-need .story-eyebrow{color:var(--grey-3);}
 .ucsec .story-out .story-eyebrow{color:var(--cyan);}
 .ucsec .story-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
 .ucsec .story-head h3{margin-bottom:0;}
-.ucsec .story-ic{width:32px;height:32px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ucsec .story-ic{width:32px;height:32px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .ucsec .story-ic svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-.ucsec .story h3{color:#fff;margin-bottom:0;}
-.ucsec .story p{color:rgba(255,255,255,0.8);}
-.ucsec .story .do{color:rgba(255,255,255,0.8);}
-.ucsec .story .do em{color:var(--mint2);}
+.ucsec .story-need h3{color:var(--black);margin-bottom:0;}
+.ucsec .story-out h3{color:#fff;margin-bottom:0;}
+.ucsec .story-need p{color:var(--grey-1);}
+.ucsec .story-out p{color:rgba(255,255,255,0.9);}
+.ucsec .story-need .do{color:var(--grey-1);}
+.ucsec .story-need .do em{color:var(--blue-dark);}
+.ucsec .story-out .do{color:rgba(255,255,255,0.9);}
+.ucsec .story-out .do em{color:var(--mint2);}
 .ucsec .story-shot{border-color:var(--line);background:#fff;color:var(--grey-3);}
 .ucsec .story-tools .chip{color:var(--blue-dark);background:var(--blue-soft);border:none;}
 
