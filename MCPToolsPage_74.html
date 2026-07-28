@@ -107,8 +107,7 @@ h2.h2{font-size:clamp(21px,2.1vw,30px);line-height:1.16;letter-spacing:-0.02em;c
 
 
 /* deep use-case stories */
-.story{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:18px;background:var(--white);}
-.story:first-of-type{margin-top:32px;}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white);}
 .story-need{padding:28px 30px;background:var(--off);border-right:1px solid var(--line);}
 .story-out{padding:28px 30px;}
 .story-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;margin-bottom:12px;}
@@ -121,6 +120,21 @@ h2.h2{font-size:clamp(21px,2.1vw,30px);line-height:1.16;letter-spacing:-0.02em;c
 .story-tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px;}
 .story-tools .chip{font-size:11px;padding:3px 8px;}
 @media(max-width:760px){.story{grid-template-columns:1fr;}.story-need{border-right:none;border-bottom:1px solid var(--line);}}
+
+/* STORY CAROUSEL */
+.story-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;margin-bottom:8px;}
+.story-tab{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:-0.005em;padding:9px 18px;border-radius:20px;border:1px solid var(--line);background:var(--white);color:var(--grey-2);cursor:pointer;transition:all 0.15s;}
+.story-tab:hover{border-color:var(--blue-soft,var(--blue));color:var(--black);}
+.story-tab.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+.story-carousel{position:relative;overflow:hidden;margin-top:18px;}
+.story-track{display:flex;transition:transform 0.35s ease;}
+.story-track .story{flex:0 0 100%;border-radius:14px;margin-top:0;}
+.story-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:20px;}
+.story-arrow{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--white);color:var(--grey-2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all 0.15s;}
+.story-arrow:hover{border-color:var(--blue);color:var(--blue);}
+.story-dots{display:flex;gap:7px;}
+.story-dot{width:7px;height:7px;border-radius:50%;background:var(--line);cursor:pointer;transition:background 0.15s;}
+.story-dot.active{background:var(--blue);}
 
 /* tool categories — card grid */
 .tool-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:32px;}
@@ -359,60 +373,102 @@ h2.h2{font-size:clamp(21px,2.1vw,30px);line-height:1.16;letter-spacing:-0.02em;c
       <div class="sec-eyebrow">In practice</div>
       <h2 class="h2">From the daily grind <em>to a single ask.</em></h2>
       <p class="body-p">The same four kinds of work, seen up close: what makes them slow today, and what changes when an agent runs them.</p>
-      <div class="story">
-        <div class="story-need">
-          <div class="story-eyebrow">The need</div>
-          <h3>Onboard &amp; enrich</h3>
-          <p>Reshaping messy supplier spreadsheets by hand, writing localized descriptions one by one, or pulling characteristics out of product photos is slow and error-prone.</p>
-          <p class="do">You ask: <em>“Onboard this supplier feed and map it to our data model.”</em></p>
-        </div>
-        <div class="story-out">
-          <div class="story-eyebrow">The outcome</div>
-          <p>Raw feeds and unsorted media become rich, localized, context-mapped catalogue records, ready for review.</p>
-          <div class="story-tools"><span class="chip">Search</span><span class="chip">Create</span><span class="chip">Update</span><span class="chip">Categories</span><span class="chip">Upload</span><span class="chip">Label</span><span class="chip">Describe</span><span class="chip">Enrich</span><span class="chip">Translate</span><span class="chip">Analyse</span></div>
+
+      <div class="story-tabs" id="story-tabs">
+        <div class="story-tab active" data-i="0">Onboard &amp; enrich</div>
+        <div class="story-tab" data-i="1">Build the structure</div>
+        <div class="story-tab" data-i="2">Get products out</div>
+        <div class="story-tab" data-i="3">Keep it in shape</div>
+      </div>
+
+      <div class="story-carousel">
+        <div class="story-track" id="story-track">
+          <div class="story">
+            <div class="story-need">
+              <div class="story-eyebrow">The need</div>
+              <h3>Onboard &amp; enrich</h3>
+              <p>Reshaping messy supplier spreadsheets by hand, writing localized descriptions one by one, or pulling characteristics out of product photos is slow and error-prone.</p>
+              <p class="do">You ask: <em>“Onboard this supplier feed and map it to our data model.”</em></p>
+            </div>
+            <div class="story-out">
+              <div class="story-eyebrow">The outcome</div>
+              <p>Raw feeds and unsorted media become rich, localized, context-mapped catalogue records, ready for review.</p>
+              <div class="story-tools"><span class="chip">Search</span><span class="chip">Create</span><span class="chip">Update</span><span class="chip">Categories</span><span class="chip">Upload</span><span class="chip">Label</span><span class="chip">Describe</span><span class="chip">Enrich</span><span class="chip">Translate</span><span class="chip">Analyse</span></div>
+            </div>
+          </div>
+          <div class="story">
+            <div class="story-need">
+              <div class="story-eyebrow">The need</div>
+              <h3>Build the structure</h3>
+              <p>Connecting hundreds of standalone products into variant models, and mapping cross-sell accessories in bulk, is painful administrative overhead.</p>
+              <p class="do">You ask: <em>“Group today’s new footwear into variants by size and colour.”</em></p>
+            </div>
+            <div class="story-out">
+              <div class="story-eyebrow">The outcome</div>
+              <p>Multi-layered variants and product relations form in seconds, opening up cross-sell across your storefront.</p>
+              <div class="story-tools"><span class="chip">Variants</span><span class="chip">Relations</span><span class="chip">Update</span><span class="chip">Analyse</span><span class="chip">Suggest fixes</span></div>
+            </div>
+          </div>
+          <div class="story">
+            <div class="story-need">
+              <div class="story-eyebrow">The need</div>
+              <h3>Get products out</h3>
+              <p>Staging a seasonal push means updating tags, rewriting channel copy, isolating unfinished drafts, and mapping products to each marketplace by hand.</p>
+              <p class="do">You ask: <em>“Label all outdoor products ‘Summer Sale 2026’ and publish the promo.”</em></p>
+            </div>
+            <div class="story-out">
+              <div class="story-eyebrow">The outcome</div>
+              <p>Large volumes of targeted products are cataloged, contextualized and pushed live across channels in a single pass.</p>
+              <div class="story-tools"><span class="chip">Bulk status</span><span class="chip">Publish</span><span class="chip">Contexts</span><span class="chip">Sync to API</span><span class="chip">Update</span><span class="chip">Categories</span><span class="chip">Create task</span><span class="chip">Assign</span></div>
+            </div>
+          </div>
+          <div class="story">
+            <div class="story-need">
+              <div class="story-eyebrow">The need</div>
+              <h3>Keep it in shape</h3>
+              <p>Tracking down missing records, checking validation rules, and archiving legacy products piles up into an operational backlog.</p>
+              <p class="do">You ask: <em>“Audit the Electronics catalog and create a task per issue.”</em></p>
+            </div>
+            <div class="story-out">
+              <div class="story-eyebrow">The outcome</div>
+              <p>Catalogue gaps are flagged and turned into assigned tasks for the team, before they become compliance risks.</p>
+              <div class="story-tools"><span class="chip">Completeness</span><span class="chip">Validation</span><span class="chip">History</span><span class="chip">Audit trail</span><span class="chip">Search</span><span class="chip">Update</span><span class="chip">Create task</span><span class="chip">Assign</span></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="story">
-        <div class="story-need">
-          <div class="story-eyebrow">The need</div>
-          <h3>Build the structure</h3>
-          <p>Connecting hundreds of standalone products into variant models, and mapping cross-sell accessories in bulk, is painful administrative overhead.</p>
-          <p class="do">You ask: <em>“Group today’s new footwear into variants by size and colour.”</em></p>
+
+      <div class="story-nav">
+        <div class="story-arrow" id="story-prev">&#8592;</div>
+        <div class="story-dots" id="story-dots">
+          <div class="story-dot active" data-i="0"></div>
+          <div class="story-dot" data-i="1"></div>
+          <div class="story-dot" data-i="2"></div>
+          <div class="story-dot" data-i="3"></div>
         </div>
-        <div class="story-out">
-          <div class="story-eyebrow">The outcome</div>
-          <p>Multi-layered variants and product relations form in seconds, opening up cross-sell across your storefront.</p>
-          <div class="story-tools"><span class="chip">Variants</span><span class="chip">Relations</span><span class="chip">Update</span><span class="chip">Analyse</span><span class="chip">Suggest fixes</span></div>
-        </div>
-      </div>
-      <div class="story">
-        <div class="story-need">
-          <div class="story-eyebrow">The need</div>
-          <h3>Get products out</h3>
-          <p>Staging a seasonal push means updating tags, rewriting channel copy, isolating unfinished drafts, and mapping products to each marketplace by hand.</p>
-          <p class="do">You ask: <em>“Label all outdoor products ‘Summer Sale 2026’ and publish the promo.”</em></p>
-        </div>
-        <div class="story-out">
-          <div class="story-eyebrow">The outcome</div>
-          <p>Large volumes of targeted products are cataloged, contextualized and pushed live across channels in a single pass.</p>
-          <div class="story-tools"><span class="chip">Bulk status</span><span class="chip">Publish</span><span class="chip">Contexts</span><span class="chip">Sync to API</span><span class="chip">Update</span><span class="chip">Categories</span><span class="chip">Create task</span><span class="chip">Assign</span></div>
-        </div>
-      </div>
-      <div class="story">
-        <div class="story-need">
-          <div class="story-eyebrow">The need</div>
-          <h3>Keep it in shape</h3>
-          <p>Tracking down missing records, checking validation rules, and archiving legacy products piles up into an operational backlog.</p>
-          <p class="do">You ask: <em>“Audit the Electronics catalog and create a task per issue.”</em></p>
-        </div>
-        <div class="story-out">
-          <div class="story-eyebrow">The outcome</div>
-          <p>Catalogue gaps are flagged and turned into assigned tasks for the team, before they become compliance risks.</p>
-          <div class="story-tools"><span class="chip">Completeness</span><span class="chip">Validation</span><span class="chip">History</span><span class="chip">Audit trail</span><span class="chip">Search</span><span class="chip">Update</span><span class="chip">Create task</span><span class="chip">Assign</span></div>
-        </div>
+        <div class="story-arrow" id="story-next">&#8594;</div>
       </div>
     </div>
   </section>
+
+  <script>
+  (function(){
+    var track=document.getElementById('story-track');
+    var tabs=document.querySelectorAll('.story-tab');
+    var dots=document.querySelectorAll('.story-dot');
+    var idx=0, total=4;
+    function render(){
+      track.style.transform='translateX(-'+(idx*100)+'%)';
+      tabs.forEach(function(t,i){t.classList.toggle('active',i===idx);});
+      dots.forEach(function(d,i){d.classList.toggle('active',i===idx);});
+    }
+    function go(i){idx=(i+total)%total; render();}
+    tabs.forEach(function(t){t.addEventListener('click',function(){go(parseInt(t.dataset.i,10));});});
+    dots.forEach(function(d){d.addEventListener('click',function(){go(parseInt(d.dataset.i,10));});});
+    document.getElementById('story-prev').addEventListener('click',function(){go(idx-1);});
+    document.getElementById('story-next').addEventListener('click',function(){go(idx+1);});
+  })();
+  </script>
 
   <!-- GOVERNANCE -->
   <section class="sec off">
