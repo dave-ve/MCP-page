@@ -31,9 +31,13 @@ a{color:var(--blue);text-decoration:none;}
 
 /* hero */
 .phero{padding:64px 0 72px;}
+.phero .inner{display:grid;grid-template-columns:1.3fr 0.8fr;gap:48px;align-items:center;}
 .phero .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:24px;}
 .phero h1{font-size:clamp(28px,4vw,50px);line-height:1.1;letter-spacing:-0.03em;max-width:24ch;margin-bottom:24px;}
 .phero-sub{font-size:clamp(15px,1.5vw,18px);color:var(--grey-1);line-height:1.55;max-width:640px;margin-bottom:32px;}
+.img-ph{border:1px solid var(--line);border-radius:10px;background:var(--off);display:flex;align-items:center;justify-content:center;color:var(--grey-3);font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;text-align:center;padding:16px;}
+.phero-visual{aspect-ratio:4/5;}
+@media(max-width:860px){.phero .inner{grid-template-columns:1fr;}.phero-visual{display:none;}}
 .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
 .btn{display:inline-block;font-family:var(--mono);font-size:14px;font-weight:600;padding:13px 26px;border-radius:8px;border:1px solid transparent;transition:all .15s;cursor:pointer;}
 .btn-primary{background:var(--blue);color:#fff;}
@@ -118,6 +122,7 @@ h2.h2{font-size:clamp(21px,2.1vw,30px);line-height:1.16;letter-spacing:-0.02em;c
 .story .do{margin-top:14px;font-size:14px;color:var(--grey-1);line-height:1.6;}
 .story .do em{font-style:italic;color:var(--blue-dark);}
 .story-tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px;}
+.story-shot{aspect-ratio:16/9;margin-top:16px;font-size:10px;}
 .story-tools .chip{font-size:11px;padding:3px 8px;}
 @media(max-width:760px){.story{grid-template-columns:1fr;}.story-need{border-right:none;border-bottom:1px solid var(--line);}}
 
@@ -189,19 +194,22 @@ h2.h2{font-size:clamp(21px,2.1vw,30px);line-height:1.16;letter-spacing:-0.02em;c
   <!-- HERO -->
   <div class="phero">
     <div class="inner">
-      <div class="eyebrow">MCP Tools</div>
-      <h1>If you can describe it,<br><em>you can do it.</em></h1>
-      <p class="phero-sub">Bluestone's MCP tools make your whole catalogue operable through callable operations. Business users run them in plain language through an AI assistant like Claude or ChatGPT; developers and agents call the same tools directly to build and automate. One open interface to your product data, for people and machines alike.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary cta-big" href="https://www.bluestonepim.com/get-demo">Book a demo</a>
-        <a class="btn btn-ghost cta-big" href="#toolset">See the tools</a>
+      <div>
+        <div class="eyebrow">MCP Tools</div>
+        <h1>If you can describe it,<br><em>you can do it.</em></h1>
+        <p class="phero-sub">Bluestone's MCP tools make your whole catalogue operable through callable operations. Business users run them in plain language through an AI assistant like Claude or ChatGPT; developers and agents call the same tools directly to build and automate. One open interface to your product data, for people and machines alike.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary cta-big" href="https://www.bluestonepim.com/get-demo">Book a demo</a>
+          <a class="btn btn-ghost cta-big" href="#toolset">See the tools</a>
+        </div>
+        <div class="creds">
+          <span>MCP-native</span>
+          <span>700+ task-level tools</span>
+          <span>Works with any MCP client</span>
+          <span>Governed &amp; audited</span>
+        </div>
       </div>
-      <div class="creds">
-        <span>MCP-native</span>
-        <span>700+ task-level tools</span>
-        <span>Works with any MCP client</span>
-        <span>Governed &amp; audited</span>
-      </div>
+      <div class="img-ph phero-visual">Image / product visual<br>— agent prompt running a catalogue action —</div>
     </div>
   </div>
 
@@ -393,6 +401,7 @@ h2.h2{font-size:clamp(21px,2.1vw,30px);line-height:1.16;letter-spacing:-0.02em;c
             <div class="story-out">
               <div class="story-eyebrow">The outcome</div>
               <p>Raw feeds and unsorted media become rich, localized, context-mapped catalogue records, ready for review.</p>
+              <div class="img-ph story-shot">Screenshot — enriched product record after onboarding</div>
               <div class="story-tools"><span class="chip">Search</span><span class="chip">Create</span><span class="chip">Update</span><span class="chip">Categories</span><span class="chip">Upload</span><span class="chip">Label</span><span class="chip">Describe</span><span class="chip">Enrich</span><span class="chip">Translate</span><span class="chip">Analyse</span></div>
             </div>
           </div>
@@ -406,6 +415,7 @@ h2.h2{font-size:clamp(21px,2.1vw,30px);line-height:1.16;letter-spacing:-0.02em;c
             <div class="story-out">
               <div class="story-eyebrow">The outcome</div>
               <p>Multi-layered variants and product relations form in seconds, opening up cross-sell across your storefront.</p>
+              <div class="img-ph story-shot">Screenshot — variant group and cross-sell relations</div>
               <div class="story-tools"><span class="chip">Variants</span><span class="chip">Relations</span><span class="chip">Update</span><span class="chip">Analyse</span><span class="chip">Suggest fixes</span></div>
             </div>
           </div>
@@ -419,6 +429,7 @@ h2.h2{font-size:clamp(21px,2.1vw,30px);line-height:1.16;letter-spacing:-0.02em;c
             <div class="story-out">
               <div class="story-eyebrow">The outcome</div>
               <p>Large volumes of targeted products are cataloged, contextualized and pushed live across channels in a single pass.</p>
+              <div class="img-ph story-shot">Screenshot — bulk publish across channel contexts</div>
               <div class="story-tools"><span class="chip">Bulk status</span><span class="chip">Publish</span><span class="chip">Contexts</span><span class="chip">Sync to API</span><span class="chip">Update</span><span class="chip">Categories</span><span class="chip">Create task</span><span class="chip">Assign</span></div>
             </div>
           </div>
@@ -432,6 +443,7 @@ h2.h2{font-size:clamp(21px,2.1vw,30px);line-height:1.16;letter-spacing:-0.02em;c
             <div class="story-out">
               <div class="story-eyebrow">The outcome</div>
               <p>Catalogue gaps are flagged and turned into assigned tasks for the team, before they become compliance risks.</p>
+              <div class="img-ph story-shot">Screenshot — audit results turned into assigned tasks</div>
               <div class="story-tools"><span class="chip">Completeness</span><span class="chip">Validation</span><span class="chip">History</span><span class="chip">Audit trail</span><span class="chip">Search</span><span class="chip">Update</span><span class="chip">Create task</span><span class="chip">Assign</span></div>
             </div>
           </div>
