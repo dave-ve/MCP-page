@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accelerate Channel Revenue — Bluestone PIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1652f0;--blue-dark:#0f3fc4;--blue-soft:#e8efff;--blue-soft-2:#f2f5ff;
+  --black:#0a0a0a;--grey-1:#2a2a2a;--grey-2:#5a5a5a;--grey-3:#8a8a8a;--grey-4:#c0c0c0;
+  --line:#e8e8e8;--line-soft:#f2f2f2;--off:#fafaf8;--white:#ffffff;
+  --green:#22c55e;--green-soft:#d9f7e3;--green-line:#a8ebbf;
+  --display:'JetBrains Mono',monospace;--body:'JetBrains Mono',monospace;--mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--white);color:var(--black);font-size:15px;line-height:1.6;letter-spacing:-0.01em;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--blue);color:white;}
+
+.btn{font-family:var(--body);font-size:13.5px;font-weight:600;padding:11px 22px;border-radius:4px;cursor:pointer;white-space:nowrap;border:1px solid;letter-spacing:-0.005em;transition:all 0.15s;background:none;color:inherit;text-decoration:none;display:inline-block;}
+.btn-ghost{background:white;color:var(--black);border-color:var(--grey-4);}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
+.btn-primary{background:var(--blue);color:white;border-color:var(--blue);}
+.btn-primary:hover{background:var(--blue-dark);border-color:var(--blue-dark);}
+.cta-big{font-size:14.5px;padding:13px 26px;}
+
+.phero{max-width:1180px;margin:0 auto;padding:84px 48px 64px;}
+.phero-cat{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:22px;}
+.phero-h{font-family:var(--display);font-size:clamp(30px,3.7vw,48px);font-weight:600;line-height:1.1;letter-spacing:-0.03em;color:var(--black);margin-bottom:26px;max-width:900px;}
+.phero-h em{font-style:normal;color:var(--blue);font-weight:300;}
+.phero-sub{font-size:18px;color:var(--grey-1);line-height:1.55;margin-bottom:34px;max-width:700px;}
+.phero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+
+.creds-strip{max-width:1180px;margin:0 auto;padding:0 48px 8px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--grey-3);font-weight:500;}
+.creds-strip .cs-sep{color:var(--grey-4);}
+
+.sec{max-width:1180px;margin:0 auto;padding:84px 48px;}
+.sec.off{background:var(--off);max-width:none;}
+.sec.off .inner{max-width:1180px;margin:0 auto;}
+.h2{font-family:var(--display);font-size:clamp(21px,2.1vw,30px);font-weight:600;line-height:1.16;letter-spacing:-0.02em;color:var(--black);max-width:820px;margin-bottom:24px;}
+.h2 em{font-style:normal;color:var(--blue);font-weight:300;}
+.h2.center{margin-left:auto;margin-right:auto;text-align:center;}
+.h2.arch-h{margin-top:74px;}
+.body-p.center{margin-left:auto;margin-right:auto;text-align:center;}
+.body-p{font-size:16.5px;color:var(--grey-1);line-height:1.66;max-width:740px;margin-bottom:20px;}
+.body-p:last-child{margin-bottom:0;}
+.body-p strong{color:var(--black);font-weight:600;}
+
+/* COST-LINE BARS */
+.bars{max-width:760px;margin-top:30px;}
+.bar-row{display:grid;grid-template-columns:96px 1fr 64px;align-items:center;gap:14px;margin-bottom:14px;}
+.bar-row:last-child{margin-bottom:0;}
+.bar-label{font-family:var(--display);font-size:13.5px;font-weight:600;letter-spacing:-0.01em;color:var(--black);text-align:right;}
+.bar-track{background:var(--line-soft);border-radius:5px;height:34px;position:relative;overflow:hidden;}
+.bar-fill{height:100%;border-radius:5px;background:#9db8f5;}
+.bar-fill.lead{background:var(--blue);}
+.bar-pct{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--grey-2);text-align:right;}
+.bar-row.is-lead .bar-label{color:var(--blue-dark);}
+.bar-row.is-lead .bar-pct{color:var(--blue-dark);}
+.bar-caption{font-size:13.5px;color:var(--grey-2);font-style:italic;margin-top:18px;max-width:680px;line-height:1.5;}
+
+/* SLIDE 1 — two panel: bars + metric */
+.panel-2{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;max-width:1000px;margin-top:34px;align-items:start;}
+.panel-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:18px;}
+.metric-box{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:28px 28px;}
+.metric-title{font-family:var(--display);font-size:22px;font-weight:600;letter-spacing:-0.02em;color:var(--black);margin-bottom:16px;}
+.metric-formula{font-family:var(--mono);font-size:14px;line-height:1.7;color:var(--blue-dark);font-weight:500;margin-bottom:16px;}
+.metric-formula .op{color:var(--blue);}
+.metric-def{font-size:13.5px;color:var(--grey-1);line-height:1.6;}
+.range-line{font-size:16px;color:var(--grey-1);line-height:1.6;max-width:900px;margin-top:30px;}
+.range-line strong{color:var(--black);font-weight:600;}
+
+/* SLIDE 2 — comparison + mechanisms */
+.model-2{display:grid;grid-template-columns:0.95fr 1.05fr;gap:30px;max-width:1040px;margin-top:34px;align-items:start;}
+.compare{display:flex;flex-direction:column;}
+.compare-row{display:grid;grid-template-columns:1fr auto 1fr;gap:22px;align-items:stretch;max-width:920px;margin-top:30px;}
+.compare-row .cbox{display:flex;flex-direction:column;justify-content:center;}
+.delta-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;position:relative;padding:0 6px;}
+.delta-arrow::before{content:'→';position:absolute;font-size:26px;color:var(--blue);opacity:0.32;top:50%;left:50%;transform:translate(-50%,-150%);}
+.delta-pct{font-family:var(--display);font-size:clamp(26px,3vw,36px);font-weight:700;letter-spacing:-0.03em;color:var(--blue);line-height:1;}
+.delta-sub{font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--grey-3);}
+@media(max-width:760px){
+  .compare-row{grid-template-columns:1fr;gap:12px;}
+  .delta-arrow{flex-direction:row;gap:10px;padding:6px 0;}
+  .delta-arrow::before{content:'↓';position:static;transform:none;opacity:0.5;}
+}
+.cbox{border-radius:10px;padding:24px 26px;}
+.cbox.today{background:var(--off);border:1px solid var(--line);}
+.cbox.bsp{background:var(--green-soft);border:1px solid var(--green-line);}
+.cbox-label{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-2);font-weight:600;margin-bottom:10px;}
+.cbox-num{font-family:var(--display);font-size:clamp(34px,4vw,48px);font-weight:600;letter-spacing:-0.03em;color:var(--black);line-height:1;}
+.cbox-unit{font-size:12.5px;color:var(--grey-2);margin-top:8px;}
+.delta-band{background:var(--blue);color:#fff;text-align:center;font-family:var(--display);font-size:14px;font-weight:600;letter-spacing:0.02em;padding:11px;border-radius:6px;margin:10px 0;}
+.compare-note{font-family:var(--mono);font-size:11px;color:var(--grey-3);font-style:italic;margin-top:14px;line-height:1.5;}
+.mech-list{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:1040px;margin-top:34px;}
+.mech-item{display:block;padding:24px 26px;border:1px solid var(--line);border-radius:10px;background:var(--white);}
+.mech-num{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--blue);letter-spacing:0.04em;display:block;margin-bottom:12px;}
+.mech-body h4{font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.015em;color:var(--black);margin-bottom:8px;line-height:1.3;}
+.mech-body p{font-size:14.5px;color:var(--grey-1);line-height:1.6;margin-bottom:16px;}
+.mech-body .cuts{display:inline-block;font-family:var(--body);font-size:13px;letter-spacing:-0.005em;color:var(--blue-dark);font-weight:600;background:var(--blue-soft);padding:6px 12px;border-radius:6px;line-height:1.4;}
+.mech-list .mech-item:last-child{grid-column:1 / -1;}
+@media(max-width:760px){.mech-list{grid-template-columns:1fr;}.mech-list .mech-item:last-child{grid-column:auto;}}
+.model-line{font-size:16.5px;color:var(--black);line-height:1.6;max-width:900px;margin-top:30px;font-weight:500;}
+.model-line .pos{color:var(--blue);}
+.model-note{font-family:var(--mono);font-size:12px;color:var(--grey-3);font-style:italic;margin-top:16px;max-width:900px;letter-spacing:0;line-height:1.5;}
+.model-bridge{font-size:15px;color:var(--grey-1);line-height:1.55;max-width:760px;margin-top:28px;padding-left:18px;border-left:2px solid var(--blue);}
+
+/* SLIDE 3 — headless two-panel */
+.head-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1000px;margin-top:8px;margin-bottom:28px;}
+.head-card{border-radius:10px;padding:30px 28px;background:var(--blue-soft-2);border:1px solid #d8e3ff;}
+.head-card .panel-label{margin-bottom:12px;}
+.head-card.old .panel-label{color:var(--grey-3);}
+.head-card h4{font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-0.02em;color:var(--black);margin-bottom:12px;}
+.head-card p{font-size:14px;color:var(--grey-1);line-height:1.6;}
+.head-close{font-size:16.5px;color:var(--black);line-height:1.62;max-width:820px;font-weight:500;}
+/* TRI CARDS (Section A) */
+/* ROLE CARDS (buffer: specialists direct / agents do the work) */
+.role-proof{display:grid;grid-template-columns:1fr 1.15fr;gap:32px;max-width:1080px;margin-top:38px;align-items:start;}
+.role-stack{display:flex;flex-direction:column;gap:18px;}
+.role-card{border:1px solid var(--line);border-radius:10px;padding:26px 28px;background:var(--white);}
+.role-card .role-label{font-family:var(--display);font-size:15px;font-weight:600;letter-spacing:-0.01em;color:var(--blue);margin-bottom:11px;}
+.role-card p{font-size:14.5px;color:var(--grey-1);line-height:1.6;}
+@media(max-width:860px){.role-proof{grid-template-columns:1fr;gap:22px;}}
+
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1040px;margin-top:34px;}
+.tri-card{border:1px solid var(--line);border-radius:10px;padding:26px 24px;background:var(--white);}
+.tri-card .tri-k{font-family:var(--display);font-size:16px;letter-spacing:-0.01em;text-transform:none;color:var(--blue);font-weight:600;margin-bottom:12px;}
+.tri-card p{font-size:14px;color:var(--grey-1);line-height:1.58;}
+@media(max-width:820px){.tri{grid-template-columns:1fr;}}
+.head-close .accent{color:var(--blue);}
+
+/* MOAT POINTS */
+.moat-list{list-style:none;padding:0;max-width:740px;margin-top:8px;}
+.moat-list li{font-size:15px;color:var(--grey-1);line-height:1.55;padding:14px 0;border-bottom:1px solid var(--line-soft);display:flex;gap:12px;align-items:flex-start;}
+.moat-list li:last-child{border-bottom:none;}
+.moat-list li strong{color:var(--black);font-weight:600;}
+.moat-list li::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue);margin-top:7px;flex-shrink:0;}
+
+/* LAYOUT VARIETY — section eyebrow, pull-quote, lock-in grid */
+.sec-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:16px;}
+.pull{max-width:880px;margin:0 auto;padding:8px 0;}
+.pull p{font-family:var(--display);font-size:clamp(20px,2.4vw,28px);font-weight:600;line-height:1.3;letter-spacing:-0.02em;color:var(--black);}
+.pull.sm p{font-size:clamp(16px,1.7vw,19px);font-weight:500;}
+.pull.quote{max-width:680px;margin:30px 0 0;padding:4px 0 4px 22px;border-left:3px solid var(--blue);}
+.pull.quote p{font-size:clamp(16px,1.6vw,19px);font-weight:500;line-height:1.4;color:var(--grey-1);}
+.pull.quote p em{font-style:normal;color:var(--blue);font-weight:600;}
+.pull p em{font-style:normal;color:var(--blue);font-weight:300;}
+.tri-card{position:relative;}
+.lock-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:880px;margin-top:30px;}
+.lock-grid.three{grid-template-columns:repeat(3,1fr);max-width:1040px;}
+@media(max-width:760px){.lock-grid,.lock-grid.three{grid-template-columns:1fr;}}
+.lock-card{border:1px solid var(--line);border-radius:10px;padding:24px 24px 24px 22px;background:var(--white);border-left:3px solid var(--blue);}
+.lock-card.yes{border-left-color:var(--green);}
+.lock-card .lk{font-family:var(--display);font-size:16px;font-weight:600;letter-spacing:-0.015em;margin-bottom:10px;line-height:1.3;color:var(--black);}
+.lock-card p{font-size:13.5px;color:var(--grey-1);line-height:1.55;}
+@media(max-width:760px){.lock-grid{grid-template-columns:1fr;}}
+
+/* BENEFIT CARDS (Section B) */
+/* MECHANISMS — stacked rows, deliberately unboxed to break the card rhythm */
+.mech{max-width:1040px;margin-top:30px;}
+.mech-row{display:grid;grid-template-columns:0.85fr 1.35fr;gap:44px;padding:30px 0;border-top:1px solid var(--line);align-items:start;}
+.mech-row:last-child{border-bottom:1px solid var(--line);}
+.mech-head{display:flex;gap:13px;align-items:flex-start;}
+.mech-icon{color:var(--blue);flex-shrink:0;margin-top:2px;}
+.mech-icon svg{width:20px;height:20px;display:block;}
+.mech-t{font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.015em;color:var(--black);line-height:1.32;}
+.mech-lead{font-size:14.5px;color:var(--grey-2);line-height:1.6;margin-bottom:15px;}
+.mech-list{list-style:none;padding:0;margin:0;}
+.mech-list li{font-size:14.5px;color:var(--grey-1);line-height:1.5;padding-left:20px;position:relative;margin-bottom:9px;}
+.mech-list li:last-child{margin-bottom:0;}
+.mech-list li::before{content:'';position:absolute;left:0;top:9px;width:9px;height:1.5px;background:var(--blue);}
+.mech-close{font-size:14.5px;color:var(--grey-2);line-height:1.6;margin-top:15px;}
+@media(max-width:820px){.mech-row{grid-template-columns:1fr;gap:16px;padding:24px 0;}}
+
+/* REACH — where you can sell (destination cards) */
+.reach{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1080px;margin-top:38px;}
+.reach-col{border:1px solid var(--line);border-radius:10px;padding:28px 26px 26px;background:var(--white);display:flex;flex-direction:column;transition:border-color .18s ease;}
+.reach-col:hover{border-color:#c9d9ff;}
+.reach-icon{width:38px;height:38px;border-radius:9px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;color:var(--blue-dark);margin-bottom:18px;flex-shrink:0;}
+.reach-icon svg{width:20px;height:20px;display:block;}
+.reach-col h4{font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.015em;color:var(--blue);margin-bottom:11px;line-height:1.3;}
+.reach-col p{font-size:15px;color:var(--grey-1);line-height:1.62;margin-bottom:0;}
+.reach-col p strong{color:var(--black);font-weight:600;}
+@media(max-width:820px){.reach{grid-template-columns:1fr;gap:16px;}}
+
+/* REACH — the emerging channel: drawn provisionally, because it is */
+.reach-agentic{margin-top:20px;max-width:1080px;padding:26px 30px;background:var(--blue-soft-2);border:1px dashed var(--blue);border-radius:10px;}
+.reach-agentic-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:12px;}
+.reach-agentic p{font-size:15px;color:var(--grey-1);line-height:1.62;}
+.reach-agentic p strong{color:var(--black);font-weight:600;}
+
+/* PROOF — customer result accent band */
+.proof-card{background:var(--blue-soft);border-radius:12px;padding:34px 34px 32px;}
+.proof-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue-dark);font-weight:600;margin-bottom:20px;}
+.proof-big{font-family:var(--display);font-size:clamp(30px,3.6vw,46px);font-weight:600;letter-spacing:-0.03em;line-height:1.05;color:var(--blue-dark);margin-bottom:22px;}
+.proof-big span{color:var(--blue);font-weight:300;}
+.proof-sub{font-size:15px;line-height:1.6;color:var(--grey-1);margin-bottom:26px;}
+.proof-row{display:flex;gap:44px;flex-wrap:wrap;border-top:1px solid #c9d9ff;padding-top:22px;}
+.proof-metric .pm-val{font-family:var(--display);font-size:26px;font-weight:600;letter-spacing:-0.02em;line-height:1;color:var(--blue-dark);}
+.proof-metric .pm-lbl{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--grey-2);margin-top:8px;}
+@media(max-width:680px){.proof-row{gap:28px;}}
+
+/* INTERACTIVE COST CALCULATOR */
+.calc{display:grid;grid-template-columns:1fr 0.85fr;gap:28px;max-width:1040px;margin-top:34px;align-items:stretch;}
+.calc-inputs{border:1px solid var(--line);border-radius:12px;padding:32px 34px;background:var(--white);}
+.calc-inputs .panel-label{margin-bottom:26px;}
+.calc-field{margin-bottom:26px;}
+.calc-field:last-child{margin-bottom:0;}
+.calc-field-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:11px;}
+.calc-field-label{font-family:var(--display);font-size:15.5px;font-weight:600;letter-spacing:-0.01em;color:var(--black);}
+.calc-field-val{font-family:var(--display);font-size:16px;font-weight:600;color:var(--blue-dark);}
+.calc-field-pct{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--grey-2);background:var(--off);border:1px solid var(--line);padding:2px 8px;border-radius:20px;margin-right:9px;}
+.calc-slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:var(--line);outline:none;cursor:pointer;}
+.calc-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--blue);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 5px rgba(22,82,240,0.45);}
+.calc-slider::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--blue);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 5px rgba(22,82,240,0.45);}
+.calc-field-sub{font-size:13px;color:var(--grey-2);margin-top:10px;line-height:1.45;}
+.calc-results{display:flex;flex-direction:column;gap:14px;}
+.calc-res-card{border-radius:12px;padding:24px 28px;flex:1;display:flex;flex-direction:column;justify-content:center;}
+.calc-res-card.today{background:var(--off);border:1px solid var(--line);}
+.calc-res-card.bsp{background:var(--green-soft);border:1px solid var(--green-line);}
+.calc-res-card.save{background:var(--blue);border:1px solid var(--blue);}
+.calc-res-label{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;margin-bottom:10px;}
+.calc-res-card.today .calc-res-label{color:var(--grey-2);}
+.calc-res-card.bsp .calc-res-label{color:#15803d;}
+.calc-res-card.save .calc-res-label{color:rgba(255,255,255,0.85);}
+.calc-res-num{font-family:var(--display);font-size:clamp(26px,3vw,34px);font-weight:600;letter-spacing:-0.03em;line-height:1;color:var(--black);}
+.calc-res-card.save .calc-res-num{color:#fff;}
+.calc-res-unit{font-size:13.5px;color:var(--grey-2);margin-top:9px;}
+.calc-res-card.save .calc-res-unit{color:rgba(255,255,255,0.9);}
+.calc-note{font-size:13.5px;color:var(--grey-2);margin-top:20px;line-height:1.6;max-width:1040px;}
+.calc-note strong{color:var(--black);font-weight:600;}
+@media(max-width:820px){.calc{grid-template-columns:1fr;}}
+
+.closing{max-width:1180px;margin:0 auto;padding:92px 48px 104px;text-align:center;}
+.closing .h2{margin:0 auto 18px;text-align:center;}
+.closing .lead{font-size:17px;color:var(--grey-1);line-height:1.62;max-width:640px;margin:0 auto 36px;text-align:center;}
+.closing-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+@media(max-width:880px){
+  .panel-2{grid-template-columns:1fr;}
+  .model-2{grid-template-columns:1fr;}
+  .head-2{grid-template-columns:1fr;}
+}
+@media(max-width:640px){
+  .phero{padding:56px 24px 48px;}
+  .sec,.closing{padding-left:24px;padding-right:24px;}
+  .creds-strip{padding-left:24px;padding-right:24px;}
+}
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="phero">
+    <div class="phero-cat">Accelerate Channel Revenue</div>
+    <h1 class="phero-h">Add channels. Add revenue. <em>Without adding the cost to match.</em></h1>
+    <p class="phero-sub">Asymmetric growth: the top line climbs with every channel and market you add while the running cost barely moves. An agent-first architecture breaks the link between a bigger catalogue and a bigger team.</p>
+    <div class="phero-cta">
+      <a class="btn btn-primary cta-big" href="#">Book a conversation</a>
+      <a class="btn btn-ghost cta-big" href="#">See how it works</a>
+    </div>
+  </div>
+
+  <div class="creds-strip">
+    <span>API-first</span><span class="cs-sep">·</span><span>MCP-native</span><span class="cs-sep">·</span><span>LLM-neutral</span><span class="cs-sep">·</span><span>MACH certified</span><span class="cs-sep">·</span><span>EU AI Act-ready</span>
+  </div>
+
+  <!-- Buffer + proof — outcome left, customer result right -->
+  <section class="sec off">
+    <div class="inner">
+    <h2 class="h2 center">More products, more channels, more markets — <em>run by the team you have today.</em></h2>
+    <div class="role-proof">
+      <div class="role-stack">
+        <div class="role-card">
+          <div class="role-label">Your specialists direct</div>
+          <p>They set the rules, make the calls and decide where to grow next — instead of working through everything by hand.</p>
+        </div>
+        <div class="role-card">
+          <div class="role-label">Agents do the work</div>
+          <p>Onboarding, enrichment and manual upkeep run at scale — a new market adds revenue, not proportional overhead.</p>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-eyebrow">In practice — Zeeman</div>
+        <div class="proof-big">Six weeks <span>to one.</span></div>
+        <p class="proof-sub">That's how far new-market launch time dropped once Zeeman ran every market from one governed source, instead of rebuilding the data market by market.</p>
+        <div class="proof-row">
+          <div class="proof-metric"><div class="pm-val">40,000</div><div class="pm-lbl">SKUs managed</div></div>
+          <div class="proof-metric"><div class="pm-val">1,300</div><div class="pm-lbl">Stores</div></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Section A — the better reality (outcome first) -->  <section class="sec">
+    <div class="inner">
+      <h2 class="h2 center">What's actually limiting your channel growth?</h2>
+      <p class="body-p center">Rarely demand — usually the cost and effort of running each new channel. When agents operate the catalogue, that ceiling lifts. Three limits fall away:</p>
+      <div class="tri">
+        <div class="tri-card">
+          <div class="tri-k">The cost ceiling</div>
+          <p>Each new channel normally earns less than the last, until one costs more to run than it makes — with agents, that point moves far out.</p>
+        </div>
+        <div class="tri-card">
+          <div class="tri-k">The effort ceiling</div>
+          <p>Manual upkeep caps how many channels a team can run — agents carry the load, so it stops being a question of hours.</p>
+        </div>
+        <div class="tri-card">
+          <div class="tri-k">The break-even ceiling</div>
+          <p>Small markets have to clear a high setup bar — when setup is near-zero, the channels you used to skip become revenue worth taking.</p>
+        </div>
+      </div>
+
+      <h2 class="h2 center arch-h">Why can't my current PIM fix this?</h2>
+      <p class="body-p center">Most were built to be run through a screen, so the work scales with the people doing the clicking. Bolting on AI doesn't change that — the limit is the architecture, not the interface. Commerce has already been through this shift once:</p>
+      <div class="head-2">
+        <div class="head-card old">
+          <div class="panel-label">The part everyone did</div>
+          <h4>Headless commerce</h4>
+          <p>Splitting the storefront from the commerce engine, so any frontend can plug in. Proven, widespread — and only half the picture.</p>
+        </div>
+        <div class="head-card">
+          <div class="panel-label">The part that's still missing</div>
+          <h4>Headless, agent-first PIM</h4>
+          <p>Your product data isn't locked behind a UI either — and it's built for agents, not just API calls. Team, channels and AI agents all work from the same source, through whatever interface fits.</p>
+        </div>
+      </div>
+      <div class="pull sm"><p>Headless commerce decoupled the storefront. <em>We decoupled the work from the screen</em> — so agents, not just people, can run the catalogue.</p></div>
+    </div>
+  </section>
+
+  <!-- Section B (moved after C) — the mechanisms -->
+  <section class="sec off">
+    <div class="inner">
+      <h2 class="h2 center">What makes adding a channel <em>easy here?</em></h2>
+      <p class="body-p center">Reaching a new channel, market or language normally takes a wave of work — and that work, not the opportunity, caps how fast you expand. Agents take it on; your team guides them and handles the exceptions.</p>
+      <p class="body-p center" style="font-weight:600;color:var(--black);margin-bottom:0;">Three things make it easy:</p>
+      <div class="mech">
+        <div class="mech-row">
+          <div class="mech-head">
+            <div class="mech-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="M3 13l9 5 9-5"/></svg>
+            </div>
+            <div class="mech-t">No starting the data over</div>
+          </div>
+          <div class="mech-body">
+            <p class="mech-lead">A new channel, region or language usually means redoing the data. Agents take that on, so the catalogue stays ready for:</p>
+            <ul class="mech-list">
+              <li>A new marketplace or sales channel</li>
+              <li>A new market, language or region</li>
+              <li>An AI agent reading it directly</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mech-row">
+          <div class="mech-head">
+            <div class="mech-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 7.2V19l-4 2v-8.8L4 5Z"/></svg>
+            </div>
+            <div class="mech-t">Supplier data without the bottleneck</div>
+          </div>
+          <div class="mech-body">
+            <p class="mech-lead">Feeds arrive in whatever shape suppliers send them — PDFs, CSVs, EDI. Agents handle the intake:</p>
+            <ul class="mech-list">
+              <li>Ingest each feed in the format it arrives</li>
+              <li>Map it to your data model</li>
+              <li>Enrich the gaps as they go</li>
+            </ul>
+            <p class="mech-close">So adding ranges scales with the catalogue, not your team's hours.</p>
+          </div>
+        </div>
+        <div class="mech-row">
+          <div class="mech-head">
+            <div class="mech-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4-3 7-7 8-4-1-7-4-7-8V6l7-3Z"/><path d="M9 12l2.2 2.2L15 10.5"/></svg>
+            </div>
+            <div class="mech-t">Built for regulated markets</div>
+          </div>
+          <div class="mech-body">
+            <p class="mech-lead">Requirements are already in the platform, with agents filling and validating them — so each market isn't a separate scramble:</p>
+            <ul class="mech-list">
+              <li>EU Digital Product Passport</li>
+              <li>GS1 and industry standards</li>
+              <li>Market-specific data rules</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="body-p" style="margin-top:28px;font-size:15px;">Speed into each channel is covered on <a href="#" style="color:var(--blue);text-decoration:none;border-bottom:1px solid transparent;">Automate Product Workflows</a> — this page is about what that growth costs to run.</p>
+    </div>
+  </section>
+
+  <!-- Section Reach — where your data goes -->
+  <section class="sec">
+    <div class="inner">
+      <h2 class="h2">Ready for wherever your customers <em>are buying.</em></h2>
+      <p class="body-p">Whatever your channel mix looks like today — and whatever it becomes — you're ready for it. Where you sell and how you run distribution stays your choice.</p>
+      <div class="reach">
+        <div class="reach-col">
+          <div class="reach-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18M3 9l2-5h14l2 5M5 9v11h14V9M9 20v-6h6v6"/></svg>
+          </div>
+          <h4>Storefronts &amp; commerce</h4>
+          <p>Your web shops and apps read from one source, on the commerce engine you already run — whether that's <strong>commercetools</strong>, <strong>Adobe Commerce</strong>, <strong>Shopify</strong> or something else.</p>
+        </div>
+        <div class="reach-col">
+          <div class="reach-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2.2"/><circle cx="19" cy="5" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="19" cy="19" r="2.2"/><path d="M7.2 12h9.6M7.2 11.2 16.9 5.9M7.2 12.8l9.7 5.3"/></svg>
+          </div>
+          <h4>Syndication &amp; channel management</h4>
+          <p>Feed marketplaces and partner portals directly, or run syndication at scale through a channel manager such as <strong>Productsup</strong> or <strong>Channable</strong> — across hundreds of destinations.</p>
+        </div>
+        <div class="reach-col">
+          <div class="reach-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 2.6 15.2 0 18M12 3c-2.6 2.8-2.6 15.2 0 18"/></svg>
+          </div>
+          <h4>Trading partners &amp; new markets</h4>
+          <p>Share verified data through standards networks like <strong>GS1</strong> and <strong>1WorldSync</strong>, and open new regions and languages without redoing the work each time.</p>
+        </div>
+      </div>
+      <div class="reach-agentic">
+        <div class="reach-agentic-label">The channel that's just emerging</div>
+        <p>A new buying surface is forming: <strong>AI agents that reach for product data directly.</strong> Bluestone serves them over open protocols like <strong>MCP</strong> — so the channels you'll sell through in three years may not exist yet, but the foundation does.</p>
+        <p style="margin-top:14px;font-size:13.5px;"><a href="#" style="color:var(--blue);text-decoration:none;font-weight:600;">Get Cited by AI Answer Engines →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section D — the maths (numbers come last, once the mechanism is believed) -->
+  <section class="sec off">
+    <div class="inner">
+    <h2 class="h2">What could the numbers look like <em>for you?</em></h2>
+    <p class="body-p">It comes down to one figure — cost per SKU. Four lines feed it, and they don't all respond the same way once agents are operating the catalogue.</p>
+
+    <div class="metric-box" style="max-width:1040px;margin-top:8px;margin-bottom:30px;">
+      <div class="panel-label">The metric</div>
+      <div class="metric-formula" style="font-size:15px;">Cost per SKU = (Team <span class="op">+</span> Tools <span class="op">+</span> Services <span class="op">+</span> Integration) ÷ active SKUs</div>
+    </div>
+
+    <p class="calc-note" style="margin-bottom:30px;">Set your own figures below. Defaults reflect the four levers above — <strong>Team −45%</strong>, <strong>Services −60%</strong>, <strong>Integration −50%</strong>, <strong>Tools −10%</strong>. We'll validate the model against your real operation.</p>
+
+    <div class="calc">
+      <div class="calc-inputs">
+        <div class="panel-label">Your operation today</div>
+        <div class="calc-field">
+          <div class="calc-field-top"><span class="calc-field-label">Active SKUs</span><span class="calc-field-val" id="v-skus">500,000</span></div>
+          <input type="range" class="calc-slider" id="s-skus" min="50000" max="2000000" step="50000" value="500000">
+        </div>
+        <div class="calc-field">
+          <div class="calc-field-top"><span class="calc-field-label">Team</span><span><span class="calc-field-pct" id="p-team">62%</span><span class="calc-field-val" id="v-team">€4.5M</span></span></div>
+          <input type="range" class="calc-slider" id="s-team" min="500000" max="10000000" step="100000" value="4500000">
+          <div class="calc-field-sub">People operating product data — the line agents shift most</div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-field-top"><span class="calc-field-label">Tools</span><span><span class="calc-field-pct" id="p-tools">21%</span><span class="calc-field-val" id="v-tools">€1.5M</span></span></div>
+          <input type="range" class="calc-slider" id="s-tools" min="100000" max="5000000" step="50000" value="1500000">
+          <div class="calc-field-sub">PIM, DAM and supporting software licences</div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-field-top"><span class="calc-field-label">Services</span><span><span class="calc-field-pct" id="p-svc">12%</span><span class="calc-field-val" id="v-svc">€0.9M</span></span></div>
+          <input type="range" class="calc-slider" id="s-svc" min="0" max="4000000" step="50000" value="900000">
+          <div class="calc-field-sub">Compliance, data and consulting spend</div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-field-top"><span class="calc-field-label">Integration</span><span><span class="calc-field-pct" id="p-int">5%</span><span class="calc-field-val" id="v-int">€0.4M</span></span></div>
+          <input type="range" class="calc-slider" id="s-int" min="0" max="4000000" step="50000" value="400000">
+          <div class="calc-field-sub">Custom connectors and channel plumbing</div>
+        </div>
+      </div>
+      <div class="calc-results">
+        <div class="calc-res-card today">
+          <div class="calc-res-label">Today · UI-dependent PIM</div>
+          <div class="calc-res-num" id="r-today">€14.60</div>
+          <div class="calc-res-unit">per SKU · per year</div>
+        </div>
+        <div class="calc-res-card bsp">
+          <div class="calc-res-label">With Bluestone PIM</div>
+          <div class="calc-res-num" id="r-bsp">€8.80</div>
+          <div class="calc-res-unit">per SKU · per year</div>
+        </div>
+        <div class="calc-res-card save">
+          <div class="calc-res-label">Stays in the business</div>
+          <div class="calc-res-num" id="r-save">€2.9M</div>
+          <div class="calc-res-unit" id="r-save-unit">a year · −40% per SKU</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="model-bridge" style="margin-top:32px;">The cost model only tells half the story. The same architecture is what lets you open that new ground in the first place — so the saving isn't just a smaller bill, it's margin you can put back into growth.</p>
+    <div class="pull quote" style="margin-top:30px;"><p>Growth stops being a question of <em>can we afford to run it</em> — and becomes simply <em>where do we want to sell next.</em></p></div>
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    var R={team:0.45,tools:0.10,svc:0.60,int:0.50};
+    var el=function(id){return document.getElementById(id);};
+    var fmtM=function(n){return '€'+(n/1000000).toFixed(n>=1000000?(n%1000000===0?0:1):2).replace(/\.0$/,'')+'M';};
+    var fmtEur=function(n){
+      if(n>=1000000){var v=n/1000000;return '€'+(v>=10?v.toFixed(1):v.toFixed(2)).replace(/\.?0+$/,'')+'M';}
+      if(n>=1000)return '€'+Math.round(n/1000)+'k';
+      return '€'+Math.round(n);
+    };
+    var fmtSku=function(n){return n.toLocaleString('en-US');};
+    function calc(){
+      var skus=+el('s-skus').value, team=+el('s-team').value, tools=+el('s-tools').value, svc=+el('s-svc').value, integ=+el('s-int').value;
+      el('v-skus').textContent=fmtSku(skus);
+      el('v-team').textContent=fmtM(team);
+      el('v-tools').textContent=fmtM(tools);
+      el('v-svc').textContent=fmtM(svc);
+      el('v-int').textContent=fmtM(integ);
+      var todayTotal=team+tools+svc+integ;
+      if(todayTotal>0){
+        el('p-team').textContent=Math.round(team/todayTotal*100)+'%';
+        el('p-tools').textContent=Math.round(tools/todayTotal*100)+'%';
+        el('p-svc').textContent=Math.round(svc/todayTotal*100)+'%';
+        el('p-int').textContent=Math.round(integ/todayTotal*100)+'%';
+      }
+      var bspTotal=team*(1-R.team)+tools*(1-R.tools)+svc*(1-R.svc)+integ*(1-R.int);
+      var todayPer=todayTotal/skus, bspPer=bspTotal/skus;
+      var saving=todayTotal-bspTotal;
+      var pct=todayTotal>0?Math.round((saving/todayTotal)*100):0;
+      el('r-today').textContent='€'+todayPer.toFixed(2);
+      el('r-bsp').textContent='€'+bspPer.toFixed(2);
+      el('r-save').textContent=fmtEur(saving);
+      el('r-save-unit').textContent='a year · −'+pct+'% per SKU';
+    }
+    ['s-skus','s-team','s-tools','s-svc','s-int'].forEach(function(id){
+      var n=el(id); if(n){n.addEventListener('input',calc);}
+    });
+    calc();
+  })();
+  </script>
+
+
+  <!-- Section E — the decade bet -->
+  <section class="sec">
+    <div class="inner">
+      <h2 class="h2">One decision <em>that holds for years.</em></h2>
+      <div class="lock-grid three">
+        <div class="lock-card no">
+          <div class="lk">The architecture still fits in a decade</div>
+          <p>Built headless and agent-first ten years ago — the design teams are choosing now. Your platform keeps up as agents take over, instead of needing a rebuild.</p>
+        </div>
+        <div class="lock-card no">
+          <div class="lk">You stay free to choose</div>
+          <p>Run any AI — Claude, ChatGPT, Gemini or your own — and switch as the field moves. The catalogue is the asset; the agents around it are interchangeable.</p>
+        </div>
+        <div class="lock-card yes">
+          <div class="lk">What you need is already in the box</div>
+          <p>Governance, audit trails and open integration are built in — so growth doesn't keep turning into new projects and new spend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <div class="closing">
+    <h2 class="h2">Let's talk about <em>where you're growing.</em></h2>
+    <p class="lead">New channels, new markets, new product lines — and what it takes to run them. We work with distributors, wholesalers and retailers scaling catalogues without scaling the cost behind them, and we'll map the model to yours.</p>
+    <div class="closing-cta">
+      <a class="btn btn-primary cta-big" href="#">Book a conversation</a>
+      <a class="btn btn-ghost cta-big" href="#">See how it works</a>
+    </div>
+  </div>
+
+</body>
+</html>
