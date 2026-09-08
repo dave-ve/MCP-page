@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bluestone PIM — Automation Capabilities</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16233B; --mute:#5A6577; --soft:#3B475F;
+    --line:#E3E6EC; --paper:#EDEFF3; --card:#FFFFFF;
+    --blue:#2B54D4; --blueT:#EAEFFC; --blueBand:#F6F8FD;
+    --teal:#0E7F76; --tealT:#E0F2F0; --tealBand:#F2FAF8;
+    --violet:#6A45C0; --violetT:#EEE9F9; --violetBand:#F7F4FC;
+    --gold:#F2C879;
+    --cols:16% 23% 25% 18% 18%;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .slide{
+    max-width:1240px; margin:34px auto; background:var(--card);
+    border:1px solid var(--line); border-radius:6px;
+    padding:44px 46px 40px; box-shadow:0 1px 0 rgba(22,35,59,.04);
+  }
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:26px;}
+  .brand .glyph{width:20px;height:20px;background:var(--blue);border-radius:3px;transform:rotate(45deg);position:relative;}
+  .brand .glyph::after{content:"";position:absolute;inset:6px;background:var(--card);border-radius:2px;}
+  .brand .name{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:.95rem;}
+
+  h1{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:800;
+    font-size:clamp(1.9rem,3.4vw,2.5rem); letter-spacing:-.02em;
+    line-height:1.04; margin:0 0 12px;
+  }
+  .sub{font-size:1.05rem; color:var(--soft); max-width:76ch; margin:0 0 24px;}
+  .sub b{color:var(--ink);font-weight:600;}
+
+  .thead{
+    display:grid; grid-template-columns:var(--cols);
+    padding:0 4px 10px; border-bottom:1px solid var(--line);
+    font-size:.8rem; font-weight:600; color:var(--mute);
+  }
+  .thead span{padding:0 12px;}
+
+  .tier{
+    display:grid; grid-template-columns:var(--cols);
+    border-radius:10px; margin-top:12px; overflow:hidden;
+  }
+  .tier.t1{background:var(--blueBand);}
+  .tier.t2{background:var(--tealBand);}
+  .tier.t3{background:var(--violetBand);}
+  .cell{padding:20px 12px;}
+  .cell + .cell{border-left:1px solid rgba(22,35,59,.06);}
+  .clabel{display:none;}
+
+  .tname{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.16rem;letter-spacing:-.01em;margin:0 0 9px;line-height:1.1;}
+  .t1 .tname{color:var(--blue);} .t2 .tname{color:var(--teal);} .t3 .tname{color:var(--violet);}
+  .chip{display:inline-block;font-size:.7rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+  .t1 .chip{background:var(--blueT);color:var(--blue);}
+  .t2 .chip{background:var(--tealT);color:var(--teal);}
+  .t3 .chip{background:var(--violetT);color:var(--violet);}
+
+  .when{font-size:.9rem;color:var(--ink);margin:0;line-height:1.45;}
+
+  ul.runs{margin:0;padding:0;list-style:none;}
+  ul.runs li{position:relative;padding-left:15px;font-size:.9rem;color:var(--ink);margin-bottom:10px;line-height:1.4;}
+  ul.runs li:last-child{margin-bottom:0;}
+  ul.runs li::before{content:"";position:absolute;left:0;top:.55em;width:5px;height:5px;border-radius:50%;}
+  .t1 ul.runs li::before{background:var(--blue);}
+  .t2 ul.runs li::before{background:var(--teal);}
+  .t3 ul.runs li::before{background:var(--violet);}
+
+  .gets{font-size:.9rem;color:var(--ink);margin:0;line-height:1.45;}
+  .control{font-size:.88rem;color:var(--mute);margin:0;line-height:1.45;}
+
+  .strip{
+    margin-top:26px; background:var(--ink); color:#E7ECF5;
+    border-radius:12px; padding:24px 30px; font-size:1rem; line-height:1.55;
+  }
+  .strip b{color:var(--gold);font-weight:600;}
+
+  @media (max-width:900px){
+    .slide{padding:30px 22px;margin:0;border:none;border-radius:0;}
+    .thead{display:none;}
+    .tier{grid-template-columns:1fr;}
+    .cell + .cell{border-left:none;border-top:1px solid rgba(22,35,59,.08);}
+    .clabel{display:block;font-size:.72rem;font-weight:600;color:var(--mute);margin-bottom:6px;}
+  }
+  @media print{
+    body{background:#fff;}
+    .slide{box-shadow:none;border:none;max-width:none;margin:0;padding:22px 24px;}
+    .strip,.tier{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .tier{break-inside:avoid;}
+    @page{size:landscape;margin:10mm;}
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <div class="brand"><div class="glyph"></div><div class="name">Bluestone PIM</div></div>
+
+  <h1>Automation capabilities</h1>
+  <p class="sub">The headless, agent-first product data platform. <b>Automation runs through the interface, your own APIs, or autonomous agents</b> — so the work happens without anyone triggering it each time. These are three <b>types</b> of automation, each matched to a different job — not steps you climb. Find the row that fits your situation and start there.</p>
+
+  <div class="thead">
+    <span>Type of automation</span>
+    <span>When you'd want it</span>
+    <span>What runs automatically</span>
+    <span>What your team gets</span>
+    <span>How you control it</span>
+  </div>
+
+  <!-- Tier 1 -->
+  <div class="tier t1">
+    <div class="cell">
+      <h2 class="tname">Rule‑Based Automation</h2>
+      <span class="chip">Deterministic</span>
+    </div>
+    <div class="cell">
+      <span class="clabel">When you'd want it</span>
+      <p class="when">You're repeating the same manual checks and steps, and need catalogue data to stay consistent and error‑free as volume grows.</p>
+    </div>
+    <div class="cell">
+      <span class="clabel">What runs automatically</span>
+      <ul class="runs">
+        <li>Incoming products are categorized, validated and released on your own business logic</li>
+        <li>Duplicates and bad data are blocked at entry, and every change is checked the moment it happens — with full lineage logged</li>
+      </ul>
+    </div>
+    <div class="cell">
+      <span class="clabel">What your team gets</span>
+      <p class="gets">Consistent, publish‑ready data with no manual policing — and a clear record of who or what changed what.</p>
+    </div>
+    <div class="cell">
+      <span class="clabel">How you control it</span>
+      <p class="control">You define the logic once; it runs the same whether driven from the interface or your own APIs.</p>
+    </div>
+  </div>
+
+  <!-- Tier 2 -->
+  <div class="tier t2">
+    <div class="cell">
+      <h2 class="tname">AI‑Powered Automation</h2>
+      <span class="chip">AI in the rules</span>
+    </div>
+    <div class="cell">
+      <span class="clabel">When you'd want it</span>
+      <p class="when">Enrichment is your bottleneck — descriptions, SEO, translations — and you're expanding into more products, markets or languages.</p>
+    </div>
+    <div class="cell">
+      <span class="clabel">What runs automatically</span>
+      <ul class="runs">
+        <li>Continuous AI enrichment, translation and image tagging across the catalogue</li>
+        <li>Triggered by events, not a button — no one generating content product by product</li>
+      </ul>
+    </div>
+    <div class="cell">
+      <span class="clabel">What your team gets</span>
+      <p class="gets">Enrich and localize in hours, not weeks — your team covers far more products.</p>
+    </div>
+    <div class="cell">
+      <span class="clabel">How you control it</span>
+      <p class="control">Human sign‑off is optional: require approval before it publishes, or let it run. Bring your own AI model.</p>
+    </div>
+  </div>
+
+  <!-- Tier 3 -->
+  <div class="tier t3">
+    <div class="cell">
+      <h2 class="tname">Autonomous Agents</h2>
+      <span class="chip">Agentic</span>
+    </div>
+    <div class="cell">
+      <span class="clabel">When you'd want it</span>
+      <p class="when">Volume has outgrown the team — onboarding suppliers, scaling the catalogue, or getting ready for AI‑driven commerce.</p>
+    </div>
+    <div class="cell">
+      <span class="clabel">What runs automatically</span>
+      <ul class="runs">
+        <li>Agents plan and run multi‑step work: supplier onboarding, validation and multi‑channel syndication</li>
+        <li>Your data is structured so external AI — ChatGPT, Claude, Perplexity — can find and act on it</li>
+      </ul>
+    </div>
+    <div class="cell">
+      <span class="clabel">What your team gets</span>
+      <p class="gets">Scale the catalogue without scaling headcount — an agent does as much as one of your developers could.</p>
+    </div>
+    <div class="cell">
+      <span class="clabel">How you control it</span>
+      <p class="control">Agents act within your rules and are checked and logged like any user — who or what made each change.</p>
+    </div>
+  </div>
+
+  <div class="strip">
+    <b>Easy to adopt, easy to control —</b> Bluestone plugs into the stack you already run (MACH‑certified, API‑first), so you start with a single automation and grow at your own pace. Human sign‑off stays optional, every change is logged, and you bring your own AI model — no lock‑in.
+  </div>
+
+</div>
+</body>
+</html>
