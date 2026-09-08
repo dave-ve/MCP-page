@@ -15,7 +15,7 @@
     --teal:#0E7F76; --tealT:#E0F2F0; --tealBand:#F2FAF8;
     --violet:#6A45C0; --violetT:#EEE9F9; --violetBand:#F7F4FC;
     --gold:#F2C879;
-    --cols:16% 23% 25% 18% 18%;
+    --cols:13% 17% 20% 14% 14% 22%;
   }
   *{box-sizing:border-box;}
   body{
@@ -79,6 +79,12 @@
   .gets{font-size:.9rem;color:var(--ink);margin:0;line-height:1.45;}
   .control{font-size:.88rem;color:var(--mute);margin:0;line-height:1.45;}
 
+  .tool-tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tool-tag{font-size:.72rem;font-weight:600;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  .t1 .tool-tag{background:var(--blueT);color:var(--blue);}
+  .t2 .tool-tag{background:var(--tealT);color:var(--teal);}
+  .t3 .tool-tag{background:var(--violetT);color:var(--violet);}
+
   .strip{
     margin-top:26px; background:var(--ink); color:#E7ECF5;
     border-radius:12px; padding:24px 30px; font-size:1rem; line-height:1.55;
@@ -115,6 +121,7 @@
     <span>What runs automatically</span>
     <span>What your team gets</span>
     <span>How you control it</span>
+    <span>Sample Bluestone PIM tools</span>
   </div>
 
   <!-- Tier 1 -->
@@ -141,6 +148,15 @@
     <div class="cell">
       <span class="clabel">How you control it</span>
       <p class="control">You define the logic once; it runs the same whether driven from the interface or your own APIs.</p>
+    </div>
+    <div class="cell">
+      <span class="clabel">Sample Bluestone PIM tools</span>
+      <div class="tool-tags">
+        <span class="tool-tag">Validation &amp; Publishing Workflows</span>
+        <span class="tool-tag">Completeness Scoring</span>
+        <span class="tool-tag">Webhooks</span>
+        <span class="tool-tag">Access Control &amp; Roles</span>
+      </div>
     </div>
   </div>
 
@@ -169,6 +185,16 @@
       <span class="clabel">How you control it</span>
       <p class="control">Human sign‑off is optional: require approval before it publishes, or let it run. Bring your own AI model.</p>
     </div>
+    <div class="cell">
+      <span class="clabel">Sample Bluestone PIM tools</span>
+      <div class="tool-tags">
+        <span class="tool-tag">AI Enrich</span>
+        <span class="tool-tag">AI Linguist</span>
+        <span class="tool-tag">AI DAM</span>
+        <span class="tool-tag">AI Analyst</span>
+        <span class="tool-tag">Rules Engine with AI</span>
+      </div>
+    </div>
   </div>
 
   <!-- Tier 3 -->
@@ -196,6 +222,15 @@
     <div class="cell">
       <span class="clabel">How you control it</span>
       <p class="control">Agents act within your rules and are checked and logged like any user, recording who or what made each change.</p>
+    </div>
+    <div class="cell">
+      <span class="clabel">Sample Bluestone PIM tools</span>
+      <div class="tool-tags">
+        <span class="tool-tag">AI Agent</span>
+        <span class="tool-tag">Native MCP Server</span>
+        <span class="tool-tag">Product &amp; Catalogue Tools</span>
+        <span class="tool-tag">Task &amp; Workflow Tools</span>
+      </div>
     </div>
   </div>
 
